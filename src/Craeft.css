@@ -1,0 +1,68 @@
+* {
+    font-family: 'MedievalSharp', cursive;
+    font-size: 24px;
+}
+
+html, body {
+    color: #FAEBD7;
+    background-color: #000;
+}
+
+strong {
+    color: #FAEFE1;
+}
+
+.craeft-logo {
+    font-size: 90px;
+    font-weight: bold;
+    color: #FAEFE1;
+}
+
+.column {
+    display: inline-block;
+    vertical-align: top;
+    padding-right: 20px;
+}
+
+.frame {
+    min-width: 380px;
+}
+
+.row {
+    text-align: center;
+}
+
+.player {
+    margin-bottom: 30px;
+}
+
+.item,
+.resources,
+.craefter,
+.craeft-window,
+.craefter-window {
+    border: 1px solid #FAEFE1;
+    margin-bottom: 5px;
+    margin-top: 2px;
+    padding: 6px;
+}
+
+.craefters-list {
+    margin-top: 5px;
+}
+
+.items hr,
+.craefters hr,
+.farm hr {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.footer {
+    text-align: center;
+    background-color: #000;
+}
+
+.item-description {
+    min-width: 80%;
+}

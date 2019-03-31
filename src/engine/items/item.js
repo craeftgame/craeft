@@ -1,7 +1,11 @@
-export default class Item {
+import DelayedObject from "../delayed_object";
+
+export default class Item extends DelayedObject {
     constructor({
-        name
-    } = {}) {
+                    name
+                } = {}) {
+        super(50);
+
         this.name = name;
     }
 
