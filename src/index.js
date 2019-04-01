@@ -5,7 +5,6 @@ import * as serviceWorker from './serviceWorker';
 import Craeft from './Craeft';
 import About from './About';
 
-import '../node_modules/RPGUI/dist/rpgui.min'
 import './rpgui.css'
 import '../node_modules/bulma/css/bulma.css'
 

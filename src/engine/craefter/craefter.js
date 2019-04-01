@@ -1,25 +1,33 @@
 import {getRandomArrayItem} from '../../tools/rand';
 import peopleNames from '../data/people_names'
 import DelayedObject from "../delayed_object";
+import {CraefterTypes} from "./types";
 
 export default class Craefter extends DelayedObject {
     constructor({
-                    type = 'unknown',
+                    type = CraefterTypes.Unknown,
                     name = getRandomArrayItem(peopleNames),
                     luk = 0,
                     dex = 0,
-                    str = 0
+                    str = 0,
+                    int = 0,
+                    sta = 5
                 } = {}) {
         super(5);
 
         this.isCraefting = false;
+
         this.type = type;
         this.name = name;
 
         this.luk = luk;
         this.dex = dex;
         this.str = str;
+        this.int = int;
 
+        this.sta = sta;
+        this.staMax = sta;
+        this.staPercent = 100;
     }
 
     evaluateItemType(

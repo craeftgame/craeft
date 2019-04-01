@@ -10,12 +10,14 @@ const WeaponTypes = Object.freeze({
 });
 
 const ItemCategories = Object.freeze({
+    Unknown: Symbol('unknown'),
     Weapon: Symbol('weapon'),
     Armor: Symbol('armor'),
     Jewelery: Symbol('jewelery')
 });
 
 const CraefterTypes = Object.freeze({
+    Unknown: Symbol('unknown'),
     Weaponsmith: Symbol('weaponsmith'),
     Armorsmith: Symbol('armorsmith'),
     Jewelcraefter: Symbol('jewelcraefter')

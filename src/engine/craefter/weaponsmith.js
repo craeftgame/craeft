@@ -6,9 +6,9 @@ import {ItemCategories, WeaponTypes, CraefterTypes} from "./types";
 export default class Weaponsmith extends Craefter {
     constructor({
                     name,
-                    luk,
-                    dex,
-                    str
+                    luk = 6,
+                    dex = 3,
+                    str = 9
                 } = {}) {
         super({
             type: CraefterTypes.Weaponsmith,
@@ -19,8 +19,10 @@ export default class Weaponsmith extends Craefter {
         });
     }
 
-    evaluateItemType(ratios) {
-        let type = '???';
+    evaluateItemType(
+        ratios
+    ) {
+        let type = WeaponTypes.Unknown;
 
         const highestResource = Craefter.highestMaterial(ratios);
 
@@ -58,19 +60,27 @@ export default class Weaponsmith extends Craefter {
         return type;
     }
 
-    evaluateAtk(ressources) {
+    evaluateAtk(
+        resources
+    ) {
 
     }
 
     evaluateItem(
         resources
     ) {
+        resources = {
+            wood: resources.wood || 0,
+            metal: resources.metal || 0,
+            cloth: resources.cloth || 0,
+            diamond: resources.diamond || 0,
+        };
 
         const gcd = math.gcd(
-            resources.wood || 0,
-            resources.metal || 0,
-            resources.cloth || 0,
-            resources.diamond || 0
+            resources.wood,
+            resources.metal,
+            resources.cloth,
+            resources.diamond
         );
 
         const ratios = {
@@ -88,17 +98,31 @@ export default class Weaponsmith extends Craefter {
             resources.diamond
         );
 
+        const atk = Math.round(
+            (resourcesSum / 4) + ((resources.metal / 100) * resources.metal)
+        );
+
+        const matk = Math.round(
+            (resourcesSum / 4) + ((resources.wood / 100) * resources.wood)
+        );
+
         return {
             category: ItemCategories.Weapon,
             type: this.evaluateItemType(ratios),
-            atk: resourcesSum * Math.random(),
-            matk: 0
+            atkMin: atk,
+            atkMax: atk,
+            matkMin: matk,
+            matkMax: matk
         }
     }
 
     craeft(
         resources
     ) {
+
+        this.sta -= 1;
+        this.staPercent = 100 / this.staMax * this.sta;
+
         return new Weapon({
             name: 'test',
             atk: 100 * this.luk,

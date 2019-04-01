@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import '../../node_modules/RPGUI/dist/rpgui.min.js';
 import Slider from "./Slider";
 import {ItemCategories} from "../engine/craefter/types";
+import CraefterDescription from "./CraefterDescription";
 
 export default class CraeftWindow extends Component {
 
@@ -57,80 +57,87 @@ export default class CraeftWindow extends Component {
 
     render() {
         return (
-            <div className='rpgui-container framed craeft-window'>
+            <div>
 
-                <div className={'row'}>
-                    <strong>Cräft!</strong>
-                    <hr/>
-                </div>
+                <div className='rpgui-container framed craeft-window'>
 
-                <div className={'row'}>
-                    <div>
-                        {this.state.wood} x Wood:
-                        <Slider step={1} min={0} max={this.props.resources.wood}
-                                defaultValue={this.state.wood}
-                                onValueChange={(value) => this.updateResource('wood', value)}/>
+                    <div className={'row'}>
+                        <strong>Cräft!</strong>
+                        <hr/>
                     </div>
 
-                    <div>
-                        {this.state.metal} x Metal:
-                        <Slider step={1} min={0} max={this.props.resources.wood}
-                                defaultValue={this.state.metal}
-                                onValueChange={(value) => this.updateResource('metal', value)}/>
+                    <CraefterDescription craefter={this.props.craefter}/>
+
+                    <div className={'row'}>
+                        <div>
+                            {this.state.wood} x Wood:
+                            <Slider step={1} min={0} max={this.props.resources.wood}
+                                    defaultValue={this.state.wood}
+                                    onValueChange={(value) => this.updateResource('wood', value)}/>
+                        </div>
+
+                        <div>
+                            {this.state.metal} x Metal:
+                            <Slider step={1} min={0} max={this.props.resources.wood}
+                                    defaultValue={this.state.metal}
+                                    onValueChange={(value) => this.updateResource('metal', value)}/>
+                        </div>
+
+                        <div>
+                            {this.state.cloth} x Cloth:
+                            <Slider step={1} min={0} max={this.props.resources.wood}
+                                    defaultValue={this.state.cloth}
+                                    onValueChange={(value) => this.updateResource('cloth', value)}/>
+                        </div>
+
+                        <div>
+                            {this.state.diamond} x Diamond:
+                            <Slider step={1} min={0} max={this.props.resources.wood}
+                                    defaultValue={this.state.diamond}
+                                    onValueChange={(value) => this.updateResource('diamond', value)}/>
+                        </div>
                     </div>
 
-                    <div>
-                        {this.state.cloth} x Cloth:
-                        <Slider step={1} min={0} max={this.props.resources.wood}
-                                defaultValue={this.state.cloth}
-                                onValueChange={(value) => this.updateResource('cloth', value)}/>
-                    </div>
+                    {
+                        this.state.preItem ?
+                            <div className='rpgui-container framed-grey item columns'>
 
-                    <div>
-                        {this.state.diamond} x Diamond:
-                        <Slider step={1} min={0} max={this.props.resources.wood}
-                                defaultValue={this.state.diamond}
-                                onValueChange={(value) => this.updateResource('diamond', value)}/>
-                    </div>
-                </div>
+                                <div className={'column row item-icon'}>
 
-                {
-                    this.state.preItem ?
-                        <div className='rpgui-container framed-grey item columns'>
+                                    {
+                                        this.state.preItem.category === ItemCategories.Weapon ?
+                                            <span className="rpgui-icon sword"></span> : null
+                                    }
 
-                            <div className={'column row item-icon'}>
-
-                                {
-                                    this.state.preItem.category === ItemCategories.Weapon ?
-                                        <span className="rpgui-icon sword"></span> : null
-                                }
-
-                                {
-                                    this.state.preItem.category === ItemCategories.Armor ?
-                                        <span className="icon">
+                                    {
+                                        this.state.preItem.category === ItemCategories.Armor ?
+                                            <span className="icon">
                                             <i className="fas fa-shield-alt"></i>
                                         </span> : null
-                                }
+                                    }
 
-                            </div>
-
-                            <div className={'column item-description'}>
-                                <div className={'row'}>
-                                    Type: {this.state.preItem.type}
                                 </div>
-                                <div className={'row'}>
-                                    Atk: {this.state.preItem.atk} Matk: {this.state.preItem.matk}
+
+                                <div className={'column item-description'}>
+                                    <div className={'row'}>
+                                        Type: {this.state.preItem.type}
+                                    </div>
+                                    <div className={'row'}>
+                                        Atk: {this.state.preItem.atkMin}-{this.state.preItem.atkMax}
+                                        &nbsp;
+                                        Matk: {this.state.preItem.matkMin}-{this.state.preItem.matkMax}
+                                    </div>
                                 </div>
-                            </div>
 
-                        </div> : null
-                }
+                            </div> : null
+                    }
 
-                <div className='row'>
-                    <button onClick={this.craeft}
-                            className='rpgui-button is-big'>
-                        <span>Cräft!</span>
-                    </button>
+                    <div className='row'>
+                        <button onClick={this.craeft}
+                                className='rpgui-button is-big'>
+                            <span>Cräft!</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         );

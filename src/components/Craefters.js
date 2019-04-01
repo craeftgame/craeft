@@ -2,6 +2,7 @@ import React, {Component} from "react";
 
 import CraeftWindow from "./CraeftWindow";
 import CraefterWindow from "./CraefterWindow";
+import Craefter from "./Craefter";
 
 export default class Craefters extends Component {
 
@@ -124,29 +125,9 @@ export default class Craefters extends Component {
                         {
                             this.props.craefters.map((craefter, index) => {
                                 return (
-                                    <div key={index} className='rpgui-container framed-grey craefter'>
-                                        <div>
-                                            {craefter.type}: {craefter.name}
-                                        </div>
-                                        <div>
-                                            {craefter.generateDescription()}
-                                        </div>
-                                        <div className={'row'}>
-                                            <button onClick={() => this.openCraeftDialog(craefter)}
-                                                    className='rpgui-button'
-                                                    disabled={!this.hasEnoughResources() || craefter.getIsCreating()}>
-                                                    <span className="icon">
-                                                        <i className="fas fa-hammer"></i>
-                                                    </span>
-                                                <span>
-                                                    &nbsp;
-                                                    {
-                                                        craefter.getIsCreating() ? craefter.getCreationTimeout() : 'Cräft!'
-                                                    }
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </div>
+                                    <Craefter key={index} craefter={craefter}
+                                              openCraeftDialog={this.openCraeftDialog}
+                                              canCraeft={this.hasEnoughResources()}/>
                                 )
                             })
                         }

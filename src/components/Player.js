@@ -10,12 +10,12 @@ export default class Player extends Component {
                         <strong>Name:</strong> {this.props.player.name}
                     </div>
                     <div>
-                            <span>
-                                <strong> Level:</strong> {this.props.player.level}
-                            </span>
                         <span>
-                                <strong> Experience:</strong> {this.props.player.exp}
-                            </span>
+                            <strong> Level:</strong> {this.props.player.level}
+                        </span>
+                        <span>
+                            <strong> Experience:</strong> {this.props.player.exp}
+                        </span>
                     </div>
                 </div>
             </div>
