@@ -4,19 +4,8 @@ export default class Item extends DelayedObject {
     constructor({
                     name
                 } = {}) {
-        super(50);
+        super(global.delay || 50);
 
         this.name = name;
-    }
-
-    generateDescription() {
-        // stub please override
-    }
-
-    print() {
-        console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
-        console.log(`Item: ${this.name}`);
-        console.log(this.generateDescription());
-        console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n');
     }
 }

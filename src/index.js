@@ -6,7 +6,7 @@ import Craeft from './Craeft';
 import About from './About';
 
 import './rpgui.css'
-import '../node_modules/bulma/css/bulma.css'
+import '../node_modules/bulma/css/bulma.min.css'
 
 import './Craeft.css';
 

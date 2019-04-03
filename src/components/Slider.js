@@ -55,18 +55,17 @@ export default class Farm extends Component {
         const edgeWidth = !this.leftEdge.current ? 1 : this.leftEdge.current.offsetWidth;
         const trackWith = !this.track.current ? 1 : this.track.current.offsetWidth;
 
-        console.log(edgeWidth, trackWith);
-
         const step = trackWith / (this.props.max - this.props.min);
         const relative_val = Math.round(parseFloat(this.state.value) - this.props.min);
-        const left = (Math.floor(edgeWidth * 0.25) + (relative_val * step)) + "px";
+        const left = (Math.floor(edgeWidth * 0.20) + (relative_val * step)) + "px";
 
         return (
             <div ref={this.element}>
 
                 <input type='range' style={{display: 'none'}}
                        min={this.props.min} max={this.props.max} step={this.props.step}
-                       value={this.state.value} onChange={(event) => this.setValue(event.target.value)}/>
+                       value={this.state.value}
+                       onChange={(event) => this.setValue(event.target.value)}/>
 
                 <div className='rpgui-slider-container'>
 

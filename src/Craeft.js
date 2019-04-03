@@ -15,6 +15,7 @@ import ItemsComponent from "./components/Items";
 import CraeftersComponent from "./components/Craefters";
 
 const initialResources = 100;
+global.delay = 0.1;
 
 export default class Craeft extends Component {
 
@@ -41,6 +42,11 @@ export default class Craeft extends Component {
 
         // re-render every second
         setInterval(() => {
+            this.state.player.tick();
+
+            for (const craefter of this.state.craefters) {
+                craefter.tick();
+            }
             this.forceUpdate();
         }, 1 * 1000);
 
@@ -59,6 +65,8 @@ export default class Craeft extends Component {
         resources.cloth += result.cloth;
         resources.diamond += result.diamond;
 
+        this.state.player.addExp(10);
+
         this.setState({
             resources
         })
@@ -70,6 +78,10 @@ export default class Craeft extends Component {
         const craefters = [...this.state.craefters];
 
         craefters.push(craefter);
+
+        craefter.onDoneCreating = () => {
+            this.state.player.addExp(5);
+        };
 
         this.setState({
             craefters

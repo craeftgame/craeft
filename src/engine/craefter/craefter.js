@@ -4,6 +4,8 @@ import DelayedObject from "../delayed_object";
 import {CraefterTypes} from "./types";
 
 export default class Craefter extends DelayedObject {
+    isCraefting = false;
+
     constructor({
                     type = CraefterTypes.Unknown,
                     name = getRandomArrayItem(peopleNames),
@@ -13,9 +15,8 @@ export default class Craefter extends DelayedObject {
                     int = 0,
                     sta = 5
                 } = {}) {
-        super(5);
+        super(global.delay || 5);
 
-        this.isCraefting = false;
 
         this.type = type;
         this.name = name;
@@ -25,9 +26,14 @@ export default class Craefter extends DelayedObject {
         this.str = str;
         this.int = int;
 
-        this.sta = sta;
+        this.staCurrent = sta;
         this.staMax = sta;
-        this.staPercent = 100;
+    }
+
+    tick() {
+        if (this.staCurrent < this.staMax) {
+            this.staCurrent += 0.01;
+        }
     }
 
     evaluateItemType(
@@ -50,14 +56,6 @@ export default class Craefter extends DelayedObject {
         // stub please override
     }
 
-    getIsCraefting() {
-        return this.isCraefting
-    }
-
-    generateDescription() {
-        return `Luk: ${this.luk} Dex: ${this.dex} Str: ${this.str}`
-    }
-
     static highestMaterial(
         ratios
     ) {
@@ -71,12 +69,5 @@ export default class Craefter extends DelayedObject {
         });
 
         return sortable[sortable.length - 1][0]
-    }
-
-    print() {
-        console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
-        console.log(`Cräfter: ${this.name}`);
-        console.log(this.generateDescription());
-        console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n');
     }
 }

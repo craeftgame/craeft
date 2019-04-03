@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Slider from "./Slider";
 import {ItemCategories} from "../engine/craefter/types";
 import CraefterDescription from "./CraefterDescription";
+import ItemNames from "../engine/data/ItemNames";
 
 export default class CraeftWindow extends Component {
 
@@ -120,7 +121,7 @@ export default class CraeftWindow extends Component {
 
                                 <div className={'column item-description'}>
                                     <div className={'row'}>
-                                        Type: {this.state.preItem.type}
+                                        Type: {ItemNames[this.state.preItem.type]}
                                     </div>
                                     <div className={'row'}>
                                         Atk: {this.state.preItem.atkMin}-{this.state.preItem.atkMax}

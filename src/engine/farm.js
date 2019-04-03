@@ -1,19 +1,18 @@
-import DelayedObject from "./delayed_object";
 import Timer from "../tools/timer";
 
-export default class Farm extends DelayedObject {
+export default class Farm {
 
     constructor(delay) {
-        super(0);
 
-        this.timer = undefined;
-        this.delay = delay;
+        this.timer = null;
+        this.delay = global.delay || delay;
     }
 
     farm(cb) {
 
         this.timer = new Timer({
             callback: () => {
+                this.timer = null;
                 cb({
                     wood: 1,
                     metal: 1,

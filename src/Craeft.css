@@ -36,6 +36,10 @@ strong {
     margin-bottom: 30px;
 }
 
+.player hr {
+    margin-bottom: 18px;
+}
+
 .item,
 .resources,
 .craefter,

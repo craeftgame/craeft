@@ -98,19 +98,22 @@ export default class Weaponsmith extends Craefter {
             resources.diamond
         );
 
-        const atk = Math.round(
-            (resourcesSum / 4) + ((resources.metal / 100) * resources.metal)
+        // 1 percent of all resources is the base
+        const baseline = (resourcesSum / 100) * 2;
+
+        const atk = Math.floor(
+            baseline + (resources.metal / 100) * 80
         );
 
-        const matk = Math.round(
-            (resourcesSum / 4) + ((resources.wood / 100) * resources.wood)
+        const matk = Math.floor(
+            baseline + (resources.wood / 100) * 80
         );
 
         return {
             category: ItemCategories.Weapon,
             type: this.evaluateItemType(ratios),
             atkMin: atk,
-            atkMax: atk,
+            atkMax: Math.round(atk + ((100 / atk) * 10)),
             matkMin: matk,
             matkMax: matk
         }
@@ -120,8 +123,7 @@ export default class Weaponsmith extends Craefter {
         resources
     ) {
 
-        this.sta -= 1;
-        this.staPercent = 100 / this.staMax * this.sta;
+        this.staCurrent -= 1;
 
         return new Weapon({
             name: 'test',

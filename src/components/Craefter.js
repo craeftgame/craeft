@@ -12,7 +12,7 @@ export default class Craefter extends Component {
                 <div className={'row'}>
                     <button onClick={() => this.props.openCraeftDialog(this.props.craefter)}
                             className='rpgui-button'
-                            disabled={!this.props.canCraeft || this.props.craefter.getIsCreating()}>
+                            disabled={!this.props.canCraeft || this.props.craefter.isCreating}>
 
                         <span className="icon">
                             <i className="fas fa-hammer"></i>
@@ -21,7 +21,7 @@ export default class Craefter extends Component {
                         <span>
                             &nbsp;
                             {
-                                this.props.craefter.getIsCreating() ?
+                                this.props.craefter.isCreating ?
                                     this.props.craefter.getCreationTimeout() : 'Cräft!'
                             }
                         </span>

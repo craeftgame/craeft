@@ -18,7 +18,7 @@ export default class Items extends Component {
                                     return (
                                         <div key={index} className='rpgui-container framed-grey item'>
                                             {
-                                                item.getIsCreating() ? `${item.getCreationTimeout()} ???` :
+                                                item.isCreating ? `${item.getCreationTimeout()} ???` :
                                                     <div>
                                                         <div>
                                                             {item.name}
@@ -27,7 +27,7 @@ export default class Items extends Component {
                                                             xxxxxx
                                                         </div>
                                                         <div>
-                                                            {item.generateDescription()}
+                                                            {item.atk}
                                                         </div>
                                                         <div>
                                                             xxxxxx

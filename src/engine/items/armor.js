@@ -19,8 +19,4 @@ export default class Armor extends Item {
         this.def = def;
         this.mdef = mdef;
     }
-
-    generateDescription() {
-        return  `Def: ${this.def} Mdef: ${this.mdef}`
-    }
 }
