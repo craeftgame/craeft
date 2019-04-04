@@ -16,7 +16,8 @@
   "license": "ISC",
   "devDependencies": {
     "create-react-app": "^2.1.8",
-    "gh-pages": "^2.0.1"
+    "gh-pages": "^2.0.1",
+    "node-sass": "^4.11.0"
   },
   "dependencies": {
     "bulma": "^0.7.4",
