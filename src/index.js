@@ -2,13 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
+import './css/main.scss'
+
 import Craeft from './Craeft';
 import About from './About';
-
-import './rpgui.css'
-import '../node_modules/bulma/css/bulma.min.css'
-
-import './Craeft.css';
 
 let page = window.location.pathname.replace('/', '');
 page = page.substr(0, page.indexOf('.'));
