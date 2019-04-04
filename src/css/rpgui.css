@@ -427,7 +427,7 @@ ul.rpgui-dropdown-imp {
 
 /* note! this affect only the dropdown header */
 /* shows the currently selected value from select element */
-.rpgui-content .rpgui-dropdown-imp-header {
+.rpgui-content.rpgui-dropdown-imp-header {
   color: white !important;
   min-height: 22px !important;
   padding: 5px 10px 0 10px !important;
