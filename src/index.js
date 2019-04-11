@@ -1,32 +1,39 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import * as serviceWorker from "./serviceWorker";
 
-import './css/main.scss'
+import "./css/rpgui.css"
+import "bulma/css/bulma.min.css"
+import "./css/Craeft.css"
 
-import Craeft from './Craeft';
-import About from './About';
+import Craeft from "./Craeft";
+import About from "./About";
 
-let page = window.location.pathname.replace('/', '');
-page = page.substr(0, page.indexOf('.'));
+window.addEventListener("hashchange", render, false);
 
-let component;
+function render() {
+    let page = window.location.hash.substr(1, window.location.hash.length);
 
-switch (page) {
-    case 'about':
-        component = <About/>;
-        break;
+    let component;
 
-    case 'craeft':
-    default:
-        component = <Craeft/>;
-        break;
+    switch (page) {
+        case "about":
+            component = <About/>;
+            break;
+
+        case "craeft":
+        default:
+            component = <Craeft/>;
+            break;
+    }
+
+    ReactDOM.render(
+        component,
+        document.getElementById("root")
+    );
 }
 
-ReactDOM.render(
-    component,
-    document.getElementById('root')
-);
+render();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

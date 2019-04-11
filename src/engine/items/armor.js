@@ -1,20 +1,32 @@
-import Item from './item';
-import { getRandomArrayItem } from '../../tools/rand';
+import Item from "./item";
+import {getRandomInt} from "../../tools/rand";
+import {
+    ItemCategories,
+    WeaponSlots,
+    WeaponTypes
+} from "../data/types";
 
-const names = [
-    'Shellmail',
-    'Platemail'
-];
+import names from "../data/armor_names"
 
 export default class Armor extends Item {
 
     constructor({
-        def = 0,
-        mdef = 0
-    } = {}) {
-        const name = getRandomArrayItem(names);
-
-        super({name});
+                    type = WeaponTypes.Unknown,
+                    slot = WeaponSlots.OneHanded,
+                    name = names[getRandomInt(0, names.length)],
+                    level,
+                    def = 0,
+                    mdef = 0,
+                    delay
+                } = {}) {
+        super({
+            category: ItemCategories.Armor,
+            type,
+            slot,
+            level,
+            name,
+            delay
+        });
 
         this.def = def;
         this.mdef = mdef;

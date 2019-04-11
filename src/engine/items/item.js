@@ -1,11 +1,23 @@
-import DelayedObject from "../delayed_object";
+import Delay from "../delay";
+import {ItemCategories} from "../data/types";
 
-export default class Item extends DelayedObject {
+export default class Item {
+
+    equiped = false;
+
     constructor({
-                    name
+                    category = ItemCategories.Unknown,
+                    name,
+                    slot,
+                    level = 1,
+                    delay = global.delay || 50
                 } = {}) {
-        super(global.delay || 50);
 
+        this.delay = new Delay(delay);
+
+        this.category = category;
+        this.slot = slot;
         this.name = name;
+        this.level = level;
     }
 }

@@ -1,31 +1,32 @@
-import assert from 'assert'
-import Weaponsmith from '../weaponsmith'
-import {WeaponTypes} from "../types";
+/* globals describe, test */
+import assert from "assert"
+import Weaponsmith from "../weaponsmith"
+import {WeaponTypes} from "../../data/types";
 
-describe('Weaponsmith', () => {
-    describe('evaluateItem', () => {
+describe("Weaponsmith", () => {
+    describe("evaluateItem", () => {
 
-        test('should return item type wand if only wood', () => {
+        test("should return item type wand if only wood", () => {
             const craefter = new Weaponsmith();
 
             const item = craefter.evaluateItem({
                 wood: 100
             });
 
-            assert(item.type, 'wand')
+            assert(item.type, "wand")
         });
 
-        test('should return item type sword if only metal', () => {
+        test("should return item type sword if only metal", () => {
             const weaponsmith = new Weaponsmith();
 
             const item = weaponsmith.evaluateItem({
                 metal: 100
             });
 
-            assert(item.type, 'sword')
+            assert(item.type, "sword")
         });
 
-        test('should return item type knife if metal is a little bit larger than wood', () => {
+        test("should return item type knife if metal is a little bit larger than wood", () => {
             const weaponsmith = new Weaponsmith();
 
             const item = weaponsmith.evaluateItem({
@@ -36,7 +37,7 @@ describe('Weaponsmith', () => {
             assert(item.type, WeaponTypes.Knife)
         });
 
-        test('should return item type sword if metal is way larger than wood', () => {
+        test("should return item type sword if metal is way larger than wood", () => {
             const weaponsmith = new Weaponsmith();
 
             const item = weaponsmith.evaluateItem({
@@ -47,7 +48,7 @@ describe('Weaponsmith', () => {
             assert(item.type, WeaponTypes.Sword)
         });
 
-        test('correct atk', () => {
+        test("correct atk", () => {
             const weaponsmith = new Weaponsmith();
 
             const res = {
@@ -56,9 +57,6 @@ describe('Weaponsmith', () => {
             };
 
             const item = weaponsmith.evaluateItem(res);
-
-            console.log(res);
-            console.log(item);
 
             assert(item.type, WeaponTypes.Sword)
         });

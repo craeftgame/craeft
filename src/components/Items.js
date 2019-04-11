@@ -1,47 +1,92 @@
 import React, {Component} from "react";
+import ItemDescription from "./ItemDescription";
+import ItemIcon from "./ItemIcon";
+import PropTypes from "prop-types";
 
 export default class Items extends Component {
+
+    static propTypes = {
+        items: PropTypes.array,
+        onItemEquip: PropTypes.func
+    };
+
+    state = {
+        selectedItem: null
+    };
+
+    constructor(props) {
+        super(props);
+
+        this.selectItem = this.selectItem.bind(this);
+        this.equip = this.equip.bind(this);
+    }
+
+    selectItem(
+        item
+    ) {
+        if (!item.delay.isDelaying) {
+
+            let i = item;
+            if (this.state.selectedItem === item) {
+                i = null
+            }
+            this.setState({
+                selectedItem: i
+            })
+        }
+    }
+
+    equip(
+        item
+    ) {
+        this.props.onItemEquip(item);
+
+        if (item.equiped) {
+            this.setState({
+                selectedItem: null
+            });
+        }
+
+    }
+
     render() {
         return (
             <div className='items column frame'>
                 <div className='rpgui-container framed'>
 
-                    <div className={'row'}>
+                    <div className={"row"}>
                         <strong>Items:</strong>
                         <hr/>
                     </div>
 
+                    {
+                        this.state.selectedItem && !this.state.selectedItem.equiped ?
+
+                            <div className='rpgui-container framed-grey item row'>
+                                <ItemDescription item={this.state.selectedItem}
+                                                 onEquip={this.equip}/>
+                            </div> : null
+                    }
+
                     <div className='item-list'>
                         {
-                            this.props.items.length > 0 ?
-                                this.props.items.map((item, index) => {
-                                    return (
-                                        <div key={index} className='rpgui-container framed-grey item'>
-                                            {
-                                                item.isCreating ? `${item.getCreationTimeout()} ???` :
-                                                    <div>
-                                                        <div>
-                                                            {item.name}
-                                                        </div>
-                                                        <div>
-                                                            xxxxxx
-                                                        </div>
-                                                        <div>
-                                                            {item.atk}
-                                                        </div>
-                                                        <div>
-                                                            xxxxxx
-                                                        </div>
-                                                        <button className='rpgui-button'>
-                                                            <span>Disentchant</span>
-                                                        </button>
-                                                    </div>
-                                            }
-                                        </div>
-                                    )
-                                }) : <div className='row'>go Cräft!</div>
+                            this.props.items.filter((item) => {
+                                return !item.equiped
+                            }).length > 0 ?
+                                this.props.items
+                                    .filter((item) => {
+                                        return !item.equiped
+                                    })
+                                    .map((item, index) => {
+                                        return (
+                                            <ItemIcon key={index} item={item}
+                                                      isSelected={item === this.state.selectedItem}
+                                                      onItemSelected={this.selectItem}/>
+                                        )
+                                    }) : <div className='row'>go Cräft!</div>
                         }
                     </div>
+
                 </div>
             </div>
         )

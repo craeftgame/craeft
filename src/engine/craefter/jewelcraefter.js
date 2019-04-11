@@ -1,5 +1,5 @@
-import Armor from '../items/armor';
-import Craefter from './craefter';
+import Armor from "../items/armor";
+import Craefter from "./craefter";
 import math from "mathjs";
 
 export default class Jewelcraefter extends Craefter {
@@ -10,7 +10,7 @@ export default class Jewelcraefter extends Craefter {
                     str
                 } = {}) {
         super({
-            type: 'Jewelcraefter',
+            type: "Jewelcraefter",
             name,
             luk,
             dex,
@@ -18,7 +18,9 @@ export default class Jewelcraefter extends Craefter {
         });
     }
 
-    evaluateItem(resources) {
+    evaluateItem(
+        resources
+    ) {
 
         const gcd = math.gcd(
             resources.wood || 0,
@@ -34,29 +36,29 @@ export default class Jewelcraefter extends Craefter {
             diamond: resources.diamond / gcd,
         };
 
-        let type = '???';
+        let type = "???";
 
         const highestResource = Craefter.highestMaterial(ratios);
 
         switch (highestResource) {
-            case 'metal':
-                type = 'plate';
+            case "metal":
+                type = "plate";
 
                 if (ratios.cloth > 0) {
-                    type = 'mail';
+                    type = "mail";
 
                     if (ratios.diamond > ratios.metal * 2) {
-                        type = 'diamond_mail'
+                        type = "diamond_mail"
                     }
                 } else if (ratios.diamond > ratios.metal * 2) {
-                    type = 'diamond_plate'
+                    type = "diamond_plate"
                 }
                 break;
-            case 'cloth':
-                type = 'robe';
+            case "cloth":
+                type = "robe";
 
                 if (ratios.diamond > 0) {
-                    type = 'jewe_robe';
+                    type = "jewe_robe";
                 }
                 break;
             default:
@@ -71,15 +73,20 @@ export default class Jewelcraefter extends Craefter {
         );
 
         return {
-            category: 'jewlery',
+            category: "jewlery",
             type,
             atk: resSum * Math.random()
         }
     }
 
-    craeft(resources) {
+    craeft(
+        resources
+    ) {
+
+        this.evaluateItem(resources);
+
         return new Armor({
-            name: 'test',
+            name: "test",
             def: 100,
             mdef: 100
         });

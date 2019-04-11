@@ -3,17 +3,15 @@ import Timer from "../tools/timer";
 export default class Farm {
 
     constructor(delay) {
-
         this.timer = null;
         this.delay = global.delay || delay;
     }
 
-    farm(cb) {
-
+    farm(callback) {
         this.timer = new Timer({
             callback: () => {
                 this.timer = null;
-                cb({
+                callback({
                     wood: 1,
                     metal: 1,
                     cloth: 1,
@@ -27,7 +25,7 @@ export default class Farm {
         this.timer.start()
     }
 
-    gettimeLeftInSeconds() {
-        return this.timer ? this.timer.gettimeLeftInSeconds() : this.delay;
+    getTimeLeftInSeconds() {
+        return this.timer ? this.timer.getTimeLeftInSeconds() : this.delay;
     }
 }

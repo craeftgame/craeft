@@ -26,13 +26,13 @@ export default class Timer {
         this.running = true;
         this.startDate = new Date();
         this.id = setTimeout(this.callback, this.remaining)
-    };
+    }
 
     pause() {
         this.running = false;
         clearTimeout(this.id);
         this.remaining -= new Date() - this.startDate
-    };
+    }
 
     getTimeLeft() {
         if (this.running) {
@@ -41,13 +41,13 @@ export default class Timer {
         }
 
         return this.remaining
-    };
+    }
 
-    gettimeLeftInSeconds() {
+    getTimeLeftInSeconds() {
         return Math.round(this.getTimeLeft() / 1000)
     }
 
     getStateRunning() {
         return this.running
-    };
+    }
 }

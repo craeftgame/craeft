@@ -1,10 +1,18 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 
 import CraeftWindow from "./CraeftWindow";
 import CraefterWindow from "./CraefterWindow";
 import Craefter from "./Craefter";
 
 export default class Craefters extends Component {
+
+    static propTypes = {
+        craefters: PropTypes.array,
+        resources: PropTypes.object,
+        itemAdded: PropTypes.func,
+        craefterAdded: PropTypes.func
+    };
 
     state = {
         // is the craft dialog showing?
@@ -20,30 +28,25 @@ export default class Craefters extends Component {
 
         this.openCraeftDialog = this.openCraeftDialog.bind(this);
         this.openCraefterDialog = this.openCraefterDialog.bind(this);
+
         this.addCraefter = this.addCraefter.bind(this);
         this.addItem = this.addItem.bind(this);
+
         this.hasEnoughResources = this.hasEnoughResources.bind(this);
     }
 
     hasEnoughResources() {
         return (
-            this.props.resources.wood ||
-            this.props.resources.metal ||
-            this.props.resources.cloth ||
-            this.props.resources.diamond
-        )
+            this.props.resources.wood > 0 ||
+            this.props.resources.metal > 0 ||
+            this.props.resources.cloth > 0 ||
+            this.props.resources.diamond > 0
+        );
     }
 
     openCraefterDialog() {
         this.setState({
             isAddingCraefter: true
-        })
-    }
-
-    addCraefter(craefter) {
-        this.props.craefterAdded(craefter);
-        this.setState({
-            isAddingCraefter: false
         })
     }
 
@@ -55,11 +58,22 @@ export default class Craefters extends Component {
         });
     }
 
+    addCraefter(craefter) {
+        this.props.craefterAdded(craefter);
+        this.setState({
+            isAddingCraefter: false
+        })
+    }
+
     addItem(
         item,
-        resoucesConsumed
+        resourcesConsumed
     ) {
-        this.props.itemAdded(item, resoucesConsumed);
+        this.props.itemAdded(
+            item,
+            resourcesConsumed
+        );
+
         this.setState({
             isCraefting: false
         })
@@ -72,12 +86,17 @@ export default class Craefters extends Component {
 
                     {
                         this.state.isCraefting ?
-                            <div className={`modal ${this.state.isCraefting ? 'is-active' : ''}`}>
-                                <div className="modal-background"></div>
+                            <div className={`modal ${this.state.isCraefting ? "is-active" : ""}`}>
+                                <div className="modal-background"/>
                                 <div className="modal-content">
-                                    <CraeftWindow resources={this.props.resources}
-                                                  craefter={this.state.currentCraefter}
-                                                  itemAdded={this.addItem}/>
+
+                                    {
+                                        this.state.isCraefting ?
+                                            <CraeftWindow resources={this.props.resources}
+                                                          craefter={this.state.currentCraefter}
+                                                          itemAdded={this.addItem}/> : null
+                                    }
+
                                 </div>
                                 <button className="modal-close is-large"
                                         onClick={() => this.setState({
@@ -90,7 +109,7 @@ export default class Craefters extends Component {
 
                     {
                         this.state.isAddingCraefter ?
-                            <div className={`modal ${this.state.isAddingCraefter ? 'is-active' : ''}`}>
+                            <div className={`modal ${this.state.isAddingCraefter ? "is-active" : ""}`}>
                                 <div className="modal-background"></div>
                                 <div className="modal-content">
                                     <CraefterWindow addCraefter={this.addCraefter}/>
@@ -104,12 +123,12 @@ export default class Craefters extends Component {
                             </div> : null
                     }
 
-                    <div className={'row'}>
+                    <div className={"row"}>
                         <strong>Cräfters:</strong>
                         <hr/>
                     </div>
 
-                    <div className={'row'}>
+                    <div className={"row"}>
                         <button onClick={this.openCraefterDialog}
                                 className='rpgui-button is-small'>
                                 <span className="icon">
@@ -132,6 +151,7 @@ export default class Craefters extends Component {
                             })
                         }
                     </div>
+
                 </div>
             </div>
         )

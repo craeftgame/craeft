@@ -1,6 +1,15 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 
 export default class Farm extends Component {
+
+    static propTypes = {
+        min: PropTypes.number,
+        max: PropTypes.number,
+        step: PropTypes.number,
+        defaultValue: PropTypes.number,
+        onValueChange: PropTypes.func
+    };
 
     state = {
         value: 0,
@@ -25,8 +34,6 @@ export default class Farm extends Component {
     }
 
     setValue(value) {
-        console.log(value);
-
         this.setState({
             value
         });
@@ -48,7 +55,10 @@ export default class Farm extends Component {
     }
 
     componentDidMount() {
-        window.addEventListener('mouseup', () => this.setState({mouseDown: false}), false);
+        window.addEventListener(
+            "mouseup",
+            () => this.setState({mouseDown: false}), false
+        );
     }
 
     render() {
@@ -62,7 +72,7 @@ export default class Farm extends Component {
         return (
             <div ref={this.element}>
 
-                <input type='range' style={{display: 'none'}}
+                <input type='range' style={{display: "none"}}
                        min={this.props.min} max={this.props.max} step={this.props.step}
                        value={this.state.value}
                        onChange={(event) => this.setValue(event.target.value)}/>

@@ -1,8 +1,14 @@
-import Armor from '../items/armor';
-import Craefter from './craefter';
-import math from "mathjs";
+import Armor from "../items/armor";
+import Craefter from "./craefter";
+import {
+    CraefterTypes,
+    ItemCategories,
+    ArmorTypes
+} from "../data/types";
+import {getRandomInt} from "../../tools/rand";
 
 export default class Armorsmith extends Craefter {
+
     constructor({
                     name,
                     luk,
@@ -10,7 +16,7 @@ export default class Armorsmith extends Craefter {
                     str
                 } = {}) {
         super({
-            type: 'Armorsmith',
+            type: CraefterTypes.Armorsmith,
             name,
             luk,
             dex,
@@ -18,70 +24,90 @@ export default class Armorsmith extends Craefter {
         });
     }
 
-    evaluateItem(resources) {
-
-        const gcd = math.gcd(
-            resources.wood || 0,
-            resources.metal || 0,
-            resources.cloth || 0,
-            resources.diamond || 0
-        );
-
-        const ratios = {
-            wood: resources.wood / gcd,
-            metal: resources.metal / gcd,
-            cloth: resources.cloth / gcd,
-            diamond: resources.diamond / gcd,
-        };
-
-        let type = '???';
+    evaluateItemType(
+        ratios
+    ) {
+        let type = ArmorTypes.Unknown;
 
         const highestResource = Craefter.highestMaterial(ratios);
 
         switch (highestResource) {
-            case 'metal':
-                type = 'plate';
-
-                if (ratios.cloth > 0) {
-                    type = 'mail';
-
-                    if (ratios.diamond > ratios.metal * 2) {
-                        type = 'diamond_mail'
-                    }
-                } else if (ratios.diamond > ratios.metal * 2) {
-                    type = 'diamond_plate'
-                }
+            case "metal":
+                type = ArmorTypes.Plate;
                 break;
-            case 'cloth':
-                type = 'robe';
-
-                if (ratios.diamond > 0) {
-                    type = 'jewe_robe';
-                }
+            case "wood":
+                type = ArmorTypes.Plate;
+                break;
+            case "cloth":
                 break;
             default:
                 break
         }
 
-        const resSum = (
-            resources.wood +
-            resources.metal +
-            resources.cloth +
-            resources.diamond
+        return type;
+    }
+
+    evaluateItem(
+        resources
+    ) {
+        const {
+            res,
+            ratios,
+            resourcesSum
+        } = this.evaluateResouces(resources);
+
+        // 2 percent of all resources is the base
+        const baseline = (resourcesSum / 100) * 2;
+
+        // add atk mainly based on metal
+        const def = Math.floor(
+            baseline + ((res.metal ? res.metal : 1) / 100) * 80
         );
 
+        // add matk mainly based on wood
+        const mdef = Math.floor(
+            baseline + ((res.wood ? res.wood : 1) / 100) * 80
+        );
+
+        // todo: add level influence
+
         return {
-            category: 'weapon',
-            type,
-            atk: resSum * Math.random()
+            category: ItemCategories.Weapon,
+            type: this.evaluateItemType(ratios),
+            def,
+            defMax: Math.round(def + ((def / 100) * 10)) || 1,
+            mdef,
+            mdefMax: Math.round(mdef + ((mdef / 100) * 10)) || 1
         }
     }
 
-    craeft(resources) {
+    evaluateItemName(
+        type,
+        slot
+    ) {
+        super.evaluateItemName(type, slot);
+    }
+
+    craeft(
+        resources
+    ) {
+        const {
+            type,
+            def,
+            defMax,
+            mdef,
+            mdefMax
+        } = this.evaluateItem(resources);
+
+        const slot = this.evaluateSlot(type);
+
         return new Armor({
-            name: 'test',
-            def: 100,
-            mdef: 100
+            name: this.evaluateItemName(
+                type,
+                slot
+            ),
+            def: getRandomInt(def, defMax),
+            mdef: getRandomInt(mdef, mdefMax)
         });
     }
 }

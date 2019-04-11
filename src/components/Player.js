@@ -1,32 +1,41 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 import Gauge from "./Gauge";
+import Equipment from "./Equipment";
+import PropTypes from "prop-types";
 
 export default class Player extends Component {
 
+    static propTypes = {
+        player: PropTypes.object,
+        onUnequip: PropTypes.func
+    };
+
     render() {
         return (
-            <div className={'rpgui-container framed-grey player row'}>
-
+            <div className={"rpgui-container framed-grey player row"}>
                 <div className='columns'>
                     <div className='column'>
-                        <div>
-                            <strong>Name:</strong> {this.props.player.name}
+                        <div className='row'>
+                            <div>
+                                <strong>Name:</strong> {this.props.player.name}
+                            </div>
+                            <div>
+                                <span>Str: {this.props.player.str} </span>
+                                <span>Dex: {this.props.player.dex} </span>
+                                <span>Int: {this.props.player.int} </span>
+                                <span>Luk: {this.props.player.luk} </span>
+                            </div>
+                            <div>
+                                <span>Atk: {this.props.player.atk()} </span>
+                                <span>Matk: {this.props.player.matk()} </span>
+                                <span>Def: {this.props.player.def()} </span>
+                                <span>Mdef: {this.props.player.mdef()} </span>
+                            </div>
                         </div>
-                        <div>
-                            <span>Str: {this.props.player.str} </span>
-                            <span>Dex: {this.props.player.dex} </span>
-                            <span>Int: {this.props.player.int} </span>
-                            <span>Luk: {this.props.player.luk} </span>
-                        </div>
-                        <div>
-                            <span>Atk: </span>
-                            <span>Matk: </span>
-                            <span>Def: </span>
-                            <span>Mdef: </span>
-                        </div>
-                    </div>
-                    <div className='column'>
-                        <div className='columns'>
+
+                        <hr/>
+
+                        <div className='row columns'>
                             <div className='column'>
                                 <span>
                                     <strong> Level:</strong> {this.props.player.level}
@@ -46,6 +55,11 @@ export default class Player extends Component {
                                        current={this.props.player.staCurrent}/>
                             </div>
                         </div>
+
+                    </div>
+                    <div className='column'>
+                        <Equipment equipment={this.props.player.equipment}
+                                   onUnequip={this.props.onUnequip}/>
                     </div>
                 </div>
             </div>

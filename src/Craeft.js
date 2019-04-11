@@ -1,23 +1,26 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 // game engine
-import Player from './engine/player';
+import Player from "./engine/player";
 import Farm from "./engine/farm";
 
 // visual components
 // structure
-import Footer from './components/structure/Footer';
+import Footer from "./components/structure/Footer";
 import Header from "./components/structure/Header";
 
 // game
-import PlayerComponent from './components/Player'
+import PlayerComponent from "./components/Player"
 import FarmComponent from "./components/Farm";
 import ItemsComponent from "./components/Items";
 import CraeftersComponent from "./components/Craefters";
+import Weapon from "./engine/items/weapon";
 
 const initialResources = 100;
 global.delay = 0.1;
 
 export default class Craeft extends Component {
+
+    gameTick = null;
 
     state = {
         // the player
@@ -40,19 +43,54 @@ export default class Craeft extends Component {
     constructor(props) {
         super(props);
 
+        this.farmComplete = this.farmComplete.bind(this);
+        this.farmStart = this.farmStart.bind(this);
+
+        this.addCraefter = this.addCraefter.bind(this);
+        this.addItem = this.addItem.bind(this);
+
+        this.equipItem = this.equipItem.bind(this);
+        this.unEquipItem = this.unEquipItem.bind(this);
+
+        const knife = new Weapon({
+            atk: 1,
+            matk: 1,
+            delay: -1
+        });
+
+        this.state.player.equip(knife);
+
+        this.state.items = [
+            knife
+        ];
+    }
+
+    componentDidMount() {
         // re-render every second
-        setInterval(() => {
+        this.gameTick = setInterval(() => {
+            // tick the player
             this.state.player.tick();
 
+            // tick all craefters
             for (const craefter of this.state.craefters) {
                 craefter.tick();
             }
+
+            // todo: tick the items
+
+            // force update of the UI
             this.forceUpdate();
         }, 1 * 1000);
+    }
 
-        this.farmComplete = this.farmComplete.bind(this);
-        this.addCraefter = this.addCraefter.bind(this);
-        this.addItem = this.addItem.bind(this);
+    componentWillUnmount() {
+        clearInterval(this.gameTick)
+    }
+
+    farmStart(
+        sta
+    ) {
+        this.state.player.exhaust(sta)
     }
 
     farmComplete(
@@ -65,6 +103,7 @@ export default class Craeft extends Component {
         resources.cloth += result.cloth;
         resources.diamond += result.diamond;
 
+        this.state.player.damage(10);
         this.state.player.addExp(10);
 
         this.setState({
@@ -108,15 +147,43 @@ export default class Craeft extends Component {
         })
     }
 
+    equipItem(
+        item
+    ) {
+        this.state.player.equip(item);
+
+        let items = [...this.state.items];
+
+        this.setState({
+            items
+        })
+    }
+
+    unEquipItem(
+        item
+    ) {
+        const unequiped = this.state.player.unequip(item);
+
+        if (unequiped) {
+            let items = [...this.state.items];
+            items[items.indexOf(item)].equiped = false;
+
+            this.setState({
+                items
+            })
+        }
+    }
+
     render() {
         return (
-            <div className="rpgui-content container craeft">
+            <div className={`rpgui-content container craeft ${this.state.player.dead ? "rpgui-disabled" : ""}`}>
 
                 <Header/>
 
-                <PlayerComponent player={this.state.player}/>
+                <PlayerComponent player={this.state.player}
+                                 onUnequip={this.unEquipItem}/>
 
-                <div className={'craefting-interface columns'}>
+                <div className={"craefting-interface columns"}>
 
                     <CraeftersComponent resources={this.state.resources}
                                         craefters={this.state.craefters}
@@ -125,9 +192,12 @@ export default class Craeft extends Component {
 
                     <FarmComponent resources={this.state.resources}
                                    farm={this.state.farm}
+                                   player={this.state.player}
+                                   farmStart={this.farmStart}
                                    farmComplete={this.farmComplete}/>
 
-                    <ItemsComponent items={this.state.items}/>
+                    <ItemsComponent items={this.state.items}
+                                    onItemEquip={this.equipItem}/>
 
                 </div>
 

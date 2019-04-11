@@ -12,6 +12,10 @@ strong {
     color: #FAEFE1;
 }
 
+.nowrap {
+    white-space: nowrap;
+}
+
 .craeft-logo {
     font-size: 90px;
     font-weight: bold;
@@ -24,8 +28,10 @@ strong {
     padding-right: 20px;
 }
 
-.frame {
-    min-width: 380px;
+@media screen and (max-width: 768px) {
+    .frame {
+        min-width: 380px;
+    }
 }
 
 .row {
@@ -51,6 +57,33 @@ strong {
     padding: 6px;
 }
 
+.item-container {
+    line-height: 0;
+    display: inline-block;
+    padding: 2px !important;
+}
+
+.item-level {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    font-size: 18px !important;
+}
+
+.item-timeout {
+    position: absolute;
+    left: 18px;
+    top: 20px;
+}
+
+.item-icon {
+    padding-top: 7px;
+}
+
+.item-icon-selected {
+    border: 1px solid #FAEBD7;
+}
+
 .craefters-list {
     margin-top: 5px;
 }
@@ -69,4 +102,16 @@ strong {
 
 .item-description {
     min-width: 80%;
+}
+
+.equipment .columns {
+    padding: 0;
+}
+
+.equipment .column {
+    padding: 0;
+}
+
+.rpgui-button {
+    white-space: nowrap;
 }

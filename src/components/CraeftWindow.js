@@ -1,10 +1,17 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
+import PropTypes from "prop-types";
+
 import Slider from "./Slider";
-import {ItemCategories} from "../engine/craefter/types";
 import CraefterDescription from "./CraefterDescription";
-import ItemNames from "../engine/data/ItemNames";
+import PreItemDescription from "./PreItemDescription";
 
 export default class CraeftWindow extends Component {
+
+    static propTypes = {
+        craefter: PropTypes.object,
+        itemAdded: PropTypes.func,
+        resources: PropTypes.object
+    };
 
     state = {
         wood: 0,
@@ -40,7 +47,6 @@ export default class CraeftWindow extends Component {
     }
 
     craeft() {
-
         const resources = {
             wood: this.state.wood,
             metal: this.state.metal,
@@ -59,78 +65,63 @@ export default class CraeftWindow extends Component {
     render() {
         return (
             <div>
-
                 <div className='rpgui-container framed craeft-window'>
 
-                    <div className={'row'}>
+                    <div className={"row"}>
                         <strong>Cräft!</strong>
                         <hr/>
                     </div>
 
                     <CraefterDescription craefter={this.props.craefter}/>
 
-                    <div className={'row'}>
-                        <div>
-                            {this.state.wood} x Wood:
-                            <Slider step={1} min={0} max={this.props.resources.wood}
-                                    defaultValue={this.state.wood}
-                                    onValueChange={(value) => this.updateResource('wood', value)}/>
-                        </div>
+                    <div className={"row"}>
 
-                        <div>
-                            {this.state.metal} x Metal:
-                            <Slider step={1} min={0} max={this.props.resources.wood}
-                                    defaultValue={this.state.metal}
-                                    onValueChange={(value) => this.updateResource('metal', value)}/>
-                        </div>
+                        {
+                            this.props.resources.wood > 0 ?
+                                <div>
+                                    {this.state.wood} x Wood:
+                                    <Slider step={1} min={0} max={this.props.resources.wood}
+                                            defaultValue={this.state.wood}
+                                            onValueChange={(value) => this.updateResource("wood", value)}/>
+                                </div> : null
+                        }
 
-                        <div>
-                            {this.state.cloth} x Cloth:
-                            <Slider step={1} min={0} max={this.props.resources.wood}
-                                    defaultValue={this.state.cloth}
-                                    onValueChange={(value) => this.updateResource('cloth', value)}/>
-                        </div>
+                        {
+                            this.props.resources.metal > 0 ?
+                                <div>
+                                    {this.state.metal} x Metal:
+                                    <Slider step={1} min={0} max={this.props.resources.metal}
+                                            defaultValue={this.state.metal}
+                                            onValueChange={(value) => this.updateResource("metal", value)}/>
+                                </div> : null
+                        }
 
-                        <div>
-                            {this.state.diamond} x Diamond:
-                            <Slider step={1} min={0} max={this.props.resources.wood}
-                                    defaultValue={this.state.diamond}
-                                    onValueChange={(value) => this.updateResource('diamond', value)}/>
-                        </div>
+                        {
+                            this.props.resources.cloth > 0 ?
+                                <div>
+                                    {this.state.cloth} x Cloth:
+                                    <Slider step={1} min={0} max={this.props.resources.cloth}
+                                            defaultValue={this.state.cloth}
+                                            onValueChange={(value) => this.updateResource("cloth", value)}/>
+                                </div> : null
+                        }
+
+                        {
+                            this.props.resources.diamond > 0 ?
+                                <div>
+                                    {this.state.diamond} x Diamond:
+                                    <Slider step={1} min={0} max={this.props.resources.diamond}
+                                            defaultValue={this.state.diamond}
+                                            onValueChange={(value) => this.updateResource("diamond", value)}/>
+                                </div> : null
+                        }
+
                     </div>
 
                     {
                         this.state.preItem ?
-                            <div className='rpgui-container framed-grey item columns'>
-
-                                <div className={'column row item-icon'}>
-
-                                    {
-                                        this.state.preItem.category === ItemCategories.Weapon ?
-                                            <span className="rpgui-icon sword"></span> : null
-                                    }
-
-                                    {
-                                        this.state.preItem.category === ItemCategories.Armor ?
-                                            <span className="icon">
-                                            <i className="fas fa-shield-alt"></i>
-                                        </span> : null
-                                    }
-
-                                </div>
-
-                                <div className={'column item-description'}>
-                                    <div className={'row'}>
-                                        Type: {ItemNames[this.state.preItem.type]}
-                                    </div>
-                                    <div className={'row'}>
-                                        Atk: {this.state.preItem.atkMin}-{this.state.preItem.atkMax}
-                                        &nbsp;
-                                        Matk: {this.state.preItem.matkMin}-{this.state.preItem.matkMax}
-                                    </div>
-                                </div>
-
-                            </div> : null
+                            <PreItemDescription preItem={this.state.preItem}/>
+                            : null
                     }
 
                     <div className='row'>
@@ -139,6 +130,7 @@ export default class CraeftWindow extends Component {
                             <span>Cräft!</span>
                         </button>
                     </div>
+
                 </div>
             </div>
         );

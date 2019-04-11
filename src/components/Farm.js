@@ -1,6 +1,15 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 
 export default class Farm extends Component {
+
+    static propTypes = {
+        player: PropTypes.object,
+        resources: PropTypes.object,
+        farm: PropTypes.object,
+        farmComplete: PropTypes.func,
+        farmStart: PropTypes.func
+    };
 
     state = {
         isFarming: false
@@ -13,17 +22,20 @@ export default class Farm extends Component {
     }
 
     farm() {
-        if (!this.state.isFarming) {
+        if (!this.state.isFarming && this.props.player.staCurrent > 0) {
+
             this.setState({
                     isFarming: true
-                }, () =>
+                },
+                () => {
+                    this.props.farmStart(1);
                     this.props.farm.farm((result) => {
                         this.props.farmComplete(result);
                         this.setState({
                             isFarming: false
                         })
-                    })
-            );
+                    });
+                })
         }
     }
 
@@ -32,7 +44,7 @@ export default class Farm extends Component {
             <div className='farm column frame'>
                 <div className='rpgui-container framed'>
 
-                    <div className={'row'}>
+                    <div className={"row"}>
                         <strong>Resources:</strong>
                         <hr/>
                     </div>
@@ -54,20 +66,22 @@ export default class Farm extends Component {
 
                     </div>
 
-                    <div className={'row'}>
-                        <button onClick={this.farm}
-                                className='rpgui-button'
-                                disabled={this.state.isFarming}>
+                    <div className={"row"}>
+                        <button className='rpgui-button'
+                                onClick={this.farm}
+                                disabled={this.state.isFarming ||
+                                this.props.player.staCurrent < 1 ||
+                                this.props.player.dead}>
 
                             <span className="icon">
-                                <i className="fas fa-tree"></i>
+                                <i className="fas fa-tree"/>
                             </span>
 
                             <span>
                                 &nbsp;
                                 {
                                     this.state.isFarming ?
-                                        this.props.farm.gettimeLeftInSeconds() : 'Farm!'
+                                        this.props.farm.getTimeLeftInSeconds() : "Farm!"
                                 }
                             </span>
 

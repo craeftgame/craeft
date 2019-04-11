@@ -1,8 +1,13 @@
 import React, {Component} from "react";
-import {CraefterTypes} from "../engine/craefter/types";
 import Gauge from "./Gauge";
+import {CraefterTypeNames} from "../engine/data/names";
+import PropTypes from "prop-types";
 
 export default class CraefterDescription extends Component {
+
+    static propTypes = {
+        craefter: PropTypes.object,
+    };
 
     render() {
         return (
@@ -10,31 +15,50 @@ export default class CraefterDescription extends Component {
 
                 <div>
                     {
-                        this.props.craefter.type === CraefterTypes.Armorsmith ?
-                            "Armorsmith" : "Weaponsmith"
-                    }: {!this.props.craefter.isCreating ? this.props.craefter.name : '???'}
+                        CraefterTypeNames[this.props.craefter.type]
+                    }
                 </div>
 
                 {
-                    !this.props.craefter.isCreating ?
+                    !this.props.craefter.delay.isDelaying ?
+                        <div>
+                            Level {this.props.craefter.level}: {this.props.craefter.name}
+                        </div>
+                        : "???"
+                }
+
+                {
+                    !this.props.craefter.delay.isDelaying ?
                         <div>
 
                             <div className='row'>
+
                                 <div>
-                                    <span>Str: {this.props.craefter.str} </span>
-                                    <span>Dex: {this.props.craefter.dex} </span>
+                                    <span className='nowrap'>Str: {this.props.craefter.str} </span>
+                                    <span className='nowrap'>Dex: {this.props.craefter.dex} </span>
                                 </div>
+
                                 <div>
-                                    <span>Int: {this.props.craefter.int} </span>
-                                    <span>Luk: {this.props.craefter.luk} </span>
+                                    <span className='nowrap'>Int: {this.props.craefter.int} </span>
+                                    <span className='nowrap'>Luk: {this.props.craefter.luk} </span>
                                 </div>
+
                             </div>
 
                             <hr/>
 
-                            <Gauge label='STA' color='green'
-                                   current={this.props.craefter.staCurrent}
-                                   max={this.props.craefter.staMax}/>
+                            <div className='row'>
+
+                                <Gauge label='STA' color='green'
+                                       current={this.props.craefter.staCurrent}
+                                       max={this.props.craefter.staMax}/>
+
+
+                                <Gauge label='EXP'
+                                       current={this.props.craefter.expCurrent}
+                                       max={this.props.craefter.expMax}/>
+
+                            </div>
 
                             <hr/>
 

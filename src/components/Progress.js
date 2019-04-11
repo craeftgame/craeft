@@ -1,7 +1,12 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 
 export default class Progress extends Component {
 
+    static propTypes = {
+        color: PropTypes.string,
+        filled: PropTypes.number
+    };
 
     render() {
         return (
@@ -24,4 +29,4 @@ export default class Progress extends Component {
             </div>
         )
     }
-};
+}
