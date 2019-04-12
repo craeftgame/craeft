@@ -168,7 +168,7 @@ export default class Player extends Organism {
             }
         }
 
-        item.equiped = equiped;
+        return equiped;
     }
 
     unequip(
@@ -177,7 +177,7 @@ export default class Player extends Organism {
         this.equipment[this.findSlotByItem(item)] = null;
         this.equipment[this.findSlotByItem(item)] = null;
 
-        return true;
+        return true
     }
 
     levelUp() {

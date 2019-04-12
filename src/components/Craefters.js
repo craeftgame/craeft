@@ -71,7 +71,8 @@ export default class Craefters extends Component {
     ) {
         this.props.itemAdded(
             item,
-            resourcesConsumed
+            resourcesConsumed,
+            this.state.currentCraefter
         );
 
         this.setState({

@@ -102,13 +102,6 @@ export default class Weaponsmith extends Craefter {
             return WeaponSlots.OneHanded;
         }
 
-        for (let x = 0; x < 100; x++) {
-            getRandomObjectEntry({
-                object: WeaponSlots,
-                start: 1
-            });
-        }
-
         return getRandomObjectEntry({
             object: WeaponSlots,
             start: 1
@@ -194,9 +187,6 @@ export default class Weaponsmith extends Craefter {
         });
 
         console.log(item);
-
-        // todo calculate exp on resource usage and level
-        this.addExp(10);
 
         return item;
     }

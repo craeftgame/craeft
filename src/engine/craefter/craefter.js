@@ -7,6 +7,7 @@ import math from "mathjs";
 
 export default class Craefter extends Organism {
     isCraefting = false;
+    onDoneCreating = null;
 
     constructor({
                     type = CraefterTypes.Unknown,
@@ -25,6 +26,12 @@ export default class Craefter extends Organism {
         });
 
         this.delay = new Delay(global.delay || 5);
+
+        this.delay.onDelayExpired = () => {
+            if (this.onDoneCreating) {
+                this.onDoneCreating();
+            }
+        };
 
         this.type = type;
         this.name = name;

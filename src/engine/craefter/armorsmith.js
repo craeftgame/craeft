@@ -3,9 +3,10 @@ import Craefter from "./craefter";
 import {
     CraefterTypes,
     ItemCategories,
-    ArmorTypes
+    ArmorTypes,
+    ArmorSlots
 } from "../data/types";
-import {getRandomInt} from "../../tools/rand";
+import {getRandomInt, getRandomObjectEntry} from "../../tools/rand";
 
 export default class Armorsmith extends Craefter {
 
@@ -86,6 +87,16 @@ export default class Armorsmith extends Craefter {
         slot
     ) {
         super.evaluateItemName(type, slot);
+    }
+
+    evaluateSlot(
+        /* eslint-disable-next-line no-unused-vars */
+        type
+    ) {
+        return getRandomObjectEntry({
+            object: ArmorSlots,
+            start: 1
+        });
     }
 
     craeft(

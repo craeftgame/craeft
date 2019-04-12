@@ -9,9 +9,9 @@ import "./css/Craeft.css"
 import Craeft from "./Craeft";
 import About from "./About";
 
-const version = "0.1.0";
+global.version = "v0.1.0";
 
-console.log(`v${version}`);
+console.log(global.version);
 
 window.addEventListener("hashchange", render, false);
 

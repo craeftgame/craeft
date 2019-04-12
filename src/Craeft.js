@@ -23,6 +23,9 @@ export default class Craeft extends Component {
     gameTick = null;
 
     state = {
+        logs: [
+            `Welcome to Cräft! version: ${global.version}`
+        ],
         // the player
         player: new Player(),
         // the farm
@@ -59,6 +62,8 @@ export default class Craeft extends Component {
         });
 
         this.state.player.equip(knife);
+
+        knife.equiped = true;
 
         this.state.items = [
             knife
@@ -129,7 +134,8 @@ export default class Craeft extends Component {
 
     addItem(
         item,
-        resourcesConsumed
+        resourcesConsumed,
+        craefter
     ) {
         const items = [...this.state.items];
         const resources = Object.assign({}, this.state.resources);
@@ -138,6 +144,10 @@ export default class Craeft extends Component {
         resources.metal -= resourcesConsumed.metal;
         resources.cloth -= resourcesConsumed.cloth;
         resources.diamond -= resourcesConsumed.diamond;
+
+        item.onDoneCreating = () => {
+            craefter.addExp(5);
+        };
 
         items.push(item);
 
@@ -150,13 +160,21 @@ export default class Craeft extends Component {
     equipItem(
         item
     ) {
-        this.state.player.equip(item);
+        const equiped = this.state.player.equip(item);
 
-        let items = [...this.state.items];
+        if (equiped) {
+            this.log("Item has been put on");
 
-        this.setState({
-            items
-        })
+            item.equiped = equiped;
+
+            let items = [...this.state.items];
+
+            this.setState({
+                items
+            })
+        } else {
+            this.log("Equip failed!")
+        }
     }
 
     unEquipItem(
@@ -165,13 +183,30 @@ export default class Craeft extends Component {
         const unequiped = this.state.player.unequip(item);
 
         if (unequiped) {
+
+            this.log("Item has been put off");
+
             let items = [...this.state.items];
             items[items.indexOf(item)].equiped = false;
 
             this.setState({
                 items
             })
+        } else {
+            this.log("Unequip failed!")
         }
+    }
+
+    log(
+        entry
+    ) {
+        const logs = [...this.state.logs];
+
+        logs.push(entry);
+
+        this.setState({
+            logs
+        })
     }
 
     render() {
@@ -181,7 +216,8 @@ export default class Craeft extends Component {
                 <Header/>
 
                 <PlayerComponent player={this.state.player}
-                                 onUnequip={this.unEquipItem}/>
+                                 onUnequip={this.unEquipItem}
+                                 logs={this.state.logs}/>
 
                 <div className={"craefting-interface columns"}>
 

@@ -4,6 +4,7 @@ import {ItemCategories} from "../data/types";
 export default class Item {
 
     equiped = false;
+    onDoneCreating = null;
 
     constructor({
                     category = ItemCategories.Unknown,
@@ -14,6 +15,12 @@ export default class Item {
                 } = {}) {
 
         this.delay = new Delay(delay);
+
+        this.delay.onDelayExpired = () => {
+            if (this.onDoneCreating) {
+                this.onDoneCreating();
+            }
+        };
 
         this.category = category;
         this.slot = slot;

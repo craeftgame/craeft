@@ -7,7 +7,8 @@ export default class Player extends Component {
 
     static propTypes = {
         player: PropTypes.object,
-        onUnequip: PropTypes.func
+        onUnequip: PropTypes.func,
+        logs: PropTypes.array
     };
 
     render() {
@@ -56,6 +57,17 @@ export default class Player extends Component {
                             </div>
                         </div>
 
+                        <div className='rpgui-container framed-grey logs'>
+                            {
+                                this.props.logs.slice(-4).map((log, index) => {
+                                    return (
+                                        <div key={index}>
+                                            {log}
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
                     </div>
                     <div className='column'>
                         <Equipment equipment={this.props.player.equipment}

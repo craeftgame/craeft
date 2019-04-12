@@ -12,14 +12,14 @@ strong {
     color: #FAEFE1;
 }
 
-.nowrap {
-    white-space: nowrap;
+@media screen and (max-width: 768px) {
+    .frame {
+        min-width: 380px;
+    }
 }
 
-.craeft-logo {
-    font-size: 90px;
-    font-weight: bold;
-    color: #FAEFE1;
+.nowrap {
+    white-space: nowrap;
 }
 
 .column {
@@ -28,14 +28,14 @@ strong {
     padding-right: 20px;
 }
 
-@media screen and (max-width: 768px) {
-    .frame {
-        min-width: 380px;
-    }
-}
-
 .row {
     text-align: center;
+}
+
+.craeft-logo {
+    font-size: 90px;
+    font-weight: bold;
+    color: #FAEFE1;
 }
 
 .player {
@@ -110,6 +110,11 @@ strong {
 
 .equipment .column {
     padding: 0;
+}
+
+.logs {
+    min-height: 190px;
+    text-align: left;
 }
 
 .rpgui-button {
