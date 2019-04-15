@@ -16,7 +16,7 @@ export default class ItemStats extends Component {
                             Atk: {this.props.item.atk}
                             {
                                 this.props.item.atkMax ?
-                                    <span>- {this.props.item.atkMax}</span> : null
+                                    <span>-{this.props.item.atkMax}</span> : null
                             }
                             &nbsp;
                         </span> : null
@@ -28,7 +28,7 @@ export default class ItemStats extends Component {
                             Matk: {this.props.item.matk}
                             {
                                 this.props.item.matkMax ?
-                                    <span>- {this.props.item.matkMax}</span> : null
+                                    <span>-{this.props.item.matkMax}</span> : null
                             }
                             &nbsp;
                         </span> : null
@@ -40,7 +40,7 @@ export default class ItemStats extends Component {
                             Def: {this.props.item.def}
                             {
                                 this.props.item.defMax ?
-                                    <span>- {this.props.item.defMax}</span> : null
+                                    <span>-{this.props.item.defMax}</span> : null
                             }
                             &nbsp;
                         </span> : null
@@ -52,7 +52,7 @@ export default class ItemStats extends Component {
                             Mdef: {this.props.item.mdef}
                             {
                                 this.props.item.mdefMax ?
-                                    <span>- {this.props.item.mdefMax}</span> : null
+                                    <span>-{this.props.item.mdefMax}</span> : null
                             }
                             &nbsp;
                         </span> : null
