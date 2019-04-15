@@ -33,7 +33,9 @@ export default class Farm extends Component {
         this.slideTo = this.slideTo.bind(this);
     }
 
-    setValue(value) {
+    setValue(
+        value
+    ) {
         this.setState({
             value
         });
@@ -41,14 +43,21 @@ export default class Farm extends Component {
         this.props.onValueChange(value)
     }
 
-    slideTo(pos) {
-        const value = this.props.min + Math.round(
-            (pos / this.track.current.offsetWidth) * (this.props.max - this.props.min)
-        ) - 1;
+    slideTo(
+        pos
+    ) {
+        const stepWidth = (pos / (this.track.current.offsetWidth));
+        const v = Math.round(
+            stepWidth * (this.props.max - this.props.min)
+        );
+        const value = this.props.min + v;
+
         this.setValue(value);
     }
 
-    move(pos) {
+    move(
+        pos
+    ) {
         if (this.state.mouseDown) {
             this.slideTo(pos)
         }
@@ -57,17 +66,22 @@ export default class Farm extends Component {
     componentDidMount() {
         window.addEventListener(
             "mouseup",
-            () => this.setState({mouseDown: false}), false
+            () => this.setState({
+                mouseDown: false
+            }),
+            false
         );
     }
 
     render() {
-        const edgeWidth = !this.leftEdge.current ? 1 : this.leftEdge.current.offsetWidth;
-        const trackWith = !this.track.current ? 1 : this.track.current.offsetWidth;
+        const edgeWidth = !this.leftEdge.current ? 20 : this.leftEdge.current.offsetWidth;
+        const trackWith = !this.track.current ? 20 : this.track.current.offsetWidth;
 
-        const step = trackWith / (this.props.max - this.props.min);
-        const relative_val = Math.round(parseFloat(this.state.value) - this.props.min);
-        const left = (Math.floor(edgeWidth * 0.20) + (relative_val * step)) + "px";
+        const step = (trackWith - (edgeWidth * 2)) / (this.props.max - this.props.min);
+
+        const stepWidth = this.state.value * step;
+
+        const left = Math.floor((edgeWidth / 2) + stepWidth) + "px";
 
         return (
             <div ref={this.element}>
@@ -81,9 +95,9 @@ export default class Farm extends Component {
 
                     <div className='rpgui-slider-track'
                          ref={this.track}
-                         onMouseMove={(e) => this.move(e.nativeEvent.offsetX || e.nativeEvent.layerX)}
                          onMouseDown={() => this.setState({mouseDown: true})}
                          onMouseUp={() => this.setState({mouseDown: false})}
+                         onMouseMove={(e) => this.move(e.nativeEvent.offsetX || e.nativeEvent.layerX)}
                          onClick={(e) => this.slideTo(e.nativeEvent.offsetX || e.nativeEvent.layerX)}>
                     </div>
 
@@ -91,12 +105,14 @@ export default class Farm extends Component {
                          ref={this.leftEdge}
                          onMouseDown={() => this.setState({mouseDown: true})}
                          onClick={() => this.setValue(this.props.min)}>
+                        <div className='slider-edge-value'>{this.props.min}</div>
                     </div>
 
                     <div className='rpgui-slider-right-edge'
                          ref={this.rightEdge}
                          onMouseDown={() => this.setState({mouseDown: true})}
                          onClick={() => this.setValue(this.props.max)}>
+                        <div className='slider-edge-value rtl'>{this.props.max}</div>
                     </div>
 
                     <div className='rpgui-slider-thumb'
