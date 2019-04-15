@@ -65,10 +65,9 @@ export default class CraefterWindow extends Component {
                         </button>
                     </div>
 
-                    <div>
+                    <div className='rpgui-disabled'>
                         <span className='rpgui-icon ring-slot'/>
-                        <button onClick={this.addJC}
-                                className='rpgui-button is-big'
+                        <button className='rpgui-button is-big'
                                 style={style}>
                             <span>Jewelcräfter</span>
                         </button>
