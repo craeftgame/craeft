@@ -1,36 +1,52 @@
 import Weapon from "../items/weapon";
 import Craefter from "./craefter";
+import armorsmith from "./armorsmith";
 
 import {
+    Unknown,
     ItemCategories,
     WeaponTypes,
     CraefterTypes,
-    WeaponSlots
+    ResourceTypes
 } from "../data/types";
 
 import {
-    getRandomInt,
-    getRandomObjectEntry
+    getRandomInt
 } from "../../tools/rand";
+
 import {
-    ItemNames,
-    SlotNames,
+    ItemNames
 } from "../data/names";
+
+import {
+    log,
+    round
+} from "mathjs";
 
 export default class Weaponsmith extends Craefter {
     constructor({
                     name,
                     str = 9,
-                    dex = 3,
+                    int = 3,
+                    dex = 5,
                     luk = 6
                 } = {}) {
         super({
             type: CraefterTypes.Weaponsmith,
             name,
-            luk,
+            str,
+            int,
             dex,
-            str
+            luk
         });
+    }
+
+    static hydrate(obj) {
+        const weaponsmith = Object.assign(new Weaponsmith(), obj);
+
+        Craefter.hydrate(armorsmith, obj);
+
+        return weaponsmith;
     }
 
     itemCanBeTwoHanded(
@@ -45,47 +61,50 @@ export default class Weaponsmith extends Craefter {
     }
 
     evaluateItemType(
-        ratios
+        ratios,
+        highestResource
     ) {
-        let type = WeaponTypes.Unknown;
-
-        const highestResource = Craefter.highestMaterial(ratios);
+        let type = Unknown;
 
         switch (highestResource) {
-            case "metal":
+            case ResourceTypes.Metal:
                 type = WeaponTypes.Sword;
 
-                if (ratios.wood > 0) {
+                if (ratios[ResourceTypes.Wood] > 0) {
                     type = WeaponTypes.Knife;
 
-                    if (ratios.metal > ratios.wood * 2) {
+                    if (ratios[ResourceTypes.Metal] > ratios[ResourceTypes.Wood] * 2) {
                         type = WeaponTypes.Sword;
                     }
                 }
                 break;
-            case "wood":
+            case ResourceTypes.Wood:
                 type = WeaponTypes.Staff;
 
-                if (ratios.diamond > 0) {
+                if (ratios[ResourceTypes.Diamond] > 0) {
                     type = WeaponTypes.Wand;
                 }
                 break;
-            case "diamond":
-                if (ratios.wood &&
-                    ratios.diamond > ratios.wood * 2) {
+            case ResourceTypes.Diamond:
+                if (ratios[ResourceTypes.Wood] > 0 &&
+                    ratios[ResourceTypes.Wood] > ratios[ResourceTypes.Metal] * 2 &&
+                    ratios[ResourceTypes.Diamond] > ratios[ResourceTypes.Wood] * 2) {
                     type = WeaponTypes.JewelWand
                 }
 
-                if (ratios.metal &&
-                    ratios.metal > ratios.wood) {
+                if (ratios[ResourceTypes.Metal] > 0 &&
+                    ratios[ResourceTypes.Wood] > 0 &&
+                    ratios[ResourceTypes.Diamond] > ratios[ResourceTypes.Metal] + ratios[ResourceTypes.Wood]) {
                     type = WeaponTypes.JewelKnife
                 }
 
-                if (ratios.metal &&
-                    ratios.metal > ratios.wood &&
-                    ratios.diamond > ratios.metal * 2) {
-                    type = WeaponTypes.JewelSword
+                if (ratios[ResourceTypes.Metal] > 0 &&
+                    ratios[ResourceTypes.Diamond] > ratios[ResourceTypes.Metal] * 2) {
+                    if (ratios[ResourceTypes.Metal] > ratios[ResourceTypes.Wood] * 2) {
+                        type = WeaponTypes.JewelSword;
+                    }
                 }
+
                 break;
             default:
                 break
@@ -94,62 +113,56 @@ export default class Weaponsmith extends Craefter {
         return type;
     }
 
-    evaluateSlot(
-        type
-    ) {
-        // handle items that can never be two handed
-        if (!this.itemCanBeTwoHanded(type)) {
-            return WeaponSlots.OneHanded;
-        }
-
-        return getRandomObjectEntry({
-            object: WeaponSlots,
-            start: 1
-        });
-    }
-
-    evaluateItem(
-        resources
-    ) {
-        const {
-            res,
-            ratios,
-            resourcesSum
-        } = this.evaluateResouces(resources);
+    evaluateItem({
+                     resources
+                 }) {
 
         // 2 percent of all resources is the base
-        const baseline = (resourcesSum / 100) * 2;
+        const baseline = (resources.sum() / 100);
 
         // add atk mainly based on metal
-        const atk = Math.floor(
-            baseline + ((res.metal ? res.metal : 1) / 100) * 80
+        // todo add str influence
+        const atk = round(
+            baseline + Craefter.calculateMaterialImpact(resources[ResourceTypes.Metal])
         );
 
         // add matk mainly based on wood
-        const matk = Math.floor(
-            baseline + ((res.wood ? res.wood : 1) / 100) * 80
+        // todo add int influence
+        const matk = round(
+            baseline + Craefter.calculateMaterialImpact(resources[ResourceTypes.Wood])
         );
 
         // todo: add level influence
 
+        const ratios = resources.ratios();
+        const highestResource = ratios.getHighest();
+
         return {
             category: ItemCategories.Weapon,
-            type: this.evaluateItemType(ratios),
+            type: this.evaluateItemType(
+                ratios,
+                highestResource
+            ),
+            material: highestResource,
             atk,
-            atkMax: Math.round(atk + ((atk / 100) * 10)) || 1,
+            // todo: let this be influenced by luk
+            atkMax: round(atk + (atk * log(2))) || 1,
             matk,
-            matkMax: Math.round(matk + ((matk / 100) * 10)) || 1
+            // todo: let this be influenced by luk
+            matkMax: round(matk + (matk * log(2))) || 1
         }
     }
 
     evaluateItemName(
         type,
-        slot
+        /* eslint-disable-next-line no-unused-vars */
+        slot,
+        isMultiSlot
     ) {
         const prefixes = [];
 
         if (this.itemCanBeTwoHanded(type)) {
-            prefixes.push(SlotNames[slot])
+            prefixes.push(isMultiSlot ? "Two-Handed" : "One-Handed");
         }
 
         const parts = [];
@@ -163,30 +176,36 @@ export default class Weaponsmith extends Craefter {
     craeft(
         resources
     ) {
+        super.craeft();
+
         // todo include resource heaviness / complexity
         this.exhaust(1);
 
         const {
             type,
+            material,
             atk,
             atkMax,
             matk,
             matkMax
         } = this.evaluateItem(resources);
 
-        const slot = this.evaluateSlot(type);
+        // is this item two handed?
+        const isMultiSlot = this.itemCanBeTwoHanded(type) && getRandomInt(0, 1) > 0;
 
         const item = new Weapon({
             type,
-            slot,
+            isMultiSlot,
+            material,
             level: this.level,
-            name: this.evaluateItemName(type, slot),
+            craefterId: this.id,
+            name: this.evaluateItemName(type, null, isMultiSlot),
             // todo include luk
             atk: getRandomInt(atk, atkMax),
             matk: getRandomInt(matk, matkMax)
         });
 
-        console.log(item);
+        this.itemId = item.id;
 
         return item;
     }

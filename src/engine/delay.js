@@ -1,8 +1,11 @@
 import Timer from "../tools/timer";
 
 export default class Delay {
-    isDelaying = true;
+
+    timer = null;
     onDelayExpired = null;
+
+    isDelaying = true;
 
     finish() {
         this.isDelaying = false;
@@ -11,11 +14,14 @@ export default class Delay {
         }
     }
 
-    constructor(
-        delayInSeconds
-    ) {
+    constructor({
+                    delayInSeconds,
+                    onDelayExpired
+                } = {}) {
+        this.onDelayExpired = onDelayExpired;
+
         if (delayInSeconds > -1) {
-            this.delay = new Timer(
+            this.timer = new Timer(
                 {
                     callback: () => {
                         this.finish();
@@ -29,7 +35,13 @@ export default class Delay {
         }
     }
 
-    getTimeout() {
-        return this.delay.getTimeLeftInSeconds()
+    static hydrate(
+        obj
+    ) {
+        const delay = Object.assign(new Delay(), obj);
+
+        delay.timer = Timer.hydrate(obj.timer);
+
+        return delay;
     }
 }

@@ -6,28 +6,35 @@ import "./css/rpgui.css"
 import "bulma/css/bulma.min.css"
 import "./css/Craeft.css"
 
-import Craeft from "./Craeft";
-import About from "./About";
-
-global.version = "v0.1.0";
-
-console.log(global.version);
+import CraeftPage from "./CraeftPage";
+import AboutPage from "./AboutPage";
 
 window.addEventListener("hashchange", render, false);
 
 function render() {
-    let page = window.location.hash.substr(1, window.location.hash.length);
+    let page = window
+        .location
+        .hash
+        .substr(
+            1,
+            window.location.hash.length
+        );
 
     let component;
 
+    const title = "Cräft!";
+
     switch (page) {
         case "about":
-            component = <About/>;
+            component = <AboutPage/>;
+
+            window.document.title = `${title} - About`;
             break;
 
         case "craeft":
         default:
-            component = <Craeft/>;
+            component = <CraeftPage/>;
+            window.document.title = title;
             break;
     }
 
@@ -35,6 +42,8 @@ function render() {
         component,
         document.getElementById("root")
     );
+
+    window.scroll(0, 0);
 }
 
 render();

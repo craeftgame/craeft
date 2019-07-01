@@ -5,8 +5,13 @@ export default class Header extends Component {
     render() {
         return (
             <div className={"row craeft-logo"}>
-                <span>Cräft!</span>
-                <hr/>
+
+                <a href="#craeft">
+                    Cräft!
+                </a>
+
+                <hr className="golden"/>
+
             </div>
         )
     }

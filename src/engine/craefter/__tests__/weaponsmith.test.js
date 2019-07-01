@@ -1,64 +1,134 @@
-/* globals describe, test */
-import assert from "assert"
+/* globals describe, test, expect */
 import Weaponsmith from "../weaponsmith"
-import {WeaponTypes} from "../../data/types";
+import {Unknown, WeaponTypes} from "../../data/types";
 
 describe("Weaponsmith", () => {
     describe("evaluateItem", () => {
 
-        test("should return item type wand if only wood", () => {
-            const craefter = new Weaponsmith();
+        describe("Staff", () => {
 
-            const item = craefter.evaluateItem({
-                wood: 100
+            test("should return item type wand if only wood", () => {
+                const craefter = new Weaponsmith();
+
+                const item = craefter.evaluateItem({
+                    wood: 100
+                });
+
+                expect(item.type).toBe(WeaponTypes.Staff)
             });
 
-            assert(item.type, "wand")
         });
 
-        test("should return item type sword if only metal", () => {
-            const weaponsmith = new Weaponsmith();
+        describe("Sword", () => {
 
-            const item = weaponsmith.evaluateItem({
-                metal: 100
+            test("should return item type sword if only metal", () => {
+                const weaponsmith = new Weaponsmith();
+
+                const item = weaponsmith.evaluateItem({
+                    metal: 100
+                });
+
+                expect(item.type).toBe(WeaponTypes.Sword)
             });
 
-            assert(item.type, "sword")
-        });
+            test("should return item type sword if metal is way larger than wood", () => {
+                const weaponsmith = new Weaponsmith();
 
-        test("should return item type knife if metal is a little bit larger than wood", () => {
-            const weaponsmith = new Weaponsmith();
+                const item = weaponsmith.evaluateItem({
+                    metal: 100,
+                    wood: 20
+                });
 
-            const item = weaponsmith.evaluateItem({
-                metal: 30,
-                wood: 20
+                expect(item.type).toBe(WeaponTypes.Sword)
             });
 
-            assert(item.type, WeaponTypes.Knife)
         });
 
-        test("should return item type sword if metal is way larger than wood", () => {
-            const weaponsmith = new Weaponsmith();
+        describe("Knife", () => {
 
-            const item = weaponsmith.evaluateItem({
-                metal: 100,
-                wood: 20
+            test("should return item type knife if metal is a little bit larger than wood", () => {
+                const weaponsmith = new Weaponsmith();
+
+                const item = weaponsmith.evaluateItem({
+                    metal: 30,
+                    wood: 20
+                });
+
+                expect(item.type).toBe(WeaponTypes.Knife)
             });
 
-            assert(item.type, WeaponTypes.Sword)
         });
 
-        test("correct atk", () => {
-            const weaponsmith = new Weaponsmith();
+        describe("JewelSword", () => {
 
-            const res = {
-                metal: 5,
-                wood: 1
-            };
+            test("make jewel sword", () => {
+                const weaponsmith = new Weaponsmith();
 
-            const item = weaponsmith.evaluateItem(res);
+                const res = {
+                    metal: 5,
+                    wood: 2,
+                    diamond: 11
+                };
 
-            assert(item.type, WeaponTypes.Sword)
+                const item = weaponsmith.evaluateItem(res);
+
+                console.log(item.type, WeaponTypes.JewelSword);
+
+                expect(item.type).toBe(WeaponTypes.JewelSword)
+            });
+
         });
-    })
+
+        describe("JewelKnife", () => {
+
+            test("make jewel knife", () => {
+                const weaponsmith = new Weaponsmith();
+
+                const res = {
+                    metal: 5,
+                    wood: 5,
+                    diamond: 11
+                };
+
+                const item = weaponsmith.evaluateItem(res);
+
+                expect(item.type).toBe(WeaponTypes.JewelKnife)
+            });
+
+        });
+
+        describe("JewelWand", () => {
+
+            test("make jewel wand", () => {
+                const weaponsmith = new Weaponsmith();
+
+                const res = {
+                    wood: 5,
+                    diamond: 11
+                };
+
+                const item = weaponsmith.evaluateItem(res);
+
+                expect(item.type).toBe(WeaponTypes.JewelWand)
+            });
+
+        });
+
+        describe("mysterious", () => {
+
+            test("Should create", () => {
+                const weaponsmith = new Weaponsmith();
+
+                const res = {
+                    diamond: 50
+                };
+
+                const item = weaponsmith.evaluateItem(res);
+
+                expect(item.type).toBe(Unknown)
+            });
+
+        })
+
+    });
 });

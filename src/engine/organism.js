@@ -1,5 +1,12 @@
-import Math from "mathjs";
 import Tickable from "./tickable";
+
+import {
+    log
+} from "mathjs";
+
+import {
+    getRandomId
+} from "../tools/rand";
 
 export default class Organism extends Tickable {
 
@@ -10,6 +17,8 @@ export default class Organism extends Tickable {
         super();
 
         this.dead = false;
+
+        this.id = getRandomId();
 
         this.level = 1;
         this.name = name;
@@ -36,7 +45,7 @@ export default class Organism extends Tickable {
 
     levelUp() {
         this.level++;
-        this.expMax = this.expMax + (50 * Math.log(this.level, 10));
+        this.expMax = this.expMax + (50 * log(this.level, 10));
     }
 
     exhaust(

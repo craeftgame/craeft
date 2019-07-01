@@ -1,14 +1,11 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
+import {ResourceTypes} from "../engine/data/types";
 
 export default class Farm extends Component {
 
     static propTypes = {
-        player: PropTypes.object,
-        resources: PropTypes.object,
-        farm: PropTypes.object,
-        farmComplete: PropTypes.func,
-        farmStart: PropTypes.func
+        craeft: PropTypes.object
     };
 
     state = {
@@ -18,30 +15,33 @@ export default class Farm extends Component {
     constructor(props) {
         super(props);
 
-        this.farm = this.farm.bind(this)
+        this.startFarming = this.startFarming.bind(this)
     }
 
-    farm() {
-        if (!this.state.isFarming && this.props.player.staCurrent > 0) {
+    startFarming() {
+        if (!this.state.isFarming && this.props.craeft.player.staCurrent > 0) {
 
             this.setState({
                     isFarming: true
                 },
                 () => {
-                    this.props.farmStart(1);
-                    this.props.farm.farm((result) => {
-                        this.props.farmComplete(result);
-                        this.setState({
-                            isFarming: false
-                        })
+
+                    this.props.craeft.startFarming({
+                        callback: () => {
+
+                            this.setState({
+                                isFarming: false
+                            })
+                        }
                     });
+
                 })
         }
     }
 
     render() {
         return (
-            <div className='farm column frame'>
+            <div className='farm column frame farm'>
                 <div className='rpgui-container framed'>
 
                     <div className={"row"}>
@@ -51,27 +51,52 @@ export default class Farm extends Component {
 
                     <div className='rpgui-container framed-grey resources'>
 
-                        <div>
-                            Wood: {this.props.resources.wood}
+                        <div className="columns">
+                            <div className="column">
+                                Wood:
+                            </div>
+                            <div className="column rtl">
+                                {this.props.craeft.resources[ResourceTypes.Wood]}
+                            </div>
                         </div>
-                        <div>
-                            Metal: {this.props.resources.metal}
+
+                        <div className="columns">
+                            <div className="column">
+                                Metal:
+                            </div>
+                            <div className="column rtl">
+                                {this.props.craeft.resources[ResourceTypes.Metal]}
+                            </div>
                         </div>
-                        <div>
-                            Cloth: {this.props.resources.cloth}
+
+                        <div className="columns">
+                            <div className="column">
+                                Cloth:
+                            </div>
+                            <div className="column rtl">
+                                {this.props.craeft.resources[ResourceTypes.Cloth]}
+                            </div>
                         </div>
-                        <div>
-                            Diamond: {this.props.resources.diamond}
+
+                        <div className="columns">
+                            <div className="column">
+                                Diamond:
+                            </div>
+                            <div className="column rtl">
+                                {this.props.craeft.resources[ResourceTypes.Diamond]}
+                            </div>
                         </div>
 
                     </div>
 
                     <div className={"row"}>
                         <button className='rpgui-button'
-                                onClick={this.farm}
-                                disabled={this.state.isFarming ||
-                                this.props.player.staCurrent < 1 ||
-                                this.props.player.dead}>
+                                onClick={this.startFarming}
+                                disabled={
+                                    this.state.isFarming ||
+                                    this.props.craeft.player.staCurrent < 1 ||
+                                    this.props.craeft.player.dead
+                                }>
 
                             <span className="icon">
                                 <i className="fas fa-tree"/>
@@ -81,7 +106,7 @@ export default class Farm extends Component {
                                 &nbsp;
                                 {
                                     this.state.isFarming ?
-                                        this.props.farm.getTimeLeftInSeconds() : "Farm!"
+                                        this.props.craeft.farm.timer.getTimeoutString() : "Farm!"
                                 }
                             </span>
 

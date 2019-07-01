@@ -1,5 +1,9 @@
 export default class Timer {
 
+    timeout = null;
+    startDate = null;
+    running = false;
+
     constructor(
         {
             callback,
@@ -7,39 +11,56 @@ export default class Timer {
             autoStart = true
         } = {}
     ) {
-
         this.callback = callback;
 
-        this.id = undefined;
-        this.startDate = undefined;
-
-        this.remaining = delay * 1000;
-
-        this.running = false;
+        this.delay = delay * 1000;
+        this.remaining = this.delay;
 
         if (autoStart) {
             this.start();
         }
     }
 
+    static hydrate(
+        obj
+    ) {
+        const timer = Object.assign(new Timer(), obj);
+
+        if (timer.remaining > 0) {
+            timer.delay = timer.remaining;
+            timer.start();
+        }
+
+        return timer;
+    }
+
     start() {
         this.running = true;
         this.startDate = new Date();
-        this.id = setTimeout(this.callback, this.remaining)
+
+        this.timeout = setTimeout(
+            this.callback,
+            this.remaining
+        );
+
+        this.ticker = setInterval(
+            () => this.tick(),
+            400
+        )
+    }
+
+    tick() {
+        this.remaining = this.delay - (new Date() - this.startDate)
     }
 
     pause() {
         this.running = false;
-        clearTimeout(this.id);
-        this.remaining -= new Date() - this.startDate
+
+        clearTimeout(this.timeout);
+        clearInterval(this.ticker);
     }
 
     getTimeLeft() {
-        if (this.running) {
-            this.pause();
-            this.start()
-        }
-
         return this.remaining
     }
 
@@ -47,7 +68,15 @@ export default class Timer {
         return Math.round(this.getTimeLeft() / 1000)
     }
 
-    getStateRunning() {
-        return this.running
+    getTimeoutString() {
+        const timeoutInSeconds = this.getTimeLeftInSeconds();
+
+        const mins = Math.floor(timeoutInSeconds / 60);
+
+        if (mins > 0) {
+            return `~${mins} Min`
+        }
+
+        return `${timeoutInSeconds} Sec`
     }
 }

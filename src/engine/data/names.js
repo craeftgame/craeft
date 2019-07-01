@@ -2,18 +2,19 @@ import {
     Unknown,
     CraefterTypes,
     WeaponTypes,
-    WeaponSlots, ArmorTypes
+    ArmorTypes,
+    ArmorSlots
 } from "./types";
 
-const CraefterTypeNames = {
+const CraefterTypeNames = Object.freeze({
     [Unknown]: "???",
-    [CraefterTypes.Weaponsmith]: "Weaponsmith",
-    [CraefterTypes.Armorsmith]: "Armorsmith",
+    [CraefterTypes.Weaponsmith]: "Weaponcräfter",
+    [CraefterTypes.Armorsmith]: "Armorscräfter",
     [CraefterTypes.Jewelcraefter]: "Jewelcräfter",
     [CraefterTypes.Alchemist]: "Alchemist"
-};
+});
 
-const ItemNames = {
+const ItemNames = Object.freeze({
     [Unknown]: "???",
     [WeaponTypes.Sword]: "Sword",
     [WeaponTypes.JewelSword]: "Jewel Sword",
@@ -22,17 +23,23 @@ const ItemNames = {
     [WeaponTypes.Staff]: "Staff",
     [WeaponTypes.Wand]: "Wand",
     [WeaponTypes.JewelWand]: "Jewel Wand",
-    [ArmorTypes.Plate]: "Plate",
-    [ArmorTypes.Mail]: "Mail"
-};
+    [ArmorTypes.WoodenPlate]: "Wooden Plate",
+    [ArmorTypes.WoodenChainmail]: "Wooden Chainmail",
+    [ArmorTypes.MetalPlate]: "Metal Plate",
+    [ArmorTypes.MetalChainmail]: "Metal Chainmail",
+    [ArmorTypes.Woven]: "Woven",
+    [ArmorTypes.JewelWoven]: "Jewel Woven"
+});
 
-const SlotNames = {
-    [WeaponSlots.OneHanded]: "One-Handed",
-    [WeaponSlots.TwoHanded]: "Two-Handed",
-};
+const SlotNames = Object.freeze({
+    [ArmorSlots.Head]: "Head",
+    [ArmorSlots.Body]: "Body",
+    [ArmorSlots.Legs]: "Legs",
+    [ArmorSlots.Feet]: "Feet",
+});
 
 export {
-    ItemNames,
     CraefterTypeNames,
+    ItemNames,
     SlotNames
 };

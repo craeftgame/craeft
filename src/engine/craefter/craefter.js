@@ -1,22 +1,26 @@
-import {getRandomArrayItem} from "../../tools/rand";
+import {
+    getRandomArrayItem,
+    getRandomId
+} from "../../tools/rand";
 import peopleNames from "../data/people_names"
-import {CraefterTypes} from "../data/types";
+import {Unknown} from "../data/types";
 import Organism from "../organism";
 import Delay from "../delay";
-import math from "mathjs";
 
 export default class Craefter extends Organism {
+
     isCraefting = false;
+    itemId = null;
     onDoneCreating = null;
 
     constructor({
-                    type = CraefterTypes.Unknown,
+                    type = Unknown,
                     name = getRandomArrayItem({
                         array: peopleNames
                     }),
                     str = 0,
-                    dex = 0,
                     int = 0,
+                    dex = 0,
                     luk = 0,
                     sta = 5
                 } = {}) {
@@ -25,21 +29,34 @@ export default class Craefter extends Organism {
             sta
         });
 
-        this.delay = new Delay(global.delay || 5);
-
-        this.delay.onDelayExpired = () => {
-            if (this.onDoneCreating) {
-                this.onDoneCreating();
+        this.delay = new Delay({
+            delayInSeconds: global.delay || 5,
+            onDelayExpired: () => {
+                if (this.onDoneCreating) {
+                    this.onDoneCreating(
+                        // todo evaluate exp properly
+                        5
+                    );
+                }
             }
-        };
+        });
+
+        this.id = getRandomId();
 
         this.type = type;
         this.name = name;
 
-        this.luk = luk;
-        this.dex = dex;
         this.str = str;
         this.int = int;
+        this.dex = dex;
+        this.luk = luk;
+    }
+
+    static hydrate(
+        craefter,
+        obj
+    ) {
+        craefter.delay = Delay.hydrate(obj.delay)
     }
 
     tick() {
@@ -48,57 +65,25 @@ export default class Craefter extends Organism {
         }
     }
 
-    evaluateResouces(
-        resources
+    static calculateMaterialImpact(
+        material
     ) {
-        resources = {
-            wood: resources.wood || 0,
-            metal: resources.metal || 0,
-            cloth: resources.cloth || 0,
-            diamond: resources.diamond || 0,
-        };
-
-        const gcd = math.gcd(
-            resources.wood,
-            resources.metal,
-            resources.cloth,
-            resources.diamond
-        );
-
-        const ratios = {
-            wood: resources.wood / gcd,
-            metal: resources.metal / gcd,
-            cloth: resources.cloth / gcd,
-            diamond: resources.diamond / gcd,
-        };
-
-        // evaluate power
-        const resourcesSum = (
-            resources.wood +
-            resources.metal +
-            resources.cloth +
-            resources.diamond
-        );
-
-        return {
-            res: resources,
-            ratios,
-            resourcesSum
-        }
+        return ((material ? material : 0.1) / 100) * 80
     }
 
     evaluateItemType(
         /* eslint-disable-next-line no-unused-vars */
-        ratios
+        ratios,
+        /* eslint-disable-next-line no-unused-vars */
+        highestResource
     ) {
         // stub please override
     }
 
-    evaluateItem(
-        /* eslint-disable-next-line no-unused-vars */
-        resources
-    ) {
-
+    evaluateItem({
+                     /* eslint-disable-next-line no-unused-vars */
+                     resources
+                 }) {
         // stub please override
     }
 
@@ -107,6 +92,18 @@ export default class Craefter extends Organism {
         resources
     ) {
         // stub please override
+        this.isCraefting = true;
+    }
+
+    finishCraefting(
+        exp
+    ) {
+        this.isCraefting = false;
+        this.ItemId = null;
+
+        this.addExp(
+            exp
+        );
     }
 
     evaluateSlot(
@@ -120,7 +117,9 @@ export default class Craefter extends Organism {
         /* eslint-disable-next-line no-unused-vars */
         type,
         /* eslint-disable-next-line no-unused-vars */
-        slot
+        slot,
+        /* eslint-disable-next-line no-unused-vars */
+        isMultiSlot
     ) {
     }
 
@@ -132,24 +131,5 @@ export default class Craefter extends Organism {
         if (Math.floor(this.staCurrent <= 0)) {
             this.dead = true;
         }
-    }
-
-    static highestMaterial(
-        ratios
-    ) {
-        const sortable = [];
-
-        for (var resouce in ratios) {
-            sortable.push([
-                resouce,
-                ratios[resouce]
-            ]);
-        }
-
-        sortable.sort(function (a, b) {
-            return a[1] - b[1];
-        });
-
-        return sortable[sortable.length - 1][0]
     }
 }

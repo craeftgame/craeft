@@ -1,6 +1,6 @@
 {
   "name": "craeft",
-  "version": "0.1.0",
+  "version": "0.1.0-alpha",
   "description": "",
   "main": "index.js",
   "homepage": "http://h34d.github.io/craeft",
@@ -15,19 +15,23 @@
   "author": "Sebastian Gerske",
   "license": "ISC",
   "devDependencies": {
-    "babel-eslint": "~9.0.0",
-    "create-react-app": "^2.1.8",
-    "eslint-plugin-react": "^7.12.4",
+    "babel-eslint": "~10.0.1",
+    "create-react-app": "^3.0.1",
+    "eslint-plugin-react": "^7.13.0",
     "gh-pages": "^2.0.1",
-    "node-sass": "^4.11.0",
+    "lz-string": "^1.4.4",
+    "node-sass": "^4.12.0",
     "prop-types": "^15.7.2"
   },
   "dependencies": {
-    "bulma": "^0.7.4",
-    "mathjs": "^5.9.0",
+    "@craeft/serializer": "git+https://github.com/craeftgame/serializer.git",
+    "bulma": "^0.7.5",
+    "local-storage": "^2.0.0",
+    "mathjs": "^6.0.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "^2.1.8"
+    "react-scripts": "^3.0.1",
+    "serializr": "^1.5.1"
   },
   "browserslist": [
     ">0.2%",

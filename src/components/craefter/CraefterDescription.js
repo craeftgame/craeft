@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import Gauge from "./Gauge";
-import {CraefterTypeNames} from "../engine/data/names";
+import Gauge from "../utility/Gauge";
+import {CraefterTypeNames} from "../../engine/data/names";
 import PropTypes from "prop-types";
 
 export default class CraefterDescription extends Component {

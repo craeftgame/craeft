@@ -1,20 +1,29 @@
 import Armor from "../items/armor";
 import Craefter from "./craefter";
 import {
+    Unknown,
     CraefterTypes,
     ItemCategories,
     ArmorTypes,
-    ArmorSlots
+    ArmorSlots,
+    ResourceTypes
 } from "../data/types";
-import {getRandomInt, getRandomObjectEntry} from "../../tools/rand";
+import {
+    getRandomInt,
+    getRandomObjectEntry
+} from "../../tools/rand";
+import {
+    ItemNames,
+    SlotNames
+} from "../data/names";
 
 export default class Armorsmith extends Craefter {
 
     constructor({
                     name,
-                    luk,
-                    dex,
-                    str
+                    str = 4,
+                    dex = 3,
+                    luk = 9
                 } = {}) {
         super({
             type: CraefterTypes.Armorsmith,
@@ -25,21 +34,41 @@ export default class Armorsmith extends Craefter {
         });
     }
 
-    evaluateItemType(
-        ratios
-    ) {
-        let type = ArmorTypes.Unknown;
+    static hydrate(obj) {
+        const armorsmith = Object.assign(new Armorsmith(), obj);
 
-        const highestResource = Craefter.highestMaterial(ratios);
+        Craefter.hydrate(armorsmith, obj);
+
+        return armorsmith;
+    }
+
+    evaluateItemType(
+        ratios,
+        highestResource
+    ) {
+        let type = Unknown;
 
         switch (highestResource) {
-            case "metal":
-                type = ArmorTypes.Plate;
+            case ResourceTypes.Metal:
+                type = ArmorTypes.MetalPlate;
+
+                if (ratios[ResourceTypes.Cloth] > 0) {
+                    type = ArmorTypes.MetalChainmail;
+                }
                 break;
-            case "wood":
-                type = ArmorTypes.Plate;
+            case ResourceTypes.Wood:
+                type = ArmorTypes.WoodenPlate;
+
+                if (ratios[ResourceTypes.Cloth] > 0) {
+                    type = ArmorTypes.WoodenChainmail;
+                }
                 break;
-            case "cloth":
+            case ResourceTypes.Cloth:
+                type = ArmorTypes.Woven;
+
+                if (ratios[ResourceTypes.Diamond] > 0) {
+                    type = ArmorTypes.JewelWoven;
+                }
                 break;
             default:
                 break
@@ -48,45 +77,50 @@ export default class Armorsmith extends Craefter {
         return type;
     }
 
-    evaluateItem(
-        resources
-    ) {
-        const {
-            res,
-            ratios,
-            resourcesSum
-        } = this.evaluateResouces(resources);
+    evaluateItem({
+                     resources
+                 }) {
 
         // 2 percent of all resources is the base
-        const baseline = (resourcesSum / 100) * 2;
+        const baseline = (resources.sum() / 100);
 
         // add atk mainly based on metal
-        const def = Math.floor(
-            baseline + ((res.metal ? res.metal : 1) / 100) * 80
+        // todo add str influence
+        const def = Math.round(
+            baseline + Craefter.calculateMaterialImpact(resources[ResourceTypes.Metal])
         );
 
         // add matk mainly based on wood
-        const mdef = Math.floor(
-            baseline + ((res.wood ? res.wood : 1) / 100) * 80
+        // todo add int influence
+        const mdef = Math.round(
+            baseline + Craefter.calculateMaterialImpact(resources[ResourceTypes.Wood])
         );
 
-        // todo: add level influence
+        const ratios = resources.ratios();
+        const highestResource = ratios.getHighest();
 
+        // todo: add level influence
         return {
-            category: ItemCategories.Weapon,
-            type: this.evaluateItemType(ratios),
+            category: ItemCategories.Armor,
+            type: this.evaluateItemType(
+                ratios,
+                highestResource
+            ),
+            material: highestResource,
             def,
-            defMax: Math.round(def + ((def / 100) * 10)) || 1,
+            defMax: Math.round(def + (def * Math.log(2))) || 1,
             mdef,
-            mdefMax: Math.round(mdef + ((mdef / 100) * 10)) || 1
+            mdefMax: Math.round(mdef + (mdef * Math.log(2))) || 1
         }
     }
 
     evaluateItemName(
         type,
-        slot
+        slot,
+        /* eslint-disable-next-line no-unused-vars */
+        isMultiSlot
     ) {
-        super.evaluateItemName(type, slot);
+        return `${SlotNames[slot]} ${ItemNames[type]}`
     }
 
     evaluateSlot(
@@ -102,8 +136,11 @@ export default class Armorsmith extends Craefter {
     craeft(
         resources
     ) {
+        super.craeft();
+
         const {
             type,
+            material,
             def,
             defMax,
             mdef,
@@ -112,13 +149,19 @@ export default class Armorsmith extends Craefter {
 
         const slot = this.evaluateSlot(type);
 
-        return new Armor({
+        const item = new Armor({
             name: this.evaluateItemName(
                 type,
                 slot
             ),
+            craefterId: this.id,
+            material,
             def: getRandomInt(def, defMax),
             mdef: getRandomInt(mdef, mdefMax)
         });
+
+        this.itemId = item.id;
+
+        return item;
     }
 }

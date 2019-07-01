@@ -24,8 +24,7 @@ export default class Craefter extends Component {
         }
 
         return (
-            <div
-                className={classNames.join(" ")}>
+            <div className={classNames.join(" ")}>
 
                 <CraefterDescription craefter={this.props.craefter}/>
 
@@ -46,7 +45,7 @@ export default class Craefter extends Component {
                             &nbsp;
                             {
                                 this.props.craefter.delay.isDelaying ?
-                                    this.props.craefter.delay.getTimeout() : "Cräft!"
+                                    this.props.craefter.delay.timer.getTimeoutString() : "Cräft!"
                             }
                         </span>
 

@@ -5,7 +5,7 @@
 
 html, body {
     color: #FAEBD7;
-    background-color: #000;
+    background-color: #222;
 }
 
 strong {
@@ -35,7 +35,14 @@ strong {
 .craeft-logo {
     font-size: 90px;
     font-weight: bold;
+}
+
+.craeft-logo a {
     color: #FAEFE1;
+}
+
+.craeft-logo a:hover {
+    text-decoration: none;
 }
 
 .player {
@@ -57,6 +64,115 @@ strong {
     padding: 6px;
 }
 
+.craefters-list {
+    margin-top: 5px;
+}
+
+.items hr,
+.craefters hr,
+.farm hr {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.footer {
+    text-align: center;
+    background-color: inherit;
+    padding: 10px 0 50px;
+}
+
+.about .framed-grey {
+    margin-bottom: 20px;
+}
+
+.about blockquote:before {
+    content: open-quote;
+}
+
+.about blockquote:after {
+    content: close-quote;
+}
+
+.about .inspiration-item {
+    padding-bottom: 20px;
+}
+
+.about .inspiration-item img {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.farm .columns,
+.farm .column {
+    padding: 0;
+    margin: 0;
+}
+
+.item-description {
+    min-width: 80%;
+}
+
+.equipment .columns {
+    padding: 0;
+}
+
+.equipment .column {
+    padding: 0;
+    min-width: 140px;
+}
+
+.logs {
+    min-height: 190px;
+    text-align: left;
+}
+
+.rpgui-button {
+    white-space: nowrap;
+}
+
+.slider-edge-value {
+    position: relative;
+    top: -35px;
+}
+
+.rtl {
+    direction: rtl;
+}
+
+/*
+Craefter
+*/
+.craefter-icon {
+    position: relative;
+    display: inline-block;
+    border: 1px solid transparent;
+    padding: 3px;
+    line-height: 0px;
+}
+
+.craefter-icon-selected {
+    border: 1px solid #FAEBD7;
+}
+
+.craefter-level {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    font-size: 18px !important;
+}
+
+.craefter-timeout {
+    position: absolute;
+    left: -9px;
+    width: 80px;
+    top: 28px;
+    text-align: center;
+}
+
+/*
+ITEM
+*/
 .item-container {
     line-height: 0;
     display: inline-block;
@@ -72,51 +188,39 @@ strong {
 
 .item-timeout {
     position: absolute;
-    left: 18px;
-    top: 20px;
+    left: -9px;
+    width: 80px;
+    top: 28px;
+    text-align: center;
 }
 
 .item-icon {
-    padding-top: 7px;
+    border: 1px solid transparent;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.icon-small {
+    width: 39px;
+    height: 39px;
 }
 
 .item-icon-selected {
     border: 1px solid #FAEBD7;
 }
 
-.craefters-list {
-    margin-top: 5px;
+.wood {
+    filter: url("../assets/filters.svg#wood");
 }
 
-.items hr,
-.craefters hr,
-.farm hr {
-    margin-top: 10px;
-    margin-bottom: 0;
+.metal {
+    filter: url("../assets/filters.svg#metal");
 }
 
-.footer {
-    text-align: center;
-    background-color: #000;
+.cloth {
+    filter: url("../assets/filters.svg#cloth");
 }
 
-.item-description {
-    min-width: 80%;
-}
-
-.equipment .columns {
-    padding: 0;
-}
-
-.equipment .column {
-    padding: 0;
-}
-
-.logs {
-    min-height: 190px;
-    text-align: left;
-}
-
-.rpgui-button {
-    white-space: nowrap;
+.diamond {
+    filter: url("../assets/filters.svg#diamond");
 }

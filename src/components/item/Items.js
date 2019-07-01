@@ -68,7 +68,8 @@ export default class Items extends Component {
                             </div> : null
                     }
 
-                    <div className='item-list'>
+                    <div>
+
                         {
                             this.props.items.filter((item) => {
                                 return !item.equiped
@@ -81,10 +82,11 @@ export default class Items extends Component {
                                         return (
                                             <ItemIcon key={index} item={item}
                                                       isSelected={item === this.state.selectedItem}
-                                                      onItemSelected={this.selectItem}/>
+                                                      isSmall={false} onItemSelected={this.selectItem}/>
                                         )
                                     }) : <div className='row'>go Cräft!</div>
                         }
+
                     </div>
 
                 </div>
