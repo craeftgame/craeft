@@ -15,7 +15,6 @@
   "author": "Sebastian Gerske",
   "license": "ISC",
   "devDependencies": {
-    "babel-eslint": "^10.0.2",
     "create-react-app": "^3.0.1",
     "eslint-plugin-react": "^7.14.2",
     "gh-pages": "^2.0.1",
