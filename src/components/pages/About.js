@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import wf from "../../assets/images/wf.png"
 import upc from "../../assets/images/upc.png"
 import merchant from "../../assets/images/merchant.jpg"
+import Donate from "../structure/Donate"
 
 export default class About extends Component {
 
@@ -12,28 +13,48 @@ export default class About extends Component {
                 <div className="rpgui-container framed-grey">
                     <h3>About</h3>
 
-                    <p>
+                    <div className="rpgui-center">
                         Cräft is an open screen cräfting RPG that implements the CWEYW (Cräft What Ever You Want)
                         Engine.
-                    </p>
+                    </div>
 
-                    <p>
-                        Cräft! was made by Sebastian "H34D" Gerske
+                    <hr/>
 
-                        <a href="#a">
+                    <div className="rpgui-center">
+                        Cräft! was made by Sebastian &quot;H34D&quot; Gerske
+                    </div>
+
+                    <hr/>
+
+                    <div className="rpgui-center">
+                        <a href="https://www.linkedin.com/in/sgerske/"
+                           target="_linkedIn">
                             LinkedIn
                         </a>
+                    </div>
 
-                        <a href="#b">
+                    <div className="rpgui-center">
+                        <a href="https://twitter.com/sgerske"
+                           target=")_twitter">
                             Twitter
                         </a>
+                    </div>
 
-                        <a href="#c">
+                    <div className="rpgui-center">
+                        <a href="https://github.com/h34d"
+                           target="_github">
                             GitHub
                         </a>
+                    </div>
 
-                    </p>
+                </div>
 
+                <div className="rpgui-container framed-grey">
+                    <h3>Donate</h3>
+
+                    <div className="rpgui-center">
+                        <Donate/>
+                    </div>
                 </div>
 
                 <div className="rpgui-container framed-grey">
@@ -57,8 +78,8 @@ export default class About extends Component {
                                 is destroyed, the next boss will adapt itself to defend against previously used
                                 strategies and force the player to change tactics. For example, if the front section of
                                 one boss is destroyed the next boss will have increased armor in that area. If the
-                                player's ship is hit by a certain kind of weapon, but still defeats the boss, the next
-                                boss is likely to have more weapons of that type.
+                                player&apos;s ship is hit by a certain kind of weapon, but still defeats the boss,
+                                the next boss is likely to have more weapons of that type.
                             </blockquote>
                         </div>
                     </div>
@@ -82,9 +103,10 @@ export default class About extends Component {
                                 mouse. The user can quickly automate paperclip production, invest the profits in the
                                 stock market, and invest the stock market profits into computer upgrades, all for the
                                 sake of ultimately maximizing paperclip production. An activity log records the
-                                user's accomplishments, and also gives the user some glimpses into the AI's occasionally
-                                unsettling thoughts. The game ends if the player reaches 30.0 septendecillion
-                                paperclips, finishing the conversion of all matter in the universe into paperclips.
+                                user&apos;s accomplishments, and also gives the user some glimpses into the AI&apos;s
+                                occasionally unsettling thoughts. The game ends if the player reaches 30.0
+                                septendecillion paperclips, finishing the conversion of all matter in the universe
+                                into paperclips.
                             </blockquote>
 
                         </div>
@@ -116,7 +138,6 @@ export default class About extends Component {
                         </div>
                     </div>
 
-
                     <div className="inspiration-item">
 
                         <a href="https://en.wikipedia.org/wiki/Minecraft"
@@ -142,37 +163,47 @@ export default class About extends Component {
                 </div>
 
                 <div className="rpgui-container framed-grey">
-                    Frameworks used:
+                    <h3>Frameworks used</h3>
 
-                    <a href="https://github.com/RonenNess/RPGUI"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        RPG UI
-                    </a>
+                    <div className="rpgui-center">
+                        <a href="https://github.com/RonenNess/RPGUI"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            RPG UI
+                        </a>
+                    </div>
 
-                    <a href="https://github.com/FortAwesome/Font-Awesome"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        Font Awesome
-                    </a>
+                    <div className="rpgui-center">
+                        <a href="https://github.com/FortAwesome/Font-Awesome"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Font Awesome
+                        </a>
+                    </div>
 
-                    <a href="https://github.com/jgthms/bulma"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        Bulma
-                    </a>
+                    <div className="rpgui-center">
+                        <a href="https://github.com/jgthms/bulma"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Bulma
+                        </a>
+                    </div>
 
-                    <a href="https://github.com/facebook/react"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        React
-                    </a>
+                    <div className="rpgui-center">
+                        <a href="https://github.com/facebook/react"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            React
+                        </a>
+                    </div>
 
-                    <a href="https://github.com/josdejong/mathjs"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        MathJs
-                    </a>
+                    <div className="rpgui-center">
+                        <a href="https://github.com/josdejong/mathjs"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            MathJs
+                        </a>
+                    </div>
 
                 </div>
 
