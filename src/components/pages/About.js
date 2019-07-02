@@ -50,11 +50,24 @@ export default class About extends Component {
                 </div>
 
                 <div className="rpgui-container framed-grey">
-                    <h3>Donate</h3>
+                    <h3>Contribute</h3>
 
-                    <div className="rpgui-center">
-                        <Donate/>
+                    <div className="columns">
+
+                        <div className="column">
+                            <Donate/>
+                        </div>
+
+                        <div className="column">
+                            Cräft! is open source,<br/> you can contribute&nbsp;
+                            <a href="https://github.com/craeftgame/craeft"
+                               target="_cräft">
+                                here
+                            </a>
+                        </div>
+
                     </div>
+
                 </div>
 
                 <div className="rpgui-container framed-grey">
