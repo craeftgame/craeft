@@ -11,9 +11,7 @@ export default class Footer extends Component {
 
                 <div className="columns">
 
-                    <div className="column" style={{
-                        textAlign: "right"
-                    }}>
+                    <div className="column">
                         <Donate/>
                     </div>
 
@@ -23,6 +21,13 @@ export default class Footer extends Component {
                         <a href={"#about"}>About Cräft!</a>
                     </div>
 
+                </div>
+
+                <div className="rpgui-center"
+                     style={{
+                         fontSize: "12px"
+                     }}>
+                    © 2019 Sebastian Gerske — All Rights Reserved
                 </div>
 
             </div>
