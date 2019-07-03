@@ -161,14 +161,18 @@ export default class Craeft {
                  } = {}) {
         this.farm.start({
             player: this.player,
-            callback: (result) => {
+            callback: ({
+                           result,
+                           dmg,
+                           exp
+                       } = {}) => {
 
                 this.resources = new Resources()
                     .add(this.resources)
                     .add(result);
 
-                this.player.damage(10);
-                this.player.addExp(10);
+                this.player.damage(dmg);
+                this.player.addExp(exp);
 
                 callback();
             }

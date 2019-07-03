@@ -1,4 +1,6 @@
-import {ResourceTypes} from "./data/types";
+import {
+    ResourceTypes
+} from "./data/types";
 import {
     gcd
 } from "mathjs";
@@ -8,12 +10,12 @@ export default class Resources {
 
     constructor({
                     initialResources = 0,
-                    resources
+                    resources = {}
                 } = {}) {
-        this[ResourceTypes.Wood] = resources ? resources[ResourceTypes.Wood] : initialResources;
-        this[ResourceTypes.Metal] = resources ? resources[ResourceTypes.Metal] : initialResources;
-        this[ResourceTypes.Cloth] = resources ? resources[ResourceTypes.Cloth] : initialResources;
-        this[ResourceTypes.Diamond] = resources ? resources[ResourceTypes.Diamond] : initialResources;
+        this[ResourceTypes.Wood] = resources[ResourceTypes.Wood] ? resources[ResourceTypes.Wood] : initialResources;
+        this[ResourceTypes.Metal] = resources[ResourceTypes.Metal] ? resources[ResourceTypes.Metal] : initialResources;
+        this[ResourceTypes.Cloth] = resources[ResourceTypes.Cloth] ? resources[ResourceTypes.Cloth] : initialResources;
+        this[ResourceTypes.Diamond] = resources[ResourceTypes.Diamond] ? resources[ResourceTypes.Diamond] : initialResources;
     }
 
     static hydrate(obj) {

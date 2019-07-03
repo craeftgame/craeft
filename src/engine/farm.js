@@ -1,5 +1,9 @@
 import Timer from "../tools/timer";
 import Resources from "./resources";
+import {
+    ResourceTypes
+} from "./data/types";
+import {getRandomArrayItem} from "../tools/rand";
 
 export default class Farm {
 
@@ -37,11 +41,41 @@ export default class Farm {
                 autoStart: false
             });
 
-            callback(
-                new Resources({
-                    initialResources: 1
-                })
-            );
+            // calculate amount of all resources first
+
+            var amount = player.level;
+
+            // now distribute
+
+            const resources = {};
+            const resTypes = [
+                ResourceTypes.Wood,
+                ResourceTypes.Metal,
+                ResourceTypes.Cloth,
+                ResourceTypes.Diamond
+            ];
+
+            while (amount > 0) {
+
+                const resType = getRandomArrayItem({
+                    array: resTypes
+                });
+
+                resources[resType] = resources[resType] ? resources[resType]++ : 1;
+
+                amount--;
+            }
+
+            callback({
+                // todo calculate result based on level
+                result: new Resources({
+                    resources
+                }),
+                // todo calculate exp based on farm level
+                exp: 10,
+                // todo calculate dmg based on defense and dmg dealt
+                dmg: 1
+            });
 
         };
 
