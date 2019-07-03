@@ -45,7 +45,7 @@ export default class Organism extends Tickable {
 
     levelUp() {
         this.level++;
-        this.expMax = this.expMax + (50 * log(this.level, 10));
+        this.expMax = Math.floor(this.expMax + (50 * log(this.level, 10)));
     }
 
     exhaust(
