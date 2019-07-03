@@ -15,7 +15,7 @@ export default class About extends Component {
 
                     <div className="rpgui-center">
                         Cräft is an open screen cräfting RPG that implements the CWEYW (Cräft What Ever You Want)
-                        Engine.
+                        engine.
                     </div>
 
                     <hr/>
