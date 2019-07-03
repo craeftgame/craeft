@@ -14,8 +14,16 @@ export default class ItemDescription extends Component {
         return (
             <div>
 
-                <div>
-                    Level: {this.props.item.level} {this.props.item.name}
+                <div style={{
+                    display: "inline-block"
+                }}>
+                    Level: {this.props.item.level}&nbsp;
+                </div>
+
+                <div style={{
+                    display: "inline-block"
+                }}>
+                    {this.props.item.name}
                 </div>
 
                 <ItemStats item={this.props.item}/>

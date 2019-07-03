@@ -3,13 +3,17 @@ import React, {Component} from "react";
 export default class Donate extends Component {
     render() {
         return (
-            <div>
+            <div style={{
+                textAlign: "right"
+            }}>
 
                 <div>
                     Donations:
                 </div>
 
-                <div>
+                <div style={{
+                    fontSize: "14px"
+                }}>
                     BTC:&nbsp;
                     <a href='https://www.blockchain.com/de/btc/address/1h34d1soZWQGxmtYYqDZ8TAYmfChEFfBh'
                        target='_blank' rel="noopener noreferrer">
@@ -17,14 +21,15 @@ export default class Donate extends Component {
                     </a>
                 </div>
 
-                <div>
+                <div style={{
+                    fontSize: "14px"
+                }}>
                     ETH:&nbsp;
                     <a href='https://etherscan.io/address/0x456a1B12dB9cBD1e59716a208D0Db3FeA44A2d63'
                        target='_blank' rel="noopener noreferrer">
                         0x456a1B12dB9cBD1e59716a208D0Db3FeA44A2d63
                     </a>
                 </div>
-
             </div>
         )
     }

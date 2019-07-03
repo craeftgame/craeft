@@ -41,7 +41,7 @@ export default class Farm extends Component {
 
     render() {
         return (
-            <div className='farm column frame farm'>
+            <div className='farm column frame'>
                 <div className='rpgui-container framed'>
 
                     <div className={"row"}>
