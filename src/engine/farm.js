@@ -42,19 +42,12 @@ export default class Farm {
 
         delay = delay < 1 ? this.delay : delay;
 
-        this.timer = new Timer({
-            delay,
-            autoStart: false
-        });
-
-        this.timer.callback = () => {
+        const cb = () => {
 
             this.timer.pause();
 
             // calculate amount of all resources first
             var amount = player.level;
-
-            // now distribute
 
             const resources = {};
             const resTypes = [
@@ -64,6 +57,7 @@ export default class Farm {
                 ResourceTypes.Diamond
             ];
 
+            // now distribute
             while (amount > 0) {
 
                 const resType = getRandomArrayItem({
@@ -78,7 +72,6 @@ export default class Farm {
             this.counter++;
 
             callback({
-                // todo calculate result based on level
                 result: new Resources({
                     resources
                 }),
@@ -92,6 +85,9 @@ export default class Farm {
 
         };
 
-        this.timer.start();
+        this.timer = new Timer({
+            delay,
+            callback: cb
+        });
     }
 }

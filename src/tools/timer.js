@@ -4,15 +4,14 @@ export default class Timer {
     startDate = null;
     running = false;
 
-    constructor(
-        {
-            callback,
-            delay,
-            autoStart = true
-        } = {}
-    ) {
+    constructor({
+                    callback,
+                    delay,
+                    autoStart = true
+                } = {}) {
         this.callback = callback;
 
+        // make it milliseconds
         this.delay = delay * 1000;
         this.remaining = this.delay;
 
@@ -46,7 +45,9 @@ export default class Timer {
         this.ticker = setInterval(
             () => this.tick(),
             400
-        )
+        );
+
+        this.tick();
     }
 
     tick() {

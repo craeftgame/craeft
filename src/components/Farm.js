@@ -20,22 +20,18 @@ export default class Farm extends Component {
 
     startFarming() {
         if (!this.state.isFarming && this.props.craeft.player.staCurrent > 0) {
+            this.props.craeft.startFarming({
+                callback: () => {
+
+                    this.setState({
+                        isFarming: false
+                    })
+                }
+            });
 
             this.setState({
-                    isFarming: true
-                },
-                () => {
-
-                    this.props.craeft.startFarming({
-                        callback: () => {
-
-                            this.setState({
-                                isFarming: false
-                            })
-                        }
-                    });
-
-                })
+                isFarming: true
+            });
         }
     }
 
