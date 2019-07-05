@@ -164,7 +164,8 @@ export default class Craeft {
             callback: ({
                            result,
                            dmg,
-                           exp
+                           exp,
+                           usedStamina
                        } = {}) => {
 
                 this.resources = new Resources()
@@ -173,6 +174,7 @@ export default class Craeft {
 
                 this.player.damage(dmg);
                 this.player.addExp(exp);
+                this.player.exhaust(usedStamina);
 
                 callback();
             }

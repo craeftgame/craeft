@@ -30,9 +30,6 @@ export default class Farm {
               callback
           } = {}) {
 
-        // todo calculate stamina used
-        player.exhaust(1);
-
         this.timer.callback = () => {
 
             this.timer.pause();
@@ -74,7 +71,9 @@ export default class Farm {
                 // todo calculate exp based on farm level
                 exp: 10,
                 // todo calculate dmg based on defense and dmg dealt
-                dmg: 1
+                dmg: 1,
+                // todo calculate stamina used
+                usedStamina: 10
             });
 
         };
