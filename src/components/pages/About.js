@@ -58,7 +58,7 @@ export default class About extends Component {
                             <Donate/>
                         </div>
 
-                        <div className="column">
+                        <div className="column is-invisible">
                             Cräft! is open source,<br/> you can contribute&nbsp;
                             <a href="https://github.com/craeftgame/craeft"
                                target="_cräft">
