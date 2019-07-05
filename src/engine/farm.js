@@ -3,7 +3,13 @@ import Resources from "./resources";
 import {
     ResourceTypes
 } from "./data/types";
-import {getRandomArrayItem} from "../tools/rand";
+import {
+    getRandomArrayItem
+} from "../tools/rand";
+import {
+    pow,
+    log
+} from "mathjs";
 
 export default class Farm {
 
@@ -15,6 +21,8 @@ export default class Farm {
             delay,
             autoStart: false
         });
+
+        this.counter = 0;
     }
 
     static hydrate(obj) {
@@ -30,16 +38,20 @@ export default class Farm {
               callback
           } = {}) {
 
+        let delay = this.delay * pow(log(this.counter + 2), 5);
+
+        delay = delay < 1 ? this.delay : delay;
+
+        this.timer = new Timer({
+            delay,
+            autoStart: false
+        });
+
         this.timer.callback = () => {
 
             this.timer.pause();
-            this.timer = new Timer({
-                delay: this.delay,
-                autoStart: false
-            });
 
             // calculate amount of all resources first
-
             var amount = player.level;
 
             // now distribute
@@ -63,6 +75,8 @@ export default class Farm {
                 amount--;
             }
 
+            this.counter++;
+
             callback({
                 // todo calculate result based on level
                 result: new Resources({
@@ -73,7 +87,7 @@ export default class Farm {
                 // todo calculate dmg based on defense and dmg dealt
                 dmg: 1,
                 // todo calculate stamina used
-                usedStamina: 10
+                usedStamina: 2
             });
 
         };

@@ -2,7 +2,9 @@ import {
     log
 } from "mathjs";
 import peopleNames from "./data/people_names"
-import {getRandomArrayItem} from "../tools/rand";
+import {
+    getRandomArrayItem
+} from "../tools/rand";
 import Organism from "./organism";
 import Equipment from "./equipment";
 
