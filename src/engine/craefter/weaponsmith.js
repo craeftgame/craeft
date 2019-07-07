@@ -26,6 +26,7 @@ import {
 export default class Weaponsmith extends Craefter {
     constructor({
                     name,
+                    delay,
                     str = 9,
                     int = 3,
                     dex = 5,
@@ -34,6 +35,7 @@ export default class Weaponsmith extends Craefter {
         super({
             type: CraefterTypes.Weaponsmith,
             name,
+            delay,
             str,
             int,
             dex,

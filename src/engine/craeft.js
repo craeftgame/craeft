@@ -14,6 +14,10 @@ import Armorsmith from "./craefter/armorsmith";
 
 import Serializer from "@craeft/serializer";
 import config from "../engine/config"
+import {
+    log,
+    pow
+} from "mathjs";
 
 const version = "v0.1.0-alpha";
 const versionMsg = `Welcome to Cräft! version: ${version}`;
@@ -179,6 +183,39 @@ export default class Craeft {
                 callback();
             }
         });
+    }
+
+    addCraefter(
+        which
+    ) {
+        let craefter;
+
+        const delay = config.startDelay * pow(log(this.craefters.length + 2), 20);
+
+        console.log(delay);
+
+        switch (which) {
+            case CraefterTypes.Weaponsmith:
+                craefter = new Weaponsmith({
+                    delay
+                });
+                break;
+
+            case CraefterTypes.Armorsmith:
+                craefter = new Armorsmith({
+                    delay
+                });
+                break;
+
+            default:
+                throw new Error("Unknown craefter type")
+        }
+
+        this.craefters.push(craefter);
+
+        craefter.onDoneCreating = (exp) => {
+            this.player.addExp(exp);
+        };
     }
 
 }

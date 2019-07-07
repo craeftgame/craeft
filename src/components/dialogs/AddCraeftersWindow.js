@@ -1,7 +1,6 @@
 import React, {Component} from "react";
-import Weaoponsmith from "../../engine/craefter/weaponsmith";
-import Armorsmith from "../../engine/craefter/armorsmith";
 import PropTypes from "prop-types";
+import {CraefterTypes} from "../../engine/data/types";
 
 export default class AddCraeftersWindow extends Component {
 
@@ -17,11 +16,11 @@ export default class AddCraeftersWindow extends Component {
     }
 
     addWS() {
-        this.props.addCraefter(new Weaoponsmith())
+        this.props.addCraefter(CraefterTypes.Weaponsmith)
     }
 
     addAS() {
-        this.props.addCraefter(new Armorsmith())
+        this.props.addCraefter(CraefterTypes.Armorsmith)
     }
 
 

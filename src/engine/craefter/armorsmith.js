@@ -21,6 +21,7 @@ export default class Armorsmith extends Craefter {
 
     constructor({
                     name,
+                    delay,
                     str = 4,
                     dex = 3,
                     luk = 9
@@ -28,6 +29,7 @@ export default class Armorsmith extends Craefter {
         super({
             type: CraefterTypes.Armorsmith,
             name,
+            delay,
             luk,
             dex,
             str

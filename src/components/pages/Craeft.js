@@ -93,13 +93,9 @@ export default class Craeft extends Component {
     }
 
     addCraefter(
-        craefter
+        which
     ) {
-        this.state.craeft.craefters.push(craefter);
-
-        craefter.onDoneCreating = (exp) => {
-            this.state.craeft.player.addExp(exp);
-        };
+        this.state.craeft.addCraefter(which);
 
         this.forceUpdate();
     }

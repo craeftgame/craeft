@@ -9,7 +9,7 @@ import {
 const CraefterTypeNames = Object.freeze({
     [Unknown]: "???",
     [CraefterTypes.Weaponsmith]: "Weaponcräfter",
-    [CraefterTypes.Armorsmith]: "Armorscräfter",
+    [CraefterTypes.Armorsmith]: "Armorcräfter",
     [CraefterTypes.Jewelcraefter]: "Jewelcräfter",
     [CraefterTypes.Alchemist]: "Alchemist"
 });

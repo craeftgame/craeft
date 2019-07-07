@@ -18,6 +18,7 @@ export default class Craefter extends Organism {
                     name = getRandomArrayItem({
                         array: peopleNames
                     }),
+                    delay = global.delay || 5,
                     str = 0,
                     int = 0,
                     dex = 0,
@@ -30,7 +31,7 @@ export default class Craefter extends Organism {
         });
 
         this.delay = new Delay({
-            delayInSeconds: global.delay || 5,
+            delayInSeconds: delay,
             onDelayExpired: () => {
                 if (this.onDoneCreating) {
                     this.onDoneCreating(
