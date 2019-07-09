@@ -3,14 +3,14 @@
   "version": "0.1.0-alpha",
   "description": "",
   "main": "index.js",
-  "homepage": "http://h34d.github.io/craeft",
+  "homepage": "https://cräft.com",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build -b master -e craeft -r git@github.com:H34D/h34d.github.io.git"
+    "deploy": "gh-pages -d build -b master -r git@github.com:craeftgame/craeftgame.github.io.git"
   },
   "author": "Sebastian Gerske",
   "license": "ISC",
