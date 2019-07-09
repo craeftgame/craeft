@@ -1,83 +1,100 @@
 export default class Timer {
 
-    timeout = null;
-    startDate = null;
-    running = false;
+	timeout = null;
+	startDate = null;
+	running = false;
 
-    constructor({
-                    callback,
-                    delay,
-                    autoStart = true
-                } = {}) {
-        this.callback = callback;
+	constructor({
+					callback,
+					delay,
+					autoStart = true
+				} = {}) {
+		this.callback = callback;
 
-        // make it milliseconds
-        this.delay = delay * 1000;
-        this.remaining = this.delay;
+		// make it milliseconds
+		this.delay = delay * 1000;
+		this.remaining = this.delay;
 
-        if (autoStart) {
-            this.start();
-        }
-    }
+		if (autoStart) {
+			this.start();
+		}
+	}
 
-    static hydrate(
-        obj
-    ) {
-        const timer = Object.assign(new Timer(), obj);
+	static hydrate(
+		obj
+	) {
+		const timer = Object.assign(new Timer(), obj);
 
-        if (timer.remaining > 0) {
-            timer.delay = timer.remaining;
-            timer.start();
-        }
+		if (timer.remaining > 0) {
+			timer.delay = timer.remaining;
+			timer.start();
+		}
 
-        return timer;
-    }
+		return timer;
+	}
 
-    start() {
-        this.running = true;
-        this.startDate = new Date();
+	trigger() {
+		if (this.callback) {
+			this.callback()
+		}
 
-        this.timeout = setTimeout(
-            this.callback,
-            this.remaining
-        );
+		this.pause();
+	}
 
-        this.ticker = setInterval(
-            () => this.tick(),
-            400
-        );
+	start() {
+		this.running = true;
+		this.startDate = new Date();
 
-        this.tick();
-    }
+		this.ticker = setInterval(
+			() => this.tick(),
+			400
+		);
 
-    tick() {
-        this.remaining = this.delay - (new Date() - this.startDate)
-    }
+		this.tick();
+	}
 
-    pause() {
-        this.running = false;
+	tick() {
+		this.remaining = this.delay - (new Date() - this.startDate);
 
-        clearTimeout(this.timeout);
-        clearInterval(this.ticker);
-    }
+		if (this.remaining <= 0) {
+			this.trigger()
+		}
+	}
 
-    getTimeLeft() {
-        return this.remaining
-    }
+	pause() {
+		this.running = false;
 
-    getTimeLeftInSeconds() {
-        return Math.round(this.getTimeLeft() / 1000)
-    }
+		clearInterval(this.ticker);
+	}
 
-    getTimeoutString() {
-        const timeoutInSeconds = this.getTimeLeftInSeconds();
+	getTimeLeft() {
+		return this.remaining
+	}
 
-        const mins = Math.floor(timeoutInSeconds / 60);
+	getTimeLeftInSeconds() {
+		return Math.round(this.getTimeLeft() / 1000)
+	}
 
-        if (mins > 0) {
-            return `~${mins} Min`
-        }
+	getTimeoutString() {
+		const timeoutInSeconds = this.getTimeLeftInSeconds();
 
-        return `${timeoutInSeconds} Sec`
-    }
+		const mins = Math.floor(timeoutInSeconds / 60);
+
+		if (mins > 60) {
+			const hours = Math.floor(mins / 60);
+
+			if (hours > 24) {
+				const days = Math.floor(hours / 24);
+				return `~${days} Day`
+			}
+
+			return `~${hours} Hrs`
+		}
+
+		if (mins > 0) {
+			return `~${mins} Min`
+		}
+
+		return `${timeoutInSeconds} Sec`
+	}
 }

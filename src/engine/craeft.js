@@ -192,8 +192,6 @@ export default class Craeft {
 
         const delay = config.startDelay * pow(log(this.craefters.length + 2), 20);
 
-        console.log(delay);
-
         switch (which) {
             case CraefterTypes.Weaponsmith:
                 craefter = new Weaponsmith({
