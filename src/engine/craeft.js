@@ -19,7 +19,7 @@ import {
     pow
 } from "mathjs";
 
-const version = "v0.1.0-alpha";
+const version = `v${process.env.REACT_APP_VERSION}`;
 const versionMsg = `Welcome to Cräft! version: ${version}`;
 
 /* eslint-disable-next-line no-console */
