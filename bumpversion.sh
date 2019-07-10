@@ -8,7 +8,7 @@ usage(){
   exit 1
 }
 
-if ! [ -x "$(command -v bumpversion)" ]; then
+if ! [ -x "$(command -v bump2version)" ]; then
   echo 'Error: bumpversion is not installed.' >&2
   exit 1
 elif ! git diff-index --quiet HEAD -- >/dev/null 2>&1; then
@@ -26,11 +26,11 @@ fi
 
 if [[ $2 == '--tag' ]]; then
   if git branch --contains $(git rev-parse --verify HEAD) | grep -E 'master'; then
-    bumpversion --tag --commit $1
+    bump2version --tag --commit $1
   else
     echo "Only master tags can be tagged"
     exit 1
   fi
 else
-  bumpversion $1
+  bump2version $1
 fi
