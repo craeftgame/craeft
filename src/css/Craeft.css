@@ -14,7 +14,15 @@ strong {
 
 @media screen and (max-width: 768px) {
     .frame {
-        min-width: 380px;
+        width: 100%;
+    }
+
+    .craefting-interface.columns {
+        text-align: center;
+    }
+
+    .farm {
+        text-align: initial;
     }
 }
 
