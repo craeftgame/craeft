@@ -1,23 +1,16 @@
 import React, {Component} from "react";
 
+import CraeftGame from "../../engine/craeft";
+
 // game
-import CraeftGame from "../../engine/craeft"
 import Player from "../player/Player"
 import Farm from "../Farm";
 import Items from "../item/Items";
 import CraefterList from "../craefter/CraefterList";
-import config from "../../engine/config"
 
-// storage
-import ls from "local-storage";
-import zip from "lz-string/libs/lz-string";
 import ArrayHelper from "../../tools/array";
 
 export default class Craeft extends Component {
-
-    state = {
-        craeft: new CraeftGame()
-    };
 
     constructor(props) {
         super(props);
@@ -28,47 +21,14 @@ export default class Craeft extends Component {
         this.equipItem = this.equipItem.bind(this);
         this.unEquipItem = this.unEquipItem.bind(this);
 
-        this.saveState = this.saveState.bind(this);
-
         window.onbeforeunload = () => {
-            this.saveState();
+            CraeftGame.saveState();
         }
-    }
-
-    saveState() {
-        if (config.useLocalStorage) {
-            const state = this.state.craeft.serialize();
-
-            ls.set(
-                "state",
-                config.compressLocalStorage ?
-                    zip.compress(state) : state
-            );
-        }
-    }
-
-    loadState() {
-
-        let state = null;
-
-        if (config.useLocalStorage) {
-
-            const localState = ls.get("state");
-
-            if (localState) {
-                // if the state starts with { it is uncompressed
-                state = localState.startsWith("{") ?
-                    localState : zip.decompress(localState)
-            }
-        }
-
-        return state;
     }
 
     componentDidMount() {
-        this.state.craeft.start({
+        global.craeft.start({
             onTick: () => {
-
                 // force update of the UI
                 this.forceUpdate();
             }
@@ -76,26 +36,22 @@ export default class Craeft extends Component {
     }
 
     componentWillMount() {
-        const json = this.loadState();
+        CraeftGame.loadState();
 
-        if (json) {
-            this.setState({
-                craeft: CraeftGame.deserialize(json)
-            });
-        }
+        global.craeft.start();
     }
 
     componentWillUnmount() {
         // stop, in the name of ...
-        this.state.craeft.stop();
+        global.craeft.stop();
 
-        this.saveState();
+        CraeftGame.saveState();
     }
 
     addCraefter(
         which
     ) {
-        this.state.craeft.addCraefter(which);
+        global.craeft.addCraefter(which);
 
         this.forceUpdate();
     }
@@ -104,7 +60,7 @@ export default class Craeft extends Component {
         item,
         resourcesConsumed
     ) {
-        this.state.craeft.resources
+        global.craeft.resources
             .sub(resourcesConsumed);
 
         item.onDoneCreating = (
@@ -113,7 +69,7 @@ export default class Craeft extends Component {
         ) => {
 
             const craefter = ArrayHelper.findById(
-                this.state.craeft.craefters,
+                global.craeft.craefters,
                 craefterId
             );
 
@@ -121,10 +77,10 @@ export default class Craeft extends Component {
                 exp
             );
 
-            this.log(`${item.name} cräfted by ${craefter.name}! `);
+            this.log(`"${item.name}" cräfted by ${craefter.name}! `);
         };
 
-        this.state.craeft.items.push(item);
+        global.craeft.items.push(item);
 
         this.forceUpdate();
     }
@@ -132,12 +88,12 @@ export default class Craeft extends Component {
     equipItem(
         item
     ) {
-        const equiped = this.state.craeft.player.equipment.equip(item);
+        const equiped = global.craeft.player.equipment.equip(item);
 
         if (equiped) {
             item.equiped = equiped;
 
-            this.log(`${item.name} put on.`);
+            this.log(`"${item.name}" put on.`);
         } else {
             this.log("Equip failed!")
         }
@@ -147,14 +103,14 @@ export default class Craeft extends Component {
         itemId
     ) {
 
-        const unequiped = this.state.craeft.player.equipment.unequip(itemId);
+        const unequiped = global.craeft.player.equipment.unequip(itemId);
 
         if (unequiped) {
-            const item = this.state.craeft.items.find((i) => i.id === itemId);
+            const item = global.craeft.items.find((i) => i.id === itemId);
 
             item.equiped = false;
 
-            this.log(`${item.name} taken off.`);
+            this.log(`"${item.name}" taken off.`);
         } else {
             this.log("Unequip failed!")
         }
@@ -163,29 +119,29 @@ export default class Craeft extends Component {
     log(
         entry
     ) {
-        this.state.craeft.logs.push(entry);
+        global.craeft.logs.push(entry);
 
         this.forceUpdate()
     }
 
     render() {
         return (
-            <div className={`craeft${this.state.craeft.player.dead ? "rpgui-disabled" : ""}`}>
+            <div className={`craeft${global.craeft.player.dead ? "rpgui-disabled" : ""}`}>
 
-                <Player player={this.state.craeft.player}
+                <Player player={global.craeft.player}
                         onUnequip={this.unEquipItem}
-                        logs={this.state.craeft.logs}/>
+                        logs={global.craeft.logs}/>
 
                 <div className="craefting-interface columns">
 
-                    <CraefterList resources={this.state.craeft.resources}
-                                  craefters={this.state.craeft.craefters}
+                    <CraefterList resources={global.craeft.resources}
+                                  craefters={global.craeft.craefters}
                                   craefterAdded={this.addCraefter}
                                   itemAdded={this.addItem}/>
 
-                    <Farm craeft={this.state.craeft}/>
+                    <Farm craeft={global.craeft}/>
 
-                    <Items items={this.state.craeft.items}
+                    <Items items={global.craeft.items}
                            onItemEquip={this.equipItem}/>
 
                 </div>

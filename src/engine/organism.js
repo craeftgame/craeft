@@ -46,6 +46,8 @@ export default class Organism extends Tickable {
     levelUp() {
         this.level++;
         this.expMax = Math.floor(this.expMax + (50 * log(this.level, 10)));
+
+        global.craeft.logs.push(`"${this.name}" has reached Level ${this.level}`);
     }
 
     exhaust(

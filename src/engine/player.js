@@ -3,7 +3,8 @@ import {
 } from "mathjs";
 import peopleNames from "./data/people_names"
 import {
-    getRandomArrayItem
+    getRandomArrayItem,
+    getRandomInt
 } from "../tools/rand";
 import Organism from "./organism";
 import Equipment from "./equipment";
@@ -20,11 +21,11 @@ export default class Player extends Organism {
                     hp = 50,
                     sta = 25,
                     // attributes
-                    str = 10,
-                    int = 7,
-                    dex = 2,
-                    luk = 1,
-                    vit = 2
+                    str = getRandomInt(0, 10),
+                    int = getRandomInt(0, 7),
+                    dex = getRandomInt(0, 2),
+                    luk = getRandomInt(0, 1),
+                    vit = getRandomInt(0, 2)
                 } = {}) {
         super({
             name,

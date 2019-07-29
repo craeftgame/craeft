@@ -13,11 +13,16 @@ import Weaponsmith from "./craefter/weaponsmith";
 import Armorsmith from "./craefter/armorsmith";
 
 import Serializer from "@craeft/serializer";
-import config from "../engine/config"
 import {
     log,
     pow
 } from "mathjs";
+
+import config from "./config"
+
+// storage
+import ls from "local-storage";
+import zip from "lz-string/libs/lz-string";
 
 const version = `v${process.env.REACT_APP_VERSION}`;
 const versionMsg = `Welcome to Cräft! version: ${version}`;
@@ -216,4 +221,37 @@ export default class Craeft {
         };
     }
 
+    static saveState() {
+        if (config.useLocalStorage) {
+            const state = global.craeft.serialize();
+
+            ls.set(
+                "state",
+                config.compressLocalStorage ?
+                    zip.compress(state) : state
+            );
+        }
+    }
+
+    static loadState() {
+
+        let state = null;
+
+        if (config.useLocalStorage) {
+
+            const localState = ls.get("state");
+
+            if (localState) {
+                // if the state starts with { it is uncompressed
+                state = localState.startsWith("{") ?
+                    localState : zip.decompress(localState)
+            }
+
+            if (state) {
+                global.craeft = Craeft.deserialize(state)
+            }
+        }
+    }
 }
+
+global.craeft = new Craeft();
