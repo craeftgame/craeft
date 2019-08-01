@@ -158,6 +158,7 @@ export default class Armorsmith extends Craefter {
             ),
             craefterId: this.id,
             material,
+            level: this.level,
             slot,
             def: getRandomInt(def, defMax),
             mdef: getRandomInt(mdef, mdefMax)
