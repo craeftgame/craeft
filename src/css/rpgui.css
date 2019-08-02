@@ -894,6 +894,7 @@ ul.rpgui-list-imp {
 */
 /* disabled object */
 .rpgui-disabled,
+.rpgui-disabled button,
 .rpgui-content :disabled,
 .rpgui-content input[type=radio]:disabled + label,
 .rpgui-content input[type=checkbox]:disabled + label,
