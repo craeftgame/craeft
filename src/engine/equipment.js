@@ -79,6 +79,9 @@ export default class Equipment {
 
                     if (this[WeaponSlots.RightHand]) {
                         this[WeaponSlots.RightHand].equipped = false;
+                        if (this[WeaponSlots.RightHand].isMultiSlot) {
+                            this[WeaponSlots.LeftHand] = null;
+                        }
                     }
 
                     this[WeaponSlots.RightHand] = item;
