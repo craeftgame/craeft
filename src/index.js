@@ -6,6 +6,8 @@ import "./css/rpgui.css"
 import "bulma/css/bulma.min.css"
 import "./css/Craeft.css"
 
+import {ReactComponent as Filters} from "./assets/filters.svg"
+
 import CraeftPage from "./CraeftPage";
 import AboutPage from "./AboutPage";
 
@@ -39,7 +41,10 @@ function render() {
     }
 
     ReactDOM.render(
-        component,
+        <div>
+            <Filters/>
+            {component}
+        </div>,
         document.getElementById("root")
     );
 

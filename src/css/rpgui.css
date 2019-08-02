@@ -905,9 +905,7 @@ ul.rpgui-list-imp {
     -webkit-filter: grayscale(1);
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
-    filter: url(#greyscale);
-    filter: url("../assets/filters.svg#grayscale");
-    filter: gray;
+    filter: url(#grayscale);
     color: #999;
 }
 

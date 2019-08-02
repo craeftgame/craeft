@@ -218,17 +218,17 @@ ITEM
 }
 
 .wood {
-    filter: url("../assets/filters.svg#wood");
+    filter: url(#wood);
 }
 
 .metal {
-    filter: url("../assets/filters.svg#metal");
+    filter: url(#metal);
 }
 
 .cloth {
-    filter: url("../assets/filters.svg#cloth");
+    filter: url(#cloth);
 }
 
 .diamond {
-    filter: url("../assets/filters.svg#diamond");
+    filter: url(#diamond);
 }
