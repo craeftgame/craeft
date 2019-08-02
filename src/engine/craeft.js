@@ -131,7 +131,7 @@ export default class Craeft {
 
         this.player.equipment.equip(knife);
 
-        knife.equiped = true;
+        knife.equipped = true;
 
         this.items = [
             knife

@@ -88,10 +88,10 @@ export default class Craeft extends Component {
     equipItem(
         item
     ) {
-        const equiped = global.craeft.player.equipment.equip(item);
+        const equipped = global.craeft.player.equipment.equip(item);
 
-        if (equiped) {
-            item.equiped = equiped;
+        if (equipped) {
+            item.equipped = equipped;
 
             this.log(`"${item.name}" put on.`);
         } else {
@@ -103,12 +103,12 @@ export default class Craeft extends Component {
         itemId
     ) {
 
-        const unequiped = global.craeft.player.equipment.unequip(itemId);
+        const unequipped = global.craeft.player.equipment.unequip(itemId);
 
-        if (unequiped) {
+        if (unequipped) {
             const item = global.craeft.items.find((i) => i.id === itemId);
 
-            item.equiped = false;
+            item.equipped = false;
 
             this.log(`"${item.name}" taken off.`);
         } else {

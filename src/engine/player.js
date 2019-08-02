@@ -67,7 +67,7 @@ export default class Player extends Organism {
     atk() {
         let atk = 0;
 
-        for (const equipment of this.equipment.getEquiped()) {
+        for (const equipment of this.equipment.getEquipped()) {
             if (equipment.atk) {
                 atk += equipment.atk * this.str;
             }
@@ -79,7 +79,7 @@ export default class Player extends Organism {
     matk() {
         let matk = 0;
 
-        for (const equipment of this.equipment.getEquiped()) {
+        for (const equipment of this.equipment.getEquipped()) {
             if (equipment.matk) {
                 matk += equipment.matk * this.int;
             }
@@ -91,7 +91,7 @@ export default class Player extends Organism {
     def() {
         let def = 0;
 
-        for (const equipment of this.equipment.getEquiped()) {
+        for (const equipment of this.equipment.getEquipped()) {
             if (equipment.def) {
                 def += equipment.def * this.vit;
             }
@@ -103,7 +103,7 @@ export default class Player extends Organism {
     mdef() {
         let mdef = 0;
 
-        for (const equipment of this.equipment.getEquiped()) {
+        for (const equipment of this.equipment.getEquipped()) {
             if (equipment.mdef) {
                 mdef += equipment.mdef * this.int;
             }

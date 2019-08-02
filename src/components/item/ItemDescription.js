@@ -29,7 +29,7 @@ export default class ItemDescription extends Component {
                 <ItemStats item={this.props.item}/>
 
                 {
-                    !this.props.item.equiped && true === false ?
+                    !this.props.item.equipped && true === false ?
                         <button className='rpgui-button'>
                             <span>Disentchant</span>
                         </button>
@@ -37,7 +37,7 @@ export default class ItemDescription extends Component {
                 }
 
                 {
-                    this.props.item.equiped ?
+                    this.props.item.equipped ?
                         <button className='rpgui-button'
                                 onClick={() => this.props.onUnequip(this.props.item)}>
                             <span>Unequip</span>

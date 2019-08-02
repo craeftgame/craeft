@@ -136,7 +136,7 @@ export default class Equipment extends Component {
                 </div>
 
                 {
-                    this.state.selectedItem && this.state.selectedItem.equiped ?
+                    this.state.selectedItem && this.state.selectedItem.equipped ?
                         <div>
                             <hr/>
                             <ItemDescription item={this.state.selectedItem}

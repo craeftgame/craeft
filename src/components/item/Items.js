@@ -41,7 +41,7 @@ export default class Items extends Component {
     ) {
         this.props.onItemEquip(item);
 
-        if (item.equiped) {
+        if (item.equipped) {
             this.setState({
                 selectedItem: null
             });
@@ -60,7 +60,7 @@ export default class Items extends Component {
                     </div>
 
                     {
-                        this.state.selectedItem && !this.state.selectedItem.equiped ?
+                        this.state.selectedItem && !this.state.selectedItem.equipped ?
 
                             <div className='rpgui-container framed-grey item row'>
                                 <ItemDescription item={this.state.selectedItem}
@@ -72,11 +72,11 @@ export default class Items extends Component {
 
                         {
                             this.props.items.filter((item) => {
-                                return !item.equiped
+                                return !item.equipped
                             }).length > 0 ?
                                 this.props.items
                                     .filter((item) => {
-                                        return !item.equiped
+                                        return !item.equipped
                                     })
                                     .map((item, index) => {
                                         return (
