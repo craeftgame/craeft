@@ -8,7 +8,7 @@ import {
 
 export default class Item {
 
-    equiped = false;
+    equipped = false;
     delay = null;
     onDoneCreating = null;
     id = null;

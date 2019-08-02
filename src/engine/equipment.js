@@ -37,60 +37,79 @@ export default class Equipment {
         }
     }
 
-    getEquiped() {
-        const equiped = [];
+    getEquipped() {
+        const equipped = [];
 
         for (const equipmentSymbol of Object.getOwnPropertySymbols(this)) {
             const equipment = this[equipmentSymbol];
-            if (equipment && equiped.indexOf(equipment) < 0) {
-                equiped.push(equipment);
+            if (equipment && equipped.indexOf(equipment) < 0) {
+                equipped.push(equipment);
             }
         }
 
-        return equiped;
+        return equipped;
     }
 
     equip(
         item
     ) {
-        let equiped = false;
+        let equipped = false;
 
         if (item.category === ItemCategories.Weapon) {
-            // we have a weapon, try to assign to hand
+            // we have a weapon, assign to hand
             if (item.isMultiSlot) {
-                if (this[WeaponSlots.RightHand] === null &&
-                    this[WeaponSlots.LeftHand] === null) {
-                    this[WeaponSlots.RightHand] = item;
-                    this[WeaponSlots.LeftHand] = item;
-                    equiped = true;
+
+                if (this[WeaponSlots.RightHand]) {
+                    this[WeaponSlots.RightHand].equipped = false;
                 }
+
+                if (this[WeaponSlots.LeftHand]) {
+                    this[WeaponSlots.LeftHand].equipped = false;
+                }
+
+                this[WeaponSlots.RightHand] = item;
+                this[WeaponSlots.LeftHand] = item;
+                equipped = true;
+
             } else {
-                if (this[WeaponSlots.RightHand] === null) {
-                    this[WeaponSlots.RightHand] = item;
-                    equiped = true;
-                } else if (this[WeaponSlots.LeftHand] === null) {
+                if (this[WeaponSlots.LeftHand] === null) {
                     this[WeaponSlots.LeftHand] = item;
-                    equiped = true;
+                    equipped = true;
+                } else {
+
+                    if (this[WeaponSlots.RightHand]) {
+                        this[WeaponSlots.RightHand].equipped = false;
+                    }
+
+                    this[WeaponSlots.RightHand] = item;
+                    equipped = true;
                 }
             }
         } else if (item.category === ItemCategories.Armor) {
             const {slot} = item;
-            if (this[slot] === null) {
-                this[slot] = item;
-                equiped = true;
+
+            if (this[slot]) {
+                this[slot].equipped = false;
             }
+
+            this[slot] = item;
+            equipped = true;
         } else if (item.category === ItemCategories.Jewelery) {
-            // we have a jewelery, try to assign to hand
-            if (this[JewelerySlots.Right] === null) {
-                this[JewelerySlots.Right] = item;
-                equiped = true;
-            } else if (this[JewelerySlots.Left] === null) {
+            // we have a jewelery, assign to hand
+            if (this[JewelerySlots.Left] === null) {
                 this[JewelerySlots.Left] = item;
-                equiped = true;
+                equipped = true;
+            } else {
+
+                if (this[JewelerySlots.Right]) {
+                    this[JewelerySlots.Right].equipped = false
+                }
+                this[JewelerySlots.Right] = item;
+                equipped = true;
             }
         }
 
-        return equiped;
+        return equipped;
     }
 
     unequip(
