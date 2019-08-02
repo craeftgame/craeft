@@ -131,7 +131,7 @@ export default class Armorsmith extends Craefter {
     ) {
         return getRandomObjectEntry({
             object: ArmorSlots,
-            start: 1
+            start: 0
         });
     }
 
