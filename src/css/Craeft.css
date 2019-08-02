@@ -121,6 +121,10 @@ strong {
     min-width: 80%;
 }
 
+.equipment {
+    width: 100%
+}
+
 .equipment .columns {
     padding: 0;
 }
