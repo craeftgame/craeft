@@ -69,23 +69,30 @@ export default class Equipment {
 
                 this[WeaponSlots.RightHand] = item;
                 this[WeaponSlots.LeftHand] = item;
+
                 equipped = true;
 
             } else {
-                if (this[WeaponSlots.LeftHand] === null) {
-                    this[WeaponSlots.LeftHand] = item;
+                if (!this[WeaponSlots.RightHand]) {
+                    this[WeaponSlots.RightHand] = item;
                     equipped = true;
                 } else {
 
-                    if (this[WeaponSlots.RightHand]) {
-                        this[WeaponSlots.RightHand].equipped = false;
-                        if (this[WeaponSlots.RightHand].isMultiSlot) {
-                            this[WeaponSlots.LeftHand] = null;
-                        }
-                    }
+                    if (!this[WeaponSlots.LeftHand]) {
+                        this[WeaponSlots.LeftHand] = item;
+                        equipped = true;
+                    } else {
 
-                    this[WeaponSlots.RightHand] = item;
-                    equipped = true;
+                        if (this[WeaponSlots.RightHand].isMultiSlot) {
+                            this[WeaponSlots.RightHand].equipped = false;
+                            this[WeaponSlots.LeftHand] = null;
+                            this[WeaponSlots.RightHand] = null;
+                        }
+
+                        this[WeaponSlots.RightHand] = item;
+
+                        equipped = true;
+                    }
                 }
             }
         } else if (item.category === ItemCategories.Armor) {
@@ -99,7 +106,7 @@ export default class Equipment {
             equipped = true;
         } else if (item.category === ItemCategories.Jewelery) {
             // we have a jewelery, assign to hand
-            if (this[JewelerySlots.Left] === null) {
+            if (!this[JewelerySlots.Left]) {
                 this[JewelerySlots.Left] = item;
                 equipped = true;
             } else {
