@@ -128,6 +128,9 @@ export default class Player extends Organism {
             // killed
             this.hpCurrent = 0;
             this.dead = true;
+
+            global.craeft.logs.push(`${this.class} ${this.name} died!`);
+            global.craeft.stop();
         }
     }
 

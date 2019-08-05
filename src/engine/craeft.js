@@ -35,6 +35,7 @@ global.delay = config.startDelay;
 export default class Craeft {
 
     gameTick = null;
+    onTick = null;
 
     logs = [
         versionMsg
@@ -138,31 +139,40 @@ export default class Craeft {
         ];
     }
 
+    tick() {
+        // tick the player
+        this.player.tick();
+
+        // tick all craefters
+        for (const craefter of this.craefters) {
+            craefter.tick();
+        }
+
+        // tick all the items
+        for (const item of this.items) {
+            item.tick();
+        }
+
+        if (this.onTick) {
+            this.onTick();
+        }
+    }
+
     start({
               onTick
           } = {}) {
         // re-render every second
         const timeoutInSeconds = 1;
+        this.onTick = onTick;
         this.gameTick = setInterval(() => {
-            // tick the player
-            this.player.tick();
-
-            // tick all craefters
-            for (const craefter of this.craefters) {
-                craefter.tick();
-            }
-
-            // todo: tick the items
-
-            if (onTick) {
-                onTick();
-            }
-
+            this.tick();
         }, timeoutInSeconds * 1000);
     }
 
     stop() {
-        clearInterval(this.gameTick)
+        clearInterval(this.gameTick);
+        // final tick
+        this.tick();
     }
 
     startFarming({

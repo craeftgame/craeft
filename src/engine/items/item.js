@@ -42,6 +42,10 @@ export default class Item {
         this.craefterId = craefterId;
     }
 
+    tick() {
+        // todo: tick, tock
+    }
+
     meterialize() {
         if (this.onDoneCreating) {
             this.onDoneCreating(

@@ -126,7 +126,7 @@ export default class Craeft extends Component {
 
     render() {
         return (
-            <div className={`craeft${global.craeft.player.dead ? "rpgui-disabled" : ""}`}>
+            <div className={`craeft ${global.craeft.player.dead ? "rpgui-disabled" : ""}`}>
 
                 <Player player={global.craeft.player}
                         onUnequip={this.unEquipItem}
