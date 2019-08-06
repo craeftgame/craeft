@@ -40,6 +40,10 @@ export default class Farm {
 
         let delay = this.delay * pow(log(this.counter + 2), 5);
 
+        if (player.vit > 0) {
+            delay /= player.vit;
+        }
+
         delay = delay < 1 ? this.delay : delay;
 
         const cb = () => {
@@ -47,7 +51,9 @@ export default class Farm {
             this.timer.pause();
 
             // calculate amount of all resources first
-            var amount = player.level;
+            let amount = player.level;
+
+            amount = amount * player.atk();
 
             const resources = {};
             const resTypes = [
@@ -76,9 +82,9 @@ export default class Farm {
                     resources
                 }),
                 // todo calculate exp based on farm level
-                exp: 10,
+                exp: 10 * this.counter,
                 // todo calculate dmg based on defense and dmg dealt
-                dmg: 1,
+                dmg: 5.1 * this.counter,
                 // todo calculate stamina used
                 usedStamina: 2
             });
