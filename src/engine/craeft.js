@@ -241,7 +241,12 @@ export default class Craeft {
             itemId
         );
 
-        console.log(item)
+        // todo gain back some resources
+
+        ArrayHelper.removeItem(
+            this.items,
+            item
+        );
     }
 
     static saveState() {

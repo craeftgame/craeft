@@ -20,6 +20,7 @@ export default class Items extends Component {
 
         this.selectItem = this.selectItem.bind(this);
         this.equip = this.equip.bind(this);
+        this.onDisentchant = this.onDisentchant.bind(this);
     }
 
     selectItem(
@@ -47,7 +48,19 @@ export default class Items extends Component {
                 selectedItem: null
             });
         }
+    }
 
+    onDisentchant(
+        itemId
+    ) {
+        if (this.props.onDisentchant) {
+
+            this.setState({
+                selectedItem: null
+            });
+
+            this.props.onDisentchant(itemId)
+        }
     }
 
     render() {
@@ -66,7 +79,7 @@ export default class Items extends Component {
                             <div className='rpgui-container framed-grey item row'>
                                 <ItemDescription item={this.state.selectedItem}
                                                  onEquip={this.equip}
-                                                 onDisentchant={this.props.onDisentchant}/>
+                                                 onDisentchant={this.onDisentchant}/>
                             </div> : null
                     }
 
