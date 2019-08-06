@@ -7,7 +7,8 @@ export default class ItemDescription extends Component {
 	static propTypes = {
 		item: PropTypes.object,
 		onUnequip: PropTypes.func,
-		onEquip: PropTypes.func
+		onEquip: PropTypes.func,
+		onDisentchant: PropTypes.func
 	};
 
 	render() {
@@ -43,9 +44,12 @@ export default class ItemDescription extends Component {
 
 				{
 					!this.props.item.equipped ?
-						<button className='rpgui-button rpgui-disabled'>
-							<span>Disentchant</span>
-						</button>
+						<div className="">
+							<button className='rpgui-button'
+									onClick={this.props.onDisentchant}>
+								<span>Disentchant</span>
+							</button>
+						</div>
 						: null
 				}
 

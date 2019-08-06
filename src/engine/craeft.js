@@ -1,7 +1,7 @@
 import {
-    CraefterTypes,
-    ItemCategories,
-    ResourceTypes
+	CraefterTypes,
+	ItemCategories,
+	ResourceTypes
 } from "./data/types";
 
 import Resources from "./resources";
@@ -14,8 +14,8 @@ import Armorsmith from "./craefter/armorsmith";
 
 import Serializer from "@craeft/serializer";
 import {
-    log,
-    pow
+	log,
+	pow
 } from "mathjs";
 
 import config from "./config"
@@ -23,6 +23,7 @@ import config from "./config"
 // storage
 import ls from "local-storage";
 import zip from "lz-string/libs/lz-string";
+import ArrayHelper from "../tools/array";
 
 const version = `v${process.env.REACT_APP_VERSION}`;
 const versionMsg = `Welcome to Cräft! version: ${version}`;
@@ -34,224 +35,236 @@ global.delay = config.startDelay;
 
 export default class Craeft {
 
-    gameTick = null;
+	gameTick = null;
 
-    logs = [
-        versionMsg
-    ];
+	logs = [
+		versionMsg
+	];
 
-    // the player
-    player = new Player();
+	// the player
+	player = new Player();
 
-    // the farm
-    farm = new Farm();
+	// the farm
+	farm = new Farm();
 
-    // craefters
-    craefters = [];
+	// craefters
+	craefters = [];
 
-    // items
-    items = [];
+	// items
+	items = [];
 
-    // resources
-    resources = new Resources({
-        initialResources: config.startResources
-    });
+	// resources
+	resources = new Resources({
+		initialResources: config.startResources
+	});
 
-    serialize() {
+	serialize() {
 
-        return Serializer.serialize({
-            obj: this,
-            compress: true
-        });
-    }
+		return Serializer.serialize({
+			obj: this,
+			compress: true
+		});
+	}
 
-    static deserialize(
-        json
-    ) {
+	static deserialize(
+		json
+	) {
 
-        const obj = Serializer.deserialize(json);
+		const obj = Serializer.deserialize(json);
 
-        const craeft = Object.assign(new Craeft(), obj);
+		const craeft = Object.assign(new Craeft(), obj);
 
-        craeft.resources = Resources.hydrate(obj.resources);
-        craeft.farm = Farm.hydrate(obj.farm);
+		craeft.resources = Resources.hydrate(obj.resources);
+		craeft.farm = Farm.hydrate(obj.farm);
 
-        for (const itemIndex in craeft.items) {
+		for (const itemIndex in craeft.items) {
 
-            const item = craeft.items[itemIndex];
-            let ti;
+			const item = craeft.items[itemIndex];
+			let ti;
 
-            switch (item.category) {
-                case ItemCategories.Weapon:
-                    ti = Weapon.hydrate(item);
-                    break;
-                case ItemCategories.Armor:
-                    ti = Armor.hydrate(item);
-                    break;
-                default:
-                    break;
-            }
+			switch (item.category) {
+				case ItemCategories.Weapon:
+					ti = Weapon.hydrate(item);
+					break;
+				case ItemCategories.Armor:
+					ti = Armor.hydrate(item);
+					break;
+				default:
+					break;
+			}
 
-            craeft.items[itemIndex] = ti;
-        }
+			craeft.items[itemIndex] = ti;
+		}
 
-        for (const craefterIndex in craeft.craefters) {
+		for (const craefterIndex in craeft.craefters) {
 
-            const craefter = craeft.craefters[craefterIndex];
-            let tc;
+			const craefter = craeft.craefters[craefterIndex];
+			let tc;
 
-            switch (craefter.type) {
-                case CraefterTypes.Weaponsmith:
-                    tc = Weaponsmith.hydrate(craefter);
-                    break;
-                case CraefterTypes.Armorsmith:
-                    tc = Armorsmith.hydrate(craefter);
-                    break;
-                default:
-                    break;
-            }
+			switch (craefter.type) {
+				case CraefterTypes.Weaponsmith:
+					tc = Weaponsmith.hydrate(craefter);
+					break;
+				case CraefterTypes.Armorsmith:
+					tc = Armorsmith.hydrate(craefter);
+					break;
+				default:
+					break;
+			}
 
-            craeft.craefters[craefterIndex] = tc;
-        }
+			craeft.craefters[craefterIndex] = tc;
+		}
 
-        craeft.player = Player.hydrate(obj.player);
+		craeft.player = Player.hydrate(obj.player);
 
-        return craeft;
-    }
+		return craeft;
+	}
 
-    constructor() {
+	constructor() {
 
-        const knife = new Weapon({
-            name: "Newbie Knife",
-            material: ResourceTypes.Metal,
-            atk: 1,
-            matk: 1,
-            delay: -1
-        });
+		const knife = new Weapon({
+			name: "Newbie Knife",
+			material: ResourceTypes.Metal,
+			atk: 1,
+			matk: 1,
+			delay: -1
+		});
 
-        this.player.equipment.equip(knife);
+		this.player.equipment.equip(knife);
 
-        knife.equipped = true;
+		knife.equipped = true;
 
-        this.items = [
-            knife
-        ];
-    }
+		this.items = [
+			knife
+		];
+	}
 
-    start({
-              onTick
-          } = {}) {
-        // re-render every second
-        const timeoutInSeconds = 1;
-        this.gameTick = setInterval(() => {
-            // tick the player
-            this.player.tick();
+	start({
+			  onTick
+		  } = {}) {
+		// re-render every second
+		const timeoutInSeconds = 1;
+		this.gameTick = setInterval(() => {
+			// tick the player
+			this.player.tick();
 
-            // tick all craefters
-            for (const craefter of this.craefters) {
-                craefter.tick();
-            }
+			// tick all craefters
+			for (const craefter of this.craefters) {
+				craefter.tick();
+			}
 
-            // todo: tick the items
+			// todo: tick the items
 
-            if (onTick) {
-                onTick();
-            }
+			if (onTick) {
+				onTick();
+			}
 
-        }, timeoutInSeconds * 1000);
-    }
+		}, timeoutInSeconds * 1000);
+	}
 
-    stop() {
-        clearInterval(this.gameTick)
-    }
+	stop() {
+		clearInterval(this.gameTick)
+	}
 
-    startFarming({
-                     callback
-                 } = {}) {
-        this.farm.start({
-            player: this.player,
-            callback: ({
-                           result,
-                           dmg,
-                           exp,
-                           usedStamina
-                       } = {}) => {
+	startFarming({
+					 callback
+				 } = {}) {
+		this.farm.start({
+			player: this.player,
+			callback: ({
+						   result,
+						   dmg,
+						   exp,
+						   usedStamina
+					   } = {}) => {
 
-                this.resources = new Resources()
-                    .add(this.resources)
-                    .add(result);
+				this.resources = new Resources()
+					.add(this.resources)
+					.add(result);
 
-                this.player.damage(dmg);
-                this.player.addExp(exp);
-                this.player.exhaust(usedStamina);
+				this.player.damage(dmg);
+				this.player.addExp(exp);
+				this.player.exhaust(usedStamina);
 
-                callback();
-            }
-        });
-    }
+				callback();
+			}
+		});
+	}
 
-    addCraefter(
-        which
-    ) {
-        let craefter;
+	addCraefter(
+		which
+	) {
+		let craefter;
 
-        const delay = config.startDelay * pow(log(this.craefters.length + 2), 20);
+		const delay = config.startDelay * pow(log(this.craefters.length + 2), 20);
 
-        switch (which) {
-            case CraefterTypes.Weaponsmith:
-                craefter = new Weaponsmith({
-                    delay
-                });
-                break;
+		switch (which) {
+			case CraefterTypes.Weaponsmith:
+				craefter = new Weaponsmith({
+					delay
+				});
+				break;
 
-            case CraefterTypes.Armorsmith:
-                craefter = new Armorsmith({
-                    delay
-                });
-                break;
+			case CraefterTypes.Armorsmith:
+				craefter = new Armorsmith({
+					delay
+				});
+				break;
 
-            default:
-                throw new Error("Unknown craefter type")
-        }
+			default:
+				throw new Error("Unknown craefter type")
+		}
 
-        this.craefters.push(craefter);
+		this.craefters.push(craefter);
 
-        craefter.onDoneCreating = (exp) => {
-            this.player.addExp(exp);
-        };
-    }
+		craefter.onDoneCreating = (exp) => {
+			this.player.addExp(exp);
+		};
+	}
 
-    static saveState() {
-        if (config.useLocalStorage) {
-            const state = global.craeft.serialize();
+	disentchant(
+		itemId
+	) {
 
-            ls.set(
-                "state",
-                config.compressLocalStorage ?
-                    zip.compress(state) : state
-            );
-        }
-    }
+		const item = ArrayHelper.findById(
+			this.items,
+			itemId
+		);
 
-    static loadState() {
+		console.log(item);
+	}
 
-        let state = null;
+	static saveState() {
+		if (config.useLocalStorage) {
+			const state = global.craeft.serialize();
 
-        if (config.useLocalStorage) {
+			ls.set(
+				"state",
+				config.compressLocalStorage ?
+					zip.compress(state) : state
+			);
+		}
+	}
 
-            const localState = ls.get("state");
+	static loadState() {
 
-            if (localState) {
-                // if the state starts with { it is uncompressed
-                state = localState.startsWith("{") ?
-                    localState : zip.decompress(localState)
-            }
+		let state = null;
 
-            if (state) {
-                global.craeft = Craeft.deserialize(state)
-            }
-        }
-    }
+		if (config.useLocalStorage) {
+
+			const localState = ls.get("state");
+
+			if (localState) {
+				// if the state starts with { it is uncompressed
+				state = localState.startsWith("{") ?
+					localState : zip.decompress(localState)
+			}
+
+			if (state) {
+				global.craeft = Craeft.deserialize(state)
+			}
+		}
+	}
 }
 
 global.craeft = new Craeft();
