@@ -11,7 +11,11 @@ import {ReactComponent as Filters} from "./assets/filters.svg"
 import CraeftPage from "./CraeftPage";
 import AboutPage from "./AboutPage";
 
-window.addEventListener("hashchange", render, false);
+window.addEventListener(
+    "hashchange",
+    render,
+    false
+);
 
 function render() {
     let page = window
