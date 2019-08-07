@@ -22,20 +22,20 @@ function render() {
             window.location.hash.length
         );
 
-    let component;
+    let pageComponent;
 
     const title = "Cräft!";
 
     switch (page) {
         case "about":
-            component = <AboutPage/>;
+            pageComponent = <AboutPage/>;
 
             window.document.title = `${title} - About`;
             break;
 
         case "craeft":
         default:
-            component = <CraeftPage/>;
+            pageComponent = <CraeftPage/>;
             window.document.title = `${title} - Game`;
             break;
     }
@@ -43,7 +43,7 @@ function render() {
     ReactDOM.render(
         <div>
             <Filters/>
-            {component}
+            {pageComponent}
         </div>,
         document.getElementById("root")
     );
