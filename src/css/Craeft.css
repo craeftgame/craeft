@@ -236,3 +236,23 @@ ITEM
 .diamond {
     filter: url(#diamond);
 }
+
+.dead {
+    z-index: 100000;
+    position: absolute;
+    display: block;
+    padding-top: 290px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0.3, 0.3, 0.4, 0.4);
+    vertical-align: middle;
+    text-align: center;
+}
+
+.you-are-dead {
+    font-size: 80px !important;
+    line-height: 80px !important;
+    color: darkred !important;
+}

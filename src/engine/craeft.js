@@ -165,15 +165,27 @@ export default class Craeft {
         // re-render every second
         const timeoutInSeconds = 1;
         this.onTick = onTick;
+
+        if (this.gameTick) {
+            this.stop();
+        }
+
         this.gameTick = setInterval(() => {
             this.tick();
         }, timeoutInSeconds * 1000);
     }
 
-    stop() {
+    stop(
+        hard
+    ) {
         clearInterval(this.gameTick);
+
         // final tick
         this.tick();
+
+        if (hard) {
+            Craeft.deleteState();
+        }
     }
 
     startFarming({
@@ -250,7 +262,7 @@ export default class Craeft {
     }
 
     static saveState() {
-        if (config.useLocalStorage) {
+        if (config.useLocalStorage && !global.craeft.player.dead) {
             const state = global.craeft.serialize();
 
             ls.set(
@@ -278,6 +290,12 @@ export default class Craeft {
             if (state) {
                 global.craeft = Craeft.deserialize(state)
             }
+        }
+    }
+
+    static deleteState() {
+        if (config.useLocalStorage) {
+            ls.remove("state");
         }
     }
 }

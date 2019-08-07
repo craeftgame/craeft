@@ -37,8 +37,6 @@ export default class Craeft extends Component {
 
     componentWillMount() {
         CraeftGame.loadState();
-
-        global.craeft.start();
     }
 
     componentWillUnmount() {
@@ -132,24 +130,41 @@ export default class Craeft extends Component {
 
     render() {
         return (
-            <div className={`craeft ${global.craeft.player.dead ? "rpgui-disabled" : ""}`}>
+            <div className={"craeft"}>
 
-                <Player player={global.craeft.player}
-                        onUnequip={this.unEquipItem}
-                        logs={global.craeft.logs}/>
+                {
+                    global.craeft.player.dead ?
+                        <div className={"dead"}>
+                            <span className={"you-are-dead"}>You are dead!</span>
+                            <div>
+                                <button className={"rpgui-button is-big"}
+                                        onClick={() => window.location.reload(true)}>
+                                    <span>Play again!</span>
+                                </button>
+                            </div>
+                        </div> : null
+                }
 
-                <div className="craefting-interface columns">
+                <div className={global.craeft.player.dead ? "rpgui-disabled" : ""}>
 
-                    <CraefterList resources={global.craeft.resources}
-                                  craefters={global.craeft.craefters}
-                                  craefterAdded={this.addCraefter}
-                                  itemAdded={this.addItem}/>
+                    <Player player={global.craeft.player}
+                            onUnequip={this.unEquipItem}
+                            logs={global.craeft.logs}/>
 
-                    <Farm craeft={global.craeft}/>
+                    <div className="craefting-interface columns">
 
-                    <Items items={global.craeft.items}
-                           onItemEquip={this.equipItem}
-                           onDisentchant={this.disentchant}/>
+                        <CraefterList resources={global.craeft.resources}
+                                      craefters={global.craeft.craefters}
+                                      craefterAdded={this.addCraefter}
+                                      itemAdded={this.addItem}/>
+
+                        <Farm craeft={global.craeft}/>
+
+                        <Items items={global.craeft.items}
+                               onItemEquip={this.equipItem}
+                               onDisentchant={this.disentchant}/>
+
+                    </div>
 
                 </div>
 
