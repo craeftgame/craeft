@@ -36,7 +36,7 @@ function render() {
         case "craeft":
         default:
             component = <CraeftPage/>;
-            window.document.title = title;
+            window.document.title = `${title} - Game`;
             break;
     }
 
