@@ -180,6 +180,8 @@ export default class Craeft {
     ) {
         clearInterval(this.gameTick);
 
+        this.gameTick = null;
+
         // final tick
         this.tick();
 

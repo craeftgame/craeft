@@ -4,6 +4,7 @@ import CraeftGame from "../../engine/craeft";
 
 // game
 import Player from "../player/Player"
+import Dead from "../player/Dead";
 import Farm from "../Farm";
 import Items from "../item/Items";
 import CraefterList from "../craefter/CraefterList";
@@ -134,15 +135,7 @@ export default class Craeft extends Component {
 
                 {
                     global.craeft.player.dead ?
-                        <div className={"dead"}>
-                            <span className={"you-are-dead"}>You are dead!</span>
-                            <div>
-                                <button className={"rpgui-button is-big"}
-                                        onClick={() => window.location.reload(true)}>
-                                    <span>Play again!</span>
-                                </button>
-                            </div>
-                        </div> : null
+                        <Dead/> : null
                 }
 
                 <div className={global.craeft.player.dead ? "rpgui-disabled" : ""}>
