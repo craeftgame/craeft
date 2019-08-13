@@ -4,7 +4,8 @@ import {
     ResourceTypes
 } from "./data/types";
 import {
-    getRandomArrayItem
+    getRandomArrayItem,
+    getRandomInt
 } from "../tools/rand";
 import {
     pow,
@@ -82,9 +83,9 @@ export default class Farm {
                     resources
                 }),
                 // todo calculate exp based on farm level
-                exp: 10 * this.counter,
+                exp: 4 * this.counter,
                 // todo calculate dmg based on defense and dmg dealt
-                dmg: 5.1 * this.counter,
+                dmg: getRandomInt(5, 20) * this.counter,
                 // todo calculate stamina used
                 usedStamina: 2
             });

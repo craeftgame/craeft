@@ -60,7 +60,7 @@ export default class Player extends Organism {
 
         // regenerate hp
         if (this.hpCurrent < this.hpMax) {
-            this.hpCurrent += (0.1 * this.vit);
+            this.hpCurrent += (0.5 * this.vit);
         }
     }
 
