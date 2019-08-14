@@ -35,7 +35,7 @@ export default class About extends Component {
 
                     <div className="rpgui-center">
                         <a href="https://twitter.com/sgerske"
-                           target=")_twitter">
+                           target="_twitter">
                             Twitter
                         </a>
                     </div>
