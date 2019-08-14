@@ -41,7 +41,7 @@ export default class About extends Component {
                     </div>
 
                     <div className="rpgui-center">
-                        <a href="https://github.com/h34d"
+                        <a href="https://github.com/craeftgame/craeft"
                            target="_github">
                             GitHub
                         </a>
