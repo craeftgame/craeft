@@ -145,6 +145,7 @@ export default class Weaponsmith extends Craefter {
                 ratios,
                 highestResource
             ),
+            rarity: Unknown,
             material: highestResource,
             atk,
             // todo: let this be influenced by luk

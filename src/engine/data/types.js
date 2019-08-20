@@ -56,6 +56,13 @@ const ResourceTypes = Object.freeze({
     Diamond: Symbol.for("diamond")
 });
 
+const Rarities = Object.freeze({
+    Common: Symbol.for("common"),
+    Rare: Symbol.for("rare"),
+    Epic: Symbol.for("epic"),
+    Legendary: Symbol.for("legendary")
+});
+
 export {
     Unknown,
     ResourceTypes,
@@ -65,5 +72,6 @@ export {
     WeaponSlots,
     ArmorSlots,
     ArmorTypes,
-    JewelerySlots
+    JewelerySlots,
+    Rarities
 }

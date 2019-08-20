@@ -237,6 +237,22 @@ ITEM
     filter: url(#diamond);
 }
 
+.common {
+    background-color: rgba(220, 220, 220, 0.3) !important;
+}
+
+.rare {
+    background-color: rgba(0, 120, 250, 0.6) !important;
+}
+
+.epic {
+    background-color: rgba(220, 80, 255, 0.6) !important;
+}
+
+.legendary {
+    background-color: rgba(250, 150, 0, 0.6) !important;
+}
+
 .dead {
     z-index: 100000;
     position: absolute;

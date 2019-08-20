@@ -108,6 +108,7 @@ export default class Armorsmith extends Craefter {
                 ratios,
                 highestResource
             ),
+            rarity: Unknown,
             material: highestResource,
             def,
             defMax: Math.round(def + (def * Math.log(2))) || 1,

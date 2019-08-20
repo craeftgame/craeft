@@ -1,5 +1,6 @@
 import Delay from "../delay";
 import {
+    Rarities,
     Unknown
 } from "../data/types";
 import {
@@ -20,6 +21,7 @@ export default class Item {
                     slot,
                     isMultiSlot = false,
                     level = 1,
+                    rarity = this.evaluateRarity(),
                     material,
                     delay = global.delay || 10
                 } = {}) {
@@ -34,12 +36,35 @@ export default class Item {
         this.material = material;
         this.category = category;
         this.slot = slot;
+        this.rarity = rarity;
         this.isMultiSlot = isMultiSlot;
         this.name = name;
         this.level = level;
 
         this.id = getRandomId();
         this.craefterId = craefterId;
+    }
+
+    evaluateRarity() {
+
+        const chance = Math.random() * 100;
+
+        // 0-79
+        if (chance < 80) {
+            return Rarities.Common;
+        }
+        // 80-84
+        else if (chance < 85) {
+            return Rarities.Rare;
+        }
+        // 85-98
+        else if (chance < 98) {
+            return Rarities.Epic;
+        }
+        // 98-99
+        else {
+            return Rarities.Legendary;
+        }
     }
 
     tick() {

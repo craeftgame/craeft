@@ -18,6 +18,7 @@ export default class Weapon extends Item {
                         array: names
                     }),
                     level,
+                    rarity,
                     atk = 0,
                     matk = 0,
                     material,
@@ -28,6 +29,7 @@ export default class Weapon extends Item {
             category: ItemCategories.Weapon,
             type,
             slot,
+            rarity,
             isMultiSlot,
             craefterId,
             name,

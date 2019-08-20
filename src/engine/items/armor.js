@@ -17,6 +17,7 @@ export default class Armor extends Item {
                     craefterId,
                     name = names[getRandomInt(0, names.length)],
                     level,
+                    rarity,
                     def = 0,
                     mdef = 0,
                     material,
@@ -28,6 +29,7 @@ export default class Armor extends Item {
             slot,
             craefterId,
             level,
+            rarity,
             name,
             material,
             delay

@@ -1,6 +1,7 @@
 import {
     CraefterTypes,
     ItemCategories,
+    Rarities,
     ResourceTypes
 } from "./data/types";
 
@@ -127,6 +128,7 @@ export default class Craeft {
             name: "Newbie Knife",
             material: ResourceTypes.Metal,
             atk: 1,
+            rarity: Rarities.Common,
             matk: 1,
             delay: -1
         });
