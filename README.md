@@ -3,7 +3,7 @@
 ## Prior Art
 
 This project builds on top of the work done in open source projects:
-- [RPGUI](https://github.com/RonenNess/RPGUI)
+- [RonenNess/RPGUI](https://github.com/RonenNess/RPGUI)
 
 ## License
 
