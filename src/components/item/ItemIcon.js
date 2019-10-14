@@ -32,7 +32,7 @@ export default class ItemIcon extends Component {
         // item disabled?
         if (this.props.item.delay && this.props.item.delay.isDelaying) {
             containerClasses.push("rpgui-disabled")
-        } else {
+        } else if (this.props.item.rarity) {
             containerClasses.push(Symbol.keyFor(this.props.item.rarity));
         }
 
