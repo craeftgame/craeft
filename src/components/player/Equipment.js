@@ -22,11 +22,11 @@ export default class Equipment extends Component {
     constructor(props) {
         super(props);
 
-        this.selectItem = this.selectItem.bind(this);
+        this.toggleItemSelection = this.toggleItemSelection.bind(this);
         this.unequip = this.unequip.bind(this);
     }
 
-    selectItem(
+    toggleItemSelection(
         item
     ) {
         this.setState({
@@ -37,9 +37,7 @@ export default class Equipment extends Component {
     unequip(
         item
     ) {
-        this.setState({
-            selectedItem: null
-        });
+        this.toggleItemSelection(item);
 
         this.props.onUnequip(item.id);
     }
@@ -61,7 +59,7 @@ export default class Equipment extends Component {
                             this.props.equipment[ArmorSlots.Head] ?
                                 <ItemIcon item={this.props.equipment[ArmorSlots.Head]}
                                           isSelected={this.props.equipment[ArmorSlots.Head] === this.state.selectedItem}
-                                          isSmall={true} onItemSelected={this.selectItem}/>
+                                          isSmall={true} onItemSelected={this.toggleItemSelection}/>
                                 : <span className="rpgui-icon armor-slot"/>
                         }
                     </div>
@@ -71,7 +69,7 @@ export default class Equipment extends Component {
                             this.props.equipment[ArmorSlots.Body] ?
                                 <ItemIcon item={this.props.equipment[ArmorSlots.Body]}
                                           isSelected={this.props.equipment[ArmorSlots.Body] === this.state.selectedItem}
-                                          isSmall={true} onItemSelected={this.selectItem}/>
+                                          isSmall={true} onItemSelected={this.toggleItemSelection}/>
                                 : <span className="rpgui-icon armor-slot"/>
                         }
                     </div>
@@ -84,7 +82,7 @@ export default class Equipment extends Component {
                             this.props.equipment[ArmorSlots.Legs] ?
                                 <ItemIcon item={this.props.equipment[ArmorSlots.Legs]}
                                           isSelected={this.props.equipment[ArmorSlots.Legs] === this.state.selectedItem}
-                                          isSmall={true} onItemSelected={this.selectItem}/>
+                                          isSmall={true} onItemSelected={this.toggleItemSelection}/>
                                 : <span className="rpgui-icon armor-slot"/>
                         }
                     </div>
@@ -94,7 +92,7 @@ export default class Equipment extends Component {
                             this.props.equipment[ArmorSlots.Feet] ?
                                 <ItemIcon item={this.props.equipment[ArmorSlots.Feet]}
                                           isSelected={this.props.equipment[ArmorSlots.Feet] === this.state.selectedItem}
-                                          isSmall={true} onItemSelected={this.selectItem}/>
+                                          isSmall={true} onItemSelected={this.toggleItemSelection}/>
                                 : <span className="rpgui-icon armor-slot"/>
                         }
                     </div>
@@ -107,7 +105,7 @@ export default class Equipment extends Component {
                             this.props.equipment[WeaponSlots.LeftHand] ?
                                 <ItemIcon item={this.props.equipment[WeaponSlots.LeftHand]}
                                           isSelected={this.props.equipment[WeaponSlots.LeftHand] === this.state.selectedItem}
-                                          isSmall={true} onItemSelected={this.selectItem}/>
+                                          isSmall={true} onItemSelected={this.toggleItemSelection}/>
                                 : <span className="rpgui-icon weapon-slot"/>
                         }
                     </div>
@@ -117,7 +115,7 @@ export default class Equipment extends Component {
                             this.props.equipment[WeaponSlots.RightHand] ?
                                 <ItemIcon item={this.props.equipment[WeaponSlots.RightHand]}
                                           isSelected={this.props.equipment[WeaponSlots.RightHand] === this.state.selectedItem}
-                                          isSmall={true} onItemSelected={this.selectItem}/>
+                                          isSmall={true} onItemSelected={this.toggleItemSelection}/>
                                 : <span className="rpgui-icon weapon-slot"/>
                         }
                     </div>
@@ -129,18 +127,23 @@ export default class Equipment extends Component {
                         Jewelry 1:<br/>
                         <span className="rpgui-icon ring-slot"/>
                     </div>
+
                     <div className='column'>
                         Jewelry 2:<br/>
                         <span className="rpgui-icon ring-slot"/>
                     </div>
+
                 </div>
 
                 {
                     this.state.selectedItem && this.state.selectedItem.equipped ?
                         <div>
+
                             <hr/>
+
                             <ItemDescription item={this.state.selectedItem}
                                              onUnequip={this.unequip}/>
+
                         </div> : null
                 }
 

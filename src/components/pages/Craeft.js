@@ -76,7 +76,7 @@ export default class Craeft extends Component {
                 exp
             );
 
-            this.log(`"${item.name}" cräfted by ${craefter.name}! `);
+            this.log(`"${item.getName()}" cräfted by ${craefter.name}! `);
         };
 
         global.craeft.items.push(item);
@@ -92,7 +92,7 @@ export default class Craeft extends Component {
         if (equipped) {
             item.equipped = equipped;
 
-            this.log(`"${item.name}" put on.`);
+            this.log(`"${item.getName()}" put on.`);
         } else {
             this.log("Equip failed!")
         }
@@ -109,7 +109,7 @@ export default class Craeft extends Component {
 
             item.equipped = false;
 
-            this.log(`"${item.name}" taken off.`);
+            this.log(`"${item.getName()}" taken off.`);
         } else {
             this.log("Unequip failed!")
         }

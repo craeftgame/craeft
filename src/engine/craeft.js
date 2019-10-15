@@ -2,7 +2,8 @@ import {
     CraefterTypes,
     ItemCategories,
     Rarities,
-    ResourceTypes
+    ResourceTypes,
+    WeaponTypes
 } from "./data/types";
 
 import Resources from "./resources";
@@ -126,16 +127,15 @@ export default class Craeft {
 
         const knife = new Weapon({
             name: "Newbie Knife",
+            type: WeaponTypes.Knife,
             material: ResourceTypes.Metal,
-            atk: 1,
             rarity: Rarities.Common,
+            atk: 1,
             matk: 1,
             delay: -1
         });
 
-        this.player.equipment.equip(knife);
-
-        knife.equipped = true;
+        knife.equipped = this.player.equipment.equip(knife);
 
         this.items = [
             knife

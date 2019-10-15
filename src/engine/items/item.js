@@ -1,11 +1,19 @@
 import Delay from "../delay";
+
 import {
     Rarities,
     Unknown
 } from "../data/types";
+
 import {
     getRandomId
 } from "../../tools/rand";
+
+import {
+    ItemNames,
+    RarityNames,
+    SlotNames
+} from "../data/names";
 
 export default class Item {
 
@@ -13,15 +21,16 @@ export default class Item {
     delay = null;
     onDoneCreating = null;
     id = null;
+    isMultiSlot = false;
 
     constructor({
                     category = Unknown,
                     name,
                     craefterId,
                     slot,
-                    isMultiSlot = false,
                     level = 1,
-                    rarity = this.evaluateRarity(),
+                    type,
+                    rarity,
                     material,
                     delay = global.delay || 10
                 } = {}) {
@@ -32,21 +41,29 @@ export default class Item {
                 this.meterialize();
             }
         });
-
-        this.material = material;
-        this.category = category;
-        this.slot = slot;
-        this.rarity = rarity;
-        this.isMultiSlot = isMultiSlot;
-        this.name = name;
-        this.level = level;
-
         this.id = getRandomId();
+
+        this.category = category;
         this.craefterId = craefterId;
+        this.slot = slot;
+        this.level = level;
+        this.type = type;
+        this.rarity = rarity;
+        this.material = material;
+        this.name = name;
+
+        this.rarity = rarity || this.evaluateRarity();
+    }
+
+    getName() {
+        return this.name || this.evaluateItemName()
+    }
+
+    evaluateItemName() {
+        return `${RarityNames[this.rarity]} ${SlotNames[this.slot]} ${ItemNames[this.type]}`
     }
 
     evaluateRarity() {
-
         const chance = Math.random() * 100;
 
         // 0-79

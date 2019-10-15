@@ -15,10 +15,6 @@ import {
 } from "../../tools/rand";
 
 import {
-    ItemNames
-} from "../data/names";
-
-import {
     log,
     round
 } from "mathjs";
@@ -49,17 +45,6 @@ export default class Weaponsmith extends Craefter {
         Craefter.hydrate(armorsmith, obj);
 
         return weaponsmith;
-    }
-
-    itemCanBeTwoHanded(
-        type
-    ) {
-        return !(
-            type === WeaponTypes.Knife ||
-            type === WeaponTypes.JewelKnife ||
-            type === WeaponTypes.Wand ||
-            type === WeaponTypes.JewelWand
-        );
     }
 
     evaluateItemType(
@@ -156,30 +141,10 @@ export default class Weaponsmith extends Craefter {
         }
     }
 
-    evaluateItemName(
-        type,
-        /* eslint-disable-next-line no-unused-vars */
-        slot,
-        isMultiSlot
-    ) {
-        const prefixes = [];
-
-        if (this.itemCanBeTwoHanded(type)) {
-            prefixes.push(isMultiSlot ? "Two-Handed" : "One-Handed");
-        }
-
-        const parts = [];
-
-        parts.push(...prefixes);
-        parts.push(ItemNames[type]);
-
-        return parts.join(" ")
-    }
-
     craeft(
         resources
     ) {
-        super.craeft();
+        super.craeft(resources);
 
         // todo include resource heaviness / complexity
         this.exhaust(1);
@@ -193,16 +158,11 @@ export default class Weaponsmith extends Craefter {
             matkMax
         } = this.evaluateItem(resources);
 
-        // is this item two handed?
-        const isMultiSlot = this.itemCanBeTwoHanded(type) && getRandomInt(0, 1) > 0;
-
         const item = new Weapon({
             type,
-            isMultiSlot,
             material,
             level: this.level,
             craefterId: this.id,
-            name: this.evaluateItemName(type, null, isMultiSlot),
             // todo include luk
             atk: getRandomInt(atk, atkMax),
             matk: getRandomInt(matk, matkMax)

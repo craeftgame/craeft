@@ -1,5 +1,6 @@
 import Armor from "../items/armor";
 import Craefter from "./craefter";
+
 import {
     Unknown,
     CraefterTypes,
@@ -8,14 +9,11 @@ import {
     ArmorSlots,
     ResourceTypes
 } from "../data/types";
+
 import {
     getRandomInt,
     getRandomObjectEntry
 } from "../../tools/rand";
-import {
-    ItemNames,
-    SlotNames
-} from "../data/names";
 
 export default class Armorsmith extends Craefter {
 
@@ -117,15 +115,6 @@ export default class Armorsmith extends Craefter {
         }
     }
 
-    evaluateItemName(
-        type,
-        slot,
-        /* eslint-disable-next-line no-unused-vars */
-        isMultiSlot
-    ) {
-        return `${SlotNames[slot]} ${ItemNames[type]}`
-    }
-
     evaluateSlot(
         /* eslint-disable-next-line no-unused-vars */
         type
@@ -139,7 +128,7 @@ export default class Armorsmith extends Craefter {
     craeft(
         resources
     ) {
-        super.craeft();
+        super.craeft(resources);
 
         const {
             type,
@@ -153,14 +142,11 @@ export default class Armorsmith extends Craefter {
         const slot = this.evaluateSlot(type);
 
         const item = new Armor({
-            name: this.evaluateItemName(
-                type,
-                slot
-            ),
-            craefterId: this.id,
+            type,
             material,
-            level: this.level,
             slot,
+            craefterId: this.id,
+            level: this.level,
             def: getRandomInt(def, defMax),
             mdef: getRandomInt(mdef, mdefMax)
         });

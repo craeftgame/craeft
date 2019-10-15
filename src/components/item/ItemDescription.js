@@ -5,7 +5,7 @@ import ItemStats from "./ItemStats";
 export default class ItemDescription extends Component {
 
     static propTypes = {
-        item: PropTypes.object,
+        item: PropTypes.object.isRequired,
         onUnequip: PropTypes.func,
         onEquip: PropTypes.func,
         onDisentchant: PropTypes.func
@@ -36,7 +36,9 @@ export default class ItemDescription extends Component {
                 <div style={{
                     display: "inline-block"
                 }}>
-                    {this.props.item.name}
+                    {
+                        this.props.item.getName ? this.props.item.getName() : null
+                    }
                 </div>
 
                 <ItemStats item={this.props.item}/>

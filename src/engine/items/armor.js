@@ -1,13 +1,8 @@
 import Item from "./item";
 import {
-    getRandomInt
-} from "../../tools/rand";
-import {
     Unknown,
     ItemCategories
 } from "../data/types";
-
-import names from "../data/armor_names"
 
 export default class Armor extends Item {
 
@@ -15,7 +10,7 @@ export default class Armor extends Item {
                     type = Unknown,
                     slot = Unknown,
                     craefterId,
-                    name = names[getRandomInt(0, names.length)],
+                    name,
                     level,
                     rarity,
                     def = 0,
@@ -25,12 +20,12 @@ export default class Armor extends Item {
                 } = {}) {
         super({
             category: ItemCategories.Armor,
-            type,
-            slot,
-            craefterId,
-            level,
-            rarity,
             name,
+            craefterId,
+            slot,
+            level,
+            type,
+            rarity,
             material,
             delay
         });

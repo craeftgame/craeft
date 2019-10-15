@@ -3,7 +3,8 @@ import {
     CraefterTypes,
     WeaponTypes,
     ArmorTypes,
-    ArmorSlots
+    ArmorSlots,
+    Rarities
 } from "./types";
 
 const CraefterTypeNames = Object.freeze({
@@ -38,8 +39,16 @@ const SlotNames = Object.freeze({
     [ArmorSlots.Feet]: "Feet",
 });
 
+const RarityNames = Object.freeze({
+    [Rarities.Common]: "Common",
+    [Rarities.Rare]: "Rare",
+    [Rarities.Epic]: "Epic",
+    [Rarities.Legendary]: "Legendary",
+});
+
 export {
     CraefterTypeNames,
     ItemNames,
-    SlotNames
+    SlotNames,
+    RarityNames
 };

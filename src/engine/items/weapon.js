@@ -1,22 +1,27 @@
 import Item from "./item";
-import {getRandomArrayItem} from "../../tools/rand";
+import {
+    getRandomInt
+} from "../../tools/rand";
+
 import {
     Unknown,
-    ItemCategories
+    ItemCategories,
+    WeaponTypes,
+    Rarities
 } from "../data/types";
 
-import names from "../data/weapon_names";
+import {
+    ItemNames,
+    RarityNames
+} from "../data/names";
 
 export default class Weapon extends Item {
 
     constructor({
                     type = Unknown,
                     slot = Unknown,
-                    isMultiSlot = false,
                     craefterId,
-                    name = getRandomArrayItem({
-                        array: names
-                    }),
+                    name,
                     level,
                     rarity,
                     atk = 0,
@@ -27,19 +32,48 @@ export default class Weapon extends Item {
 
         super({
             category: ItemCategories.Weapon,
-            type,
-            slot,
-            rarity,
-            isMultiSlot,
-            craefterId,
             name,
+            craefterId,
+            slot,
             level,
+            type,
+            rarity,
             material,
             delay
         });
 
+        this.isMultiSlot = this.canBeTwoHanded() && getRandomInt(0, 1) === 1;
+
         this.atk = atk;
         this.matk = matk;
+    }
+
+    canBeTwoHanded() {
+        return !(
+            this.type === WeaponTypes.Knife ||
+            this.type === WeaponTypes.JewelKnife ||
+            this.type === WeaponTypes.Wand ||
+            this.type === WeaponTypes.JewelWand
+        );
+    }
+
+    evaluateItemName() {
+        const prefixes = [];
+
+        if (this.rarity !== Rarities.Common) {
+            prefixes.push(RarityNames[this.rarity]);
+        }
+
+        if (this.canBeTwoHanded()) {
+            prefixes.push(this.isMultiSlot ? "Two-Handed" : "One-Handed");
+        }
+
+        const parts = [];
+
+        parts.push(...prefixes);
+        parts.push(ItemNames[this.type]);
+
+        return parts.join(" ")
     }
 
     static hydrate(obj) {
