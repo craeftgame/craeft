@@ -15,14 +15,6 @@ export default class Equipment {
     [JewelerySlots.Left] = null;
     [JewelerySlots.Right] = null;
 
-    static hydrate(
-        obj
-    ) {
-        const equipment = Object.assign(new Equipment(), obj);
-
-        return equipment;
-    }
-
     findSlotByItemId(
         itemId
     ) {
@@ -57,38 +49,51 @@ export default class Equipment {
 
         if (item.category === ItemCategories.Weapon) {
             // we have a weapon, assign to hand
+            // if it's a multi slit
             if (item.isMultiSlot) {
 
+                // unequip right
                 if (this[WeaponSlots.RightHand]) {
                     this[WeaponSlots.RightHand].equipped = false;
                 }
 
+                // unequip left
                 if (this[WeaponSlots.LeftHand]) {
                     this[WeaponSlots.LeftHand].equipped = false;
                 }
 
+                // equip both
                 this[WeaponSlots.RightHand] = item;
                 this[WeaponSlots.LeftHand] = item;
 
                 equipped = true;
 
             } else {
+                // we have a one handed weapon
+
+                // is right hand free?
                 if (!this[WeaponSlots.RightHand]) {
+                    // yes, equip
                     this[WeaponSlots.RightHand] = item;
                     equipped = true;
                 } else {
-
+                    // no, right hand is not free
+                    // is left hand free?
                     if (!this[WeaponSlots.LeftHand]) {
                         this[WeaponSlots.LeftHand] = item;
                         equipped = true;
                     } else {
+                        // no, both hands taken
 
+                        // if we unquipped a multi slot weapon, unequip the other hand as well
                         if (this[WeaponSlots.RightHand].isMultiSlot) {
-                            this[WeaponSlots.RightHand].equipped = false;
                             this[WeaponSlots.LeftHand] = null;
-                            this[WeaponSlots.RightHand] = null;
                         }
+                        
+                        // unequip what ever is in right hand
+                        this[WeaponSlots.RightHand].equipped = false;
 
+                        // equip ro right hand
                         this[WeaponSlots.RightHand] = item;
 
                         equipped = true;
@@ -131,4 +136,11 @@ export default class Equipment {
         return true
     }
 
+    static hydrate(
+        obj
+    ) {
+        const equipment = Object.assign(new Equipment(), obj);
+
+        return equipment;
+    }
 }
