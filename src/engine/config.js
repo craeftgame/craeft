@@ -10,7 +10,7 @@ module.exports = {
     compressLocalStorage: true,
 
     // game parameters
-    startResources: debug ? 1000 : 1,
+    startResources: debug ? 1000 : 0,
     startDelay: 1,
     fuLow: 30,
     fuHigh: 75
