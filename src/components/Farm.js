@@ -52,7 +52,7 @@ export default class Farm extends Component {
                                 Wood:
                             </div>
                             <div className="column rtl">
-                                {this.props.craeft.resources[ResourceTypes.Wood]}&nbsp;
+                                {this.props.craeft.resources[ResourceTypes.Wood].toLocaleString()}&nbsp;
                             </div>
                         </div>
 
@@ -61,7 +61,7 @@ export default class Farm extends Component {
                                 Metal:
                             </div>
                             <div className="column rtl">
-                                {this.props.craeft.resources[ResourceTypes.Metal]}&nbsp;
+                                {this.props.craeft.resources[ResourceTypes.Metal].toLocaleString()}&nbsp;
                             </div>
                         </div>
 
@@ -70,7 +70,7 @@ export default class Farm extends Component {
                                 Cloth:
                             </div>
                             <div className="column rtl">
-                                {this.props.craeft.resources[ResourceTypes.Cloth]}&nbsp;
+                                {this.props.craeft.resources[ResourceTypes.Cloth].toLocaleString()}&nbsp;
                             </div>
                         </div>
 
@@ -79,7 +79,7 @@ export default class Farm extends Component {
                                 Diamond:
                             </div>
                             <div className="column rtl">
-                                {this.props.craeft.resources[ResourceTypes.Diamond]}&nbsp;
+                                {this.props.craeft.resources[ResourceTypes.Diamond].toLocaleString()}&nbsp;
                             </div>
                         </div>
 
