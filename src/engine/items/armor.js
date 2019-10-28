@@ -16,6 +16,7 @@ export default class Armor extends Item {
                     def = 0,
                     mdef = 0,
                     material,
+                    resources,
                     delay
                 } = {}) {
         super({
@@ -27,6 +28,7 @@ export default class Armor extends Item {
             type,
             rarity,
             material,
+            resources,
             delay
         });
 

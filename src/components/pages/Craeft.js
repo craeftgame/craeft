@@ -22,6 +22,8 @@ export default class Craeft extends Component {
         this.equipItem = this.equipItem.bind(this);
         this.unEquipItem = this.unEquipItem.bind(this);
 
+        this.disentchant = this.disentchant.bind(this);
+
         window.onbeforeunload = () => {
             CraeftGame.saveState();
         }
@@ -118,7 +120,9 @@ export default class Craeft extends Component {
     disentchant(
         itemId
     ) {
-        global.craeft.disentchant(itemId)
+        const result = global.craeft.disentchant(itemId)
+
+        this.log(`"${result.name}" disenchanted! ${result.resources.sum()} resource(s) gathered!`)
     }
 
     log(

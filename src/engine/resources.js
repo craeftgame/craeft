@@ -58,7 +58,6 @@ export default class Resources {
     }
 
     ratios() {
-
         const gcd = this.gcd();
         const ratios = new Ratios();
 

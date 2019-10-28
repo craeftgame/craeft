@@ -2,11 +2,13 @@ import Delay from "../delay";
 
 import {
     Rarities,
+    ResourceTypes,
     Unknown
 } from "../data/types";
 
 import {
-    getRandomId
+    getRandomId,
+    getRandomInt
 } from "../../tools/rand";
 
 import {
@@ -14,6 +16,8 @@ import {
     RarityNames,
     SlotNames
 } from "../data/names";
+import Resources from "../resources";
+import config from "../config"
 
 export default class Item {
 
@@ -32,6 +36,7 @@ export default class Item {
                     type,
                     rarity,
                     material,
+                    resources,
                     delay = global.delay || 10
                 } = {}) {
 
@@ -50,6 +55,7 @@ export default class Item {
         this.type = type;
         this.rarity = rarity;
         this.material = material;
+        this.resources = resources;
         this.name = name;
 
         this.rarity = rarity || this.evaluateRarity();
@@ -96,6 +102,44 @@ export default class Item {
                 5
             );
         }
+    }
+
+    disentchant() {
+        // this item did not have any resources
+        if (!this.resources) {
+            // return a dummy set
+            return new Resources({
+                resources: {
+                    [ResourceTypes.Wood]: 1
+                }
+            });
+        }
+
+        return new Resources({
+            resources: {
+                [ResourceTypes.Wood]:
+                    getRandomInt(
+                        Math.floor(this.resources[ResourceTypes.Wood] / 100 * config.fuLow),
+                        Math.floor(this.resources[ResourceTypes.Wood] / 100 * config.fuHigh)
+                    ),
+                [ResourceTypes.Metal]:
+                    getRandomInt(
+                        Math.floor(this.resources[ResourceTypes.Metal] / 100 * config.fuLow),
+                        Math.floor(this.resources[ResourceTypes.Metal] / 100 * config.fuHigh)
+                    ),
+                [ResourceTypes.Diamond]:
+                    getRandomInt(
+                        Math.floor(this.resources[ResourceTypes.Diamond] / 100 * config.fuLow),
+                        Math.floor(this.resources[ResourceTypes.Diamond] / 100 * config.fuHigh)
+                    ),
+                [ResourceTypes.Cloth]:
+                    getRandomInt(
+                        Math.floor(this.resources[ResourceTypes.Cloth] / 100 * config.fuLow),
+                        Math.floor(this.resources[ResourceTypes.Cloth] / 100 * config.fuHigh)
+                    )
+            }
+
+        })
     }
 
     static hydrate(

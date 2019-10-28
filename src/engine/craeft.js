@@ -33,6 +33,10 @@ const versionMsg = `Welcome to Cräft! version: ${version}`;
 /* eslint-disable-next-line no-console */
 console.log(versionMsg);
 
+if (config.debug) {
+    console.log("Running in debug mode!");
+}
+
 global.delay = config.startDelay;
 
 export default class Craeft {
@@ -251,18 +255,30 @@ export default class Craeft {
     disentchant(
         itemId
     ) {
-
         const item = ArrayHelper.findById(
             this.items,
             itemId
         );
 
-        // todo gain back some resources
+        const {name} = item;
+
+        const resources = item.disentchant();
 
         ArrayHelper.removeItem(
             this.items,
             item
         );
+
+        this.resources = new Resources(
+            {
+                resources: this.resources
+            })
+            .add(resources);
+
+        return {
+            name,
+            resources
+        }
     }
 
     static saveState() {

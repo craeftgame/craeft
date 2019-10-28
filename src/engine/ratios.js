@@ -3,6 +3,7 @@ import {
     ResourceTypes
 } from "./data/types";
 
+// todo make this more generic, it is really resource centric
 export default class Ratios {
 
     [ResourceTypes.Wood] = 0;

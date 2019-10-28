@@ -27,6 +27,7 @@ export default class Weapon extends Item {
                     atk = 0,
                     matk = 0,
                     material,
+                    resources,
                     delay
                 } = {}) {
 
@@ -39,6 +40,7 @@ export default class Weapon extends Item {
             type,
             rarity,
             material,
+            resources,
             delay
         });
 

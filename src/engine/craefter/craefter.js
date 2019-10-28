@@ -84,14 +84,14 @@ export default class Craefter extends Organism {
     evaluateItem({
                      /* eslint-disable-next-line no-unused-vars */
                      resources
-                 }) {
+                 } = {}) {
         // stub please override
     }
 
-    craeft(
-        /* eslint-disable-next-line no-unused-vars */
-        resources
-    ) {
+    craeft({
+               /* eslint-disable-next-line no-unused-vars */
+               resources
+           } = {}) {
         // stub please override
         this.isCraefting = true;
     }

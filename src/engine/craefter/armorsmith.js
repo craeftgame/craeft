@@ -79,7 +79,7 @@ export default class Armorsmith extends Craefter {
 
     evaluateItem({
                      resources
-                 }) {
+                 } = {}) {
 
         // 2 percent of all resources is the base
         const baseline = (resources.sum() / 100);
@@ -125,9 +125,9 @@ export default class Armorsmith extends Craefter {
         });
     }
 
-    craeft(
-        resources
-    ) {
+    craeft({
+               resources
+           } = {}) {
         super.craeft(resources);
 
         const {
@@ -137,7 +137,9 @@ export default class Armorsmith extends Craefter {
             defMax,
             mdef,
             mdefMax
-        } = this.evaluateItem(resources);
+        } = this.evaluateItem({
+            resources
+        });
 
         const slot = this.evaluateSlot(type);
 

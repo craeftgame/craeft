@@ -102,7 +102,7 @@ export default class Weaponsmith extends Craefter {
 
     evaluateItem({
                      resources
-                 }) {
+                 } = {}) {
 
         // 2 percent of all resources is the base
         const baseline = (resources.sum() / 100);
@@ -141,13 +141,15 @@ export default class Weaponsmith extends Craefter {
         }
     }
 
-    craeft(
-        resources
-    ) {
+    craeft({
+               resources
+           } = {}) {
         super.craeft(resources);
 
         // todo include resource heaviness / complexity
-        this.exhaust(1);
+        this.exhaust(
+            1
+        );
 
         const {
             type,
@@ -156,11 +158,15 @@ export default class Weaponsmith extends Craefter {
             atkMax,
             matk,
             matkMax
-        } = this.evaluateItem(resources);
+        } = this.evaluateItem({
+            resources
+        });
+
 
         const item = new Weapon({
             type,
             material,
+            resources,
             level: this.level,
             craefterId: this.id,
             // todo include luk
