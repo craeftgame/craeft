@@ -260,7 +260,7 @@ export default class Craeft {
             itemId
         );
 
-        const {name} = item;
+        const name = item.getName();
 
         const resources = item.disentchant();
 
