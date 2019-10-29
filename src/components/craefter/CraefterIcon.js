@@ -28,7 +28,8 @@ export default class CraefterIcon extends Component {
     render() {
 
         const classes = [
-            "craefter-icon"
+            "craefter-icon",
+            "rpgui-cursor-point"
         ];
 
         if (this.props.isSelected) {
