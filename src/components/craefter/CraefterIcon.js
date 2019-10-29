@@ -81,6 +81,13 @@ export default class CraefterIcon extends Component {
                         </div> : null
                 }
 
+                {
+                    this.props.craefter.dead && !this.props.craefter.isCraefting ?
+                        <div className='craefter-dead'>
+                            X
+                        </div> : null
+                }
+
             </div>
         )
     }

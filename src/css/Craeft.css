@@ -182,6 +182,15 @@ Craefter
     text-align: center;
 }
 
+.craefter-dead {
+    color: darkred;
+    position: absolute;
+    top: 39px;
+    left: 23px;
+    font-weight: bold;
+    font-size: 50px;
+}
+
 /*
 ITEM
 */
