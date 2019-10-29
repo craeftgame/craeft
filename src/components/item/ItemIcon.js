@@ -68,7 +68,7 @@ export default class ItemIcon extends Component {
         }
 
         return (
-            <div className="rpgui-container framed-grey item-container"
+            <div className="rpgui-container rpgui-cursor-point framed-grey item-container"
                  onClick={this.itemSelected}>
 
                 <div className={containerClasses.join(" ")}>
