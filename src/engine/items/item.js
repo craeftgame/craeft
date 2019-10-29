@@ -16,6 +16,7 @@ import {
     RarityNames,
     SlotNames
 } from "../data/names";
+
 import Resources from "../resources";
 import config from "../config"
 
@@ -58,7 +59,7 @@ export default class Item {
         this.resources = resources;
         this.name = name;
 
-        this.rarity = rarity || this.evaluateRarity();
+        this.rarity = rarity || Item.evaluateRarity();
     }
 
     getName() {
@@ -69,19 +70,14 @@ export default class Item {
         return `${RarityNames[this.rarity]} ${SlotNames[this.slot]} ${ItemNames[this.type]}`
     }
 
-    evaluateRarity() {
+    static evaluateRarity() {
         const chance = Math.random() * 100;
 
-        // 0-79
-        if (chance < 80) {
+        if (chance < config.rarityChancePercentCommon) {
             return Rarities.Common;
-        }
-        // 80-84
-        else if (chance < 85) {
+        } else if (chance < config.rarityChancePercentRare) {
             return Rarities.Rare;
-        }
-        // 85-98
-        else if (chance < 98) {
+        } else if (chance < config.rarityChancePercentEpic) {
             return Rarities.Epic;
         }
         // 98-99
