@@ -122,7 +122,7 @@ export default class Craeft extends Component {
     ) {
         const result = global.craeft.disentchant(itemId)
 
-        this.log(`"${result.name}" disenchanted! ${result.resources.sum()} resource(s) gathered!`)
+        this.log(`"${result.name}" disenchanted! ${result.resources.sum()} resource(s) retrieved!`)
     }
 
     log(
