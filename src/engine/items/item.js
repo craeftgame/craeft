@@ -119,23 +119,23 @@ export default class Item {
             resources: {
                 [ResourceTypes.Wood]:
                     getRandomInt(
-                        Math.floor(this.resources[ResourceTypes.Wood] / 100 * config.fuLow),
-                        Math.floor(this.resources[ResourceTypes.Wood] / 100 * config.fuHigh)
+                        Math.floor(this.resources[ResourceTypes.Wood] / 100 * config.disentchantRecyclingPercentFrom),
+                        Math.floor(this.resources[ResourceTypes.Wood] / 100 * config.disentchantRecyclingPercentTo)
                     ),
                 [ResourceTypes.Metal]:
                     getRandomInt(
-                        Math.floor(this.resources[ResourceTypes.Metal] / 100 * config.fuLow),
-                        Math.floor(this.resources[ResourceTypes.Metal] / 100 * config.fuHigh)
+                        Math.floor(this.resources[ResourceTypes.Metal] / 100 * config.disentchantRecyclingPercentFrom),
+                        Math.floor(this.resources[ResourceTypes.Metal] / 100 * config.disentchantRecyclingPercentTo)
                     ),
                 [ResourceTypes.Diamond]:
                     getRandomInt(
-                        Math.floor(this.resources[ResourceTypes.Diamond] / 100 * config.fuLow),
-                        Math.floor(this.resources[ResourceTypes.Diamond] / 100 * config.fuHigh)
+                        Math.floor(this.resources[ResourceTypes.Diamond] / 100 * config.disentchantRecyclingPercentFrom),
+                        Math.floor(this.resources[ResourceTypes.Diamond] / 100 * config.disentchantRecyclingPercentTo)
                     ),
                 [ResourceTypes.Cloth]:
                     getRandomInt(
-                        Math.floor(this.resources[ResourceTypes.Cloth] / 100 * config.fuLow),
-                        Math.floor(this.resources[ResourceTypes.Cloth] / 100 * config.fuHigh)
+                        Math.floor(this.resources[ResourceTypes.Cloth] / 100 * config.disentchantRecyclingPercentFrom),
+                        Math.floor(this.resources[ResourceTypes.Cloth] / 100 * config.disentchantRecyclingPercentTo)
                     )
             }
 

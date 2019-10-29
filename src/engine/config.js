@@ -12,6 +12,6 @@ module.exports = {
     // game parameters
     startResources: debug ? 1000 : 0,
     startDelay: 1,
-    fuLow: 30,
-    fuHigh: 75
+    disentchantRecyclingPercentFrom: 30,
+    disentchantRecyclingPercentTo: 75
 };
