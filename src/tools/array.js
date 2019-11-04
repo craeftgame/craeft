@@ -12,4 +12,11 @@ export default class ArrayHelper {
     ) {
         return array.splice(array.indexOf(item), 1)
     }
+
+    static wipeItem(
+        array,
+        item
+    ) {
+        return array[array.indexOf(item)] = null
+    }
 }
