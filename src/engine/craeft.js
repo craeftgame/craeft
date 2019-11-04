@@ -57,6 +57,8 @@ export default class Craeft {
     // craefters
     craefters = [];
 
+    craeftersCount = 0;
+
     // items
     items = [];
 
@@ -226,7 +228,7 @@ export default class Craeft {
     ) {
         let craefter;
 
-        const delay = config.startDelay * pow(log(this.craefters.length + 2), 20);
+        const delay = config.startDelay * pow(log(this.craeftersCount + 2), 20);
 
         switch (which) {
             case CraefterTypes.Weaponsmith:
@@ -246,6 +248,8 @@ export default class Craeft {
         }
 
         this.craefters.push(craefter);
+
+        this.craeftersCount++;
 
         craefter.onDoneCreating = (exp) => {
             this.player.addExp(exp);
@@ -279,6 +283,24 @@ export default class Craeft {
             name,
             resources
         }
+    }
+
+    bury(
+        craefterId
+    ) {
+        const craefter = ArrayHelper.findById(
+            this.craefters,
+            craefterId
+        );
+
+        const name = craefter.name;
+
+        ArrayHelper.removeItem(
+            this.craefters,
+            craefter
+        );
+
+        return name;
     }
 
     static saveState() {

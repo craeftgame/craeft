@@ -23,6 +23,7 @@ export default class Craeft extends Component {
         this.unEquipItem = this.unEquipItem.bind(this);
 
         this.disentchant = this.disentchant.bind(this);
+        this.bury = this.bury.bind(this);
 
         window.onbeforeunload = () => {
             CraeftGame.saveState();
@@ -57,6 +58,7 @@ export default class Craeft extends Component {
         this.forceUpdate();
     }
 
+    // todo move to craeft to have better control over the state
     addItem(
         item,
         resourcesConsumed
@@ -120,9 +122,21 @@ export default class Craeft extends Component {
     disentchant(
         itemId
     ) {
-        const result = global.craeft.disentchant(itemId)
+        const result = global.craeft.disentchant(itemId);
 
         this.log(`"${result.name}" disenchanted! ${result.resources.sum()} resource(s) retrieved!`)
+
+        this.forceUpdate()
+    }
+
+    bury(
+        craefterId
+    ) {
+        const name = global.craeft.bury(craefterId);
+
+        this.log(`Cräfter "${name}" was buried!`)
+
+        this.forceUpdate()
     }
 
     log(
@@ -153,6 +167,7 @@ export default class Craeft extends Component {
                         <CraefterList resources={global.craeft.resources}
                                       craefters={global.craeft.craefters}
                                       craefterAdded={this.addCraefter}
+                                      bury={this.bury}
                                       itemAdded={this.addItem}/>
 
                         <Farm craeft={global.craeft}/>

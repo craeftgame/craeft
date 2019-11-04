@@ -198,12 +198,15 @@ Craefter
 }
 
 .craefter-dead {
-    color: darkred;
     position: absolute;
-    top: 39px;
+    top: 23px;
     left: 23px;
     font-weight: bold;
     font-size: 50px;
+}
+
+.craefter-dead .fa-skull {
+    color: darkred;
 }
 
 /*

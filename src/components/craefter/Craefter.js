@@ -7,7 +7,8 @@ export default class Craefter extends Component {
     static propTypes = {
         craefter: PropTypes.object,
         openCraeftDialog: PropTypes.func,
-        canCraeft: PropTypes.bool
+        canCraeft: PropTypes.bool,
+        bury: PropTypes.func,
     };
 
     render() {
@@ -58,7 +59,8 @@ export default class Craefter extends Component {
 
                 {
                     this.props.craefter.dead ?
-                        <button className='rpgui-button'>
+                        <button className='rpgui-button'
+                                onClick={() => this.props.bury(this.props.craefter.id)}>
 
                             <span className="icon">
                                 <i className="fas fa-skull-crossbones"/>

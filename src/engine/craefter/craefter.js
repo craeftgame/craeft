@@ -129,7 +129,7 @@ export default class Craefter extends Organism {
     ) {
         super.exhaust(sta);
 
-        if (Math.floor(this.staCurrent <= 0)) {
+        if (Math.floor(this.staCurrent) === 0) {
             this.dead = true;
         }
     }

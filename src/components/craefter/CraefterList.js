@@ -14,7 +14,8 @@ export default class CraefterList extends Component {
         craefters: PropTypes.array,
         resources: PropTypes.object,
         itemAdded: PropTypes.func,
-        craefterAdded: PropTypes.func
+        craefterAdded: PropTypes.func,
+        bury: PropTypes.func
     };
 
     state = {
@@ -38,6 +39,7 @@ export default class CraefterList extends Component {
         this.hasEnoughResources = this.hasEnoughResources.bind(this);
 
         this.onCraefterSelect = this.onCraefterSelect.bind(this);
+        this.bury = this.bury.bind(this);
     }
 
     hasEnoughResources() {
@@ -102,6 +104,16 @@ export default class CraefterList extends Component {
         })
     }
 
+    bury(
+        craefterId
+    ) {
+        this.props.bury(craefterId);
+
+        this.setState({
+            selectedCraefter: null
+        })
+    }
+
     render() {
         return (
             <div className='craefters column frame'>
@@ -139,6 +151,7 @@ export default class CraefterList extends Component {
                         this.state.selectedCraefter && !this.state.selectedCraefter.isCraefting ?
                             <Craefter craefter={this.state.selectedCraefter}
                                       openCraeftDialog={this.openCraeftDialog}
+                                      bury={this.bury}
                                       canCraeft={this.hasEnoughResources()}/>
                             : null
                     }
