@@ -9,8 +9,6 @@ import Farm from "../Farm";
 import Items from "../item/Items";
 import CraefterList from "../craefter/CraefterList";
 
-import ArrayHelper from "../../tools/array";
-
 export default class Craeft extends Component {
 
     constructor(props) {
@@ -58,32 +56,14 @@ export default class Craeft extends Component {
         this.forceUpdate();
     }
 
-    // todo move to craeft to have better control over the state
     addItem(
         item,
         resourcesConsumed
     ) {
-        global.craeft.resources
-            .sub(resourcesConsumed);
-
-        item.onDoneCreating = (
-            craefterId,
-            exp
-        ) => {
-
-            const craefter = ArrayHelper.findById(
-                global.craeft.craefters,
-                craefterId
-            );
-
-            craefter.finishCraefting(
-                exp
-            );
-
-            this.log(`"${item.getName()}" cräfted by ${craefter.name}! `);
-        };
-
-        global.craeft.items.push(item);
+        global.craeft.addItem(
+            item,
+            resourcesConsumed
+        )
 
         this.forceUpdate();
     }
@@ -105,7 +85,6 @@ export default class Craeft extends Component {
     unEquipItem(
         itemId
     ) {
-
         const unequipped = global.craeft.player.equipment.unequip(itemId);
 
         if (unequipped) {

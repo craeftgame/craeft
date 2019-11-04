@@ -223,6 +223,32 @@ export default class Craeft {
         });
     }
 
+    addItem(
+        item,
+        resourcesConsumed
+    ) {
+        this.resources.sub(resourcesConsumed);
+
+        item.onDoneCreating = (
+            craefterId,
+            exp
+        ) => {
+
+            const craefter = ArrayHelper.findById(
+                this.craefters,
+                craefterId
+            );
+
+            craefter.finishCraefting(
+                exp
+            );
+
+            this.logs.push(`"${item.getName()}" cräfted by ${craefter.name}! `);
+        };
+
+       this.items.push(item);
+    }
+
     addCraefter(
         which
     ) {
