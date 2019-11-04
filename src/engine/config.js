@@ -5,6 +5,8 @@ module.exports = {
     // detect debug
     debug,
 
+    subLogo: "Alpha",
+
     // general config
     useLocalStorage: false,
     compressLocalStorage: true,

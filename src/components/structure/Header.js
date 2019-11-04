@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import config from "../../engine/config"
 
 export default class Header extends Component {
 
@@ -8,6 +9,12 @@ export default class Header extends Component {
 
                 <a href="#craeft">
                     Cräft!
+                    {
+                        config.subLogo ?
+                            <div className={"craeft-sub-logo"}>
+                                {config.subLogo}
+                            </div> : null
+                    }
                 </a>
 
                 <hr className="golden"/>

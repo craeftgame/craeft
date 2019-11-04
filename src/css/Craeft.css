@@ -53,6 +53,21 @@ strong {
     text-decoration: none;
 }
 
+.craeft-sub-logo {
+    color: darkred;
+    position: relative;
+    top: -115px;
+    left: 100px;
+    transform: rotate(38deg);
+    font-size: 24px;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-shadow: -1px -1px 0 #FAEFE1,
+    1px -1px 0 #FAEFE1,
+    -1px 1px 0 #FAEFE1,
+    1px 1px 0 #FAEFE1;
+}
+
 .player {
     margin-bottom: 30px;
 }
