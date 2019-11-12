@@ -1,5 +1,5 @@
 // create debug flag to fall back to debug values
-const debug = process.env.NODE_ENV === "development";
+const debug = process.env.NODE_ENV === "development" && false;
 
 module.exports = {
     // detect debug
@@ -25,6 +25,14 @@ module.exports = {
     // 80-84
     rarityChancePercentRare: 85.0,
     // 85-98
-    rarityChancePercentEpic: 98.0
+    rarityChancePercentEpic: 98.0,
     // 98-99 - legendary
+
+    // start delays
+    initialItemDelay: debug ? 1 : 10,
+    initialCraefterDelay: debug ? 1 : 5,
+    initialFarmDelay: debug ? 1 : 2,
+
+    // play initial stats
+    playerHp: 50
 };

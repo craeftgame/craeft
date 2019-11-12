@@ -3,9 +3,12 @@ import {
     getRandomId
 } from "../../tools/rand";
 import peopleNames from "../data/people_names"
-import {Unknown} from "../data/types";
+import {
+    Unknown
+} from "../data/types";
 import Organism from "../organism";
 import Delay from "../delay";
+import config from "../config"
 
 export default class Craefter extends Organism {
 
@@ -18,7 +21,7 @@ export default class Craefter extends Organism {
                     name = getRandomArrayItem({
                         array: peopleNames
                     }),
-                    delay = global.delay || 5,
+                    delay = config.initialCraefterDelay,
                     str = 0,
                     int = 0,
                     dex = 0,

@@ -16,7 +16,10 @@ export default class Gauge extends Component {
             <div className='row'>
 
                 <span className='nowrap'>
-                    {this.props.label}: {Math.floor(this.props.current)}/{Math.floor(this.props.max)}
+                    {this.props.label}:&nbsp;
+                    {Math.floor(this.props.current)}
+                    /
+                    {Math.floor(this.props.max)}
                 </span>
 
                 <Progress color={this.props.color}

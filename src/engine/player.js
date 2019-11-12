@@ -8,6 +8,7 @@ import {
 } from "../tools/rand";
 import Organism from "./organism";
 import Equipment from "./equipment";
+import config from "./config"
 
 export default class Player extends Organism {
 
@@ -18,14 +19,18 @@ export default class Player extends Organism {
                         array: peopleNames
                     }),
                     // stats
-                    hp = 50,
+                    hp = config.playerHp,
                     sta = 25,
-                    // attributes
+                    // physical attack power
                     str = getRandomInt(0, 10),
+                    // regeneration and hit points
+                    vit = getRandomInt(1, 2),
+                    // magic attack power
                     int = getRandomInt(0, 7),
+                    // change to hit and forging powers
                     dex = getRandomInt(0, 2),
-                    luk = getRandomInt(0, 1),
-                    vit = getRandomInt(0, 2)
+                    // lok on adding special abilities
+                    luk = getRandomInt(0, 1)
                 } = {}) {
         super({
             name,

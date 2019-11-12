@@ -38,7 +38,7 @@ export default class Item {
                     rarity,
                     material,
                     resources,
-                    delay = global.delay || 10
+                    delay = config.initialItemDelay
                 } = {}) {
 
         this.delay = new Delay({

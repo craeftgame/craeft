@@ -1,21 +1,26 @@
 import Timer from "../tools/timer";
 import Resources from "./resources";
+
 import {
     ResourceTypes
 } from "./data/types";
+
 import {
     getRandomArrayItem,
     getRandomInt
 } from "../tools/rand";
+
 import {
     pow,
     log
 } from "mathjs";
 
+import config from "./config";
+
 export default class Farm {
 
     constructor({
-                    delay = global.delay || 2
+                    delay = config.initialFarmDelay
                 } = {}) {
         this.delay = delay;
         this.timer = new Timer({
