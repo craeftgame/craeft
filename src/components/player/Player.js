@@ -26,8 +26,9 @@ export default class Player extends Component {
 
                             <div>
                                 <span>Str: {this.props.player.str} </span>
-                                <span>Dex: {this.props.player.dex} </span>
+                                <span>Vit: {this.props.player.vit} </span>
                                 <span>Int: {this.props.player.int} </span>
+                                <span>Dex: {this.props.player.dex} </span>
                                 <span>Luk: {this.props.player.luk} </span>
                             </div>
 
