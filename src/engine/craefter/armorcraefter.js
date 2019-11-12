@@ -15,31 +15,33 @@ import {
     getRandomObjectEntry
 } from "../../tools/rand";
 
-export default class Armorsmith extends Craefter {
+export default class ArmorCraefter extends Craefter {
 
     constructor({
                     name,
                     delay,
                     str = 4,
+                    int = 2,
                     dex = 3,
                     luk = 9
                 } = {}) {
         super({
-            type: CraefterTypes.Armorsmith,
+            type: CraefterTypes.ArmorCraefter,
             name,
             delay,
-            luk,
+            str,
+            int,
             dex,
-            str
+            luk
         });
     }
 
     static hydrate(obj) {
-        const armorsmith = Object.assign(new Armorsmith(), obj);
+        const armorCraefter = Object.assign(new ArmorCraefter(), obj);
 
-        Craefter.hydrate(armorsmith, obj);
+        Craefter.hydrate(armorCraefter, obj);
 
-        return armorsmith;
+        return armorCraefter;
     }
 
     evaluateItemType(
@@ -87,13 +89,17 @@ export default class Armorsmith extends Craefter {
         // add atk mainly based on metal
         // todo add str influence
         const def = Math.round(
-            baseline + Craefter.calculateMaterialImpact(resources[ResourceTypes.Metal])
+            baseline + Craefter.calculateMaterialImpact(
+            resources[ResourceTypes.Metal]
+            )
         );
 
         // add matk mainly based on wood
         // todo add int influence
         const mdef = Math.round(
-            baseline + Craefter.calculateMaterialImpact(resources[ResourceTypes.Wood])
+            baseline + Craefter.calculateMaterialImpact(
+            resources[ResourceTypes.Wood]
+            )
         );
 
         const ratios = resources.ratios();
@@ -149,8 +155,14 @@ export default class Armorsmith extends Craefter {
             slot,
             craefterId: this.id,
             level: this.level,
-            def: getRandomInt(def, defMax),
-            mdef: getRandomInt(mdef, mdefMax)
+            def: getRandomInt(
+                def,
+                defMax
+            ),
+            mdef: getRandomInt(
+                mdef,
+                mdefMax
+            )
         });
 
         this.itemId = item.id;

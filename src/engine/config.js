@@ -34,5 +34,33 @@ module.exports = {
     initialFarmDelay: debug ? 1 : 2,
 
     // play initial stats
-    playerHp: 50
+    playerInitialHp: 50,
+    playerInitialSta: 25,
+
+    playerInitialStrFrom: 0,
+    playerInitialStrTo: 10,
+
+    playerInitialVitFrom: 1,
+    playerInitialVitTo: 2,
+
+    playerInitialIntFrom: 0,
+    playerInitialIntTo: 7,
+
+    playerInitialDexFrom: 0,
+    playerInitialDexTo: 2,
+
+    // craefter initial stats
+    craefterInitialSta: 5,
+
+    weaponCraefterInitialStr: 9,
+    weaponCraefterInitialInt: 3,
+    weaponCraefterInitialDex: 5,
+    weaponCraefterInitialLuk: 6,
+
+    armorCraefterInitialStr: 4,
+    armorCraefterInitialInt: 2,
+    armorCraefterInitialDex: 3,
+    armorCraefterInitialLuk: 9,
+
+    organismInitialRequiredExp: 20
 };

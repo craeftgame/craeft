@@ -8,6 +8,8 @@ import {
     getRandomId
 } from "../tools/rand";
 
+import config from "./config"
+
 export default class Organism extends Tickable {
 
     constructor({
@@ -27,7 +29,7 @@ export default class Organism extends Tickable {
         this.staMax = sta;
 
         this.expCurrent = 0;
-        this.expMax = 20;
+        this.expMax = config.organismInitialRequiredExp;
     }
 
     addExp(

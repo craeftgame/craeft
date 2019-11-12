@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import {CraefterTypes} from "../../engine/data/types";
+import {
+    CraefterTypes
+} from "../../engine/data/types";
 
 export default class AddCraeftersWindow extends Component {
 
@@ -11,16 +13,16 @@ export default class AddCraeftersWindow extends Component {
     constructor(props) {
         super(props);
 
-        this.addWS = this.addWS.bind(this);
-        this.addAS = this.addAS.bind(this);
+        this.addWC = this.addWC.bind(this);
+        this.addAC = this.addAC.bind(this);
     }
 
-    addWS() {
-        this.props.addCraefter(CraefterTypes.Weaponsmith)
+    addWC() {
+        this.props.addCraefter(CraefterTypes.WeaponCraefter)
     }
 
-    addAS() {
-        this.props.addCraefter(CraefterTypes.Armorsmith)
+    addAC() {
+        this.props.addCraefter(CraefterTypes.ArmorCraefter)
     }
 
 
@@ -43,7 +45,7 @@ export default class AddCraeftersWindow extends Component {
 
                     <div>
                         <span className='rpgui-icon weapon-slot'/>
-                        <button onClick={this.addWS}
+                        <button onClick={this.addWC}
                                 className='rpgui-button is-huge'
                                 style={style}>
                             <span>Weaponcräfter</span>
@@ -52,7 +54,7 @@ export default class AddCraeftersWindow extends Component {
 
                     <div>
                         <span className='rpgui-icon armor-slot'/>
-                        <button onClick={this.addAS}
+                        <button onClick={this.addAC}
                                 className='rpgui-button is-big'
                                 style={style}>
                             <span>Armorcräfter</span>

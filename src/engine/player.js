@@ -19,25 +19,34 @@ export default class Player extends Organism {
                         array: peopleNames
                     }),
                     // stats
-                    hp = config.playerHp,
-                    sta = 25,
+                    hp = config.playerInitialHp,
+                    sta = config.playerInitialSta,
                     // physical attack power
-                    str = getRandomInt(0, 10),
+                    str = getRandomInt(
+                        config.playerInitialStrFrom,
+                        config.playerInitialStrTo
+                    ),
                     // regeneration and hit points
-                    vit = getRandomInt(1, 2),
+                    vit = getRandomInt(
+                        config.playerInitialVitFrom,
+                        config.playerInitialVitTo
+                    ),
                     // magic attack power
-                    int = getRandomInt(0, 7),
+                    int = getRandomInt(
+                        config.playerInitialIntFrom,
+                        config.playerInitialIntTo
+                    ),
                     // change to hit and forging powers
-                    dex = getRandomInt(0, 2),
-                    // lok on adding special abilities
-                    luk = getRandomInt(0, 1)
+                    dex = getRandomInt(
+                        config.playerInitialDexFrom,
+                        config.playerInitialDexTo
+                    )
                 } = {}) {
         super({
             name,
             sta
         });
 
-        this.luk = luk;
         this.dex = dex;
         this.str = str;
         this.int = int;

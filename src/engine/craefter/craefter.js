@@ -26,7 +26,7 @@ export default class Craefter extends Organism {
                     int = 0,
                     dex = 0,
                     luk = 0,
-                    sta = 5
+                    sta = config.craefterInitialSta
                 } = {}) {
         super({
             name,

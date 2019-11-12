@@ -11,8 +11,9 @@ import Player from "../engine/player";
 import Farm from "../engine/farm";
 import Weapon from "./items/weapon";
 import Armor from "./items/armor";
-import Weaponsmith from "./craefter/weaponsmith";
-import Armorsmith from "./craefter/armorsmith";
+
+import WeaponCraefter from "./craefter/weaponcraefter";
+import ArmorCraefter from "./craefter/armorcraefter";
 
 import Serializer from "@craeft/serializer";
 import {
@@ -111,11 +112,11 @@ export default class Craeft {
             let tc;
 
             switch (craefter.type) {
-                case CraefterTypes.Weaponsmith:
-                    tc = Weaponsmith.hydrate(craefter);
+                case CraefterTypes.WeaponCraefter:
+                    tc = WeaponCraefter.hydrate(craefter);
                     break;
-                case CraefterTypes.Armorsmith:
-                    tc = Armorsmith.hydrate(craefter);
+                case CraefterTypes.ArmorCraefter:
+                    tc = ArmorCraefter.hydrate(craefter);
                     break;
                 default:
                     break;
@@ -257,14 +258,14 @@ export default class Craeft {
         const delay = config.startDelay * pow(log(this.craeftersCount + 2), 20);
 
         switch (which) {
-            case CraefterTypes.Weaponsmith:
-                craefter = new Weaponsmith({
+            case CraefterTypes.WeaponCraefter:
+                craefter = new WeaponCraefter({
                     delay
                 });
                 break;
 
-            case CraefterTypes.Armorsmith:
-                craefter = new Armorsmith({
+            case CraefterTypes.ArmorCraefter:
+                craefter = new ArmorCraefter({
                     delay
                 });
                 break;

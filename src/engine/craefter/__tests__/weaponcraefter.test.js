@@ -1,14 +1,14 @@
 /* globals describe, test, expect */
-import Weaponsmith from "../weaponsmith"
+import WeaponCraefter from "../weaponcraefter"
 import {Unknown, WeaponTypes} from "../../data/types";
 
-describe("Weaponsmith", () => {
+describe("WeaponCraefter", () => {
     describe("evaluateItem", () => {
 
         describe("Staff", () => {
 
             test("should return item type wand if only wood", () => {
-                const craefter = new Weaponsmith();
+                const craefter = new WeaponCraefter();
 
                 const item = craefter.evaluateItem({
                     wood: 100
@@ -22,9 +22,9 @@ describe("Weaponsmith", () => {
         describe("Sword", () => {
 
             test("should return item type sword if only metal", () => {
-                const weaponsmith = new Weaponsmith();
+                const weaponCraefter = new WeaponCraefter();
 
-                const item = weaponsmith.evaluateItem({
+                const item = weaponCraefter.evaluateItem({
                     metal: 100
                 });
 
@@ -32,9 +32,9 @@ describe("Weaponsmith", () => {
             });
 
             test("should return item type sword if metal is way larger than wood", () => {
-                const weaponsmith = new Weaponsmith();
+                const weaponCraefter = new WeaponCraefter();
 
-                const item = weaponsmith.evaluateItem({
+                const item = weaponCraefter.evaluateItem({
                     metal: 100,
                     wood: 20
                 });
@@ -47,9 +47,9 @@ describe("Weaponsmith", () => {
         describe("Knife", () => {
 
             test("should return item type knife if metal is a little bit larger than wood", () => {
-                const weaponsmith = new Weaponsmith();
+                const weaponCraefter = new WeaponCraefter();
 
-                const item = weaponsmith.evaluateItem({
+                const item = weaponCraefter.evaluateItem({
                     metal: 30,
                     wood: 20
                 });
@@ -62,7 +62,7 @@ describe("Weaponsmith", () => {
         describe("JewelSword", () => {
 
             test("make jewel sword", () => {
-                const weaponsmith = new Weaponsmith();
+                const weaponCraefter = new WeaponCraefter();
 
                 const res = {
                     metal: 5,
@@ -70,7 +70,7 @@ describe("Weaponsmith", () => {
                     diamond: 11
                 };
 
-                const item = weaponsmith.evaluateItem(res);
+                const item = weaponCraefter.evaluateItem(res);
 
                 console.log(item.type, WeaponTypes.JewelSword);
 
@@ -82,7 +82,7 @@ describe("Weaponsmith", () => {
         describe("JewelKnife", () => {
 
             test("make jewel knife", () => {
-                const weaponsmith = new Weaponsmith();
+                const weaponCraefter = new WeaponCraefter();
 
                 const res = {
                     metal: 5,
@@ -90,7 +90,7 @@ describe("Weaponsmith", () => {
                     diamond: 11
                 };
 
-                const item = weaponsmith.evaluateItem(res);
+                const item = weaponCraefter.evaluateItem(res);
 
                 expect(item.type).toBe(WeaponTypes.JewelKnife)
             });
@@ -100,14 +100,14 @@ describe("Weaponsmith", () => {
         describe("JewelWand", () => {
 
             test("make jewel wand", () => {
-                const weaponsmith = new Weaponsmith();
+                const weaponCraefter = new WeaponCraefter();
 
                 const res = {
                     wood: 5,
                     diamond: 11
                 };
 
-                const item = weaponsmith.evaluateItem(res);
+                const item = weaponCraefter.evaluateItem(res);
 
                 expect(item.type).toBe(WeaponTypes.JewelWand)
             });
@@ -117,13 +117,13 @@ describe("Weaponsmith", () => {
         describe("mysterious", () => {
 
             test("Should create", () => {
-                const weaponsmith = new Weaponsmith();
+                const weaponCraefter = new WeaponCraefter();
 
                 const res = {
                     diamond: 50
                 };
 
-                const item = weaponsmith.evaluateItem(res);
+                const item = weaponCraefter.evaluateItem(res);
 
                 expect(item.type).toBe(Unknown)
             });

@@ -26,9 +26,9 @@ const ItemCategories = Object.freeze({
 });
 
 const CraefterTypes = Object.freeze({
-    Weaponsmith: Symbol.for("weaponsmith"),
-    Armorsmith: Symbol.for("armorsmith"),
-    Jewelcraefter: Symbol.for("jewelcraefter"),
+    WeaponCraefter: Symbol.for("weaponcraefter"),
+    ArmorCraefter: Symbol.for("armorcraefter"),
+    JewelCraefter: Symbol.for("jewelcraefter"),
     Alchemist: Symbol.for("alchemist")
 });
 

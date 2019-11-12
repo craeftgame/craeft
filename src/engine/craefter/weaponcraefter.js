@@ -1,6 +1,5 @@
 import Weapon from "../items/weapon";
 import Craefter from "./craefter";
-import armorsmith from "./armorsmith";
 
 import {
     Unknown,
@@ -19,17 +18,19 @@ import {
     round
 } from "mathjs";
 
-export default class Weaponsmith extends Craefter {
+import config from "../config"
+
+export default class WeaponCraefter extends Craefter {
     constructor({
                     name,
                     delay,
-                    str = 9,
-                    int = 3,
-                    dex = 5,
-                    luk = 6
+                    str = config.weaponCraefterInitialStr,
+                    int = config.weaponCraefterInitialInt,
+                    dex = config.weaponCraefterInitialDex,
+                    luk = config.weaponCraefterInitialLuk
                 } = {}) {
         super({
-            type: CraefterTypes.Weaponsmith,
+            type: CraefterTypes.WeaponCraefter,
             name,
             delay,
             str,
@@ -40,11 +41,11 @@ export default class Weaponsmith extends Craefter {
     }
 
     static hydrate(obj) {
-        const weaponsmith = Object.assign(new Weaponsmith(), obj);
+        const weaponcraefter = Object.assign(new WeaponCraefter(), obj);
 
-        Craefter.hydrate(armorsmith, obj);
+        Craefter.hydrate(weaponcraefter, obj);
 
-        return weaponsmith;
+        return weaponcraefter;
     }
 
     evaluateItemType(
@@ -170,8 +171,14 @@ export default class Weaponsmith extends Craefter {
             level: this.level,
             craefterId: this.id,
             // todo include luk
-            atk: getRandomInt(atk, atkMax),
-            matk: getRandomInt(matk, matkMax)
+            atk: getRandomInt(
+                atk,
+                atkMax
+            ),
+            matk: getRandomInt(
+                matk,
+                matkMax
+            )
         });
 
         this.itemId = item.id;

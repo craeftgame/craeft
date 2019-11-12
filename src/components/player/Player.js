@@ -29,7 +29,6 @@ export default class Player extends Component {
                                 <span>Vit: {this.props.player.vit} </span>
                                 <span>Int: {this.props.player.int} </span>
                                 <span>Dex: {this.props.player.dex} </span>
-                                <span>Luk: {this.props.player.luk} </span>
                             </div>
 
                             <div>

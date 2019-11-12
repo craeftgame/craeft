@@ -47,12 +47,12 @@ export default class CraefterIcon extends Component {
                  onClick={this.onCraefterSelect}>
 
                 {
-                    this.props.craefter.type === CraefterTypes.Weaponsmith ?
+                    this.props.craefter.type === CraefterTypes.WeaponCraefter ?
                         <div className={`rpgui-icon weapon-slot ${disabled}`}/> : null
                 }
 
                 {
-                    this.props.craefter.type === CraefterTypes.Armorsmith ?
+                    this.props.craefter.type === CraefterTypes.ArmorCraefter ?
                         <div className={`rpgui-icon armor-slot ${disabled}`}/> : null
                 }
 
