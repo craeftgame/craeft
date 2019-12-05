@@ -15,22 +15,22 @@
   "author": "Sebastian Gerske",
   "license": "ISC",
   "devDependencies": {
-    "create-react-app": "^3.0.1",
-    "eslint-plugin-react": "^7.14.2",
-    "gh-pages": "^2.0.1",
+    "create-react-app": "^3.3.0",
+    "eslint-plugin-react": "^7.17.0",
+    "gh-pages": "^2.1.1",
     "lz-string": "^1.4.4",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.0",
     "prop-types": "^15.7.2"
   },
   "dependencies": {
     "@craeft/serializer": "git+https://github.com/craeftgame/serializer.git",
-    "bulma": "^0.7.5",
+    "bulma": "^0.8.0",
     "local-storage": "^2.0.0",
-    "mathjs": "^6.0.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "^3.0.1",
-    "serializr": "^1.5.1"
+    "mathjs": "^6.2.3",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "^3.2.0",
+    "serializr": "^1.5.3"
   },
   "browserslist": [
     ">0.2%",
