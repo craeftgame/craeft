@@ -20,7 +20,8 @@
     "gh-pages": "^2.1.1",
     "lz-string": "^1.4.4",
     "node-sass": "^4.13.0",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "typescript": "^3.7.3"
   },
   "dependencies": {
     "@craeft/serializer": "git+https://github.com/craeftgame/serializer.git",
