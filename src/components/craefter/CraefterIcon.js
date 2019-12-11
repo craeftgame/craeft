@@ -75,11 +75,9 @@ export default class CraefterIcon extends Component {
 
                 {
                     this.props.craefter && this.props.craefter.isCraefting ?
-                        <div className='craefter-timeout nowrap'>
+                        <div className='craefter-timeout craefter-timeout-item nowrap'>
                             <span>
-                                {
-                                    craeft.items.findById(this.props.craefter.itemId).delay.timer.getTimeoutString()
-                                }
+                                {craeft.items.findById(this.props.craefter.itemId).delay.timer.getTimeoutString()}
                             </span>
                         </div> : null
                 }

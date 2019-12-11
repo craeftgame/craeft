@@ -197,6 +197,11 @@ Craefter
     text-align: center;
 }
 
+.craefter-timeout-item {
+    top: 30px;
+    font-size: 18px;
+}
+
 .craefter-dead {
     position: absolute;
     top: 23px;
