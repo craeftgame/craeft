@@ -5,7 +5,7 @@ import Footer from "./components/structure/Footer";
 import Header from "./components/structure/Header";
 
 // game
-import Craeft from "./components/pages/Craeft"
+import CraeftComponent from "./components/pages/Craeft"
 
 export default class CraeftPage extends Component {
 
@@ -16,7 +16,7 @@ export default class CraeftPage extends Component {
 
                 <Header/>
 
-                <Craeft/>
+                <CraeftComponent/>
 
                 <Footer/>
 

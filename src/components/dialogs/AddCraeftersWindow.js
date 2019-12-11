@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {
     CraefterTypes
-} from "../../engine/data/types";
+} from "@craeft/engine/src/data/types";
 
 export default class AddCraeftersWindow extends Component {
 

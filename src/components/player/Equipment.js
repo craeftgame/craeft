@@ -6,7 +6,7 @@ import ItemIcon from "../item/ItemIcon";
 import {
     ArmorSlots,
     WeaponSlots
-} from "../../engine/data/types";
+} from "@craeft/engine/src/data/types";
 
 export default class Equipment extends Component {
 

@@ -5,7 +5,7 @@ import CraeftWindow from "../dialogs/CraeftWindow";
 import CraefterIcon from "./CraefterIcon";
 import AddCraeftersWindow from "../dialogs/AddCraeftersWindow";
 import Craefter from "./Craefter";
-import {ResourceTypes} from "../../engine/data/types";
+import {ResourceTypes} from "@craeft/engine/src/data/types";
 import Modal from "../utility/Modal";
 
 export default class CraefterList extends Component {

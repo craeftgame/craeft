@@ -1,6 +1,7 @@
+/* globals craeft */
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import {CraefterTypes} from "../../engine/data/types";
+import {CraefterTypes} from "@craeft/engine/src/data/types";
 
 export default class CraefterIcon extends Component {
 
@@ -76,7 +77,9 @@ export default class CraefterIcon extends Component {
                     this.props.craefter && this.props.craefter.isCraefting ?
                         <div className='craefter-timeout nowrap'>
                             <span>
-                                {1}
+                                {
+                                    craeft.items.findById(this.props.craefter.itemId).delay.timer.getTimeoutString()
+                                }
                             </span>
                         </div> : null
                 }

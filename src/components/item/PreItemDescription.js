@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import {ItemNames} from "../../engine/data/names";
+import {ItemNames} from "@craeft/engine/src/data/names";
 import ItemStats from "./ItemStats";
 import ItemIcon from "./ItemIcon";
 

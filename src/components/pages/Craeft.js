@@ -1,6 +1,5 @@
+/* globals craeft */
 import React, {Component} from "react";
-
-import CraeftGame from "../../engine/craeft";
 
 // game
 import Player from "../player/Player"
@@ -9,7 +8,9 @@ import Farm from "../Farm";
 import Items from "../item/Items";
 import CraefterList from "../craefter/CraefterList";
 
-export default class Craeft extends Component {
+import Craeft from "@craeft/engine/src/craeft";
+
+export default class CraeftComponent extends Component {
 
     constructor(props) {
         super(props);
@@ -24,12 +25,12 @@ export default class Craeft extends Component {
         this.bury = this.bury.bind(this);
 
         window.onbeforeunload = () => {
-            CraeftGame.saveState();
+            craeft.saveState();
         }
     }
 
     componentDidMount() {
-        global.craeft.start({
+        craeft.start({
             onTick: () => {
                 // force update of the UI
                 this.forceUpdate();
@@ -38,20 +39,20 @@ export default class Craeft extends Component {
     }
 
     componentWillMount() {
-        CraeftGame.loadState();
+        Craeft.loadState();
     }
 
     componentWillUnmount() {
         // stop, in the name of ...
-        global.craeft.stop();
+        craeft.stop();
 
-        CraeftGame.saveState();
+        Craeft.saveState();
     }
 
     addCraefter(
         which
     ) {
-        global.craeft.addCraefter(which);
+        craeft.addCraefter(which);
 
         this.forceUpdate();
     }
@@ -60,10 +61,10 @@ export default class Craeft extends Component {
         item,
         resourcesConsumed
     ) {
-        global.craeft.addItem(
+        craeft.addItem(
             item,
             resourcesConsumed
-        )
+        );
 
         this.forceUpdate();
     }
@@ -71,7 +72,7 @@ export default class Craeft extends Component {
     equipItem(
         item
     ) {
-        const equipped = global.craeft.player.equipment.equip(item);
+        const equipped = craeft.player.equipment.equip(item);
 
         if (equipped) {
             item.equipped = equipped;
@@ -85,10 +86,10 @@ export default class Craeft extends Component {
     unEquipItem(
         itemId
     ) {
-        const unequipped = global.craeft.player.equipment.unequip(itemId);
+        const unequipped = craeft.player.equipment.unequip(itemId);
 
         if (unequipped) {
-            const item = global.craeft.items.find((i) => i.id === itemId);
+            const item = craeft.items.find((i) => i.id === itemId);
 
             item.equipped = false;
 
@@ -101,9 +102,11 @@ export default class Craeft extends Component {
     disentchant(
         itemId
     ) {
-        const result = global.craeft.disentchant(itemId);
+        const result = craeft.disentchant(itemId);
 
-        this.log(`"${result.name}" disenchanted! ${result.resources.sum()} resource(s) retrieved!`)
+        this.log(
+            `"${result.name}" disenchanted! ${result.resources.sum()} resource(s) retrieved!`
+        );
 
         this.forceUpdate()
     }
@@ -111,9 +114,9 @@ export default class Craeft extends Component {
     bury(
         craefterId
     ) {
-        const name = global.craeft.bury(craefterId);
+        const name = craeft.bury(craefterId);
 
-        this.log(`Cräfter "${name}" was buried!`)
+        this.log(`Cräfter "${name}" was buried!`);
 
         this.forceUpdate()
     }
@@ -121,7 +124,7 @@ export default class Craeft extends Component {
     log(
         entry
     ) {
-        global.craeft.logs.push(entry);
+        craeft.logs.push(entry);
 
         this.forceUpdate()
     }
@@ -131,27 +134,27 @@ export default class Craeft extends Component {
             <div className={"craeft"}>
 
                 {
-                    global.craeft.player.dead ?
+                    craeft.player.dead ?
                         <Dead/> : null
                 }
 
-                <div className={global.craeft.player.dead ? "rpgui-disabled" : ""}>
+                <div className={craeft.player.dead ? "rpgui-disabled" : ""}>
 
-                    <Player player={global.craeft.player}
+                    <Player player={craeft.player}
                             onUnequip={this.unEquipItem}
-                            logs={global.craeft.logs}/>
+                            logs={craeft.logs}/>
 
                     <div className="craefting-interface columns">
 
-                        <CraefterList resources={global.craeft.resources}
-                                      craefters={global.craeft.craefters}
+                        <CraefterList resources={craeft.resources}
+                                      craefters={craeft.craefters}
                                       craefterAdded={this.addCraefter}
                                       bury={this.bury}
                                       itemAdded={this.addItem}/>
 
-                        <Farm craeft={global.craeft}/>
+                        <Farm/>
 
-                        <Items items={global.craeft.items}
+                        <Items items={craeft.items}
                                onItemEquip={this.equipItem}
                                onDisentchant={this.disentchant}/>
 

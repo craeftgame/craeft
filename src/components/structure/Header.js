@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import config from "../../engine/config"
+import config from "@craeft/engine/config"
 
 export default class Header extends Component {
 

@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import Slider from "../utility/Slider";
 import CraefterDescription from "../craefter/CraefterDescription";
 import PreItemDescription from "../item/PreItemDescription";
-import {ResourceTypes} from "../../engine/data/types";
-import Resources from "../../engine/resources";
+import {ResourceTypes} from "@craeft/engine/src/data/types";
+import Resources from "@craeft/engine/src/resources";
 
 export default class CraeftWindow extends Component {
 

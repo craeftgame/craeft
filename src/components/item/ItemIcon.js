@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {ItemCategories, ResourceTypes} from "../../engine/data/types";
+import {ItemCategories, ResourceTypes} from "@craeft/engine/src/data/types";
 import PropTypes from "prop-types";
 
 export default class ItemIcon extends Component {

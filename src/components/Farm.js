@@ -1,12 +1,8 @@
+/* globals craeft */
 import React, {Component} from "react";
-import PropTypes from "prop-types";
-import {ResourceTypes} from "../engine/data/types";
+import {ResourceTypes} from "@craeft/engine/src/data/types";
 
 export default class Farm extends Component {
-
-    static propTypes = {
-        craeft: PropTypes.object
-    };
 
     state = {
         isFarming: false
@@ -19,8 +15,8 @@ export default class Farm extends Component {
     }
 
     startFarming() {
-        if (!this.state.isFarming && this.props.craeft.player.staCurrent > 0) {
-            this.props.craeft.startFarming({
+        if (!this.state.isFarming && craeft.player.staCurrent > 0) {
+            craeft.startFarming({
                 callback: () => {
 
                     this.setState({
@@ -52,7 +48,7 @@ export default class Farm extends Component {
                                 Wood:
                             </div>
                             <div className="column rtl">
-                                {this.props.craeft.resources[ResourceTypes.Wood].toLocaleString()}&nbsp;
+                                {craeft.resources[ResourceTypes.Wood].toLocaleString()}&nbsp;
                             </div>
                         </div>
 
@@ -61,7 +57,7 @@ export default class Farm extends Component {
                                 Metal:
                             </div>
                             <div className="column rtl">
-                                {this.props.craeft.resources[ResourceTypes.Metal].toLocaleString()}&nbsp;
+                                {craeft.resources[ResourceTypes.Metal].toLocaleString()}&nbsp;
                             </div>
                         </div>
 
@@ -70,7 +66,7 @@ export default class Farm extends Component {
                                 Cloth:
                             </div>
                             <div className="column rtl">
-                                {this.props.craeft.resources[ResourceTypes.Cloth].toLocaleString()}&nbsp;
+                                {craeft.resources[ResourceTypes.Cloth].toLocaleString()}&nbsp;
                             </div>
                         </div>
 
@@ -79,7 +75,7 @@ export default class Farm extends Component {
                                 Diamond:
                             </div>
                             <div className="column rtl">
-                                {this.props.craeft.resources[ResourceTypes.Diamond].toLocaleString()}&nbsp;
+                                {craeft.resources[ResourceTypes.Diamond].toLocaleString()}&nbsp;
                             </div>
                         </div>
 
@@ -90,8 +86,8 @@ export default class Farm extends Component {
                                 onClick={this.startFarming}
                                 disabled={
                                     this.state.isFarming ||
-                                    this.props.craeft.player.staCurrent < 1 ||
-                                    this.props.craeft.player.dead
+                                    craeft.player.staCurrent < 1 ||
+                                    craeft.player.dead
                                 }>
 
                             <span className="icon">
@@ -102,7 +98,7 @@ export default class Farm extends Component {
                                 &nbsp;
                                 {
                                     this.state.isFarming ?
-                                        this.props.craeft.farm.timer.getTimeoutString() : "Farm!"
+                                        craeft.farm.timer.getTimeoutString() : "Farm!"
                                 }
                             </span>
 
