@@ -3,12 +3,14 @@ import React, {Component} from "react";
 
 // game
 import Player from "../player/Player"
+import Boss from "../boss/Boss"
 import Dead from "../player/Dead";
 import Farm from "../Farm";
 import Items from "../item/Items";
 import CraefterList from "../craefter/CraefterList";
 
 import Craeft from "@craeft/engine/src/craeft";
+import config from "@craeft/engine/config"
 
 export default class CraeftComponent extends Component {
 
@@ -159,6 +161,11 @@ export default class CraeftComponent extends Component {
                                onDisentchant={this.disentchant}/>
 
                     </div>
+
+                    {
+                        config.showBossScreen ?
+                            <Boss/> : null
+                    }
 
                 </div>
 

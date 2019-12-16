@@ -154,10 +154,6 @@ strong {
     text-align: left;
 }
 
-.rpgui-button {
-    white-space: nowrap;
-}
-
 .slider-edge-value {
     position: relative;
     top: -35px;
@@ -165,6 +161,10 @@ strong {
 
 .rtl {
     direction: rtl;
+}
+
+.icon-selected {
+    border: 1px solid #FAEBD7;
 }
 
 /*
@@ -214,8 +214,8 @@ Craefter
     color: darkred;
 }
 
-/*
-ITEM
+/**
+Item
 */
 .item-container {
     line-height: 0;
@@ -249,10 +249,9 @@ ITEM
     height: 39px;
 }
 
-.item-icon-selected {
-    border: 1px solid #FAEBD7;
-}
-
+/**
+Materials
+ */
 .wood {
     filter: url(#wood);
 }
@@ -269,6 +268,9 @@ ITEM
     filter: url(#diamond);
 }
 
+/**
+Rarity
+ */
 .common {
     background-color: rgba(220, 220, 220, 0.3) !important;
 }
@@ -285,6 +287,9 @@ ITEM
     background-color: rgba(250, 150, 0, 0.6) !important;
 }
 
+/**
+Dead
+ */
 .dead {
     z-index: 100000;
     position: absolute;
@@ -303,4 +308,52 @@ ITEM
     font-size: 80px !important;
     line-height: 80px !important;
     color: darkred !important;
+}
+
+/**
+Boss
+ */
+.boss-logo {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+}
+
+.boss-parameters {
+    padding-bottom: 20px;
+}
+
+.boss-name {
+}
+
+.boss-icon {
+    display: inline-block;
+    margin: 3px !important;
+    padding: 3px !important;
+}
+
+.boss-icon .icon {
+    margin: 15px;
+}
+
+.boss-dead {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.boss-dead .fa-skull {
+    background: none;
+    color: darkred;
+    opacity: 0.8;
+}
+
+.boss-icon-wrap {
+    padding: 5px;
+}
+
+/* RPGUI overrides */
+.rpgui-button {
+    white-space: nowrap;
 }

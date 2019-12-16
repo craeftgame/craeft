@@ -38,7 +38,7 @@ export default class ItemIcon extends Component {
 
         // item selected?
         if (this.props.isSelected) {
-            containerClasses.push("item-icon-selected")
+            containerClasses.push("icon-selected")
         }
 
         const itemClasses = [
