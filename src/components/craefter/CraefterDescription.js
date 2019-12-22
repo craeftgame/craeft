@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Gauge from "../utility/Gauge";
 import {CraefterTypeNames} from "@craeft/engine/src/data/names";
 import PropTypes from "prop-types";
+import Attribute from "../utility/Attribute";
 
 export default class CraefterDescription extends Component {
 
@@ -14,15 +15,13 @@ export default class CraefterDescription extends Component {
             <div>
 
                 <div>
-                    {
-                        CraefterTypeNames[this.props.craefter.type]
-                    }
+                    <span>{CraefterTypeNames[this.props.craefter.type]}</span>
                 </div>
 
                 {
                     !this.props.craefter.delay.isDelaying ?
                         <div>
-                            Level {this.props.craefter.level}: {this.props.craefter.name}
+                            Level {this.props.craefter.level}: <span>{this.props.craefter.name}</span>
                         </div>
                         : "???"
                 }
@@ -34,13 +33,13 @@ export default class CraefterDescription extends Component {
                             <div className='row'>
 
                                 <div>
-                                    <span className='nowrap'>Str: {this.props.craefter.str} </span>
-                                    <span className='nowrap'>Dex: {this.props.craefter.dex} </span>
+                                    <Attribute label="Str" value={this.props.craefter.str}/>
+                                    <Attribute label="Dex" value={this.props.craefter.dex}/>
                                 </div>
 
                                 <div>
-                                    <span className='nowrap'>Int: {this.props.craefter.int} </span>
-                                    <span className='nowrap'>Luk: {this.props.craefter.luk} </span>
+                                    <Attribute label="Int" value={this.props.craefter.int}/>
+                                    <Attribute label="Luk" value={this.props.craefter.luk}/>
                                 </div>
 
                             </div>

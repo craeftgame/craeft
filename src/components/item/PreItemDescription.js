@@ -19,7 +19,7 @@ export default class PreItemDescription extends Component {
                 <div className={"column item-description"}>
 
                     <div className={"row"}>
-                        Type: {ItemNames[this.props.preItem.type]}
+                        Type: <span>{ItemNames[this.props.preItem.type]}</span>
                     </div>
 
                     <ItemStats item={this.props.preItem}/>

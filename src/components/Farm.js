@@ -37,7 +37,7 @@ export default class Farm extends Component {
                 <div className='rpgui-container framed'>
 
                     <div className={"row"}>
-                        <strong>Resources:</strong>
+                        <strong>Resources</strong>
                         <hr/>
                     </div>
 

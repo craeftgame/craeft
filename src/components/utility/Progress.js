@@ -21,10 +21,9 @@ export default class Progress extends Component {
                     </div>
                 </div>
 
-                <div className="rpgui-progress-left-edge">
-                </div>
-                <div className="rpgui-progress-right-edge">
-                </div>
+                <div className="rpgui-progress-left-edge"/>
+
+                <div className="rpgui-progress-right-edge"/>
 
             </div>
         )

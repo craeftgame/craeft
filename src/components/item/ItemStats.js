@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
+import Attribute from "../utility/Attribute";
 
 export default class ItemStats extends Component {
     static propTypes = {
@@ -12,50 +13,38 @@ export default class ItemStats extends Component {
 
                 {
                     this.props.item.atk ?
-                        <span className='nowrap'>
-                            Atk: {this.props.item.atk}
-                            {
-                                this.props.item.atkMax ?
-                                    <span>-{this.props.item.atkMax}</span> : null
-                            }
-                            &nbsp;
-                        </span> : null
+                        <div className='is-inline nowrap'>
+                            <Attribute label="Atk"
+                                       value={this.props.item.atk}
+                                       value2={this.props.item.atkMax}/>
+                        </div> : null
                 }
 
                 {
                     this.props.item.matk ?
-                        <span className='nowrap'>
-                            Matk: {this.props.item.matk}
-                            {
-                                this.props.item.matkMax ?
-                                    <span>-{this.props.item.matkMax}</span> : null
-                            }
-                            &nbsp;
-                        </span> : null
+                        <div className='is-inline nowrap'>
+                            <Attribute label="Matk"
+                                       value={this.props.item.matk}
+                                       value2={this.props.item.matkMax}/>
+                        </div> : null
                 }
 
                 {
                     this.props.item.def ?
-                        <span className='nowrap'>
-                            Def: {this.props.item.def}
-                            {
-                                this.props.item.defMax ?
-                                    <span>-{this.props.item.defMax}</span> : null
-                            }
-                            &nbsp;
-                        </span> : null
+                        <div className='is-inline nowrap'>
+                            <Attribute label="Def"
+                                       value={this.props.item.def}
+                                       value2={this.props.item.defMax}/>
+                        </div> : null
                 }
 
                 {
                     this.props.item.mdef ?
-                        <span className='nowrap'>
-                            Mdef: {this.props.item.mdef}
-                            {
-                                this.props.item.mdefMax ?
-                                    <span>-{this.props.item.mdefMax}</span> : null
-                            }
-                            &nbsp;
-                        </span> : null
+                        <div className='is-inline nowrap'>
+                            <Attribute label="Mdef"
+                                       value={this.props.item.mdef}
+                                       value2={this.props.item.mdefMax}/>
+                        </div> : null
                 }
 
             </div>

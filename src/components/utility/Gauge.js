@@ -1,6 +1,7 @@
 import Progress from "./Progress";
 import React, {Component} from "react";
 import PropTypes from "prop-types";
+import Attribute from "./Attribute";
 
 export default class Gauge extends Component {
 
@@ -13,18 +14,12 @@ export default class Gauge extends Component {
 
     render() {
         return (
-            <div className='row'>
-
-                <span className='nowrap'>
-                    {this.props.label}:&nbsp;
-                    {Math.floor(this.props.current)}
-                    /
-                    {Math.floor(this.props.max)}
-                </span>
+            <div className='row nowrap'>
+                <Attribute label={this.props.label}
+                           value={`${Math.floor(this.props.current)}/${Math.floor(this.props.max)}`}/>
 
                 <Progress color={this.props.color}
                           filled={100 / this.props.max * this.props.current}/>
-
             </div>
         )
     }

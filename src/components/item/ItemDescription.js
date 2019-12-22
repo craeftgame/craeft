@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import ItemStats from "./ItemStats";
+import Attribute from "../utility/Attribute";
 
 export default class ItemDescription extends Component {
 
@@ -26,19 +27,12 @@ export default class ItemDescription extends Component {
     render() {
         return (
             <div>
+                <Attribute label="Level" value={this.props.item.level}/>
 
-                <div style={{
-                    display: "inline-block"
-                }}>
-                    Level: {this.props.item.level}&nbsp;
-                </div>
-
-                <div style={{
-                    display: "inline-block"
-                }}>
-                    {
-                        this.props.item.getName ? this.props.item.getName() : null
-                    }
+                <div>
+                    <span>
+                        {this.props.item.getName ? this.props.item.getName() : null}
+                    </span>
                 </div>
 
                 <ItemStats item={this.props.item}/>

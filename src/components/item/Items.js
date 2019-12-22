@@ -69,7 +69,7 @@ export default class Items extends Component {
                 <div className='rpgui-container framed'>
 
                     <div className={"row"}>
-                        <strong>Items:</strong>
+                        <strong>Items</strong>
                         <hr/>
                     </div>
 

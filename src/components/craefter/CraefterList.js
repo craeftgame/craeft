@@ -143,7 +143,7 @@ export default class CraefterList extends Component {
                     }
 
                     <div className={"row"}>
-                        <strong>Cräfter:</strong>
+                        <strong>Cräfter</strong>
                         <hr/>
                     </div>
 

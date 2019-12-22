@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Gauge from "../utility/Gauge";
 import Equipment from "./Equipment";
 import PropTypes from "prop-types";
+import Attribute from "../utility/Attribute";
 
 export default class Player extends Component {
 
@@ -21,21 +22,22 @@ export default class Player extends Component {
                         <div className='row'>
 
                             <div>
-                                <strong>{this.props.player.class}:</strong> {this.props.player.name}
+                                <Attribute label={this.props.player.class}
+                                           value={this.props.player.name}/>
                             </div>
 
                             <div>
-                                <span>Str: {this.props.player.str} </span>
-                                <span>Vit: {this.props.player.vit} </span>
-                                <span>Int: {this.props.player.int} </span>
-                                <span>Dex: {this.props.player.dex} </span>
+                                <Attribute label="Str" value={this.props.player.str}/>
+                                <Attribute label="Vit" value={this.props.player.vit}/>
+                                <Attribute label="Int" value={this.props.player.int}/>
+                                <Attribute label="Dex" value={this.props.player.dex}/>
                             </div>
 
                             <div>
-                                <span>Atk: {this.props.player.atk()} </span>
-                                <span>Matk: {this.props.player.matk()} </span>
-                                <span>Def: {this.props.player.def()} </span>
-                                <span>Mdef: {this.props.player.mdef()} </span>
+                                <Attribute label="Atk" value={this.props.player.atk()}/>
+                                <Attribute label="Matk" value={this.props.player.matk()}/>
+                                <Attribute label="Def" value={this.props.player.def()}/>
+                                <Attribute label="Mdef" value={this.props.player.mdef()}/>
                             </div>
 
                         </div>
@@ -46,9 +48,7 @@ export default class Player extends Component {
 
                             <div className='column'>
 
-                                <span>
-                                    <strong> Level:</strong> {this.props.player.level}
-                                </span>
+                                <Attribute label="Level" value={this.props.player.level}/>
 
                                 <hr/>
 

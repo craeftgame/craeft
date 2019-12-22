@@ -164,7 +164,11 @@ strong {
 }
 
 .icon-selected {
-    border: 1px solid #FAEBD7;
+    border: 1px solid #FAEBD7!important;
+}
+
+.attribute-label {
+    display: inline;
 }
 
 /*

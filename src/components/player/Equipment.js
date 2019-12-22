@@ -47,14 +47,14 @@ export default class Equipment extends Component {
             <div className='rpgui-container framed-grey row equipment'>
 
                 <div>
-                    <strong>Equipment:</strong>
+                    <strong>Equipment</strong>
                 </div>
 
                 <hr/>
 
                 <div className='columns'>
                     <div className='column'>
-                        Head:<br/>
+                        Head<br/>
                         {
                             this.props.equipment[ArmorSlots.Head] ?
                                 <ItemIcon item={this.props.equipment[ArmorSlots.Head]}
@@ -64,7 +64,7 @@ export default class Equipment extends Component {
                         }
                     </div>
                     <div className='column'>
-                        Body:<br/>
+                        Body<br/>
                         {
                             this.props.equipment[ArmorSlots.Body] ?
                                 <ItemIcon item={this.props.equipment[ArmorSlots.Body]}
@@ -77,7 +77,7 @@ export default class Equipment extends Component {
 
                 <div className='columns'>
                     <div className='column'>
-                        Legs:<br/>
+                        Legs<br/>
                         {
                             this.props.equipment[ArmorSlots.Legs] ?
                                 <ItemIcon item={this.props.equipment[ArmorSlots.Legs]}
@@ -87,7 +87,7 @@ export default class Equipment extends Component {
                         }
                     </div>
                     <div className='column'>
-                        Feet:<br/>
+                        Feet<br/>
                         {
                             this.props.equipment[ArmorSlots.Feet] ?
                                 <ItemIcon item={this.props.equipment[ArmorSlots.Feet]}
@@ -110,7 +110,7 @@ export default class Equipment extends Component {
                         }
                     </div>
                     <div className='column'>
-                        Right Hand:<br/>
+                        Right Hand<br/>
                         {
                             this.props.equipment[WeaponSlots.RightHand] ?
                                 <ItemIcon item={this.props.equipment[WeaponSlots.RightHand]}
@@ -124,12 +124,12 @@ export default class Equipment extends Component {
                 <div className='columns'>
 
                     <div className='column'>
-                        Jewelry 1:<br/>
+                        Jewelry 1<br/>
                         <span className="rpgui-icon ring-slot"/>
                     </div>
 
                     <div className='column'>
-                        Jewelry 2:<br/>
+                        Jewelry 2<br/>
                         <span className="rpgui-icon ring-slot"/>
                     </div>
 
