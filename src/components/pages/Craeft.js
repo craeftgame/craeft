@@ -28,20 +28,19 @@ export default class CraeftComponent extends Component {
 
         window.onbeforeunload = () => {
             craeft.saveState();
-        }
+        };
+
+        Craeft.loadState();
     }
 
     componentDidMount() {
+
         craeft.start({
             onTick: () => {
                 // force update of the UI
                 this.forceUpdate();
             }
         });
-    }
-
-    componentWillMount() {
-        Craeft.loadState();
     }
 
     componentWillUnmount() {
