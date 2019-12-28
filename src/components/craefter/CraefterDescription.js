@@ -14,13 +14,13 @@ export default class CraefterDescription extends Component {
         return (
             <div>
 
-                <div>
+                <div className="row">
                     <span>{CraefterTypeNames[this.props.craefter.type]}</span>
                 </div>
 
                 {
                     !this.props.craefter.delay.isDelaying ?
-                        <div>
+                        <div className="row">
                             Level {this.props.craefter.level}: <span>{this.props.craefter.name}</span>
                         </div>
                         : "???"

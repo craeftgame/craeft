@@ -27,7 +27,7 @@ export default class CraeftComponent extends Component {
         this.bury = this.bury.bind(this);
 
         window.onbeforeunload = () => {
-            craeft.saveState();
+            Craeft.saveState();
         };
 
         Craeft.loadState();
@@ -103,11 +103,7 @@ export default class CraeftComponent extends Component {
     disentchant(
         itemId
     ) {
-        const result = craeft.disentchant(itemId);
-
-        this.log(
-            `"${result.name}" disenchanted! ${result.resources.sum()} resource(s) retrieved!`
-        );
+        craeft.disentchant(itemId);
 
         this.forceUpdate()
     }
@@ -115,7 +111,7 @@ export default class CraeftComponent extends Component {
     bury(
         craefterId
     ) {
-        const name = craeft.bury(craefterId);
+        const name = craeft.craefters.bury(craefterId);
 
         this.log(`Cräfter "${name}" was buried!`);
 

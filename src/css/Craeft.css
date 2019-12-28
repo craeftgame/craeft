@@ -164,7 +164,7 @@ strong {
 }
 
 .icon-selected {
-    border: 1px solid #FAEBD7!important;
+    border: 1px solid #FAEBD7 !important;
 }
 
 .attribute-label {
@@ -275,20 +275,40 @@ Materials
 /**
 Rarity
  */
-.common {
+.item-icon.common {
     background-color: rgba(220, 220, 220, 0.3) !important;
 }
 
-.rare {
+span.common {
+    background-color: inherit !important;
+    color: rgba(220, 220, 220, 0.3)
+}
+
+.item-icon.rare {
     background-color: rgba(0, 120, 250, 0.6) !important;
 }
 
-.epic {
+span.rare {
+    background-color: inherit !important;
+    color: rgba(0, 120, 250, 0.6)
+}
+
+.item-icon.epic {
     background-color: rgba(220, 80, 255, 0.6) !important;
 }
 
-.legendary {
+span.epic {
+    background-color: inherit !important;
+    color: rgba(220, 80, 255, 0.6)
+}
+
+.item-icon.legendary {
     background-color: rgba(250, 150, 0, 0.6) !important;
+}
+
+span.legendary {
+    background-color: inherit !important;
+    color: rgba(250, 150, 0, 0.6)
 }
 
 /**
@@ -322,6 +342,11 @@ Boss
     height: 100%;
     width: 100%;
     padding: 20px;
+}
+
+.boss-info {
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .boss-parameters {

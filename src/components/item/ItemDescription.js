@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import ItemStats from "./ItemStats";
 import Attribute from "../utility/Attribute";
+import {Rarities} from "@craeft/engine/src/data/types";
+import {RarityNames} from "@craeft/engine/src/data/names";
 
 export default class ItemDescription extends Component {
 
@@ -27,13 +29,14 @@ export default class ItemDescription extends Component {
     render() {
         return (
             <div>
-                <Attribute label="Level" value={this.props.item.level}/>
-
                 <div>
-                    <span>
+                    <span
+                        className={this.props.item.rarity !== Rarities.Common ? RarityNames[this.props.item.rarity].toLowerCase() : ""}>
                         {this.props.item.getName ? this.props.item.getName() : null}
                     </span>
                 </div>
+
+                <Attribute label="Level" value={this.props.item.level}/>
 
                 <ItemStats item={this.props.item}/>
 

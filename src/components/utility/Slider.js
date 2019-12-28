@@ -76,11 +76,8 @@ export default class Farm extends Component {
     render() {
         const edgeWidth = !this.leftEdge.current ? 20 : this.leftEdge.current.offsetWidth;
         const trackWith = !this.track.current ? 20 : this.track.current.offsetWidth;
-
         const step = (trackWith - (edgeWidth * 2)) / (this.props.max - this.props.min);
-
         const stepWidth = this.state.value * step;
-
         const left = Math.floor((edgeWidth / 2) + stepWidth) + "px";
 
         return (
@@ -105,14 +102,22 @@ export default class Farm extends Component {
                          ref={this.leftEdge}
                          onMouseDown={() => this.setState({mouseDown: true})}
                          onClick={() => this.setValue(this.props.min)}>
-                        <div className='slider-edge-value'>{this.props.min}</div>
+                        <div className='slider-edge-value'>
+                            <span>
+                                {this.props.min.toLocaleString()}
+                            </span>
+                        </div>
                     </div>
 
                     <div className='rpgui-slider-right-edge'
                          ref={this.rightEdge}
                          onMouseDown={() => this.setState({mouseDown: true})}
                          onClick={() => this.setValue(this.props.max)}>
-                        <div className='slider-edge-value rtl'>{this.props.max}</div>
+                        <div className='slider-edge-value rtl'>
+                            <span>
+                                {this.props.max.toLocaleString()}
+                            </span>
+                        </div>
                     </div>
 
                     <div className='rpgui-slider-thumb'

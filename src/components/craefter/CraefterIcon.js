@@ -2,11 +2,12 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {CraefterTypes} from "@craeft/engine/src/data/types";
+import Craefter from "@craeft/engine/src/craefter/craefter";
 
 export default class CraefterIcon extends Component {
 
     static propTypes = {
-        craefter: PropTypes.object,
+        craefter: PropTypes.instanceOf(Craefter),
         onCraefterSelect: PropTypes.func,
         isSelected: PropTypes.bool
     };

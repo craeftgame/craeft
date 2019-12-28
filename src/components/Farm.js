@@ -15,7 +15,10 @@ export default class Farm extends Component {
     }
 
     startFarming() {
-        if (!this.state.isFarming && craeft.player.staCurrent > 0) {
+        if (
+            !this.state.isFarming &&
+            craeft.player.staCurrent > 0
+        ) {
             craeft.startFarming({
                 callback: () => {
 
@@ -48,7 +51,9 @@ export default class Farm extends Component {
                                 Wood:
                             </div>
                             <div className="column rtl">
-                                {craeft.resources[ResourceTypes.Wood].toLocaleString()}&nbsp;
+                                <span>
+                                    {craeft.resources[ResourceTypes.Wood].toLocaleString()}&nbsp;
+                                </span>
                             </div>
                         </div>
 
@@ -57,7 +62,9 @@ export default class Farm extends Component {
                                 Metal:
                             </div>
                             <div className="column rtl">
-                                {craeft.resources[ResourceTypes.Metal].toLocaleString()}&nbsp;
+                                <span>
+                                    {craeft.resources[ResourceTypes.Metal].toLocaleString()}&nbsp;
+                                </span>
                             </div>
                         </div>
 
@@ -66,7 +73,9 @@ export default class Farm extends Component {
                                 Cloth:
                             </div>
                             <div className="column rtl">
-                                {craeft.resources[ResourceTypes.Cloth].toLocaleString()}&nbsp;
+                                <span>
+                                    {craeft.resources[ResourceTypes.Cloth].toLocaleString()}&nbsp;
+                                </span>
                             </div>
                         </div>
 
@@ -75,7 +84,9 @@ export default class Farm extends Component {
                                 Diamond:
                             </div>
                             <div className="column rtl">
-                                {craeft.resources[ResourceTypes.Diamond].toLocaleString()}&nbsp;
+                                <span>
+                                    {craeft.resources[ResourceTypes.Diamond].toLocaleString()}&nbsp;
+                                </span>
                             </div>
                         </div>
 

@@ -1,12 +1,19 @@
+/* globals craeft */
 import React, {Component} from "react";
-import Gauge from "../utility/Gauge";
+import BossLogo from "./BossLogo";
+import BossIcon from "./BossIcon";
+import BossDescription from "./BossDesctiption"
 
 /**
  * Spider - Tsuchigumo
  * Dragon - Tatsu
  * Fish - Namazu
  */
-export default class Boss extends Component {
+export default class BossComponent extends Component {
+
+    state = {
+        selected: craeft.bosses[0]
+    };
 
     render() {
         return (
@@ -14,106 +21,38 @@ export default class Boss extends Component {
                 <div className='rpgui-container framed'>
 
                     <div className="row">
-                        <strong>Bosses:</strong>
+                        <strong>Bosses</strong>
                         <hr/>
                     </div>
 
                     <div className="row">
                         <div className="columns">
 
-                            <div className="column">
-                                <div className="rpgui-container framed-grey">
-
-                                    <div className="boss-name">
-                                        Tsuchigumo
-                                    </div>
-
-                                    <div className="boss-logo icon">
-                                        <i className="fas fa-spider fa-10x"/>
-                                    </div>
-
-                                </div>
-                            </div>
+                            <BossLogo name={this.state.selected.name}
+                                      type="spider"/>
 
                             <div className="column" style={{width: "100%"}}>
 
                                 <div>
 
-                                    <div className="rpgui-container framed-grey boss-icon">
-                                        <div className="boss-icon-wrap">
-                                            <div className="icon">
-                                                <i className="fas fa-fish fa-2x"/>
-                                            </div>
+                                    <BossIcon dead={true} type="fish"/>
 
-                                            <div className="icon boss-dead">
-                                                <i className="fas fa-skull"/>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <BossIcon type="spider" selected={true}/>
 
-                                    <div className="rpgui-container framed-grey boss-icon">
-                                        <div className="boss-icon-wrap icon-selected">
-                                            <div className="icon">
-                                                <i className="fas fa-spider fa-2x"/>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <BossIcon type="dragon"/>
 
-                                    <div className="rpgui-container framed-grey boss-icon">
-                                        <div className="boss-icon-wrap">
-                                            <div className="icon">
-                                                <i className="fas fa-dragon fa-2x"/>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {
+                                        craeft.bosses.map((boss) => {
 
-                                    <div className="rpgui-container framed-grey boss-icon">
-                                        <div className="boss-icon-wrap">
-                                            <div className="icon">
-                                                <i className="fas fa-question fa-2x"/>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="rpgui-container framed-grey boss-icon">
-                                        <div className="boss-icon-wrap">
-                                            <div className="icon">
-                                                <i className="fas fa-question fa-2x"/>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="rpgui-container framed-grey boss-icon">
-                                        <div className="boss-icon-wrap">
-                                            <div className="icon">
-                                                <i className="fas fa-question fa-2x"/>
-                                            </div>
-                                        </div>
-                                    </div>
+                                            return <BossIcon key={`boss-${boss.name}`}
+                                                             type={boss.type}/>
+                                        })
+                                    }
 
                                 </div>
 
-                                <hr/>
+                                <BossDescription boss={this.state.selected}/>
 
-                                <div>
-                                    <Gauge color="red" label="HP"
-                                           current={100} max={100}/>
-                                </div>
-
-                                <hr/>
-
-                                <div className="boss-parameters">
-                                    <span>Str: 5 </span>
-                                    <span>Vit: 2 </span>
-                                    <span>Int: 4 </span>
-                                    <span>Dex: 0 </span>
-                                </div>
-
-                                <div>
-                                    <button className='rpgui-button'>
-                                        <span>Fight!</span>
-                                    </button>
-                                </div>
                             </div>
 
                         </div>

@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 
-import CraeftWindow from "../dialogs/CraeftWindow";
+import CraeftingWindow from "../dialogs/CraeftingWindow";
 import CraefterIcon from "./CraefterIcon";
 import AddCraeftersWindow from "../dialogs/AddCraeftersWindow";
 import Craefter from "./Craefter";
@@ -126,9 +126,9 @@ export default class CraefterList extends Component {
                                    onClose={() => this.setState({
                                        isCraeftingDialogShown: false
                                    })}>
-                                <CraeftWindow resources={this.props.resources}
-                                              craefter={this.state.selectedCraefter}
-                                              itemAdded={this.addItem}/>
+                                <CraeftingWindow resources={this.props.resources}
+                                                 craefter={this.state.selectedCraefter}
+                                                 itemAdded={this.addItem}/>
                             </Modal> : null
                     }
 
