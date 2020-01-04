@@ -3,12 +3,34 @@ import Gauge from "../utility/Gauge";
 import Attribute from "../utility/Attribute";
 import PropTypes from "prop-types";
 import Boss from "@craeft/engine/src/boss/boss"
+import Fight from "./Fight";
 
 export default class BossDescription extends Component {
 
     static propTypes = {
-        boss: PropTypes.instanceOf(Boss)
+        boss: PropTypes.instanceOf(Boss),
+        fight: PropTypes.func
     };
+
+    state = {
+        isFighting: false
+    };
+
+    constructor(props) {
+        super(props);
+
+        this.fight = this.fight.bind(this);
+    }
+
+    fight() {
+
+        this.setState({
+            isFighting: !this.state.isFighting
+        });
+
+        this.props.fight();
+    }
+
 
     render() {
         return (
@@ -25,7 +47,8 @@ export default class BossDescription extends Component {
 
                     <div className="column">
                         <Gauge color="red" label="HP"
-                               current={this.props.boss.hpCurrent} max={this.props.boss.hpMax}/>
+                               current={this.props.boss.hpCurrent}
+                               max={this.props.boss.hpMax}/>
                     </div>
 
                 </div>
@@ -49,9 +72,17 @@ export default class BossDescription extends Component {
                 </div>
 
                 <div>
-                    <button className='rpgui-button'>
-                        <span>Fight!</span>
-                    </button>
+
+                    {
+                        !this.state.isFighting ?
+                            <button className='rpgui-button'
+                                    onClick={this.fight}>
+                                <span>Fight!</span>
+                            </button>
+                            :
+                            <Fight boss={this.props.boss}/>
+                    }
+
                 </div>
 
             </div>

@@ -14,11 +14,11 @@ export default class Attribute extends Component {
             <>
                 <div className="attribute-label">{this.props.label}:&nbsp;</div>
 
-                <span>{this.props.value}</span>
+                <span>{this.props.value.toLocaleString()}</span>
 
                 {
                     this.props.value2 ?
-                        <span>-{this.props.value2}&nbsp;</span> : <>&nbsp;</>
+                        <span>-{this.props.value2.toLocaleString()}&nbsp;</span> : <>&nbsp;</>
                 }
             </>
         )

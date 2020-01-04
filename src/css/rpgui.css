@@ -83,6 +83,9 @@
 
 /* golden button stuff */
 .rpgui-button.golden p {
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
     display: inline-block;
 }
 
@@ -109,6 +112,8 @@
     padding-top: 5px;
     padding-left: 35px;
     padding-right: 35px;
+    margin-left: 12px;
+    margin-right: 12px;
     overflow: visible;
 }
 

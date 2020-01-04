@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import {ItemCategories, ResourceTypes} from "@craeft/engine/src/data/types";
 import PropTypes from "prop-types";
+import ItemIconIcon from "./ItemIconIcon";
 
 export default class ItemIcon extends Component {
 
@@ -41,39 +41,14 @@ export default class ItemIcon extends Component {
             containerClasses.push("icon-selected")
         }
 
-        const itemClasses = [
-            "rpgui-icon"
-        ];
-
-        if (this.props.isSmall) {
-            itemClasses.push("icon-small")
-        }
-
-        // evaluate item type
-        if (this.props.item.category === ItemCategories.Weapon) {
-            itemClasses.push("sword")
-        } else if (this.props.item.category === ItemCategories.Armor) {
-            itemClasses.push("shield")
-        }
-
-        // evaluate material
-        if (this.props.item.material === ResourceTypes.Wood) {
-            itemClasses.push("wood");
-        } else if (this.props.item.material === ResourceTypes.Metal) {
-            itemClasses.push("metal");
-        } else if (this.props.item.material === ResourceTypes.Cloth) {
-            itemClasses.push("cloth");
-        } else if (this.props.item.material === ResourceTypes.Diamond) {
-            itemClasses.push("diamond");
-        }
-
         return (
             <div className="rpgui-container rpgui-cursor-point framed-grey item-container"
                  onClick={this.itemSelected}>
 
                 <div className={containerClasses.join(" ")}>
 
-                    <div className={itemClasses.join(" ")}/>
+                    <ItemIconIcon item={this.props.item}
+                                  isSmall={this.props.isSmall}/>
 
                     {
                         !(this.props.item.delay && this.props.item.delay.isDelaying) ?
