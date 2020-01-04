@@ -16,7 +16,7 @@ export default class Player extends Component {
             <div className="rpgui-container framed player">
 
                 <div className="row">
-                    <strong>Adventure</strong>
+                    <strong>Cräfting</strong>
                     <hr/>
                 </div>
 
