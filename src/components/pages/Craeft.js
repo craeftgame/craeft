@@ -3,7 +3,7 @@ import React, {Component} from "react";
 
 // game
 import Player from "../player/Player"
-import Adventure from "../boss/Adventure"
+import Adventure from "../adventure/Adventure"
 import Dead from "../player/Dead";
 import Farm from "../Farm";
 import Items from "../item/Items";
