@@ -158,7 +158,7 @@ export default class CraeftComponent extends Component {
 
                 <div className={craeft.player.dead ? "rpgui-disabled" : ""}>
 
-                    <div className="top-bar nowrap">
+                    <div className="top-bar nowrap rpgui-center">
                         <button className={`rpgui-button golden first ${this.state.view === 1 ? "down" : ""}`}
                                 onClick={() => this.toggleView(1)}>
                             <p>Cräfting</p>
