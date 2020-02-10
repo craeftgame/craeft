@@ -30,6 +30,7 @@ export default class CraeftComponent extends Component {
         this.bury = this.bury.bind(this);
 
         this.move = this.move.bind(this);
+        this.startFarming = this.startFarming.bind(this);
 
         this.toggleView = this.toggleView.bind(this);
 
@@ -55,6 +56,16 @@ export default class CraeftComponent extends Component {
         craeft.stop();
 
         Craeft.saveState();
+    }
+
+    startFarming() {
+        craeft.startFarming({
+            callback: () => {
+                this.forceUpdate();
+            }
+        });
+
+        this.forceUpdate();
     }
 
     toggleView(view) {
@@ -183,7 +194,7 @@ export default class CraeftComponent extends Component {
                                                   bury={this.bury}
                                                   itemAdded={this.addItem}/>
 
-                                    <Farm/>
+                                    <Farm startFarming={this.startFarming}/>
 
                                     <Items items={craeft.items}
                                            onItemEquip={this.equipItem}

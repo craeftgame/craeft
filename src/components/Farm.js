@@ -1,38 +1,13 @@
 /* globals craeft */
 import React, {Component} from "react";
 import {ResourceTypes} from "@craeft/engine/src/data/types";
+import PropTypes from "prop-types";
 
 export default class Farm extends Component {
 
-    state = {
-        isFarming: false
+    static propTypes = {
+        startFarming: PropTypes.func.isRequired
     };
-
-    constructor(props) {
-        super(props);
-
-        this.startFarming = this.startFarming.bind(this)
-    }
-
-    startFarming() {
-        if (
-            !this.state.isFarming &&
-            craeft.player.staCurrent > 0
-        ) {
-            craeft.startFarming({
-                callback: () => {
-
-                    this.setState({
-                        isFarming: false
-                    })
-                }
-            });
-
-            this.setState({
-                isFarming: true
-            });
-        }
-    }
 
     render() {
         return (
@@ -94,9 +69,9 @@ export default class Farm extends Component {
 
                     <div className={"row"}>
                         <button className='rpgui-button'
-                                onClick={this.startFarming}
+                                onClick={this.props.startFarming}
                                 disabled={
-                                    this.state.isFarming ||
+                                    craeft.player.isFarming ||
                                     craeft.player.staCurrent < 1 ||
                                     craeft.player.dead
                                 }>
@@ -108,7 +83,7 @@ export default class Farm extends Component {
                             <span>
                                 &nbsp;
                                 {
-                                    this.state.isFarming ?
+                                    craeft.player.isFarming ?
                                         craeft.farm.timer.getTimeoutString() : "Farm!"
                                 }
                             </span>
