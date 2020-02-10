@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types"
 
 // structure
 import Footer from "./components/structure/Footer";
@@ -9,6 +10,10 @@ import CraeftComponent from "./components/pages/Craeft"
 
 export default class CraeftPage extends Component {
 
+    static propTypes = {
+        showFooter: PropTypes.bool.isRequired
+    };
+
     render() {
         return (
 
@@ -18,7 +23,7 @@ export default class CraeftPage extends Component {
 
                 <CraeftComponent/>
 
-                <Footer/>
+                <Footer showFooter={this.props.showFooter}/>
 
             </div>
         );

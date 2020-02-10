@@ -5,8 +5,10 @@
   "main": "index.js",
   "homepage": "https://cräft.com/",
   "scripts": {
+    "clean": "rm -rf ./build/",
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:itchio": "PUBLIC_URL=. REACT_APP_TARGET=itchio react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",

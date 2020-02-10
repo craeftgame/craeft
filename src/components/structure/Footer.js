@@ -1,7 +1,12 @@
 import React, {Component} from "react";
 import Donate from "./Donate"
+import PropTypes from "prop-types";
 
 export default class Footer extends Component {
+
+    static propTypes = {
+        showFooter: PropTypes.bool.isRequired
+    };
 
     render() {
         return (
@@ -9,19 +14,23 @@ export default class Footer extends Component {
 
                 <hr className="golden"/>
 
-                <div className="columns">
+                {
+                    this.props.showFooter ?
+                        <div className="columns">
 
-                    <div className="column">
-                        <Donate/>
-                    </div>
+                            <div className="column">
+                                <Donate/>
+                            </div>
 
-                    <div className="column" style={{
-                        textAlign: "left"
-                    }}>
-                        <a href={"#about"}>About Cräft!</a>
-                    </div>
+                            <div className="column" style={{
+                                textAlign: "left"
+                            }}>
+                                <a href={"#about"}>About Cräft!</a>
+                            </div>
 
-                </div>
+                        </div>
+                        : null
+                }
 
                 <div className="rpgui-center"
                      style={{

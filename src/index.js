@@ -29,6 +29,7 @@ function render() {
     let pageComponent;
 
     const title = "Cräft!";
+    const hideFooter = process.env.REACT_APP_TARGET === "itchio";
 
     switch (page) {
         case "about":
@@ -39,7 +40,7 @@ function render() {
 
         case "craeft":
         default:
-            pageComponent = <CraeftPage/>;
+            pageComponent = <CraeftPage showFooter={!hideFooter}/>;
             window.document.title = `${title} - Game`;
             break;
     }
