@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 
-export default class Farm extends Component {
+export default class Slider extends Component {
 
     static propTypes = {
         min: PropTypes.number,
@@ -31,6 +31,7 @@ export default class Farm extends Component {
         this.setValue = this.setValue.bind(this);
         this.move = this.move.bind(this);
         this.slideTo = this.slideTo.bind(this);
+        this.removeMouse = this.removeMouse.bind(this)
     }
 
     setValue(
@@ -63,13 +64,24 @@ export default class Farm extends Component {
         }
     }
 
+    removeMouse() {
+        this.setState({
+            mouseDown: false
+        })
+    }
+
     componentDidMount() {
         window.addEventListener(
             "mouseup",
-            () => this.setState({
-                mouseDown: false
-            }),
+            this.removeMouse,
             false
+        );
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener(
+            "mouseup",
+            this.removeMouse
         );
     }
 
@@ -82,7 +94,6 @@ export default class Farm extends Component {
 
         return (
             <div ref={this.element}>
-
                 <input type='range' style={{display: "none"}}
                        min={this.props.min} max={this.props.max} step={this.props.step}
                        value={this.state.value}
