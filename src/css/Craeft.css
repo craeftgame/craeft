@@ -317,25 +317,44 @@ Top Bar
 */
 
 .top-bar {
-    padding-bottom: 10px;
+    margin-bottom: 10px !important;
 }
 
-.rpgui-button.golden.first {
+.top-bar.golden,
+.top-bar.golden:hover {
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+
+.top-bar.golden:before {
+    margin-left: -1px !important;
+    margin-top: -1% !important;
+}
+
+.top-bar.golden:after {
+    margin-right: -1px !important;
+    margin-top: -1% !important;
+}
+
+.top-bar .rpgui-button.golden {
+    margin: 2px 0 0;
+    padding: 0;
+}
+
+.top-bar .rpgui-button.golden:before,
+.top-bar .rpgui-button.golden:after {
+    display: none;
+}
+
+.top-bar .rpgui-button.golden.first {
     padding-right: 15px;
     margin-right: 0;
 }
 
-.rpgui-button.golden.first::after {
-    display: none;
-}
-
-.rpgui-button.golden.last {
+.top-bar .rpgui-button.golden.last {
     padding-left: 15px;
     margin-left: 0;
-}
-
-.rpgui-button.golden.last::before {
-    display: none;
 }
 
 /**
@@ -413,6 +432,21 @@ Boss
 /* RPGUI overrides */
 .rpgui-button {
     white-space: nowrap;
+}
+
+.rpgui-progress-track {
+    line-height: 40px;
+}
+
+.rpgui-progress-track .progress-percent {
+    z-index: 10;
+    position: relative;
+}
+
+.rpgui-progress-track .progress-percent span {
+    min-width: 40px;
+    text-align: right;
+    display: inline-block;
 }
 
 /**
