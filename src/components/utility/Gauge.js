@@ -15,11 +15,17 @@ export default class Gauge extends Component {
     render() {
         return (
             <div className='row nowrap'>
-                <Attribute label={this.props.label}
-                           value={`${Math.floor(this.props.current)}/${Math.floor(this.props.max)}`}/>
+
+                {
+                    this.props.label ?
+                        <Attribute label={this.props.label}
+                                   value={`${Math.floor(this.props.current).toLocaleString()}/${Math.floor(this.props.max).toLocaleString()}`}/>
+                        : null
+                }
 
                 <Progress color={this.props.color}
-                          filled={100 / this.props.max * this.props.current}/>
+                          filled={100 / this.props.max * this.props.current}
+                          showPercent={true}/>
             </div>
         )
     }
