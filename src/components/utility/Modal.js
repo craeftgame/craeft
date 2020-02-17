@@ -13,6 +13,28 @@ export default class Modal extends Component {
         super(props);
 
         this.close = this.close.bind(this);
+        this.keyPressed = this.keyPressed.bind(this);
+    }
+
+    componentDidMount() {
+        document.addEventListener(
+            "keydown",
+            this.keyPressed
+        );
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener(
+            "keydown",
+            this.keyPressed
+        )
+    }
+
+    keyPressed(event) {
+        if (event.key === "Escape") {
+            this.close();
+            event.preventDefault();
+        }
     }
 
     close() {
@@ -24,7 +46,8 @@ export default class Modal extends Component {
     render() {
         return (
             <div className={`modal ${this.props.isActive ? "is-active" : ""}`}>
-                <div className="modal-background"/>
+                <div className="modal-background"
+                     onClick={this.close}/>
 
                 <div className="modal-content">
 
