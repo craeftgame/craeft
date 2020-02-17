@@ -118,7 +118,6 @@
 }
 
 /* button hover */
-.rpgui-button.golden.hover,
 .rpgui-button.golden:hover {
     background-image: url("../assets/button-golden-hover.png");
 }
@@ -160,17 +159,6 @@
     margin-top: -5%;
 }
 
-/*
-.rpgui-button.golden:hover:before {
-
-    background-image: url('../assets/button-golden-left-hover.png');
-}
-
-.rpgui-button.golden:hover:after {
-
-    background-image: url('../assets/button-golden-right-hover.png');
-}
-*/
 /**
 * style for checkboxes
 */
