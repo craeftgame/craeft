@@ -1,3 +1,4 @@
+/* globals craeft */
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import ItemStats from "./ItemStats";
@@ -42,12 +43,12 @@ export default class ItemDescription extends Component {
 
                 {
                     this.props.item.equipped ?
-                        <button className='rpgui-button'
+                        <button className={`rpgui-button ${craeft.player.isFarming ? "rpgui-disabled" : ""}`}
                                 onClick={() => this.props.onUnequip(this.props.item)}>
                             <span>Unequip</span>
                         </button>
                         :
-                        <button className='rpgui-button'
+                        <button className={`rpgui-button ${craeft.player.isFarming ? "rpgui-disabled" : ""}`}
                                 onClick={() => this.props.onEquip(this.props.item)}>
                             <span>Equip</span>
                         </button>

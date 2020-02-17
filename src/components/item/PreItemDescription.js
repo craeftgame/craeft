@@ -1,13 +1,14 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {ItemNames} from "@craeft/engine/src/data/names";
-import ItemStats from "./ItemStats";
 import ItemIcon from "./ItemIcon";
+import PreItemStats from "./PreItemStats";
+import PreItem from "@craeft/engine/src/items/PreItem"
 
 export default class PreItemDescription extends Component {
 
     static propTypes = {
-        preItem: PropTypes.object
+        preItem: PropTypes.instanceOf(PreItem)
     };
 
     render() {
@@ -22,7 +23,7 @@ export default class PreItemDescription extends Component {
                         Type: <span>{ItemNames[this.props.preItem.type]}</span>
                     </div>
 
-                    <ItemStats item={this.props.preItem}/>
+                    <PreItemStats item={this.props.preItem}/>
 
                 </div>
 

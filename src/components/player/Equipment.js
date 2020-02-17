@@ -37,9 +37,11 @@ export default class Equipment extends Component {
     unequip(
         item
     ) {
-        this.toggleItemSelection(item);
-
         this.props.onUnequip(item.id);
+
+        if (!item.equipped) {
+            this.toggleItemSelection(item);
+        }
     }
 
     render() {

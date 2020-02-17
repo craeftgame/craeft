@@ -2,9 +2,9 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 
 import CraeftingWindow from "../dialogs/CraeftingWindow";
-import CraefterIcon from "./CraefterIcon";
 import AddCraeftersWindow from "../dialogs/AddCraeftersWindow";
 import Craefter from "./Craefter";
+import CraefterIcon from "./CraefterIcon";
 import {ResourceTypes} from "@craeft/engine/src/data/types";
 import Modal from "../utility/Modal";
 
@@ -58,7 +58,6 @@ export default class CraefterList extends Component {
     }
 
     openCraeftDialog(craefter) {
-
         this.setState({
             isCraeftingDialogShown: true,
             selectedCraefter: craefter

@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import Player from "@craeft/engine/src/player";
 
 export default class PlayerDescription extends Component {
+
     static propTypes = {
         player: PropTypes.instanceOf(Player)
     };
@@ -15,15 +16,16 @@ export default class PlayerDescription extends Component {
                 <div className='row'>
 
                     <div>
-                        <Attribute label={this.props.player.class}
+                        <Attribute label={this.props.player.className()}
                                    value={this.props.player.name}/>
                     </div>
 
                     <div>
-                        <Attribute label="Str" value={this.props.player.str}/>
-                        <Attribute label="Vit" value={this.props.player.vit}/>
-                        <Attribute label="Int" value={this.props.player.int}/>
-                        <Attribute label="Dex" value={this.props.player.dex}/>
+                        <Attribute label="Str" value={this.props.player.str()}/>
+                        <Attribute label="Vit" value={this.props.player.vit()}/>
+                        <Attribute label="Int" value={this.props.player.int()}/>
+                        <Attribute label="Dex" value={this.props.player.dex()}/>
+                        <Attribute label="Agi" value={this.props.player.agi()}/>
                     </div>
 
                     <div>

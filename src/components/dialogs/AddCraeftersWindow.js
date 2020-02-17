@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {
     CraefterTypes
 } from "@craeft/engine/src/data/types";
+import ReactTooltip from "react-tooltip";
 
 export default class AddCraeftersWindow extends Component {
 
@@ -25,7 +26,6 @@ export default class AddCraeftersWindow extends Component {
         this.props.addCraefter(CraefterTypes.ArmorCraefter)
     }
 
-
     render() {
 
         const style = {
@@ -35,6 +35,22 @@ export default class AddCraeftersWindow extends Component {
 
         return (
             <div className='rpgui-container framed craefter-window'>
+
+                <ReactTooltip id="alchemist"
+                              place="bottom"
+                              className="rpgui-container framed is-size-5">
+                    Hey {global.craeft.player.name},<br/>
+                    you have to be level 20<br/>
+                    to hire Alchemist&apos;s!
+                </ReactTooltip>
+
+                <ReactTooltip id="jewelcraefter"
+                              place="bottom"
+                              className="rpgui-container framed is-size-5">
+                    Hey {global.craeft.player.name},<br/>
+                    you have to be level 40<br/>
+                    to hire Jewelcräfter!!
+                </ReactTooltip>
 
                 <div className={"row"}>
                     <strong>Add Cräfter</strong>
@@ -62,18 +78,22 @@ export default class AddCraeftersWindow extends Component {
                     </div>
 
                     <div className='rpgui-disabled'>
-                        <span className='rpgui-icon ring-slot'/>
+                        <span className='rpgui-icon potion-slot'/>
                         <button className='rpgui-button is-big'
+                                data-tip=""
+                                data-for="alchemist"
                                 style={style}>
-                            <span>Jewelcräfter</span>
+                            <span>Alchemist</span>
                         </button>
                     </div>
 
                     <div className='rpgui-disabled'>
-                        <span className='rpgui-icon potion-slot'/>
+                        <span className='rpgui-icon ring-slot'/>
                         <button className='rpgui-button is-big'
+                                data-tip=""
+                                data-for="jewelcraefter"
                                 style={style}>
-                            <span>Alchemist</span>
+                            <span>Jewelcräfter</span>
                         </button>
                     </div>
 

@@ -1,5 +1,6 @@
 /* globals craeft */
 import React, {Component} from "react";
+import ReactTooltip from "react-tooltip";
 
 // game
 import Player from "../player/Player"
@@ -32,7 +33,7 @@ export default class CraeftComponent extends Component {
         this.move = this.move.bind(this);
         this.startFarming = this.startFarming.bind(this);
 
-        this.toggleView = this.toggleView.bind(this);
+        this.switchView = this.switchView.bind(this);
 
         window.onbeforeunload = () => {
             Craeft.saveState();
@@ -42,7 +43,6 @@ export default class CraeftComponent extends Component {
     }
 
     componentDidMount() {
-
         craeft.start({
             onTick: () => {
                 // force update of the UI
@@ -68,7 +68,7 @@ export default class CraeftComponent extends Component {
         this.forceUpdate();
     }
 
-    toggleView(view) {
+    switchView(view) {
 
         this.setState({
             view
@@ -76,10 +76,25 @@ export default class CraeftComponent extends Component {
     }
 
     move(direction) {
-
         craeft.move(direction);
 
         this.forceUpdate();
+    }
+
+    equipItem(itemId) {
+        const equipped = craeft.equipItem(itemId);
+
+        if (equipped) {
+            this.forceUpdate();
+        }
+    }
+
+    unEquipItem(itemId) {
+        const uneqipped = craeft.unEquipItem(itemId);
+
+        if (uneqipped) {
+            this.forceUpdate();
+        }
     }
 
     addCraefter(
@@ -102,36 +117,6 @@ export default class CraeftComponent extends Component {
         this.forceUpdate();
     }
 
-    equipItem(
-        item
-    ) {
-        const equipped = craeft.player.equipment.equip(item);
-
-        if (equipped) {
-            item.equipped = equipped;
-
-            this.log(`"${item.getName()}" put on.`);
-        } else {
-            this.log("Equip failed!")
-        }
-    }
-
-    unEquipItem(
-        itemId
-    ) {
-        const unequipped = craeft.player.equipment.unequip(itemId);
-
-        if (unequipped) {
-            const item = craeft.items.find((i) => i.id === itemId);
-
-            item.equipped = false;
-
-            this.log(`"${item.getName()}" taken off.`);
-        } else {
-            this.log("Unequip failed!")
-        }
-    }
-
     disentchant(
         itemId
     ) {
@@ -145,15 +130,7 @@ export default class CraeftComponent extends Component {
     ) {
         const name = craeft.craefters.bury(craefterId);
 
-        this.log(`Cräfter "${name}" was buried!`);
-
-        this.forceUpdate()
-    }
-
-    log(
-        entry
-    ) {
-        craeft.logs.push(entry);
+        craeft.logs.push(`Cräfter "${name}" was buried!`);
 
         this.forceUpdate()
     }
@@ -167,17 +144,34 @@ export default class CraeftComponent extends Component {
                         <Dead/> : null
                 }
 
+                <ReactTooltip place="bottom"
+                              className="rpgui-container framed is-size-5">
+                    Hey {craeft.player.name},<br/>
+                    you have to be level 10<br/>
+                    to go on an adventure!
+                </ReactTooltip>
+
                 <div className={craeft.player.dead ? "rpgui-disabled" : ""}>
 
-                    <div className="top-bar nowrap rpgui-center">
-                        <button className={`rpgui-button golden first ${this.state.view === 1 ? "down" : ""}`}
-                                onClick={() => this.toggleView(1)}>
-                            <p>Cräfting</p>
-                        </button>
-                        <button className={`rpgui-button golden last ${this.state.view === 2 ? "down" : ""}`}
-                                onClick={() => this.toggleView(2)}>
-                            <p>Adventure</p>
-                        </button>
+                    <div className='row'>
+                        <div className="rpgui-button golden top-bar">
+
+                            <button className={`rpgui-button golden ${this.state.view === 1 ? "down" : ""}`}
+                                    onClick={() => this.switchView(1)}>
+                                <span>Cräfting</span>
+                            </button>
+
+                            <div
+                                className={`is-inline-block ${craeft.player.level < 10 ? "rpgui-disabled disabled" : ""}`}>
+                                <button
+                                    className={`rpgui-button golden ${this.state.view === 2 ? "down" : ""}`}
+                                    onClick={() => craeft.player.level > 9 ? this.switchView(2) : null}
+                                    data-tip={craeft.player.level < 10 ? "tooltip" : null}>
+                                    <span>Adventure</span>
+                                </button>
+                            </div>
+
+                        </div>
                     </div>
 
                     {
