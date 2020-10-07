@@ -36,7 +36,7 @@ export default class Footer extends Component {
                      style={{
                          fontSize: "12px"
                      }}>
-                    © 2019-2020 Sebastian Gerske — All Rights Reserved
+                    © 2019-2020 Umlaut Games — All Rights Reserved
                 </div>
 
             </div>

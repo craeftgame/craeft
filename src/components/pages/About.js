@@ -21,27 +21,30 @@ export default class About extends Component {
                     <hr/>
 
                     <div className="rpgui-center">
-                        Cräft! was made by Sebastian &quot;H34D&quot; Gerske
+                        <a href="https://umlaut.games"
+                           target="_linkedIn">
+                            Cräft! was made by Umlaut Games
+                        </a>
                     </div>
 
                     <hr/>
 
                     <div className="rpgui-center">
-                        <a href="https://www.linkedin.com/in/sgerske/"
+                        <a href="https://www.linkedin.com/company/umlaut-games/"
                            target="_linkedIn">
                             LinkedIn
                         </a>
                     </div>
 
                     <div className="rpgui-center">
-                        <a href="https://twitter.com/sgerske"
+                        <a href="https://twitter.com/UmlautGames"
                            target="_twitter">
                             Twitter
                         </a>
                     </div>
 
                     <div className="rpgui-center">
-                        <a href="https://github.com/h34d"
+                        <a href="https://github.com/umlaut-games"
                            target="_github">
                             GitHub
                         </a>
@@ -60,7 +63,7 @@ export default class About extends Component {
 
                         <div className="column">
                             Cräft! is open source,<br/> you can contribute&nbsp;
-                            <a href="https://github.com/craeftgame/craeft"
+                            <a href="https://github.com/craeftgame"
                                target="_cräft">
                                 here
                             </a>

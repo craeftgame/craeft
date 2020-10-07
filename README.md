@@ -10,7 +10,7 @@ This project builds on top of the work done in open source projects:
 ```
 MIT License
 
-Copyright (c) 2019 Sebastian Gerske
+Copyright (c) 2019-2020 Umlaut Games
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

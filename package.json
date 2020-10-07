@@ -14,7 +14,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build -b master -r git@github.com:craeftgame/craeftgame.github.io.git"
   },
-  "author": "Sebastian Gerske",
+  "author": "Umlaut Games",
   "license": "MIT",
   "devDependencies": {
     "create-react-app": "^3.3.0",
