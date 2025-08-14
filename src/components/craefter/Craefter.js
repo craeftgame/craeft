@@ -1,9 +1,8 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import CraefterDescription from "./CraefterDescription";
 import PropTypes from "prop-types";
 
 export default class Craefter extends Component {
-
     static propTypes = {
         craefter: PropTypes.object,
         openCraeftDialog: PropTypes.func,
@@ -12,68 +11,63 @@ export default class Craefter extends Component {
     };
 
     render() {
-
         const classNames = [
             "rpgui-container",
             "framed-grey",
             "craefter",
-            "row"
+            "row",
         ];
 
         return (
             <div className={classNames.join(" ")}>
-                <div className={this.props.craefter.dead ? "rpgui-disabled" : ""}>
-
-                    <CraefterDescription craefter={this.props.craefter}/>
+                <div
+                    className={this.props.craefter.dead ? "rpgui-disabled" : ""}
+                >
+                    <CraefterDescription craefter={this.props.craefter} />
 
                     <div className={"row"}>
+                        {!this.props.craefter.dead ? (
+                            <button
+                                onClick={() =>
+                                    this.props.openCraeftDialog(
+                                        this.props.craefter,
+                                    )
+                                }
+                                className="rpgui-button"
+                                disabled={
+                                    !this.props.canCraeft ||
+                                    this.props.craefter.delay.isDelaying ||
+                                    this.props.craefter.dead
+                                }
+                            >
+                                <span className="icon">
+                                    <i className="fas fa-hammer" />
+                                </span>
 
-                        {
-                            !this.props.craefter.dead ?
-                                <button onClick={() => this.props.openCraeftDialog(this.props.craefter)}
-                                        className='rpgui-button'
-                                        disabled={
-                                            !this.props.canCraeft ||
-                                            this.props.craefter.delay.isDelaying ||
-                                            this.props.craefter.dead
-                                        }>
-
-                                    <span className="icon">
-                                        <i className="fas fa-hammer"/>
-                                    </span>
-
-                                    <span>
-                                        &nbsp;
-                                        {
-                                            this.props.craefter.delay.isDelaying ?
-                                                this.props.craefter.delay.timer.getTimeoutString() : "Cräft!"
-                                        }
-                                    </span>
-
-                                </button> : null
-                        }
-
+                                <span>
+                                    &nbsp;
+                                    {this.props.craefter.delay.isDelaying
+                                        ? this.props.craefter.delay.timer.getTimeoutString()
+                                        : "Cräft!"}
+                                </span>
+                            </button>
+                        ) : null}
                     </div>
-
                 </div>
 
-                {
-                    this.props.craefter.dead ?
-                        <button className='rpgui-button'
-                                onClick={() => this.props.bury(this.props.craefter.id)}>
+                {this.props.craefter.dead ? (
+                    <button
+                        className="rpgui-button"
+                        onClick={() => this.props.bury(this.props.craefter.id)}
+                    >
+                        <span className="icon">
+                            <i className="fas fa-skull-crossbones" />
+                        </span>
 
-                            <span className="icon">
-                                <i className="fas fa-skull-crossbones"/>
-                            </span>
-
-                            <span>
-                                &nbsp;Bury!
-                            </span>
-
-                        </button> : null
-                }
-
+                        <span>&nbsp;Bury!</span>
+                    </button>
+                ) : null}
             </div>
-        )
+        );
     }
 }

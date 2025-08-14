@@ -1,10 +1,10 @@
 /* globals craeft */
-import React, {Component} from "react";
-import ReactTooltip from "react-tooltip";
+import React, { Component } from "react";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 
 // game
-import Player from "../player/Player"
-import Adventure from "../adventure/Adventure"
+import Player from "../player/Player";
+import Adventure from "../adventure/Adventure";
 import Dead from "../player/Dead";
 import Farm from "../Farm";
 import Items from "../item/Items";
@@ -13,9 +13,8 @@ import CraefterList from "../craefter/CraefterList";
 import Craeft from "@craeft/engine/src/craeft";
 
 export default class CraeftComponent extends Component {
-
     state = {
-        view: 1
+        view: 1,
     };
 
     constructor(props) {
@@ -47,7 +46,7 @@ export default class CraeftComponent extends Component {
             onTick: () => {
                 // force update of the UI
                 this.forceUpdate();
-            }
+            },
         });
     }
 
@@ -62,17 +61,16 @@ export default class CraeftComponent extends Component {
         craeft.startFarming({
             callback: () => {
                 this.forceUpdate();
-            }
+            },
         });
 
         this.forceUpdate();
     }
 
     switchView(view) {
-
         this.setState({
-            view
-        })
+            view,
+        });
     }
 
     move(direction) {
@@ -97,114 +95,110 @@ export default class CraeftComponent extends Component {
         }
     }
 
-    addCraefter(
-        which
-    ) {
+    addCraefter(which) {
         craeft.addCraefter(which);
 
         this.forceUpdate();
     }
 
-    addItem(
-        item,
-        resourcesConsumed
-    ) {
-        craeft.addItem(
-            item,
-            resourcesConsumed
-        );
+    addItem(item, resourcesConsumed) {
+        craeft.addItem(item, resourcesConsumed);
 
         this.forceUpdate();
     }
 
-    disentchant(
-        itemId
-    ) {
+    disentchant(itemId) {
         craeft.disentchant(itemId);
 
-        this.forceUpdate()
+        this.forceUpdate();
     }
 
-    bury(
-        craefterId
-    ) {
+    bury(craefterId) {
         const name = craeft.craefters.bury(craefterId);
 
         craeft.logs.push(`Cräfter "${name}" was buried!`);
 
-        this.forceUpdate()
+        this.forceUpdate();
     }
 
     render() {
         return (
             <div className={"craeft"}>
+                {craeft.player.dead ? <Dead /> : null}
 
-                {
-                    craeft.player.dead ?
-                        <Dead/> : null
-                }
-
-                <ReactTooltip place="bottom"
-                              className="rpgui-container framed is-size-5">
-                    Hey {craeft.player.name},<br/>
-                    you have to be level 10<br/>
+                <ReactTooltip
+                    place="bottom"
+                    className="rpgui-container framed is-size-5"
+                >
+                    Hey {craeft.player.name},<br />
+                    you have to be level 10
+                    <br />
                     to go on an adventure!
                 </ReactTooltip>
 
                 <div className={craeft.player.dead ? "rpgui-disabled" : ""}>
-
-                    <div className='row'>
+                    <div className="row">
                         <div className="rpgui-button golden top-bar">
-
-                            <button className={`rpgui-button golden ${this.state.view === 1 ? "down" : ""}`}
-                                    onClick={() => this.switchView(1)}>
+                            <button
+                                className={`rpgui-button golden ${this.state.view === 1 ? "down" : ""}`}
+                                onClick={() => this.switchView(1)}
+                            >
                                 <span>Cräfting</span>
                             </button>
 
                             <div
-                                className={`is-inline-block ${craeft.player.level < 10 ? "rpgui-disabled disabled" : ""}`}>
+                                className={`is-inline-block ${craeft.player.level < 10 ? "rpgui-disabled disabled" : ""}`}
+                            >
                                 <button
                                     className={`rpgui-button golden ${this.state.view === 2 ? "down" : ""}`}
-                                    onClick={() => craeft.player.level > 9 ? this.switchView(2) : null}
-                                    data-tip={craeft.player.level < 10 ? "tooltip" : null}>
+                                    onClick={() =>
+                                        craeft.player.level > 9
+                                            ? this.switchView(2)
+                                            : null
+                                    }
+                                    data-tip={
+                                        craeft.player.level < 10
+                                            ? "tooltip"
+                                            : null
+                                    }
+                                >
                                     <span>Adventure</span>
                                 </button>
                             </div>
-
                         </div>
                     </div>
 
-                    {
-                        this.state.view === 1 ?
-                            <div>
-                                <Player player={craeft.player}
-                                        onUnequip={this.unEquipItem}/>
+                    {this.state.view === 1 ? (
+                        <div>
+                            <Player
+                                player={craeft.player}
+                                onUnequip={this.unEquipItem}
+                            />
 
-                                <div className="craefting-interface columns">
+                            <div className="craefting-interface columns">
+                                <CraefterList
+                                    resources={craeft.resources}
+                                    craefters={craeft.craefters}
+                                    craefterAdded={this.addCraefter}
+                                    bury={this.bury}
+                                    itemAdded={this.addItem}
+                                />
 
-                                    <CraefterList resources={craeft.resources}
-                                                  craefters={craeft.craefters}
-                                                  craefterAdded={this.addCraefter}
-                                                  bury={this.bury}
-                                                  itemAdded={this.addItem}/>
+                                <Farm startFarming={this.startFarming} />
 
-                                    <Farm startFarming={this.startFarming}/>
+                                <Items
+                                    items={craeft.items}
+                                    onItemEquip={this.equipItem}
+                                    onDisentchant={this.disentchant}
+                                />
+                            </div>
+                        </div>
+                    ) : null}
 
-                                    <Items items={craeft.items}
-                                           onItemEquip={this.equipItem}
-                                           onDisentchant={this.disentchant}/>
-
-                                </div>
-                            </div> : null
-                    }
-
-                    {
-                        this.state.view === 2 ?
-                            <Adventure onMove={this.move}/> : null
-                    }
-
+                    {this.state.view === 2 ? (
+                        <Adventure onMove={this.move} />
+                    ) : null}
                 </div>
-
             </div>
         );
     }

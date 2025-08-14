@@ -1,12 +1,11 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 export default class Modal extends Component {
-
     static propTypes = {
         isActive: PropTypes.bool,
         onClose: PropTypes.func,
-        children: PropTypes.node
+        children: PropTypes.node,
     };
 
     constructor(props) {
@@ -17,17 +16,11 @@ export default class Modal extends Component {
     }
 
     componentDidMount() {
-        document.addEventListener(
-            "keydown",
-            this.keyPressed
-        );
+        document.addEventListener("keydown", this.keyPressed);
     }
 
     componentWillUnmount() {
-        document.removeEventListener(
-            "keydown",
-            this.keyPressed
-        )
+        document.removeEventListener("keydown", this.keyPressed);
     }
 
     keyPressed(event) {
@@ -39,28 +32,23 @@ export default class Modal extends Component {
 
     close() {
         if (this.props.onClose) {
-            this.props.onClose()
+            this.props.onClose();
         }
     }
 
     render() {
         return (
             <div className={`modal ${this.props.isActive ? "is-active" : ""}`}>
-                <div className="modal-background"
-                     onClick={this.close}/>
+                <div className="modal-background" onClick={this.close} />
 
-                <div className="modal-content">
+                <div className="modal-content">{this.props.children}</div>
 
-                    {this.props.children}
-
-                </div>
-
-                <button className="modal-close is-large"
-                        onClick={this.close}
-                        aria-label="close">
-                </button>
-
+                <button
+                    className="modal-close is-large"
+                    onClick={this.close}
+                    aria-label="close"
+                ></button>
             </div>
-        )
+        );
     }
 }

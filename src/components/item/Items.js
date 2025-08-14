@@ -1,18 +1,17 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import ItemDescription from "./ItemDescription";
 import ItemIcon from "./ItemIcon";
 import PropTypes from "prop-types";
 
 export default class Items extends Component {
-
     static propTypes = {
         items: PropTypes.array,
         onItemEquip: PropTypes.func,
-        onDisentchant: PropTypes.func
+        onDisentchant: PropTypes.func,
     };
 
     state = {
-        selectedItem: null
+        selectedItem: null,
     };
 
     constructor(props) {
@@ -23,90 +22,85 @@ export default class Items extends Component {
         this.onDisentchant = this.onDisentchant.bind(this);
     }
 
-    selectItem(
-        item
-    ) {
+    selectItem(item) {
         if (!item.delay.isDelaying) {
-
             let i = item;
             if (this.state.selectedItem === item) {
-                i = null
+                i = null;
             }
             this.setState({
-                selectedItem: i
-            })
+                selectedItem: i,
+            });
         }
     }
 
-    equip(
-        item
-    ) {
+    equip(item) {
         this.props.onItemEquip(item);
 
         if (item.equipped) {
             this.setState({
-                selectedItem: null
+                selectedItem: null,
             });
         }
     }
 
-    onDisentchant(
-        itemId
-    ) {
+    onDisentchant(itemId) {
         if (this.props.onDisentchant) {
-
             this.setState({
-                selectedItem: null
+                selectedItem: null,
             });
 
-            this.props.onDisentchant(itemId)
+            this.props.onDisentchant(itemId);
         }
     }
 
     render() {
         return (
-            <div className='items column frame'>
-                <div className='rpgui-container framed'>
-
+            <div className="items column frame">
+                <div className="rpgui-container framed">
                     <div className={"row"}>
                         <strong>Items</strong>
-                        <hr/>
+                        <hr />
                     </div>
 
-                    {
-                        this.state.selectedItem && !this.state.selectedItem.equipped ?
-
-                            <div className='rpgui-container framed-grey item row'>
-                                <ItemDescription item={this.state.selectedItem}
-                                                 onEquip={this.equip}
-                                                 onDisentchant={this.onDisentchant}/>
-                            </div> : null
-                    }
+                    {this.state.selectedItem &&
+                    !this.state.selectedItem.equipped ? (
+                        <div className="rpgui-container framed-grey item row">
+                            <ItemDescription
+                                item={this.state.selectedItem}
+                                onEquip={this.equip}
+                                onDisentchant={this.onDisentchant}
+                            />
+                        </div>
+                    ) : null}
 
                     <div>
-
-                        {
-                            this.props.items.filter((item) => {
-                                return !item.equipped
-                            }).length > 0 ?
-                                this.props.items
-                                    .filter((item) => {
-                                        return !item.equipped
-                                    })
-                                    .map((item, index) => {
-                                        return (
-                                            <ItemIcon key={index} item={item}
-                                                      isSelected={item === this.state.selectedItem}
-                                                      isSmall={false} onItemSelected={this.selectItem}/>
-                                        )
-                                    })
-                                : <div className='row'>go Cräft!</div>
-                        }
-
+                        {this.props.items.filter((item) => {
+                            return !item.equipped;
+                        }).length > 0 ? (
+                            this.props.items
+                                .filter((item) => {
+                                    return !item.equipped;
+                                })
+                                .map((item, index) => {
+                                    return (
+                                        <ItemIcon
+                                            key={index}
+                                            item={item}
+                                            isSelected={
+                                                item === this.state.selectedItem
+                                            }
+                                            isSmall={false}
+                                            onItemSelected={this.selectItem}
+                                        />
+                                    );
+                                })
+                        ) : (
+                            <div className="row">go Cräft!</div>
+                        )}
                     </div>
-
                 </div>
             </div>
-        )
+        );
     }
 }

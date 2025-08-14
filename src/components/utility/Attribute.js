@@ -1,8 +1,7 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 export default class Attribute extends Component {
-
     static propTypes = {
         label: PropTypes.string.isRequired,
         value: PropTypes.any.isRequired,
@@ -16,11 +15,12 @@ export default class Attribute extends Component {
 
                 <span>{this.props.value.toLocaleString()}</span>
 
-                {
-                    this.props.value2 ?
-                        <span>-{this.props.value2.toLocaleString()}&nbsp;</span> : <>&nbsp;</>
-                }
+                {this.props.value2 ? (
+                    <span>-{this.props.value2.toLocaleString()}&nbsp;</span>
+                ) : (
+                    <>&nbsp;</>
+                )}
             </>
-        )
+        );
     }
 }

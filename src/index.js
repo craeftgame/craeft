@@ -1,30 +1,20 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import * as serviceWorker from "./serviceWorker";
 
-import "./css/rpgui.css"
-import "bulma/css/bulma.min.css"
-import "./css/Craeft.css"
+import "./css/rpgui.css";
+import "bulma/css/bulma.min.css";
+import "./css/Craeft.css";
 
-import {ReactComponent as Filters} from "./assets/filters.svg"
+import { ReactComponent as Filters } from "./assets/filters.svg";
 
 import CraeftPage from "./CraeftPage";
 import AboutPage from "./AboutPage";
 
-window.addEventListener(
-    "hashchange",
-    render,
-    false
-);
+window.addEventListener("hashchange", render, false);
 
 function render() {
-    let page = window
-        .location
-        .hash
-        .substr(
-            1,
-            window.location.hash.length
-        );
+    let page = window.location.hash.substr(1, window.location.hash.length);
 
     let pageComponent;
 
@@ -33,24 +23,25 @@ function render() {
 
     switch (page) {
         case "about":
-            pageComponent = <AboutPage/>;
+            pageComponent = <AboutPage />;
 
             window.document.title = `${title} - About`;
             break;
 
         case "craeft":
         default:
-            pageComponent = <CraeftPage showFooter={!hideFooter}/>;
+            pageComponent = <CraeftPage showFooter={!hideFooter} />;
             window.document.title = `${title} - Game`;
             break;
     }
 
-    ReactDOM.render(
+    const root = createRoot(document.getElementById("root"));
+
+    root.render(
         <div>
-            <Filters/>
+            <Filters />
             {pageComponent}
         </div>,
-        document.getElementById("root")
     );
 
     window.scroll(0, 0);

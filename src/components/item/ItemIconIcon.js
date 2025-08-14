@@ -1,28 +1,25 @@
-import React, {Component} from "react";
-import {ItemCategories, ResourceTypes} from "@craeft/engine/src/data/types";
+import React, { Component } from "react";
+import { ItemCategories, ResourceTypes } from "@craeft/engine/src/data/types";
 import PropTypes from "prop-types";
 
 export default class ItemIconIcon extends Component {
-
     static propTypes = {
         item: PropTypes.object,
-        isSmall: PropTypes.bool
+        isSmall: PropTypes.bool,
     };
 
     render() {
-        const itemClasses = [
-            "rpgui-icon"
-        ];
+        const itemClasses = ["rpgui-icon"];
 
         if (this.props.isSmall) {
-            itemClasses.push("icon-small")
+            itemClasses.push("icon-small");
         }
 
         // evaluate item type
         if (this.props.item.category === ItemCategories.Weapon) {
-            itemClasses.push("sword")
+            itemClasses.push("sword");
         } else if (this.props.item.category === ItemCategories.Armor) {
-            itemClasses.push("shield")
+            itemClasses.push("shield");
         }
 
         // evaluate material
@@ -36,8 +33,6 @@ export default class ItemIconIcon extends Component {
             itemClasses.push("diamond");
         }
 
-        return (
-            <div className={itemClasses.join(" ")}/>
-        )
+        return <div className={itemClasses.join(" ")} />;
     }
 }

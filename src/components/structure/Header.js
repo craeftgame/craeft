@@ -1,25 +1,21 @@
-import React, {Component} from "react";
-import config from "@craeft/engine/config"
+import React, { Component } from "react";
+import config from "@craeft/engine/config";
 
 export default class Header extends Component {
-
     render() {
         return (
             <div className={"row craeft-logo"}>
-
                 <a href="#craeft">
                     Cräft!
-                    {
-                        config.subLogo ?
-                            <div className={"craeft-sub-logo"}>
-                                {config.subLogo}
-                            </div> : null
-                    }
+                    {config.subLogo ? (
+                        <div className={"craeft-sub-logo"}>
+                            {config.subLogo}
+                        </div>
+                    ) : null}
                 </a>
 
-                <hr className="golden"/>
-
+                <hr className="golden" />
             </div>
-        )
+        );
     }
 }

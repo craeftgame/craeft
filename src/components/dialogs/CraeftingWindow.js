@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import Slider from "../utility/Slider";
@@ -8,7 +8,6 @@ import Resources from "@craeft/engine/src/resources";
 import Craefter from "@craeft/engine/src/craefter/craefter";
 
 export default class CraeftingWindow extends Component {
-
     static propTypes = {
         craefter: PropTypes.instanceOf(Craefter),
         resources: PropTypes.instanceOf(Resources),
@@ -17,9 +16,9 @@ export default class CraeftingWindow extends Component {
 
     state = {
         resources: new Resources({
-            initialResources: 0
+            initialResources: 0,
         }),
-        preItem: null
+        preItem: null,
     };
 
     constructor(props) {
@@ -29,93 +28,86 @@ export default class CraeftingWindow extends Component {
         this.craeft = this.craeft.bind(this);
     }
 
-    updateResource(
-        which,
-        value
-    ) {
-        const resources = new Resources()
-            .add(this.state.resources);
+    updateResource(which, value) {
+        const resources = new Resources().add(this.state.resources);
 
         // update resources
         resources[which] = value;
 
-        this.setState({
-            resources
-        }, () => {
+        this.setState(
+            {
+                resources,
+            },
+            () => {
+                // re evaluate the item
+                const preItem = this.props.craefter.evaluateItem({
+                    resources: this.state.resources,
+                });
 
-            // re evaluate the item
-            const preItem = this.props.craefter.evaluateItem({
-                resources: this.state.resources
-            });
-
-            this.setState({
-                preItem
-            })
-        });
+                this.setState({
+                    preItem,
+                });
+            },
+        );
     }
 
     craeft() {
         if (this.state.resources.sum() > 0) {
             // cräft the item
             const item = this.props.craefter.craeft({
-                resources: this.state.resources
+                resources: this.state.resources,
             });
 
-            this.props.itemAdded(
-                item,
-                this.state.resources
-            );
+            this.props.itemAdded(item, this.state.resources);
         }
     }
 
     render() {
         return (
-            <div className='rpgui-container framed craeft-window'>
-
+            <div className="rpgui-container framed craeft-window">
                 <div className={"row"}>
                     <strong>Cräft!</strong>
-                    <hr/>
+                    <hr />
                 </div>
 
-                <CraefterDescription craefter={this.props.craefter}/>
+                <CraefterDescription craefter={this.props.craefter} />
 
                 <div className={"row"}>
-
-                    {
-                        this.props.resources.map((type, name, i) => {
-                            return (this.props.resources[type] ?
-                                    <div key={`resource-slider-${i}`}>
-
-                                        <span>{this.state.resources[type].toLocaleString()}</span> x {name}
-
-                                        <Slider step={1} min={0}
-                                                max={this.props.resources[type]}
-                                                defaultValue={this.state.resources[type]}
-                                                onValueChange={(value) => this.updateResource(
-                                                    type,
-                                                    value
-                                                )}/>
-
-                                    </div> : null
-                            )
-                        })
-                    }
-
+                    {this.props.resources.map((type, name, i) => {
+                        return this.props.resources[type] ? (
+                            <div key={`resource-slider-${i}`}>
+                                <span>
+                                    {this.state.resources[
+                                        type
+                                    ].toLocaleString()}
+                                </span>{" "}
+                                x {name}
+                                <Slider
+                                    step={1}
+                                    min={0}
+                                    max={this.props.resources[type]}
+                                    defaultValue={this.state.resources[type]}
+                                    onValueChange={(value) =>
+                                        this.updateResource(type, value)
+                                    }
+                                />
+                            </div>
+                        ) : null;
+                    })}
                 </div>
 
-                {
-                    this.state.preItem ?
-                        <PreItemDescription preItem={this.state.preItem}/>
-                        : null
-                }
+                {this.state.preItem ? (
+                    <PreItemDescription preItem={this.state.preItem} />
+                ) : null}
 
-                <div className='row'>
-                    <button onClick={this.craeft}
-                            className={`rpgui-button is-big ${this.state.resources.sum() < 1 ? "rpgui-disabled" : ""}`}>
+                <div className="row">
+                    <button
+                        onClick={this.craeft}
+                        className={`rpgui-button is-big ${this.state.resources.sum() < 1 ? "rpgui-disabled" : ""}`}
+                    >
                         <span>Cräft!</span>
                     </button>
                 </div>
-
             </div>
         );
     }
