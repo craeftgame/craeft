@@ -7,7 +7,7 @@ import js from "@eslint/js";
 import { FlatCompat } from "@eslint/eslintrc";
 import { fixupConfigRules, fixupPluginRules } from "@eslint/compat";
 import flowType from "eslint-plugin-flowtype";
-import jest from "eslint-plugin-jest";
+import pluginJest from "eslint-plugin-jest";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,22 +21,24 @@ const compat = new FlatCompat({
 export default defineConfig([
   {
     extends: fixupConfigRules(
-      compat.extends([
-        "eslint:recommended",
+      compat.extends(
         "react-app",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
         "plugin:jest/recommended",
-      ]),
+      ),
     ),
 
     plugins: {
       flowtype: fixupPluginRules(flowType),
-      jest,
+      jest: fixupPluginRules(pluginJest),
     },
 
     languageOptions: {
       globals: {
         ...globals.browser,
         ...globals.node,
+        ...pluginJest.environments.globals.globals,
       },
 
       parser,
