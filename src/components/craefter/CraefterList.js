@@ -84,14 +84,15 @@ export default class CraefterList extends Component {
     }
 
     onCraefterSelect(craefter) {
-        let c = this.state.selectedCraefter === craefter ? null : craefter;
+        this.setState((prevState) => {
+            let c = prevState.selectedCraefter === craefter ? null : craefter;
 
-        if (craefter.isCraefting) {
-            c = null;
-        }
-
-        this.setState({
-            selectedCraefter: c,
+            if (craefter.isCraefting) {
+                c = null;
+            }
+            return {
+                selectedCraefter: c,
+            };
         });
     }
 
@@ -144,8 +145,7 @@ export default class CraefterList extends Component {
                         <hr />
                     </div>
 
-                    {this.state.selectedCraefter &&
-                    !this.state.selectedCraefter.isCraefting ? (
+                    {!this.state.selectedCraefter?.isCraefting ? (
                         <Craefter
                             craefter={this.state.selectedCraefter}
                             openCraeftDialog={this.openCraeftDialog}
