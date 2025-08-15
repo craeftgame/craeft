@@ -26,7 +26,7 @@ export default class ItemIcon extends Component {
         const containerClasses = ["item-icon"];
 
         // item disabled?
-        if (this.props.item.delay && this.props.item.delay.isDelaying) {
+        if (this.props.item.delay?.isDelaying) {
             containerClasses.push("rpgui-disabled");
         } else if (this.props.item.rarity) {
             containerClasses.push(Symbol.keyFor(this.props.item.rarity));
@@ -48,17 +48,13 @@ export default class ItemIcon extends Component {
                         isSmall={this.props.isSmall}
                     />
 
-                    {!(
-                        this.props.item.delay &&
-                        this.props.item.delay.isDelaying
-                    ) ? (
+                    {!this.props.item.delay?.isDelaying ? (
                         <span className="item-level">
                             {this.props.item.level}
                         </span>
                     ) : null}
 
-                    {this.props.item.delay &&
-                    this.props.item.delay.isDelaying ? (
+                    {this.props.item.delay?.isDelaying ? (
                         <div className="item-timeout nowrap">
                             <span>
                                 {this.props.item.delay.timer.getTimeoutString()}
