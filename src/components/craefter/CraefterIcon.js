@@ -31,16 +31,14 @@ export default class CraefterIcon extends Component {
         }
 
         let disabled = "";
-        if (this.props.craefter && this.props.craefter.isCraefting) {
+        if (this.props.craefter?.isCraefting) {
             disabled = "rpgui-disabled";
         }
 
         return (
             <div
                 className={classes.join(" ")}
-                disabled={
-                    this.props.craefter && this.props.craefter.isCraefting
-                }
+                disabled={this.props.craefter?.isCraefting}
                 onClick={this.onCraefterSelect}
             >
                 {this.props.craefter.type === CraefterTypes.WeaponCraefter ? (
@@ -51,15 +49,13 @@ export default class CraefterIcon extends Component {
                     <div className={`rpgui-icon armor-slot ${disabled}`} />
                 ) : null}
 
-                {this.props.craefter.delay &&
-                !this.props.craefter.delay.isDelaying ? (
+                {!this.props.craefter.delay?.isDelaying ? (
                     <span className="craefter-level">
                         {this.props.craefter.level}
                     </span>
                 ) : null}
 
-                {this.props.craefter.delay &&
-                this.props.craefter.delay.isDelaying ? (
+                {this.props.craefter.delay?.isDelaying ? (
                     <div className="craefter-timeout nowrap">
                         <span>
                             {this.props.craefter.delay.timer.getTimeoutString()}
@@ -67,7 +63,7 @@ export default class CraefterIcon extends Component {
                     </div>
                 ) : null}
 
-                {this.props.craefter && this.props.craefter.isCraefting ? (
+                {this.props.craefter?.isCraefting ? (
                     <div className="craefter-timeout craefter-timeout-item nowrap">
                         <span>
                             {craeft.items

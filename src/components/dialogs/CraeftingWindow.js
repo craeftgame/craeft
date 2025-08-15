@@ -29,14 +29,16 @@ export default class CraeftingWindow extends Component {
     }
 
     updateResource(which, value) {
-        const resources = new Resources().add(this.state.resources);
-
-        // update resources
-        resources[which] = value;
-
         this.setState(
-            {
-                resources,
+            (prevState) => {
+                // load current resources
+                const resources = new Resources().add(prevState.resources);
+
+                // update resources
+                resources[which] = value;
+                return {
+                    resources,
+                };
             },
             () => {
                 // re evaluate the item
