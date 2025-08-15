@@ -37,7 +37,7 @@
     "typescript": "^5.9.2"
   },
   "dependencies": {
-    "@craeft/engine": "git+https://github.com/craeftgame/engine.git#v1.6.1",
+    "@craeft/engine": "git+https://github.com/craeftgame/engine.git#v1.7.0",
     "bulma": "^1.0.4",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

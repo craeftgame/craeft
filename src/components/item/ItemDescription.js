@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ItemStats from "./ItemStats";
 import Attribute from "../utility/Attribute";
-import { Rarities } from "@craeft/engine/src/data/types";
-import { RarityNames } from "@craeft/engine/src/data/names";
+import { Rarities } from "@craeft/engine/dist/data/types";
+import { RarityNames } from "@craeft/engine/dist/data/names";
 
 export default class ItemDescription extends Component {
     static propTypes = {

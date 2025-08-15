@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Gauge from "../utility/Gauge";
 import Attribute from "../utility/Attribute";
 import PropTypes from "prop-types";
-import Boss from "@craeft/engine/src/boss/boss";
+import Boss from "@craeft/engine/dist/boss/boss";
 import Fight from "./Fight";
 
 export default class BossDescription extends Component {
@@ -22,9 +22,9 @@ export default class BossDescription extends Component {
     }
 
     fight() {
-        this.setState({
-            isFighting: !this.state.isFighting,
-        });
+        this.setState((prevState) => ({
+            isFighting: !prevState.isFighting,
+        }));
 
         this.props.fight();
     }

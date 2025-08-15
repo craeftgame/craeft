@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { CraefterTypes } from "@craeft/engine/src/data/types";
+import { CraefterTypes } from "@craeft/engine/dist/data/types";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 
 export default class AddCraeftersWindow extends Component {

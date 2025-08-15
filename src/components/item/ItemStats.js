@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Attribute from "../utility/Attribute";
-import Item from "@craeft/engine/src/items/item";
+import Item from "@craeft/engine/dist/items/item";
 
 export default class ItemStats extends Component {
     static propTypes = {

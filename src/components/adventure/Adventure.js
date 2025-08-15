@@ -7,7 +7,7 @@ import Map from "../map/Map";
 import PlayerDescription from "../player/PlayerDescription";
 import Logs from "../Logs";
 
-import config from "@craeft/engine/config";
+import config from "@craeft/engine/dist/config";
 
 export default class Adventure extends Component {
     static propTypes = {

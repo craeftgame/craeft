@@ -10,7 +10,7 @@ import Farm from "../Farm";
 import Items from "../item/Items";
 import CraefterList from "../craefter/CraefterList";
 
-import Craeft from "@craeft/engine/src/craeft";
+import Craeft from "@craeft/engine/dist/craeft";
 
 export default class CraeftComponent extends Component {
     state = {

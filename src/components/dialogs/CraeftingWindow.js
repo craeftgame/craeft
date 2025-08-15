@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import Slider from "../utility/Slider";
 import CraefterDescription from "../craefter/CraefterDescription";
 import PreItemDescription from "../item/PreItemDescription";
-import Resources from "@craeft/engine/src/resources";
-import Craefter from "@craeft/engine/src/craefter/craefter";
+import Resources from "@craeft/engine/dist/resources";
+import Craefter from "@craeft/engine/dist/craefter/craefter";
 
 export default class CraeftingWindow extends Component {
     static propTypes = {
@@ -40,13 +40,11 @@ export default class CraeftingWindow extends Component {
             },
             () => {
                 // re evaluate the item
-                const preItem = this.props.craefter.evaluateItem({
-                    resources: this.state.resources,
-                });
-
-                this.setState({
-                    preItem,
-                });
+                this.setState((prevState) => ({
+                    preItem: this.props.craefter.evaluateItem({
+                        resources: prevState.resources,
+                    }),
+                }));
             },
         );
     }

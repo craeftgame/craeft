@@ -102,13 +102,6 @@
     eslint-visitor-keys "^2.1.0"
     semver "^6.3.1"
 
-"@babel/eslint-plugin@^7.27.1":
-  version "7.27.1"
-  resolved "https://registry.yarnpkg.com/@babel/eslint-plugin/-/eslint-plugin-7.27.1.tgz#5e7cfeaa7a7b506d0ee74c62244e4e6b7a7043f6"
-  integrity sha512-vOG/EipZbIAcREK6XI4JRO3B3uZr70/KIhsrNLO9RXcgLMaW0sTsBpNeTpQUyelB0HsbWd45NIsuTgD3mqr/Og==
-  dependencies:
-    eslint-rule-composer "^0.3.0"
-
 "@babel/generator@^7.28.0", "@babel/generator@^7.7.2":
   version "7.28.0"
   resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.28.0.tgz#9cc2f7bd6eb054d77dc66c2664148a0c5118acd2"
@@ -1304,19 +1297,19 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@craeft/engine@git+https://github.com/craeftgame/engine.git#v1.6.1":
-  version "1.6.1"
-  resolved "git+https://github.com/craeftgame/engine.git#4351463825fcb0cca9aee4e595d953d782bff1c1"
+"@craeft/engine@git+https://github.com/craeftgame/engine.git#v1.7.0":
+  version "1.7.0"
+  resolved "git+https://github.com/craeftgame/engine.git#6b1dbcf31ce7abe0f393a589bca226692cf19ef9"
   dependencies:
-    "@craeft/map-generator" "git+https://github.com/craeftgame/map-generator.git#v1.3.0"
+    "@craeft/map-generator" "git+https://github.com/craeftgame/map-generator.git#v1.4.0"
     "@craeft/serializer" "git+https://github.com/craeftgame/serializer.git#v1.3.0"
     local-storage "^2.0.0"
     lz-string "^1.4.4"
     mathjs "^7.5.1"
 
-"@craeft/map-generator@git+https://github.com/craeftgame/map-generator.git#v1.3.0":
-  version "1.3.0"
-  resolved "git+https://github.com/craeftgame/map-generator.git#8112f8d3ff2e7093afbb2609900084ab933f61d8"
+"@craeft/map-generator@git+https://github.com/craeftgame/map-generator.git#v1.4.0":
+  version "1.4.0"
+  resolved "git+https://github.com/craeftgame/map-generator.git#49ff0c4201342a34a14a38bd9131ee44d9705635"
 
 "@craeft/serializer@git+https://github.com/craeftgame/serializer.git#v1.3.0":
   version "1.3.0"
@@ -4958,11 +4951,6 @@ eslint-plugin-testing-library@^5.0.1:
   integrity sha512-5eX9e1Kc2PqVRed3taaLnAAqPZGEX75C+M/rXzUAI3wIg/ZxzUm1OVAwfe/O+vE+6YXOLetSe9g5GKD2ecXipw==
   dependencies:
     "@typescript-eslint/utils" "^5.58.0"
-
-eslint-rule-composer@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/eslint-rule-composer/-/eslint-rule-composer-0.3.0.tgz#79320c927b0c5c0d3d3d2b76c8b4a488f25bbaf9"
-  integrity sha512-bt+Sh8CtDmn2OajxvNO+BX7Wn4CIWMpTRm3MaiKPCQcnnlm0CS2mhui6QaoeQugs+3Kj2ESKEEGJUdVafwhiCg==
 
 eslint-scope@5.1.1, eslint-scope@^5.1.1:
   version "5.1.1"

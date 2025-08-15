@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Attribute from "../utility/Attribute";
-import PreItem from "@craeft/engine/src/items/PreItem";
+import PreItem from "@craeft/engine/dist/items/PreItem";
 
 export default class PreItemStats extends Component {
     static propTypes = {

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import ItemDescription from "../item/ItemDescription";
 import ItemIcon from "../item/ItemIcon";
-import { ArmorSlots, WeaponSlots } from "@craeft/engine/src/data/types";
+import { ArmorSlots, WeaponSlots } from "@craeft/engine/dist/data/types";
 
 export default class Equipment extends Component {
     static propTypes = {
@@ -23,9 +23,9 @@ export default class Equipment extends Component {
     }
 
     toggleItemSelection(item) {
-        this.setState({
-            selectedItem: this.state.selectedItem === item ? null : item,
-        });
+        this.setState((prevState) => ({
+            selectedItem: prevState.selectedItem === item ? null : item,
+        }));
     }
 
     unequip(item) {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Gauge from "../utility/Gauge";
-import { CraefterTypeNames } from "@craeft/engine/src/data/names";
+import { CraefterTypeNames } from "@craeft/engine/dist/data/names";
 import PropTypes from "prop-types";
 import Attribute from "../utility/Attribute";
 

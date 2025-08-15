@@ -1,8 +1,8 @@
 /* globals craeft */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Boss from "@craeft/engine/src/boss/boss";
-import { WeaponSlots } from "@craeft/engine/src/data/types";
+import Boss from "@craeft/engine/dist/boss/boss";
+import { WeaponSlots } from "@craeft/engine/dist/data/types";
 import ItemIconIcon from "../item/ItemIconIcon";
 
 export default class Fight extends Component {

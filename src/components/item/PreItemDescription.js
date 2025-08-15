@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { ItemNames } from "@craeft/engine/src/data/names";
+import { ItemNames } from "@craeft/engine/dist/data/names";
 import ItemIcon from "./ItemIcon";
 import PreItemStats from "./PreItemStats";
-import PreItem from "@craeft/engine/src/items/PreItem";
+import PreItem from "@craeft/engine/dist/items/PreItem";
 
 export default class PreItemDescription extends Component {
     static propTypes = {

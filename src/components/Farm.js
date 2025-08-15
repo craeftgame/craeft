@@ -1,6 +1,6 @@
 /* globals craeft */
 import React, { Component } from "react";
-import { ResourceTypes } from "@craeft/engine/src/data/types";
+import { ResourceTypes } from "@craeft/engine/dist/data/types";
 import PropTypes from "prop-types";
 
 export default class Farm extends Component {

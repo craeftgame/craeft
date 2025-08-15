@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import config from "@craeft/engine/config";
+import config from "@craeft/engine/dist/config";
 
 export default class Header extends Component {
     render() {

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Attribute from "../utility/Attribute";
 import Gauge from "../utility/Gauge";
 import PropTypes from "prop-types";
-import Player from "@craeft/engine/src/player";
+import Player from "@craeft/engine/dist/player";
 
 export default class PlayerDescription extends Component {
     static propTypes = {
