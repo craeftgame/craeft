@@ -27,7 +27,7 @@
     "@testing-library/jest-dom": "^6.6.4",
     "@testing-library/react": "^16.3.0",
     "create-react-app": "^5.1.0",
-    "eslint": "^9.33.0",
+    "eslint": "^9.34.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-jest": "^29.0.1",
     "gh-pages": "^6.3.0",
