@@ -1,0 +1,69 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    // File Layout
+    //"rootDir": "./src",
+    //"outDir": "./dist",
+    "typeRoots": [
+      "node_modules/@craeft/engine/dist"
+    ],
+    // Environment Settings
+    // See also https://aka.ms/tsconfig/module
+    "module": "CommonJS",
+    "target": "ES6",
+    "types": [],
+    // For nodejs:
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    // "types": ["node"],
+    // and npm install -D @types/node
+    // Other Outputs
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    // Stricter Typechecking Options
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": false,
+    // Style Options
+    // "noImplicitReturns": true,
+    // "noImplicitOverride": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    // "noFallthroughCasesInSwitch": true,
+    // "noPropertyAccessFromIndexSignature": true,
+    // Recommended Options
+    "strict": true,
+    "jsx": "preserve",
+    "verbatimModuleSyntax": false,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "noImplicitAny": true,
+    "noEmit": true,
+    "incremental": true,
+    "moduleResolution": "node",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "./src/global.d.ts",
+    "next-env.d.ts",
+    "build/types/**/*.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

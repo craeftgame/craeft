@@ -1,0 +1,693 @@
+* {
+  font-family: "MedievalSharp", cursive;
+  font-size: 24px;
+}
+
+html,
+body {
+  color: #faebd7;
+  background-color: #222;
+  min-width: 400px;
+}
+
+strong {
+  color: #faefe1;
+}
+
+@media screen and (max-width: 768px) {
+  .frame {
+    width: 100%;
+  }
+
+  .craefting-interface.columns {
+    text-align: center;
+  }
+
+  .farm {
+    text-align: initial;
+  }
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.column {
+  display: inline-block;
+  vertical-align: top;
+  padding-right: 20px;
+}
+
+.row {
+  text-align: center;
+}
+
+.craeft-logo {
+  font-size: 90px;
+  font-weight: bold;
+  padding-top: 12px;
+}
+
+.craeft-logo a {
+  color: #faefe1;
+}
+
+.craeft-logo a:hover {
+  text-decoration: none;
+}
+
+.craeft-sub-logo {
+  color: darkred;
+  position: relative;
+  top: -115px;
+  left: 100px;
+  transform: rotate(38deg);
+  font-size: 24px;
+  font-weight: bold;
+  font-family: sans-serif;
+  text-shadow:
+    -1px -1px 0 #faefe1,
+    1px -1px 0 #faefe1,
+    -1px 1px 0 #faefe1,
+    1px 1px 0 #faefe1;
+}
+
+.player {
+  margin-bottom: 30px;
+}
+
+.player hr {
+  margin-bottom: 18px;
+}
+
+.item,
+.resources,
+.craefter,
+.craeft-window,
+.craefter-window {
+  border: 1px solid #faefe1;
+  margin-bottom: 5px;
+  margin-top: 2px;
+  padding: 6px;
+}
+
+.craefters-list {
+  margin-top: 5px;
+}
+
+.items hr,
+.craefters hr,
+.farm hr {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.footer {
+  text-align: center;
+  background-color: inherit;
+  padding: 10px 0 50px;
+}
+
+.about .framed-grey {
+  margin-bottom: 20px;
+}
+
+.about blockquote:before {
+  content: open-quote;
+}
+
+.about blockquote:after {
+  content: close-quote;
+}
+
+.about .inspiration-item {
+  padding-bottom: 20px;
+}
+
+.about .inspiration-item img {
+  float: left;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.farm .columns,
+.farm .column {
+  padding: 0;
+  margin: 0;
+}
+
+.item-description {
+  min-width: 80%;
+}
+
+.equipment {
+  width: 100%;
+}
+
+.equipment .columns {
+  padding: 0;
+}
+
+.equipment .column {
+  padding: 0;
+  min-width: 140px;
+}
+
+.logs {
+  min-height: 190px;
+  text-align: left;
+}
+
+.slider-edge-value {
+  position: relative;
+  top: -35px;
+}
+
+.rtl {
+  direction: rtl;
+}
+
+.icon-selected {
+  border: 1px solid #faebd7 !important;
+}
+
+.attribute-label {
+  display: inline;
+}
+
+/*
+Craefter
+*/
+.craefter-icon {
+  position: relative;
+  display: inline-block;
+  border: 1px solid transparent;
+  padding: 3px;
+  line-height: 0px;
+}
+
+.craefter-icon-selected {
+  border: 1px solid #faebd7;
+}
+
+.craefter-level {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  font-size: 18px !important;
+}
+
+.craefter-timeout {
+  position: absolute;
+  left: -9px;
+  width: 80px;
+  top: 28px;
+  text-align: center;
+}
+
+.craefter-timeout-item {
+  top: 30px;
+  font-size: 18px;
+}
+
+.craefter-dead {
+  position: absolute;
+  top: 23px;
+  left: 23px;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.craefter-dead .fa-skull {
+  color: darkred;
+}
+
+/**
+Item
+*/
+.item-container {
+  line-height: 0;
+  display: inline-block;
+  padding: 2px !important;
+}
+
+.item-level {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  font-size: 18px !important;
+}
+
+.item-timeout {
+  position: absolute;
+  left: -9px;
+  width: 80px;
+  top: 28px;
+  text-align: center;
+}
+
+.item-icon {
+  border: 1px solid transparent;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.icon-small {
+  width: 39px;
+  height: 39px;
+}
+
+/**
+Materials
+ */
+.wood {
+  filter: url(#wood);
+}
+
+.metal {
+  filter: url(#metal);
+}
+
+.cloth {
+  filter: url(#cloth);
+}
+
+.diamond {
+  filter: url(#diamond);
+}
+
+/**
+Rarity
+ */
+.item-icon.common {
+  background-color: rgba(220, 220, 220, 0.3) !important;
+}
+
+span.common {
+  background-color: inherit !important;
+  color: rgba(220, 220, 220, 0.3);
+}
+
+.item-icon.rare {
+  background-color: rgba(0, 120, 250, 0.6) !important;
+}
+
+span.rare {
+  background-color: inherit !important;
+  color: rgba(0, 120, 250, 0.6);
+}
+
+.item-icon.epic {
+  background-color: rgba(220, 80, 255, 0.6) !important;
+}
+
+span.epic {
+  background-color: inherit !important;
+  color: rgba(220, 80, 255, 0.6);
+}
+
+.item-icon.legendary {
+  background-color: rgba(250, 150, 0, 0.6) !important;
+}
+
+span.legendary {
+  background-color: inherit !important;
+  color: rgba(250, 150, 0, 0.6);
+}
+
+/**
+Top Bar
+*/
+
+.top-bar {
+  margin-bottom: 10px !important;
+}
+
+.top-bar.golden,
+.top-bar.golden:hover {
+  background: none;
+  margin: 0;
+  padding: 0;
+}
+
+.top-bar.golden:before {
+  margin-left: -1px !important;
+  margin-top: -1% !important;
+}
+
+.top-bar.golden:after {
+  margin-right: -1px !important;
+  margin-top: -1% !important;
+}
+
+.top-bar .rpgui-button.golden {
+  margin: 2px 0 0;
+  padding: 0;
+}
+
+.top-bar .rpgui-button.golden:before,
+.top-bar .rpgui-button.golden:after {
+  display: none;
+}
+
+.top-bar .rpgui-button.golden.first {
+  padding-right: 15px;
+  margin-right: 0;
+}
+
+.top-bar .rpgui-button.golden.last {
+  padding-left: 15px;
+  margin-left: 0;
+}
+
+/**
+Dead
+ */
+.dead {
+  z-index: 100000;
+  position: absolute;
+  display: block;
+  padding-top: 450px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(140, 0, 0, 0.4);
+  vertical-align: middle;
+  text-align: center;
+}
+
+.you-are-dead {
+  font-size: 80px !important;
+  line-height: 80px !important;
+  color: darkred !important;
+}
+
+/**
+Boss
+ */
+.boss-logo {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+}
+
+.boss-info {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.boss-parameters {
+  padding-bottom: 20px;
+}
+
+.boss-name {
+}
+
+.boss-icon {
+  display: inline-block;
+  margin: 3px !important;
+  padding: 3px !important;
+}
+
+.boss-icon .icon {
+  margin: 15px;
+}
+
+.boss-dead {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.boss-dead .fa-skull {
+  background: none;
+  color: darkred;
+  opacity: 0.8;
+}
+
+.boss-icon-wrap {
+  padding: 5px;
+  border: 1px solid transparent;
+}
+
+/* RPGUI overrides */
+.rpgui-button {
+  white-space: nowrap;
+}
+
+.rpgui-progress-track {
+  line-height: 40px;
+}
+
+.rpgui-progress-track .progress-percent {
+  z-index: 10;
+  position: relative;
+}
+
+.rpgui-progress-track .progress-percent span {
+  min-width: 40px;
+  text-align: right;
+  display: inline-block;
+}
+
+/**
+Map
+ */
+.map-wrap {
+  line-height: 0;
+}
+
+.map-row {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  height: 30px;
+}
+
+.map-cell {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.map-player-marker {
+  height: 100%;
+  width: 100%;
+  display: block;
+  background-image: url("../assets/icons/player.png");
+  background-repeat: no-repeat;
+  background-size: 30px;
+}
+
+.map-player-marker.ltr {
+  transform: scaleX(-1);
+}
+
+/* Water */
+.map-cell.terrain-0 {
+  background-color: blue;
+}
+
+/* Earth */
+.map-cell.terrain-1 {
+  background-color: lightgreen;
+  background-image: url("../assets/icons/grass.png");
+  background-repeat: no-repeat;
+  background-size: 30px;
+}
+
+/* Tree */
+.map-cell.terrain-f {
+  background-image:
+    url("../assets/icons/tree.png"), url("../assets/icons/grass.png");
+  background-repeat: no-repeat;
+  background-size: 30px;
+}
+
+/* Void */
+.map-cell.terrain-V {
+  background-color: #141414;
+}
+
+.control {
+  position: relative;
+  top: -70px;
+  left: -200px;
+  z-index: 1000;
+  display: inline-block;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.control .controls {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+}
+
+.control .left {
+  left: -25px;
+}
+
+.control .right {
+  left: 25px;
+}
+
+.control .up {
+  top: -25px;
+}
+
+.control .down {
+  top: 25px;
+}
+
+/**
+Fight
+ */
+.fight {
+  padding-top: 40px;
+  vertical-align: middle;
+}
+
+.fight-item {
+}
+
+.fight-item.left {
+  animation: slide-right 3s cubic-bezier(0.42, 0, 1, 1) infinite both;
+}
+
+.fight-item-middle-wrap {
+  transform: rotateX(100deg);
+}
+
+.fight-item.middle {
+  z-index: 1000;
+  position: relative;
+  animation:
+    blink 3s linear infinite both,
+    shake 0.5s infinite both;
+}
+
+.fight-item.right {
+  animation: slide-left 3s cubic-bezier(0.42, 0, 1, 1) infinite both;
+}
+
+.sparks {
+  position: relative;
+  top: -40px;
+  left: 20px;
+}
+
+.spark {
+  position: absolute;
+  display: block;
+  animation: fall 3s ease-out infinite both;
+}
+
+.spark:nth-of-type(1) {
+  top: 22px;
+  left: 6px;
+}
+
+.spark:nth-of-type(2) {
+  top: 16px;
+  left: 22px;
+}
+
+.spark:nth-of-type(3) {
+  top: 10px;
+  left: 30px;
+}
+
+.spark:nth-of-type(4) {
+  top: 30px;
+  left: 19px;
+}
+
+.spark:nth-of-type(5) {
+  top: 8px;
+  left: 18px;
+}
+
+.spark:nth-of-type(6) {
+  top: 0px;
+  left: 0px;
+}
+
+@keyframes fall {
+  0%,
+  70% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+    transform-origin: 0% 100%;
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0px, 80px, 30px);
+  }
+}
+
+@keyframes slide-right {
+  0%,
+  100%,
+  70% {
+    transform: translateX(0);
+  }
+  80% {
+    transform: translateX(130px);
+  }
+}
+
+@keyframes slide-left {
+  0%,
+  100%,
+  70% {
+    transform: translateX(0) rotateX(0);
+  }
+  80% {
+    transform: translateX(-130px) rotateZ(-100deg);
+  }
+}
+
+@keyframes blink {
+  0%,
+  50%,
+  70% {
+    opacity: 0;
+  }
+  71%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: rotate(0deg);
+    transform-origin: 50% 100%;
+  }
+  10% {
+    transform: rotate(2deg);
+  }
+  20%,
+  40%,
+  60% {
+    transform: rotate(-4deg);
+  }
+  30%,
+  50%,
+  70% {
+    transform: rotate(4deg);
+  }
+  80% {
+    transform: rotate(-2deg);
+  }
+  90% {
+    transform: rotate(2deg);
+  }
+}

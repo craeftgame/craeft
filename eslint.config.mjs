@@ -1,13 +1,8 @@
 import { defineConfig } from "eslint/config";
-import globals from "globals";
-import parser from "@babel/eslint-parser";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import js from "@eslint/js";
 import { FlatCompat } from "@eslint/eslintrc";
-import { fixupConfigRules, fixupPluginRules } from "@eslint/compat";
-import flowType from "eslint-plugin-flowtype";
-import pluginJest from "eslint-plugin-jest";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,50 +15,16 @@ const compat = new FlatCompat({
 
 export default defineConfig([
   {
-    extends: fixupConfigRules(
-      compat.extends(
-        "react-app",
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:jest/recommended",
-      ),
+    extends: compat.extends(
+      "next/typescript",
+      "next/core-web-vitals",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "plugin:react-hooks/recommended",
+      "plugin:prettier/recommended",
     ),
-
-    plugins: {
-      flowtype: fixupPluginRules(flowType),
-      jest: fixupPluginRules(pluginJest),
-    },
-
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-        ...pluginJest.environments.globals.globals,
-      },
-
-      parser,
-      ecmaVersion: 6,
-      sourceType: "module",
-
-      parserOptions: {
-        ecmaFeatures: {
-          jsx: true,
-          modules: true,
-          experimentalObjectRestSpread: true,
-        },
-      },
-    },
-
-    settings: {
-      react: {
-        pragma: "React",
-        version: "19.1.1",
-      },
-    },
-
     rules: {
-      quotes: ["error", "double"],
-      "no-console": "warn",
+      "id-length": [1],
     },
   },
 ]);

@@ -1,3 +1,9 @@
-/.idea/
-/node_modules/
-/build/
+.idea/
+node_modules/
+build/
+dist/
+.next/
+
+src/**/*.d.ts
+src/**/*.js
+src/**/*.map
