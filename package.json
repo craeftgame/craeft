@@ -40,7 +40,7 @@
     "typescript": "^5.9.2"
   },
   "dependencies": {
-    "@craeft/engine": "git+https://github.com/craeftgame/engine.git#v1.9.3",
+    "@craeft/engine": "git+https://github.com/craeftgame/engine.git#v1.9.4",
     "bulma": "^1.0.4",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
@@ -56,8 +56,5 @@
     "type": "git",
     "url": "https://github.com/craeftgame/craeft.git"
   },
-  "packageManager": "yarn@4.9.4",
-  "resolutions": {
-    "@craeft/engine": "portal:/Users/sebastian/projects/umlaut-games/projects/cräft/engine"
-  }
+  "packageManager": "yarn@4.9.4"
 }

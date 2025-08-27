@@ -5,6 +5,8 @@ dist/
 .next/
 .yarn/
 
+.env
+
 src/**/*.d.ts
 src/**/*.js
 src/**/*.map

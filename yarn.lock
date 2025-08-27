@@ -37,22 +37,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@craeft/engine@portal:/Users/sebastian/projects/umlaut-games/projects/cräft/engine::locator=craeft%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@craeft/engine@portal:/Users/sebastian/projects/umlaut-games/projects/cräft/engine::locator=craeft%40workspace%3A."
+"@craeft/engine@git+https://github.com/craeftgame/engine.git#v1.9.4":
+  version: 1.9.4
+  resolution: "@craeft/engine@https://github.com/craeftgame/engine.git#commit=e812360a61c868b44639aa393849f0f4c2586501"
   dependencies:
-    "@craeft/map-generator": "git+https://github.com/craeftgame/map-generator.git#v1.5.1"
+    "@craeft/map-generator": "git+https://github.com/craeftgame/map-generator.git#v1.5.2"
     "@craeft/serializer": "git+https://github.com/craeftgame/serializer.git#v1.3.2"
     local-storage: "npm:^2.0.0"
     lz-string: "npm:^1.5.0"
     mathjs: "npm:^14.6.0"
+  checksum: 10c0/bda17ea6a7a9871caa56df904cccb7b061788d8acfc7cccc4e30aad35bc897a38ad56c4da0a4fa1d2ac4846dd9afee5dc7e4d5e3a259720c148a22f683df87bd
   languageName: node
-  linkType: soft
+  linkType: hard
 
-"@craeft/map-generator@git+https://github.com/craeftgame/map-generator.git#v1.5.1":
-  version: 1.5.1
-  resolution: "@craeft/map-generator@https://github.com/craeftgame/map-generator.git#commit=bfed8ca31bf501cf6d0daab5d59dd7733351bc5e"
-  checksum: 10c0/e94523d01588766767350f77975aa8643ae5d8e90a273a948d91f2c2634582463893ac4df970e6a9eb21ad511cac5b7ff1465fb8a84918957ba3f0c2f92bc1cc
+"@craeft/map-generator@git+https://github.com/craeftgame/map-generator.git#v1.5.2":
+  version: 1.5.2
+  resolution: "@craeft/map-generator@https://github.com/craeftgame/map-generator.git#commit=df691a1a2c358b2c61b57dafd9bb84ee8b3d0e96"
+  checksum: 10c0/15fb17f09a375b2788d1224798ad9d5818885977da5fd5dc228d43cef6352decac181fc2dd303b28defa06a2c034ad0d4a373c88436462fb81ada695e1d2301a
   languageName: node
   linkType: hard
 
@@ -1778,7 +1779,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "craeft@workspace:."
   dependencies:
-    "@craeft/engine": "git+https://github.com/craeftgame/engine.git#v1.9.3"
+    "@craeft/engine": "git+https://github.com/craeftgame/engine.git#v1.9.4"
     "@eslint/eslintrc": "npm:^3.3.1"
     "@eslint/js": "npm:^9.34.0"
     "@testing-library/dom": "npm:^10.4.1"
