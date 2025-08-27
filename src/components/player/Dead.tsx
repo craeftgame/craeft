@@ -17,6 +17,7 @@ export default function Dead() {
         <button
           className={"rpgui-button is-big"}
           onClick={() => window.location.reload()}
+          type="button"
         >
           <span>Play again!</span>
         </button>

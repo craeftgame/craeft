@@ -5,7 +5,7 @@ import ItemIcon from "./ItemIcon";
 import PreItemStats from "./PreItemStats";
 
 interface PreItemDescriptionProps {
-  preItem: PreItem;
+  readonly preItem: PreItem;
 }
 
 export default function PreItemDescription({

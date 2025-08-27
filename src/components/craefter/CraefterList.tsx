@@ -135,6 +135,7 @@ export default function CraefterList({
         <div className={"row"}>
           <button
             onClick={openCraefterDialog}
+            type="button"
             className="rpgui-button is-small"
           >
             <span className="icon">

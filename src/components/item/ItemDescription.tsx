@@ -23,6 +23,7 @@ export default function ItemDescription({
         <button
           className={`rpgui-button ${craeft.player.isFarming ? "rpgui-disabled" : ""}`}
           onClick={() => onUnequip?.(item)}
+          type="button"
         >
           <span>Unequip</span>
         </button>
@@ -30,6 +31,7 @@ export default function ItemDescription({
         <button
           className={`rpgui-button ${craeft.player.isFarming ? "rpgui-disabled" : ""}`}
           onClick={() => onEquip?.(item)}
+          type="button"
         >
           <span>Equip</span>
         </button>
@@ -40,6 +42,7 @@ export default function ItemDescription({
           <button
             className="rpgui-button"
             onClick={() => onDisentchant?.(item)}
+            type="button"
           >
             <span>Disentchant</span>
           </button>

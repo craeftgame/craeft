@@ -39,6 +39,7 @@ export default function Modal({ isActive, onClose, children }: ModalProps) {
         className="modal-close is-large"
         onClick={close}
         aria-label="close"
+        type="button"
       ></button>
     </div>
   );

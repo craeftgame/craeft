@@ -28,6 +28,7 @@ export default function Craefter({
           {!craefter?.dead ? (
             <button
               onClick={() => openCraeftDialog(craefter)}
+              type="button"
               className="rpgui-button"
               disabled={
                 !canCraeft || craefter?.delay.isDelaying || craefter?.dead
@@ -51,6 +52,7 @@ export default function Craefter({
       {craefter?.dead ? (
         <button
           className="rpgui-button"
+          type="button"
           onClick={() => craefter && bury(craefter)}
         >
           <span className="icon">

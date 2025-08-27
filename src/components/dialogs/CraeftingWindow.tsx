@@ -21,12 +21,7 @@ export default function CraeftingWindow({
   itemAdded,
 }: CraeftingWindowProps) {
   const [preItem, setPreItem] = useState<PreItem | undefined>(undefined);
-  const [resources, setResources] = useState<Resources>(
-    new Resources({
-      initialResources: 0,
-      resources: {},
-    }),
-  );
+  const [resources, setResources] = useState<Resources>(new Resources());
 
   useEffect(() => {
     setPreItem(
@@ -98,6 +93,7 @@ export default function CraeftingWindow({
       <div className="row">
         <button
           onClick={craeft}
+          type="button"
           className={`rpgui-button is-big ${resources.sum() < 1 ? "rpgui-disabled" : ""}`}
         >
           <span>Cräft!</span>

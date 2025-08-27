@@ -5,8 +5,8 @@ import Gauge from "../utility/Gauge";
 import Fight from "./Fight";
 
 interface BossDescriptionProps {
-  boss: Boss;
-  fight: () => void;
+  readonly boss: Boss;
+  readonly fight: () => void;
 }
 
 export default function BossDescription({ boss, fight }: BossDescriptionProps) {
@@ -56,7 +56,7 @@ export default function BossDescription({ boss, fight }: BossDescriptionProps) {
 
       <div>
         {!isFighting ? (
-          <button className="rpgui-button" onClick={startFight}>
+          <button className="rpgui-button" onClick={startFight} type="button">
             <span>Fight!</span>
           </button>
         ) : (

@@ -1,11 +1,12 @@
 import React from "react";
 
 interface BossIconProps {
-  type: string;
-  isDead: boolean;
-  isSelected: boolean;
-  onClick: () => void;
+  readonly type: string;
+  readonly isDead: boolean;
+  readonly isSelected: boolean;
+  readonly onClick: () => void;
 }
+
 export default function BossIcon({
   type,
   isDead,

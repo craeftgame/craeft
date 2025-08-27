@@ -42,6 +42,7 @@ export default function Farm() {
           <button
             className="rpgui-button"
             onClick={() => craeft.startFarming()}
+            type="button"
             disabled={
               craeft.player.isFarming ||
               craeft.player.staCurrent < 1 ||

@@ -10,12 +10,8 @@ interface AddCraeftersWindowProps {
 export default function AddCraeftersWindow({
   addCraefter,
 }: AddCraeftersWindowProps) {
-  const addWC = () => {
-    addCraefter(CraefterTypes.WeaponCraefter);
-  };
-
-  const addAC = () => {
-    addCraefter(CraefterTypes.ArmorCraefter);
+  const add = (type: CraefterTypes) => {
+    addCraefter(type);
   };
 
   const style = {
@@ -60,7 +56,8 @@ export default function AddCraeftersWindow({
         <div>
           <span className="rpgui-icon weapon-slot" />
           <button
-            onClick={addWC}
+            onClick={() => add(CraefterTypes.WeaponCraefter)}
+            type="button"
             className="rpgui-button is-huge"
             style={style}
           >
@@ -70,7 +67,12 @@ export default function AddCraeftersWindow({
 
         <div>
           <span className="rpgui-icon armor-slot" />
-          <button onClick={addAC} className="rpgui-button is-big" style={style}>
+          <button
+            onClick={() => add(CraefterTypes.ArmorCraefter)}
+            type="button"
+            className="rpgui-button is-big"
+            style={style}
+          >
             <span>Armorcräfter</span>
           </button>
         </div>
@@ -79,6 +81,7 @@ export default function AddCraeftersWindow({
           <span className="rpgui-icon potion-slot" />
           <button
             className="rpgui-button is-big"
+            type="button"
             data-tooltip-id="alchemist"
             style={style}
           >
@@ -90,6 +93,7 @@ export default function AddCraeftersWindow({
           <span className="rpgui-icon ring-slot" />
           <button
             className="rpgui-button is-big"
+            type="button"
             data-tooltip-id="jewelcraefter"
             style={style}
           >

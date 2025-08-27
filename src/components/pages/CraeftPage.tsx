@@ -69,6 +69,7 @@ export default function CraeftPage() {
             <button
               className={`rpgui-button golden ${view === 1 ? "down" : ""}`}
               onClick={() => setView(1)}
+              type="button"
             >
               <span>Cräfting</span>
             </button>
@@ -80,6 +81,7 @@ export default function CraeftPage() {
                 disabled={craeft.player.level < 10}
                 className={`rpgui-button golden ${view === 2 ? "down" : ""}`}
                 onClick={() => (craeft.player.level > 9 ? setView(2) : null)}
+                type="button"
                 data-tooltip-id={
                   craeft.player.level < 10 ? "tooltip-adventure" : undefined
                 }
