@@ -418,17 +418,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@craeft/engine@portal:/Users/sebastian/projects/umlaut-games/projects/cräft/engine::locator=craeft%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@craeft/engine@portal:/Users/sebastian/projects/umlaut-games/projects/cräft/engine::locator=craeft%40workspace%3A."
+"@craeft/engine@git+https://github.com/craeftgame/engine.git#v1.9.5":
+  version: 1.9.5
+  resolution: "@craeft/engine@https://github.com/craeftgame/engine.git#commit=17e7faa4050da8b56c697789a829dd182f0c1e11"
   dependencies:
     "@craeft/map-generator": "git+https://github.com/craeftgame/map-generator.git#v1.5.2"
     "@craeft/serializer": "git+https://github.com/craeftgame/serializer.git#v1.3.2"
     local-storage: "npm:^2.0.0"
     lz-string: "npm:^1.5.0"
     mathjs: "npm:^14.6.0"
+  checksum: 10c0/6c4df1adea16eda18f7ae66a97a44ce9b6eee195c4e50fc528708fb26c6dc68b3961295a1ff7f4cab4c5c775e845fc56e677bc548af4b117c9e2e441f1bdc2b4
   languageName: node
-  linkType: soft
+  linkType: hard
 
 "@craeft/map-generator@git+https://github.com/craeftgame/map-generator.git#v1.5.2":
   version: 1.5.2
