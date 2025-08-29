@@ -1,7 +1,7 @@
 import { craeft } from "@craeft/engine/dist/craeft";
 import React, { useCallback, useEffect } from "react";
 
-export default function Map() {
+export default function MapComponent() {
   const move = useCallback((direction: string) => {
     craeft.move(direction);
   }, []);
