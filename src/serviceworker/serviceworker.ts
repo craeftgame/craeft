@@ -90,9 +90,7 @@ const registerValidSW = (swUrl: string, config?: ServiceWorkerConfig) => {
               console.log("Content is cached for offline use.");
 
               // Execute callback
-              if (config && config.onSuccess) {
-                config?.onSuccess(registration);
-              }
+              config?.onSuccess?.(registration);
             }
           }
         };
