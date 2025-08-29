@@ -80,9 +80,7 @@ const registerValidSW = (swUrl: string, config?: ServiceWorkerConfig) => {
               );
 
               // Execute callback
-              if (config && config.onUpdate) {
-                config.onUpdate(registration);
-              }
+              config?.onUpdate?.(registration);
             } else {
               // At this point, everything has been precached.
               // It's the perfect time to display a
