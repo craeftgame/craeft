@@ -1,35 +1,38 @@
 import { defineConfig } from "eslint/config";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 import js from "@eslint/js";
-import { FlatCompat } from "@eslint/eslintrc";
-import eslintReact from "@eslint-react/eslint-plugin";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
+import globals from "globals";
+import tseslint from "typescript-eslint";
+import eslintreact from "@eslint-react/eslint-plugin";
+import pluginReact from "eslint-plugin-react";
+import nextPlugin from "@next/eslint-plugin-next";
 
 export default defineConfig([
+  eslintreact.configs.recommended,
+  pluginReact.configs.flat.recommended,
   {
-    extends: [
-      ...compat.extends(
-        "next/typescript",
-        "next/core-web-vitals",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:react/recommended",
-        "plugin:react-hooks/recommended",
-        "plugin:prettier/recommended",
-      ),
-      eslintReact.configs["recommended-typescript"],
-    ],
+    files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
+    plugins: {
+      js,
+      "@next/next: pluginObject": nextPlugin,
+    },
+    extends: ["js/recommended"],
+    languageOptions: {
+      globals: globals.browser,
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
     rules: {
       "id-length": "warn",
       "@eslint-react/no-array-index-key": "off",
+      "@eslint-react/prefer-read-only-props": "warn",
+    },
+    settings: {
+      react: {
+        version: "detect",
+      },
     },
   },
+  tseslint.configs.recommended,
 ]);

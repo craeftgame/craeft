@@ -5,10 +5,10 @@ import ItemDetails from "./ItemDetails";
 import ItemIconIcon from "./ItemIconIcon";
 
 interface ItemIconProps {
-  item: Item | PreItem;
-  onItemSelected?: (item: Item) => void;
-  isSelected?: boolean;
-  isSmall?: boolean;
+  readonly item: Item | PreItem;
+  readonly onItemSelected?: (item: Item) => void;
+  readonly isSelected?: boolean;
+  readonly isSmall?: boolean;
 }
 
 export default function ItemIcon({

@@ -47,12 +47,12 @@ export default function Adventure() {
                   </div>
 
                   <div>
-                    {craeft.bosses.map((boss) => {
+                    {craeft.bosses.map((boss: Boss) => {
                       return (
                         <BossIcon
                           key={`boss-${boss.name}`}
                           type={boss.type}
-                          isDead={boss.dead}
+                          isDead={boss.isDead}
                           isSelected={boss === selected}
                           onClick={() => selectBoss(boss)}
                         />

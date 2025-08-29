@@ -5,13 +5,13 @@
     //"rootDir": "./src",
     //"outDir": "./dist",
     "typeRoots": [
+      "node_modules/@types",
       "node_modules/@craeft/engine/dist"
     ],
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "CommonJS",
-    "target": "ES6",
-    "types": [],
+    "module": "ESNext",
+    "target": "ES2019",
     // For nodejs:
     "lib": [
       "ESNext",

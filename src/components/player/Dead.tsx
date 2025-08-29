@@ -6,16 +6,16 @@ export default function Dead() {
   }, []);
 
   return (
-    <div className={"dead"}>
+    <div className="dead">
       <div>
-        <span className={"you-are-dead"}>You are dead!</span>
+        <span className="you-are-dead">You are dead!</span>
       </div>
 
       <br />
 
       <div>
         <button
-          className={"rpgui-button is-big"}
+          className="rpgui-button is-big"
           onClick={() => window.location.reload()}
           type="button"
         >

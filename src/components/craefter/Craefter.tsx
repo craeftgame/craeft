@@ -3,10 +3,10 @@ import React from "react";
 import CraefterDescription from "./CraefterDescription";
 
 interface CraefterProps {
-  craefter?: CraefterObj;
-  openCraeftDialog: (craefter?: CraefterObj) => void;
-  canCraeft: boolean;
-  bury: (craefter: CraefterObj) => void;
+  readonly craefter?: CraefterObj;
+  readonly openCraeftDialog: (craefter?: CraefterObj) => void;
+  readonly canCraeft: boolean;
+  readonly bury: (craefter: CraefterObj) => void;
 }
 
 export default function Craefter({
@@ -21,17 +21,17 @@ export default function Craefter({
 
   return (
     <div className={classNames.join(" ")}>
-      <div className={craefter?.dead ? "rpgui-disabled" : ""}>
+      <div className={craefter?.isDead ? "rpgui-disabled" : ""}>
         <CraefterDescription craefter={craefter} />
 
-        <div className={"row"}>
-          {!craefter?.dead ? (
+        <div className="row">
+          {!craefter?.isDead ? (
             <button
               onClick={() => openCraeftDialog(craefter)}
               type="button"
               className="rpgui-button"
               disabled={
-                !canCraeft || craefter?.delay.isDelaying || craefter?.dead
+                !canCraeft || craefter?.delay.isDelaying || craefter?.isDead
               }
             >
               <span className="icon">
@@ -49,7 +49,7 @@ export default function Craefter({
         </div>
       </div>
 
-      {craefter?.dead ? (
+      {craefter?.isDead ? (
         <button
           className="rpgui-button"
           type="button"

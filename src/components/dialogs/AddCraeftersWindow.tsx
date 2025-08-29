@@ -4,7 +4,7 @@ import React from "react";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 
 interface AddCraeftersWindowProps {
-  addCraefter: (craefter: CraefterTypes) => void;
+  readonly addCraefter: (craefter: CraefterTypes) => void;
 }
 
 export default function AddCraeftersWindow({
@@ -47,12 +47,12 @@ export default function AddCraeftersWindow({
         to hire Jewelcräfter!!
       </ReactTooltip>
 
-      <div className={"row"}>
+      <div className="row">
         <strong>Add Cräfter</strong>
         <hr />
       </div>
 
-      <div className={"row"}>
+      <div className="row">
         <div>
           <span className="rpgui-icon weapon-slot" />
           <button

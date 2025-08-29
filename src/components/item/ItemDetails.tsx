@@ -5,7 +5,7 @@ import ItemStats from "../item/ItemStats";
 import Attribute from "../utility/Attribute";
 
 interface ItemDetailsProps {
-  item: Item;
+  readonly item: Item;
 }
 
 export default function ItemDetails({ item }: ItemDetailsProps) {

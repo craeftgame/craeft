@@ -3,7 +3,7 @@ import React from "react";
 import Donate from "../../components/structure/Donate";
 
 interface FooterProps {
-  showDonate?: boolean;
+  readonly showDonate?: boolean;
 }
 
 export default function Footer({ showDonate }: FooterProps) {
@@ -23,7 +23,7 @@ export default function Footer({ showDonate }: FooterProps) {
               textAlign: "left",
             }}
           >
-            <Link href={"/about"}>About Cräft!</Link>
+            <Link href="/about">About Cräft!</Link>
           </div>
         </div>
       ) : null}
@@ -34,11 +34,11 @@ export default function Footer({ showDonate }: FooterProps) {
           fontSize: "12px",
         }}
       >
-        © 2019-2025{" "}
+        © 2019-2025&nbsp;
         <a href="https://umlaut.games" target="_blank" rel="noreferrer">
           Umlaut Games
-        </a>{" "}
-        — All Rights Reserved
+        </a>
+        &nbsp;— All Rights Reserved
       </div>
     </div>
   );

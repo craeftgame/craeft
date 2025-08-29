@@ -5,7 +5,7 @@ import ItemDescription from "./ItemDescription";
 import ItemIcon from "./ItemIcon";
 
 interface ItemsProps {
-  items: Item[];
+  readonly items: Item[];
 }
 
 export default function Items({ items }: ItemsProps) {
@@ -26,7 +26,7 @@ export default function Items({ items }: ItemsProps) {
   const equip = (item: Item) => {
     craeft.equipItem(item);
 
-    if (item.equipped) {
+    if (item.isEquipped) {
       setSelectedItem(undefined);
     }
   };
@@ -40,12 +40,12 @@ export default function Items({ items }: ItemsProps) {
   return (
     <div className="items column frame">
       <div className="rpgui-container framed">
-        <div className={"row"}>
+        <div className="row">
           <strong>Items</strong>
           <hr />
         </div>
 
-        {selectedItem && !selectedItem["equipped"] ? (
+        {selectedItem && !selectedItem["isEquipped"] ? (
           <div className="rpgui-container framed-grey item row">
             {selectedItem ? (
               <ItemDescription
@@ -59,11 +59,11 @@ export default function Items({ items }: ItemsProps) {
 
         <div>
           {items.filter((item) => {
-            return !item.equipped;
+            return !item.isEquipped;
           }).length > 0 ? (
             items
               .filter((item) => {
-                return !item.equipped;
+                return !item.isEquipped;
               })
               .map((item, index) => {
                 return (

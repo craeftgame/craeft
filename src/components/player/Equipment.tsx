@@ -9,11 +9,11 @@ import ItemDescription from "../item/ItemDescription";
 import ItemIcon from "../item/ItemIcon";
 
 interface EquipmentProps {
-  equipment: EquipmentObj;
+  readonly equipment: EquipmentObj;
 }
 
 export default function Equipment({ equipment }: EquipmentProps) {
-  const [selectedItem, setSelectedItem] = useState<Item | undefined>(undefined);
+  const [selectedItem, setSelectedItem] = useState<Item | undefined>();
 
   const onItemSelected = (item: Item) => {
     setSelectedItem((prevState) => {
@@ -24,7 +24,7 @@ export default function Equipment({ equipment }: EquipmentProps) {
   const unequip = (item: Item) => {
     craeft.unEquipItem(item);
 
-    if (!item.equipped) {
+    if (!item.isEquipped) {
       onItemSelected(item);
     }
   };
@@ -142,7 +142,7 @@ export default function Equipment({ equipment }: EquipmentProps) {
         </div>
       </div>
 
-      {selectedItem?.equipped ? (
+      {selectedItem?.isEquipped ? (
         <div>
           <hr />
 

@@ -1,9 +1,9 @@
 import React, { ReactNode, useCallback, useEffect } from "react";
 
 interface ModalProps {
-  isActive: boolean;
-  onClose: () => void;
-  children: ReactNode | ReactNode[];
+  readonly isActive: boolean;
+  readonly onClose: () => void;
+  readonly children: ReactNode | ReactNode[];
 }
 
 export default function Modal({ isActive, onClose, children }: ModalProps) {

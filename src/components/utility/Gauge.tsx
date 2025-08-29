@@ -3,10 +3,10 @@ import Attribute from "./Attribute";
 import Progress from "./Progress";
 
 interface GaugeProps {
-  label: string;
-  current: number;
-  color?: string;
-  max: number;
+  readonly label: string;
+  readonly current: number;
+  readonly color?: string;
+  readonly max: number;
 }
 
 export default function Gauge({ label, current, color, max }: GaugeProps) {

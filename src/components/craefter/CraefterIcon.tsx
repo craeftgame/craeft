@@ -4,9 +4,9 @@ import { CraefterTypes } from "@craeft/engine/dist/data";
 import React from "react";
 
 interface CraefterIconProps {
-  craefter: Craefter;
-  onCraefterSelect: (craefter: Craefter) => void;
-  isSelected: boolean;
+  readonly craefter: Craefter;
+  readonly onCraefterSelect: (craefter: Craefter) => void;
+  readonly isSelected: boolean;
 }
 
 export default function CraefterIcon({
@@ -68,7 +68,7 @@ export default function CraefterIcon({
         </div>
       ) : null}
 
-      {craefter.dead && !craefter.isCraefting ? (
+      {craefter.isDead && !craefter.isCraefting ? (
         <div className="craefter-dead">
           <span className="icon">
             <i className="fas fa-skull" />

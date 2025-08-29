@@ -16,8 +16,8 @@ import Craefter from "./Craefter";
 import CraefterIcon from "./CraefterIcon";
 
 interface CraefterListProps {
-  craefters: Craefters;
-  resources: Resources;
+  readonly craefters: Craefters;
+  readonly resources: Resources;
 }
 
 export default function CraefterList({
@@ -30,7 +30,7 @@ export default function CraefterList({
     useState<boolean>(false);
   const [selectedCraefter, setSelectedCraefter] = useState<
     CraefterObj | undefined
-  >(undefined);
+  >();
 
   const hasEnoughResources = () => {
     return resources.sum() > 0;
@@ -105,7 +105,7 @@ export default function CraefterList({
           </Modal>
         ) : null}
 
-        <div className={"row"}>
+        <div className="row">
           <strong>Cräfter</strong>
           <hr />
         </div>
@@ -132,7 +132,7 @@ export default function CraefterList({
           );
         })}
 
-        <div className={"row"}>
+        <div className="row">
           <button
             onClick={openCraefterDialog}
             type="button"

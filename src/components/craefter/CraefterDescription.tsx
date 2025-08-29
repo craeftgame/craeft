@@ -5,7 +5,7 @@ import Attribute from "../utility/Attribute";
 import Gauge from "../utility/Gauge";
 
 interface CraefterDescriptionProps {
-  craefter: CraefterObj;
+  readonly craefter: CraefterObj;
 }
 
 export default function CraefterDescription({

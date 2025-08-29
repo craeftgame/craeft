@@ -10,9 +10,9 @@ import PreItemDescription from "../item/PreItemDescription";
 import Slider from "../utility/Slider";
 
 interface CraeftingWindowProps {
-  craefter: Craefter;
-  availableResources: Resources;
-  itemAdded: (item: Item, resources: Resources) => void;
+  readonly craefter: Craefter;
+  readonly availableResources: Resources;
+  readonly itemAdded: (item: Item, resources: Resources) => void;
 }
 
 export default function CraeftingWindow({
@@ -20,7 +20,7 @@ export default function CraeftingWindow({
   availableResources,
   itemAdded,
 }: CraeftingWindowProps) {
-  const [preItem, setPreItem] = useState<PreItem | undefined>(undefined);
+  const [preItem, setPreItem] = useState<PreItem | undefined>();
   const [resources, setResources] = useState<Resources>(new Resources());
 
   useEffect(() => {
@@ -56,14 +56,14 @@ export default function CraeftingWindow({
 
   return (
     <div className="rpgui-container framed craeft-window">
-      <div className={"row"}>
+      <div className="row">
         <strong>Cräft!</strong>
         <hr />
       </div>
 
       <CraefterDescription craefter={craefter} />
 
-      <div className={"row"}>
+      <div className="row">
         {Object.keys(availableResources).map((key, index) => {
           const name = key as ResourceTypes;
           const available = availableResources[name];
@@ -89,6 +89,15 @@ export default function CraeftingWindow({
       </div>
 
       {preItem ? <PreItemDescription preItem={preItem} /> : null}
+
+      {Craefter.calculateExhaustion(resources) >= craefter.staCurrent ? (
+        <div className="rpgui-center">
+          <div>
+            <strong className="red">Warning!</strong>
+          </div>
+          This item could lead to the death of your Cräfter!
+        </div>
+      ) : null}
 
       <div className="row">
         <button

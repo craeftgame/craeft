@@ -1,9 +1,9 @@
 import React from "react";
 
 interface ProgressProps {
-  color: string | undefined;
-  filled: number;
-  showPercent: boolean;
+  readonly color: string | undefined;
+  readonly filled: number;
+  readonly showPercent: boolean;
 }
 
 export default function Progress({

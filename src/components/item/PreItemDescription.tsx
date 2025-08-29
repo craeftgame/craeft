@@ -15,8 +15,8 @@ export default function PreItemDescription({
     <div className="rpgui-container framed-grey item columns">
       <ItemIcon item={preItem} />
 
-      <div className={"column item-description"}>
-        <div className={"row"}>
+      <div className="column item-description">
+        <div className="row">
           Type: <span>{ItemNames[preItem.type]}</span>
         </div>
 

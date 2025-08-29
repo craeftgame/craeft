@@ -3,8 +3,8 @@ import { Item, PreItem } from "@craeft/engine/dist/items";
 import React from "react";
 
 interface ItemIconIconProps {
-  item: Item | PreItem;
-  isSmall: boolean | undefined;
+  readonly item: Item | PreItem;
+  readonly isSmall: boolean | undefined;
 }
 
 export default function ItemIconIcon({ item, isSmall }: ItemIconIconProps) {

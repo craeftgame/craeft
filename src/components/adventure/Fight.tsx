@@ -5,7 +5,7 @@ import React from "react";
 import ItemIconIcon from "../item/ItemIconIcon";
 
 interface FightProps {
-  boss: Boss;
+  readonly boss: Boss;
 }
 
 export default function Fight({ boss }: FightProps) {

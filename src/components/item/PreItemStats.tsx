@@ -3,7 +3,7 @@ import React from "react";
 import Attribute from "../utility/Attribute";
 
 interface PreItemStatsProps {
-  preItem: PreItem;
+  readonly preItem: PreItem;
 }
 
 export default function PreItemStats({ preItem }: PreItemStatsProps) {

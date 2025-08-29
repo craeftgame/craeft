@@ -4,10 +4,10 @@ import React from "react";
 import ItemDetails from "./ItemDetails";
 
 interface ItemDescriptionProps {
-  item: Item;
-  onUnequip?: (item: Item) => void;
-  onEquip?: (item: Item) => void;
-  onDisentchant?: (item: Item) => void;
+  readonly item: Item;
+  readonly onUnequip?: (item: Item) => void;
+  readonly onEquip?: (item: Item) => void;
+  readonly onDisentchant?: (item: Item) => void;
 }
 export default function ItemDescription({
   item,
@@ -19,7 +19,7 @@ export default function ItemDescription({
     <div>
       <ItemDetails item={item} />
 
-      {item.equipped ? (
+      {item.isEquipped ? (
         <button
           className={`rpgui-button ${craeft.player.isFarming ? "rpgui-disabled" : ""}`}
           onClick={() => onUnequip?.(item)}
@@ -37,7 +37,7 @@ export default function ItemDescription({
         </button>
       )}
 
-      {!item.equipped ? (
+      {!item.isEquipped ? (
         <div className="">
           <button
             className="rpgui-button"

@@ -47,8 +47,8 @@ export default function CraeftPage() {
   }, []);
 
   return (
-    <div className={"craeft"}>
-      {craeft.player.dead ? <Dead /> : null}
+    <div className="craeft">
+      {craeft.player.isDead ? <Dead /> : null}
 
       <ReactTooltip
         id="tooltip-adventure"
@@ -63,7 +63,7 @@ export default function CraeftPage() {
         to go on an adventure!
       </ReactTooltip>
 
-      <div className={craeft.player.dead ? "rpgui-disabled" : ""}>
+      <div className={craeft.player.isDead ? "rpgui-disabled" : ""}>
         <div className="row">
           <div className="rpgui-button golden top-bar">
             <button

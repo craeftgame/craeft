@@ -4,7 +4,7 @@ import Attribute from "../utility/Attribute";
 import Gauge from "../utility/Gauge";
 
 interface PlayerDescriptionProps {
-  player: Player;
+  readonly player: Player;
 }
 
 export default function PlayerDescription({ player }: PlayerDescriptionProps) {

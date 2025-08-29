@@ -5,7 +5,7 @@ import Equipment from "./Equipment";
 import PlayerDescription from "./PlayerDescription";
 
 interface PlayerProps {
-  player: PlayerObj;
+  readonly player: PlayerObj;
 }
 
 export default function Player({ player }: PlayerProps) {

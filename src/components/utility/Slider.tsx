@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 
 interface SliderProps {
-  min: number;
-  max: number;
-  step: number;
-  defaultValue: number;
-  onValueChange: (value: number) => void;
+  readonly min: number;
+  readonly max: number;
+  readonly step: number;
+  readonly defaultValue: number;
+  readonly onValueChange: (value: number) => void;
 }
 
 export default function Slider({

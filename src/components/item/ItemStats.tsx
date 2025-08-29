@@ -3,7 +3,7 @@ import React from "react";
 import Attribute from "../utility/Attribute";
 
 interface ItemStateProps {
-  item: Item | Weapon | Armor;
+  readonly item: Item | Weapon | Armor;
 }
 
 export default function ItemStats({ item }: ItemStateProps) {
