@@ -57,7 +57,11 @@ export default function ItemIcon({
             item instanceof Item ? `tooltip-${item.id}` : undefined
           }
         >
-          <ItemIconIcon item={item} isSmall={isSmall} />
+          <ItemIconIcon
+            item={item}
+            isSmall={isSmall}
+            isBroken={item instanceof Item ? item.isBroken : false}
+          />
 
           {item instanceof Item && !item.delay.isDelaying ? (
             <span className="item-level">{item.level}</span>

@@ -1,10 +1,8 @@
 import { config } from "@craeft/engine/dist/config";
 import { MedievalSharp } from "next/font/google";
-import React from "react";
+import React, { ReactNode } from "react";
 import Filters from "../assets/filters";
-import ServiceWorkerRegister from "../serviceworker/ServiceWorkerRegister";
-
-// custom css
+import ServiceWorkerRegister from "../serviceworker/ServiceWorkerRegister"; // custom css
 import "bulma/css/bulma.min.css";
 import "../css/rpgui.scss";
 import "../css/craeft.scss";
@@ -17,7 +15,7 @@ const medieval = MedievalSharp({
 export default function RootLayout({
   children,
 }: {
-  readonly children: React.ReactNode;
+  readonly children: ReactNode;
 }) {
   return (
     <html lang="en" className={medieval.className}>

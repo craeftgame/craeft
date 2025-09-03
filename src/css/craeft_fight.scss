@@ -1,0 +1,145 @@
+/* Fight */
+.fight {
+  padding-top: 40px;
+  vertical-align: middle;
+}
+
+.fight-item {
+  /* ?? */
+}
+
+.fight-item.left {
+  animation: slide-right 3s cubic-bezier(0.42, 0, 1, 1) infinite both;
+}
+
+.fight-item-middle-wrap {
+  transform: rotateX(100deg);
+}
+
+.fight-item.middle {
+  z-index: 1000;
+  position: relative;
+  animation:
+    blink 3s linear infinite both,
+    shake 0.5s infinite both;
+}
+
+.fight-item.right {
+  animation: slide-left 3s cubic-bezier(0.42, 0, 1, 1) infinite both;
+}
+
+.sparks {
+  position: relative;
+  top: -40px;
+  left: 20px;
+}
+
+.spark {
+  position: absolute;
+  display: block;
+  animation: fall 3s ease-out infinite both;
+}
+
+.spark:nth-of-type(1) {
+  top: 22px;
+  left: 6px;
+}
+
+.spark:nth-of-type(2) {
+  top: 16px;
+  left: 22px;
+}
+
+.spark:nth-of-type(3) {
+  top: 10px;
+  left: 30px;
+}
+
+.spark:nth-of-type(4) {
+  top: 30px;
+  left: 19px;
+}
+
+.spark:nth-of-type(5) {
+  top: 8px;
+  left: 18px;
+}
+
+.spark:nth-of-type(6) {
+  top: 0;
+  left: 0;
+}
+
+@keyframes fall {
+  0%,
+  70% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+    transform-origin: 0 100%;
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0px, 80px, 30px);
+  }
+}
+
+@keyframes slide-right {
+  0%,
+  100%,
+  70% {
+    transform: translateX(0);
+  }
+  80% {
+    transform: translateX(130px);
+  }
+}
+
+@keyframes slide-left {
+  0%,
+  100%,
+  70% {
+    transform: translateX(0) rotateX(0);
+  }
+  80% {
+    transform: translateX(-130px) rotateZ(-100deg);
+  }
+}
+
+@keyframes blink {
+  0%,
+  50%,
+  70% {
+    opacity: 0;
+  }
+  71%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: rotate(0deg);
+    transform-origin: 50% 100%;
+  }
+  10% {
+    transform: rotate(2deg);
+  }
+  20%,
+  40%,
+  60% {
+    transform: rotate(-4deg);
+  }
+  30%,
+  50%,
+  70% {
+    transform: rotate(4deg);
+  }
+  80% {
+    transform: rotate(-2deg);
+  }
+  90% {
+    transform: rotate(2deg);
+  }
+}

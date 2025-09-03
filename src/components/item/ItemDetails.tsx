@@ -19,6 +19,8 @@ export default function ItemDetails({ item }: ItemDetailsProps) {
               : ""
           }
         >
+          {item.isBroken ? <span className="red">Broken </span> : null}
+
           {item.getName?.() ?? null}
         </span>
       </div>

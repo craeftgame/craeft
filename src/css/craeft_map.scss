@@ -1,0 +1,91 @@
+/* Map */
+
+.map-wrap {
+  line-height: 0;
+}
+
+.map-row {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  height: 30px;
+}
+
+.map-cell {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.map-player-marker {
+  height: 100%;
+  width: 100%;
+  display: block;
+  background-image: url("../assets/icons/player.png");
+  background-repeat: no-repeat;
+  background-size: 30px;
+}
+
+.map-player-marker.ltr {
+  transform: scaleX(-1);
+}
+
+/* Water */
+.map-cell.terrain-0 {
+  background-color: blue;
+}
+
+/* Earth */
+.map-cell.terrain-1 {
+  background-color: lightgreen;
+  background-image: url("../assets/icons/grass.png");
+  background-repeat: no-repeat;
+  background-size: 30px;
+}
+
+/* Tree */
+.map-cell.terrain-f {
+  background-image:
+    url("../assets/icons/tree.png"), url("../assets/icons/grass.png");
+  background-repeat: no-repeat;
+  background-size: 30px;
+}
+
+/* Void */
+.map-cell.terrain-V {
+  background-color: #141414;
+}
+
+.control {
+  position: relative;
+  top: -70px;
+  left: -200px;
+  z-index: 1000;
+  display: inline-block;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.control .controls {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+}
+
+.control .left {
+  left: -25px;
+}
+
+.control .right {
+  left: 25px;
+}
+
+.control .up {
+  top: -25px;
+}
+
+.control .down {
+  top: 25px;
+}

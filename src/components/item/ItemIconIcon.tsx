@@ -5,10 +5,19 @@ import React from "react";
 interface ItemIconIconProps {
   readonly item: Item | PreItem;
   readonly isSmall: boolean | undefined;
+  readonly isBroken: boolean | undefined;
 }
 
-export default function ItemIconIcon({ item, isSmall }: ItemIconIconProps) {
+export default function ItemIconIcon({
+  item,
+  isSmall,
+  isBroken,
+}: ItemIconIconProps) {
   const itemClasses = ["rpgui-icon"];
+
+  if (isBroken) {
+    itemClasses.push("broken");
+  }
 
   if (isSmall) {
     itemClasses.push("icon-small");

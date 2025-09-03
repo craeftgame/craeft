@@ -8,7 +8,7 @@ export default function Dead() {
   return (
     <div className="dead">
       <div>
-        <span className="you-are-dead">You are dead!</span>
+        <span className="you-are-dead red">You are dead!</span>
       </div>
 
       <br />

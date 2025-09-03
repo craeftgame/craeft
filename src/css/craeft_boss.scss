@@ -1,0 +1,47 @@
+/* Boss */
+.boss-logo {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+}
+
+.boss-info {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.boss-parameters {
+  padding-bottom: 20px;
+}
+
+.boss-name {
+  /* ?? */
+}
+
+.boss-icon {
+  display: inline-block;
+  margin: 3px !important;
+  padding: 3px !important;
+}
+
+.boss-icon .icon {
+  margin: 15px;
+}
+
+.boss-dead {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.boss-dead .fa-skull {
+  background: none;
+  color: darkred;
+  opacity: 0.8;
+}
+
+.boss-icon-wrap {
+  padding: 5px;
+  border: 1px solid transparent;
+}

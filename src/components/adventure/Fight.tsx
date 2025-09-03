@@ -43,6 +43,7 @@ export default function Fight({ boss }: FightProps) {
                 <ItemIconIcon
                   item={craeft.player.equipment[WeaponSlots.RightHand]}
                   isSmall={true}
+                  isBroken={false}
                 />
               ) : null}
             </div>

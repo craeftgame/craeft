@@ -1,0 +1,103 @@
+/* Item */
+.item-container {
+  line-height: 0;
+  display: inline-block;
+  padding: 2px !important;
+}
+
+.item-level {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  font-size: 18px !important;
+}
+
+.item-timeout {
+  position: absolute;
+  left: -9px;
+  width: 80px;
+  top: 28px;
+  text-align: center;
+}
+
+.item-icon {
+  border: 1px solid transparent;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.icon-small {
+  width: 39px;
+  height: 39px;
+}
+
+/** Materials */
+.wood {
+  filter: url(#wood);
+}
+
+.metal {
+  filter: url(#metal);
+}
+
+.cloth {
+  filter: url(#cloth);
+}
+
+.diamond {
+  filter: url(#diamond);
+}
+
+/* Rarity */
+.item-icon.common {
+  background-color: rgba(220, 220, 220, 0.3) !important;
+}
+
+span.common {
+  background-color: inherit !important;
+  color: rgba(220, 220, 220, 0.3);
+}
+
+.item-icon.rare {
+  background-color: rgba(0, 120, 250, 0.6) !important;
+}
+
+span.rare {
+  background-color: inherit !important;
+  color: rgba(0, 120, 250, 0.6);
+}
+
+.item-icon.epic {
+  background-color: rgba(220, 80, 255, 0.6) !important;
+}
+
+span.epic {
+  background-color: inherit !important;
+  color: rgba(220, 80, 255, 0.6);
+}
+
+.item-icon.legendary {
+  background-color: rgba(250, 150, 0, 0.6) !important;
+}
+
+span.legendary {
+  background-color: inherit !important;
+  color: rgba(250, 150, 0, 0.6);
+}
+
+/* Broken */
+.broken {
+  position: relative;
+  text-decoration: none;
+}
+
+.broken::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: darkred;
+  transform: rotate(-45deg);
+}

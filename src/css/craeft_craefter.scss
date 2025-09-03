@@ -1,0 +1,44 @@
+/* Craefter */
+.craefter-icon {
+  position: relative;
+  display: inline-block;
+  border: 1px solid transparent;
+  padding: 3px;
+  line-height: 0;
+}
+
+.craefter-icon-selected {
+  border: 1px solid #faebd7;
+}
+
+.craefter-level {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  font-size: 18px !important;
+}
+
+.craefter-timeout {
+  position: absolute;
+  left: -9px;
+  width: 80px;
+  top: 28px;
+  text-align: center;
+}
+
+.craefter-timeout-item {
+  top: 30px;
+  font-size: 18px;
+}
+
+.craefter-dead {
+  position: absolute;
+  top: 23px;
+  left: 23px;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.craefter-dead .fa-skull {
+  color: darkred;
+}

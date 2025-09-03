@@ -1,0 +1,41 @@
+/* Top Bar */
+.top-bar {
+  margin-bottom: 10px !important;
+}
+
+.top-bar.golden,
+.top-bar.golden:hover {
+  background: none;
+  margin: 0;
+  padding: 0;
+}
+
+.top-bar.golden:before {
+  margin-left: -1px !important;
+  margin-top: -1% !important;
+}
+
+.top-bar.golden:after {
+  margin-right: -1px !important;
+  margin-top: -1% !important;
+}
+
+.top-bar .rpgui-button.golden {
+  margin: 2px 0 0;
+  padding: 0;
+}
+
+.top-bar .rpgui-button.golden:before,
+.top-bar .rpgui-button.golden:after {
+  display: none;
+}
+
+.top-bar .rpgui-button.golden.first {
+  padding-right: 15px;
+  margin-right: 0;
+}
+
+.top-bar .rpgui-button.golden.last {
+  padding-left: 15px;
+  margin-left: 0;
+}

@@ -11,9 +11,12 @@ import Dead from "../../components/player/Dead";
 
 // game
 import Player from "../../components/player/Player";
+import ConfettiExplosion from "react-confetti-explosion";
 
 export default function CraeftPage() {
   const [, forceUpdate] = useReducer((tick) => tick + 1, 0);
+
+  const [isExploding, setIsExploding] = useState(false);
 
   const [view, setView] = useState<number>(1);
 
@@ -27,6 +30,7 @@ export default function CraeftPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setIsExploding(true);
 
     craeft.start({
       onTick: () => {
@@ -46,8 +50,19 @@ export default function CraeftPage() {
     };
   }, []);
 
+  craeft.player.onLevelUp = () => {
+    setIsExploding(true);
+  };
+
   return (
     <div className="craeft">
+      {isExploding && (
+        <ConfettiExplosion
+          onComplete={() => setIsExploding(false)}
+          zIndex={1000000}
+        />
+      )}
+
       {craeft.player.isDead ? <Dead /> : null}
 
       <ReactTooltip
