@@ -2,7 +2,7 @@
   "name": "craeft",
   "version": "0.6.4-beta",
   "description": "",
-  "homepage": "https://cräft.com/",
+  "homepage": "https://cräft.com",
   "scripts": {
     "clean": "rm -rf ./out ./.next ./.yarn ./node_modules",
     "prettier": "prettier ./src --write",
