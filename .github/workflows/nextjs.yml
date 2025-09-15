@@ -33,6 +33,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - run: echo $NEXT_PUBLIC_CRAEFT_VERSION$
       - run: corepack enable
       - name: Detect package manager
         id: detect-package-manager
