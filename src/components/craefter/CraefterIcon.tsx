@@ -54,7 +54,7 @@ export default function CraefterIcon({
 
       {craefter.delay.isDelaying ? (
         <div className="craefter-timeout nowrap">
-          <span>{craefter.delay.timer.getTimeoutString()}</span>
+          <span>{craefter.delay.timer?.getTimeoutString()}</span>
         </div>
       ) : null}
 
@@ -64,7 +64,7 @@ export default function CraefterIcon({
             {craefter.itemId
               ? craeft.items
                   .findById(craefter.itemId)
-                  ?.delay.timer.getTimeoutString()
+                  ?.delay.timer?.getTimeoutString()
               : null}
           </span>
         </div>

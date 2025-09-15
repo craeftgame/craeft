@@ -86,7 +86,7 @@ export default function ItemIcon({
 
           {item instanceof Item && item.delay.isDelaying ? (
             <div className="item-timeout nowrap">
-              <span>{item.delay.timer.getTimeoutString()}</span>
+              <span>{item.delay.timer?.getTimeoutString()}</span>
             </div>
           ) : null}
         </div>

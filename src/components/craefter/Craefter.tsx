@@ -41,7 +41,7 @@ export default function Craefter({
               <span>
                 &nbsp;
                 {craefter?.delay.isDelaying
-                  ? craefter?.delay.timer.getTimeoutString()
+                  ? craefter?.delay.timer?.getTimeoutString()
                   : "Cräft!"}
               </span>
             </button>
