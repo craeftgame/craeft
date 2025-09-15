@@ -1,4 +1,4 @@
-import { Armor, Item, Weapon } from "@craeft/engine/dist/items";
+import { Armor, Item, Weapon } from "@craeft/engine/dist/game";
 import React from "react";
 import Attribute from "../utility/Attribute";
 

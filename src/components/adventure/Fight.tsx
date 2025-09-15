@@ -1,4 +1,4 @@
-import { Boss } from "@craeft/engine/dist/boss";
+import { Boss } from "@craeft/engine/dist/game";
 import { WeaponSlots } from "@craeft/engine/dist/data";
 import React, { use } from "react";
 import ItemIconIcon from "../item/ItemIconIcon";

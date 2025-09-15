@@ -1,4 +1,4 @@
-import { Craefter } from "@craeft/engine/dist/craefter";
+import { Craefter } from "@craeft/engine/dist/game";
 import { CraefterTypes } from "@craeft/engine/dist/data";
 import React, { use } from "react";
 import { CraeftContext } from "../../provider/CraeftProvider";

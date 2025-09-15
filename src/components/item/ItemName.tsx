@@ -1,4 +1,4 @@
-import { Item } from "@craeft/engine/dist/items";
+import { Item } from "@craeft/engine/dist/game";
 import { Rarities, RarityNames } from "@craeft/engine/dist/data";
 import React from "react";
 

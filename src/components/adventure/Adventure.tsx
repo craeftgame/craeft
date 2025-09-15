@@ -1,4 +1,4 @@
-import { Boss } from "@craeft/engine/dist/boss";
+import { Boss } from "@craeft/engine/dist/game";
 import { config } from "@craeft/engine/dist/config";
 import React, { use, useState } from "react";
 import Logs from "../Logs";

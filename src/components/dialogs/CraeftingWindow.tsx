@@ -1,7 +1,6 @@
-import { Craefter } from "@craeft/engine/dist/craefter";
+import type { Item } from "@craeft/engine/dist/game";
+import { Craefter, Resources } from "@craeft/engine/dist/game";
 import { ResourceTypes } from "@craeft/engine/dist/data";
-import { Resources } from "@craeft/engine/dist/game";
-import type { Item } from "@craeft/engine/dist/items";
 import { capitalizeFirstLetter } from "@craeft/engine/dist/tools/strings";
 import React, { use, useEffect, useState } from "react";
 import CraefterDescription from "../craefter/CraefterDescription";

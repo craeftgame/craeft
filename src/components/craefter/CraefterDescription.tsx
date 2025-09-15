@@ -1,4 +1,4 @@
-import { Craefter as CraefterObj } from "@craeft/engine/dist/craefter";
+import { Craefter as CraefterObj } from "@craeft/engine/dist/game";
 import { CraefterTypeNames, Mysterious } from "@craeft/engine/dist/data";
 import React from "react";
 import Attribute from "../utility/Attribute";

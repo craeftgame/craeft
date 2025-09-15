@@ -1,10 +1,10 @@
 import {
   Craefter as CraefterObj,
   Craefters,
-} from "@craeft/engine/dist/craefter";
+  Item,
+  Resources,
+} from "@craeft/engine/dist/game";
 import { CraefterTypes } from "@craeft/engine/dist/data";
-import { Resources } from "@craeft/engine/dist/game";
-import { Item } from "@craeft/engine/dist/items";
 import React, { use, useState } from "react";
 import AddCraeftersWindow from "../dialogs/AddCraeftersWindow";
 

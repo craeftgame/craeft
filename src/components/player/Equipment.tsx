@@ -1,7 +1,6 @@
 import { ArmorSlots, WeaponSlots } from "@craeft/engine/dist/data";
 
-import { Equipment as EquipmentObj } from "@craeft/engine/dist/game";
-import { Item } from "@craeft/engine/dist/items";
+import { Equipment as EquipmentObj, Item } from "@craeft/engine/dist/game";
 import React, { use, useState } from "react";
 
 import ItemDescription from "../item/ItemDescription";

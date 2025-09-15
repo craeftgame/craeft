@@ -3,7 +3,7 @@ import {
   ItemCategories,
   ResourceTypes,
 } from "@craeft/engine/dist/data";
-import { Armor, Item } from "@craeft/engine/dist/items";
+import { Armor, Item } from "@craeft/engine/dist/game";
 import React from "react";
 import { PreItem } from "@craeft/engine/dist/interfaces";
 

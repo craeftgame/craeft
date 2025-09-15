@@ -1,4 +1,4 @@
-import { Item } from "@craeft/engine/dist/items";
+import { Item } from "@craeft/engine/dist/game";
 import React, { use } from "react";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import ItemDetails from "./ItemDetails";

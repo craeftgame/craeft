@@ -1,5 +1,5 @@
 import { SlotNames } from "@craeft/engine/dist/data";
-import { Item } from "@craeft/engine/dist/items";
+import { Item } from "@craeft/engine/dist/game";
 import React from "react";
 import ItemStats from "../item/ItemStats";
 import Attribute from "../utility/Attribute";

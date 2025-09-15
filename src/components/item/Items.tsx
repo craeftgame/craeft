@@ -1,4 +1,4 @@
-import { Item } from "@craeft/engine/dist/items";
+import { Item } from "@craeft/engine/dist/game";
 import React, { use, useState } from "react";
 import ItemDescription from "./ItemDescription";
 import ItemIcon from "./ItemIcon";

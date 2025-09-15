@@ -1,4 +1,4 @@
-import { Boss } from "@craeft/engine/dist/boss";
+import { Boss } from "@craeft/engine/dist/game";
 import React, { useState } from "react";
 import Attribute from "../utility/Attribute";
 import Gauge from "../utility/Gauge";
