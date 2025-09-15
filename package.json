@@ -4,19 +4,16 @@
   "description": "",
   "homepage": "https://cräft.com/",
   "scripts": {
-    "clean": "rm -rf ./build ./.next ./.yarn ./node_modules",
+    "clean": "rm -rf ./out ./.next ./.yarn ./node_modules",
     "prettier": "prettier ./src --write",
     "lint": "eslint ./src",
     "dev": "next dev",
     "start": "npx serve@latest ./build",
-    "postinstall": "yarn build",
     "build": "next build",
     "build:itchio": "PUBLIC_URL=. BUILD_TARGET=itchio next build",
     "test": "jest",
     "test:watch": "jest --watch",
-    "eject": "next eject",
-    "predeploy": "yarn build",
-    "deploy": "gh-pages -d build -b main -r git@github.com:craeftgame/craeftgame.github.io.git"
+    "eject": "next eject"
   },
   "author": "Umlaut Games",
   "license": "MIT",

@@ -1,9 +1,9 @@
 .idea/
 node_modules/
-build/
-dist/
+out/
 .next/
 .yarn/
+.swc/
 
 .env
 
