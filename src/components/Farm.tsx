@@ -1,8 +1,10 @@
-import { craeft } from "@craeft/engine/dist/craeft";
 import { capitalizeFirstLetter } from "@craeft/engine/dist/tools";
-import React from "react";
+import React, { use } from "react";
+import { CraeftContext } from "../provider/CraeftProvider";
 
 export default function Farm() {
+  const { craeft } = use(CraeftContext);
+
   return (
     <div className="farm column frame">
       <div className="rpgui-container framed">
@@ -14,7 +16,7 @@ export default function Farm() {
         {craeft.resources.sum() > 0 ? (
           <div className="rpgui-container framed-grey resources">
             {Object.entries(craeft.resources).map(([key, value]) => {
-              if (value === 0) return;
+              if (typeof value !== "number" || value === 0) return;
 
               return (
                 <div className="columns" key={`material-${key}`}>

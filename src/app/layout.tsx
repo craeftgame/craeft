@@ -6,6 +6,7 @@ import ServiceWorkerRegister from "../serviceworker/ServiceWorkerRegister"; // c
 import "bulma/css/bulma.min.css";
 import "../css/rpgui.scss";
 import "../css/craeft.scss";
+import CraeftProvider from "../provider/CraeftProvider";
 
 const medieval = MedievalSharp({
   subsets: ["latin"],
@@ -59,13 +60,13 @@ export default function RootLayout({
 
         <link
           rel="preload"
-          href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"
+          href="https://use.fontawesome.com/releases/v7.0.1/css/all.css"
           crossOrigin="anonymous"
           as="style"
         />
         <link
           rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"
+          href="https://use.fontawesome.com/releases/v7.0.1/css/all.css"
           crossOrigin="anonymous"
         />
 
@@ -81,7 +82,9 @@ export default function RootLayout({
         <Filters />
         <ServiceWorkerRegister />
 
-        <div className="rpgui-content container">{children}</div>
+        <CraeftProvider>
+          <div className="rpgui-content container">{children}</div>
+        </CraeftProvider>
       </body>
     </html>
   );

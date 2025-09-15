@@ -1,14 +1,16 @@
-import { craeft } from "@craeft/engine/dist/craeft";
 import { Item } from "@craeft/engine/dist/items";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import ItemDescription from "./ItemDescription";
 import ItemIcon from "./ItemIcon";
+import { CraeftContext } from "../../provider/CraeftProvider";
 
 interface ItemsProps {
   readonly items: Item[];
 }
 
 export default function Items({ items }: ItemsProps) {
+  const { craeft } = use(CraeftContext);
+
   const [selectedItem, setSelectedItem] = useState<Item | undefined>();
 
   const onItemSelected = (item: Item) => {

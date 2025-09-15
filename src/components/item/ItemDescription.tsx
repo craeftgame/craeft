@@ -1,7 +1,7 @@
-import { craeft } from "@craeft/engine/dist/craeft";
 import { Item } from "@craeft/engine/dist/items";
-import React from "react";
+import React, { use } from "react";
 import ItemDetails from "./ItemDetails";
+import { CraeftContext } from "../../provider/CraeftProvider";
 
 interface ItemDescriptionProps {
   readonly item: Item;
@@ -15,6 +15,8 @@ export default function ItemDescription({
   onEquip,
   onDisentchant,
 }: ItemDescriptionProps) {
+  const { craeft } = use(CraeftContext);
+
   return (
     <div>
       <ItemDetails item={item} />

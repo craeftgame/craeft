@@ -59,6 +59,10 @@ strong {
   color: darkred !important;
 }
 
+.green {
+  color: darkgreen !important;
+}
+
 .craeft-logo {
   font-size: 90px;
   font-weight: bold;
@@ -230,4 +234,10 @@ strong {
   min-width: 40px;
   text-align: right;
   display: inline-block;
+}
+
+/* tooltip */
+.tooltip {
+  z-index: 1000;
+  color: #faebd7 !important;
 }

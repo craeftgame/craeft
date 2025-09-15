@@ -1,6 +1,6 @@
-import type { PreItem } from "@craeft/engine/dist/items";
 import React from "react";
 import Attribute from "../utility/Attribute";
+import type { PreItem } from "@craeft/engine/dist/interfaces";
 
 interface PreItemStatsProps {
   readonly preItem: PreItem;

@@ -1,7 +1,7 @@
-import { craeft } from "@craeft/engine/dist/craeft";
 import { CraefterTypes } from "@craeft/engine/dist/data";
-import React from "react";
+import React, { use } from "react";
 import { Tooltip as ReactTooltip } from "react-tooltip";
+import { CraeftContext } from "../../provider/CraeftProvider";
 
 interface AddCraeftersWindowProps {
   readonly addCraefter: (craefter: CraefterTypes) => void;
@@ -10,6 +10,8 @@ interface AddCraeftersWindowProps {
 export default function AddCraeftersWindow({
   addCraefter,
 }: AddCraeftersWindowProps) {
+  const { craeft } = use(CraeftContext);
+
   const add = (type: CraefterTypes) => {
     addCraefter(type);
   };
@@ -25,8 +27,7 @@ export default function AddCraeftersWindow({
         id="alchemist"
         place="bottom"
         float={true}
-        className="rpgui-container framed is-size-5"
-        style={{ zIndex: 10000 }}
+        className="rpgui-container framed is-size-5 tooltip"
       >
         Hey {craeft.player.name},<br />
         you have to be level 20
@@ -38,8 +39,7 @@ export default function AddCraeftersWindow({
         id="jewelcraefter"
         place="bottom"
         float={true}
-        className="rpgui-container framed is-size-5"
-        style={{ zIndex: 10000 }}
+        className="rpgui-container framed is-size-5 tooltip"
       >
         Hey {craeft.player.name},<br />
         you have to be level 40
@@ -66,7 +66,7 @@ export default function AddCraeftersWindow({
         </div>
 
         <div>
-          <span className="rpgui-icon armor-slot" />
+          <span className="rpgui-icon shield-slot" />
           <button
             onClick={() => add(CraefterTypes.ArmorCraefter)}
             type="button"

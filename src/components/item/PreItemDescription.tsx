@@ -1,8 +1,8 @@
 import { ItemNames } from "@craeft/engine/dist/data";
-import { PreItem } from "@craeft/engine/dist/items";
 import React from "react";
 import ItemIcon from "./ItemIcon";
 import PreItemStats from "./PreItemStats";
+import type { PreItem } from "@craeft/engine/dist/interfaces";
 
 interface PreItemDescriptionProps {
   readonly preItem: PreItem;

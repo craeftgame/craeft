@@ -1,14 +1,16 @@
 import { Boss } from "@craeft/engine/dist/boss";
-import { craeft } from "@craeft/engine/dist/craeft";
 import { WeaponSlots } from "@craeft/engine/dist/data";
-import React from "react";
+import React, { use } from "react";
 import ItemIconIcon from "../item/ItemIconIcon";
+import { CraeftContext } from "../../provider/CraeftProvider";
 
 interface FightProps {
   readonly boss: Boss;
 }
 
 export default function Fight({ boss }: FightProps) {
+  const { craeft } = use(CraeftContext);
+
   return (
     <div>
       <div>

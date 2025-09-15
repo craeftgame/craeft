@@ -5,40 +5,40 @@ const filters = () => (
     <filter id="wood">
       <feColorMatrix
         type="matrix"
-        values="0.55 0    0    0 0
-                               0    0.27 0    0 0
-                               0    0    0.07 0 0
-                               0    0    0    1 0"
+        values="0.65 0.20 0    0 0
+                0.15 0.40 0    0 0
+                0.05 0.10 0.15 0 0
+                0    0    0    1 0"
       />
     </filter>
 
     <filter id="metal">
       <feColorMatrix
         type="matrix"
-        values="0.70 0    0    0 0
-                               0    0.71 0    0 0
-                               0    0    0.72 0 0
-                               0    0    0    1 0"
+        values="0.55 0    0    0 0
+                0    0.60 0    0 0
+                0    0    0.95 0 0
+                0    0    0    1 0"
       />
     </filter>
 
     <filter id="cloth">
       <feColorMatrix
         type="matrix"
-        values="0.98 0    0    0 0
-                               0    0.94 0    0 0
-                               0    0    0.90 0 0
-                               0    0    0    1 0"
+        values="1.05 0.10 0    0 0
+                0.10 0.95 0    0 0
+                0.05 0.10 0.60 0 0
+                0    0    0    1 0"
       />
     </filter>
 
-    <filter id="diamond">
+    <filter id="gemstone">
       <feColorMatrix
         type="matrix"
-        values="0.73 0    0 0 0
-                               0    0.95 0 0 0
-                               0    0    1 0 0
-                               0    0    0 1 0"
+        values="0.30 0    0    0 0
+                0    1.10 0.10 0 0
+                0    0.20 0.70 0 0
+                0    0    0    1 0"
       />
     </filter>
 
@@ -46,10 +46,95 @@ const filters = () => (
       <feColorMatrix
         type="matrix"
         values="0.3333 0.3333 0.3333 0 0
-                               0.3333 0.3333 0.3333 0 0
-                               0.3333 0.3333 0.3333 0 0
-                               0      0      0      1 0"
+                0.3333 0.3333 0.3333 0 0
+                0.3333 0.3333 0.3333 0 0
+                0 0 0 1 0"
       />
+    </filter>
+
+    <filter id="water">
+      <feColorMatrix
+        type="matrix"
+        values="0.60 0 0 0 0
+                0 0.80 0 0 0
+                0 0 1.20 0 0
+                0 0 0 1 0"
+      />
+    </filter>
+
+    <filter id="greenGlow">
+      <feColorMatrix
+        type="matrix"
+        values="0 0 0 0 0
+                0 1.2 0 0 0
+                0 0 0 0 0
+                0 0 0 1 0"
+      />
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="blueGlow">
+      <feColorMatrix
+        type="matrix"
+        values="0 0 0 0 0
+                0 0 0 0 0
+                0 0 1.3 0 0
+                0 0 0 1 0"
+      />
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="redGlow">
+      <feColorMatrix
+        type="matrix"
+        values="1.3 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 1 0"
+      />
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="yellowGlow">
+      <feColorMatrix
+        type="matrix"
+        values="1.2 0 0 0 0
+                1.2 1.2 0 0 0
+                0 0 0 0 0
+                0 0 0 1 0"
+      />
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="purpleGlow">
+      <feColorMatrix
+        type="matrix"
+        values="1.1 0 1.1 0 0
+                0 0 0 0 0
+                1.3 0 1.3 0 0
+                0 0 0 1 0"
+      />
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
     </filter>
   </svg>
 );

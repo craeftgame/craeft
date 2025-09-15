@@ -1,8 +1,11 @@
-import { Item, PreItem } from "@craeft/engine/dist/items";
-import React from "react";
+import { Item } from "@craeft/engine/dist/items";
+import React, { use } from "react";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import ItemDetails from "./ItemDetails";
 import ItemIconIcon from "./ItemIconIcon";
+import { Mysterious } from "@craeft/engine/dist/data";
+import { CraeftContext } from "../../provider/CraeftProvider";
+import type { PreItem } from "@craeft/engine/dist/interfaces";
 
 interface ItemIconProps {
   readonly item: Item | PreItem;
@@ -17,6 +20,8 @@ export default function ItemIcon({
   isSelected,
   isSmall,
 }: ItemIconProps) {
+  const { craeft } = use(CraeftContext);
+
   const containerClasses = ["item-icon"];
 
   // item disabled?
@@ -37,11 +42,23 @@ export default function ItemIcon({
         id={`tooltip-${item instanceof Item && item.id}`}
         place="bottom"
         float={true}
-        className="rpgui-container framed is-size-5 rpgui-center"
-        style={{ zIndex: 10000 }}
+        className="rpgui-container framed is-size-5 rpgui-center tooltip"
       >
         {item instanceof Item ? (
-          <>{item.delay.isDelaying ? "???" : <ItemDetails item={item} />}</>
+          <>
+            {item.delay.isDelaying ? (
+              Mysterious
+            ) : (
+              <ItemDetails
+                item={item}
+                compareItem={
+                  !item.isEquipped && item.slot
+                    ? craeft.player.equipment[item.slot]
+                    : undefined
+                }
+              />
+            )}
+          </>
         ) : null}
       </ReactTooltip>
 

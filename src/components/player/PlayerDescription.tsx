@@ -1,18 +1,30 @@
 import { Player } from "@craeft/engine/dist/game";
-import React from "react";
+import React, { use, useCallback } from "react";
 import Attribute from "../utility/Attribute";
 import Gauge from "../utility/Gauge";
+import { CraeftContext } from "../../provider/CraeftProvider";
+import Craeft from "@craeft/engine/dist/craeft";
 
 interface PlayerDescriptionProps {
   readonly player: Player;
 }
 
 export default function PlayerDescription({ player }: PlayerDescriptionProps) {
+  const { setCraeft } = use(CraeftContext);
+
+  const reset = useCallback(() => {
+    setCraeft(new Craeft());
+  }, [setCraeft]);
+
   return (
     <>
       <div className="row">
         <div>
           <Attribute label={player.className()} value={player.name} />
+
+          {player.level < 2 ? (
+            <i className="rpgui-cursor-point fas fa-rotate" onClick={reset} />
+          ) : null}
         </div>
 
         <div>

@@ -1,7 +1,7 @@
 "use client";
 
-import Craeft, { craeft } from "@craeft/engine/dist/craeft";
-import React, { useEffect, useReducer, useState } from "react";
+import Craeft from "@craeft/engine/dist/craeft";
+import React, { use, useEffect, useReducer, useState } from "react";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import Adventure from "../../components/adventure/Adventure";
 import CraefterList from "../../components/craefter/CraefterList";
@@ -11,26 +11,29 @@ import Dead from "../../components/player/Dead";
 
 // game
 import Player from "../../components/player/Player";
-import ConfettiExplosion from "react-confetti-explosion";
+import { CraeftContext } from "../../provider/CraeftProvider";
 
 export default function CraeftPage() {
-  const [, forceUpdate] = useReducer((tick) => tick + 1, 0);
+  const { craeft, setCraeft } = use(CraeftContext);
 
-  const [isExploding, setIsExploding] = useState(false);
+  const [, forceUpdate] = useReducer((tick) => tick + 1, 0);
 
   const [view, setView] = useState<number>(1);
 
   if (typeof window !== "undefined") {
     window.onbeforeunload = () => {
-      Craeft.saveState();
+      Craeft.saveState(craeft);
     };
   }
 
-  Craeft.loadState();
+  const loadedCraeft = Craeft.loadState();
+
+  if (loadedCraeft) {
+    setCraeft(loadedCraeft);
+  }
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    setIsExploding(true);
 
     craeft.start({
       onTick: () => {
@@ -46,31 +49,23 @@ export default function CraeftPage() {
     return () => {
       // stop, in the name of ...
       craeft.stop();
-      Craeft.saveState();
+      Craeft.saveState(craeft);
     };
   }, []);
 
   craeft.player.onLevelUp = () => {
-    setIsExploding(true);
+    // TODO: celebrate
   };
 
   return (
     <div className="craeft">
-      {isExploding && (
-        <ConfettiExplosion
-          onComplete={() => setIsExploding(false)}
-          zIndex={1000000}
-        />
-      )}
-
       {craeft.player.isDead ? <Dead /> : null}
 
       <ReactTooltip
         id="tooltip-adventure"
         place="bottom"
         float={true}
-        className="rpgui-container framed is-size-5"
-        style={{ zIndex: 10000 }}
+        className="rpgui-container framed is-size-5 tooltip"
       >
         Hey {craeft.player.name},<br />
         you have to be level 10

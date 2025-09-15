@@ -1,7 +1,7 @@
-import { craeft } from "@craeft/engine/dist/craeft";
 import { Craefter } from "@craeft/engine/dist/craefter";
 import { CraefterTypes } from "@craeft/engine/dist/data";
-import React from "react";
+import React, { use } from "react";
+import { CraeftContext } from "../../provider/CraeftProvider";
 
 interface CraefterIconProps {
   readonly craefter: Craefter;
@@ -14,6 +14,8 @@ export default function CraefterIcon({
   onCraefterSelect,
   isSelected,
 }: CraefterIconProps) {
+  const { craeft } = use(CraeftContext);
+
   const selectCraefter = () => {
     if (!craefter.delay.isDelaying) {
       onCraefterSelect(craefter);
@@ -43,7 +45,7 @@ export default function CraefterIcon({
       ) : null}
 
       {craefter.type === CraefterTypes.ArmorCraefter ? (
-        <div className={`rpgui-icon armor-slot ${disabled}`} />
+        <div className={`rpgui-icon shield-slot ${disabled}`} />
       ) : null}
 
       {!craefter.delay.isDelaying ? (
@@ -62,7 +64,7 @@ export default function CraefterIcon({
             {craefter.itemId
               ? craeft.items
                   .findById(craefter.itemId)
-                  .delay.timer.getTimeoutString()
+                  ?.delay.timer.getTimeoutString()
               : null}
           </span>
         </div>

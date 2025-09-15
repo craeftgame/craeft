@@ -1,4 +1,3 @@
-import { craeft } from "@craeft/engine/dist/craeft";
 import {
   Craefter as CraefterObj,
   Craefters,
@@ -6,7 +5,7 @@ import {
 import { CraefterTypes } from "@craeft/engine/dist/data";
 import { Resources } from "@craeft/engine/dist/game";
 import { Item } from "@craeft/engine/dist/items";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import AddCraeftersWindow from "../dialogs/AddCraeftersWindow";
 
 import CraeftingWindow from "../dialogs/CraeftingWindow";
@@ -14,6 +13,7 @@ import Modal from "../utility/Modal";
 import Craefter from "./Craefter";
 
 import CraefterIcon from "./CraefterIcon";
+import { CraeftContext } from "../../provider/CraeftProvider";
 
 interface CraefterListProps {
   readonly craefters: Craefters;
@@ -24,6 +24,8 @@ export default function CraefterList({
   craefters,
   resources,
 }: CraefterListProps) {
+  const { craeft } = use(CraeftContext);
+
   const [isCraeftingDialogShown, setIsCraeftingDialogShown] =
     useState<boolean>(false);
   const [isAddCraefterDialogShown, setIsAddCraefterDialogShown] =

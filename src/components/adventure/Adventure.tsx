@@ -1,15 +1,17 @@
 import { Boss } from "@craeft/engine/dist/boss";
 import { config } from "@craeft/engine/dist/config";
-import { craeft } from "@craeft/engine/dist/craeft";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import Logs from "../Logs";
 import Map from "../map/Map";
 import PlayerDescription from "../player/PlayerDescription";
 import BossDescription from "./BossDesctiption";
 import BossIcon from "./BossIcon";
+import { CraeftContext } from "../../provider/CraeftProvider";
 
 export default function Adventure() {
-  const [selected, setSelected] = useState<Boss>(craeft.bosses[0]);
+  const { craeft } = use(CraeftContext);
+
+  const [selected, setSelected] = useState<Boss | undefined>(craeft.bosses[0]);
 
   const fight = (boss: Boss) => {
     console.log(boss.name);
@@ -43,7 +45,7 @@ export default function Adventure() {
               {config.showBossScreen ? (
                 <>
                   <div className="boss-name">
-                    <span>{selected.name}</span>
+                    <span>{selected?.name}</span>
                   </div>
 
                   <div>
@@ -60,10 +62,12 @@ export default function Adventure() {
                     })}
                   </div>
 
-                  <BossDescription
-                    boss={selected}
-                    fight={() => fight(selected)}
-                  />
+                  {selected ? (
+                    <BossDescription
+                      boss={selected}
+                      fight={() => fight(selected)}
+                    />
+                  ) : null}
                 </>
               ) : null}
             </div>

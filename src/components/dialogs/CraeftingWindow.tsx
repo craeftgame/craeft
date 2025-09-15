@@ -1,13 +1,16 @@
 import { Craefter } from "@craeft/engine/dist/craefter";
 import { ResourceTypes } from "@craeft/engine/dist/data";
 import { Resources } from "@craeft/engine/dist/game";
-import { Item, PreItem } from "@craeft/engine/dist/items";
+import type { Item } from "@craeft/engine/dist/items";
 import { capitalizeFirstLetter } from "@craeft/engine/dist/tools/strings";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import CraefterDescription from "../craefter/CraefterDescription";
 import PreItemDescription from "../item/PreItemDescription";
 
 import Slider from "../utility/Slider";
+import { CraeftContext } from "../../provider/CraeftProvider";
+import { toEnum } from "@craeft/engine/dist/tools";
+import type { PreItem } from "@craeft/engine/dist/interfaces";
 
 interface CraeftingWindowProps {
   readonly craefter: Craefter;
@@ -20,8 +23,13 @@ export default function CraeftingWindow({
   availableResources,
   itemAdded,
 }: CraeftingWindowProps) {
+  const { craeft } = use(CraeftContext);
   const [preItem, setPreItem] = useState<PreItem | undefined>();
-  const [resources, setResources] = useState<Resources>(new Resources());
+  const [resources, setResources] = useState<Resources>(
+    new Resources({ craeft }),
+  );
+
+  useEffect(() => {}, []);
 
   useEffect(() => {
     setPreItem(
@@ -34,7 +42,7 @@ export default function CraeftingWindow({
   const updateResource = (which: ResourceTypes, value: number) => {
     setResources((prevState) => {
       // load current resources
-      const res = new Resources().add(prevState);
+      const res = new Resources({ craeft }).add(prevState);
 
       // update resources
       res[which] = value;
@@ -43,10 +51,10 @@ export default function CraeftingWindow({
     });
   };
 
-  const craeft = () => {
+  const craeftItem = () => {
     if (resources.sum() > 0) {
       // cräft the item
-      const item = craefter.craeft({
+      const item = craefter.craeftItem({
         resources: resources,
       });
 
@@ -65,9 +73,10 @@ export default function CraeftingWindow({
 
       <div className="row">
         {Object.keys(availableResources).map((key, index) => {
-          const name = key as ResourceTypes;
-          const available = availableResources[name];
+          const name = toEnum(ResourceTypes, key);
+          if (!name) return;
 
+          const available = availableResources[name];
           if (!available) return;
 
           const selectedAmount = resources[name];
@@ -101,7 +110,7 @@ export default function CraeftingWindow({
 
       <div className="row">
         <button
-          onClick={craeft}
+          onClick={craeftItem}
           type="button"
           className={`rpgui-button is-big ${resources.sum() < 1 ? "rpgui-disabled" : ""}`}
         >

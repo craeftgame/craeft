@@ -1,18 +1,20 @@
-import { craeft } from "@craeft/engine/dist/craeft";
 import { ArmorSlots, WeaponSlots } from "@craeft/engine/dist/data";
 
 import { Equipment as EquipmentObj } from "@craeft/engine/dist/game";
 import { Item } from "@craeft/engine/dist/items";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 
 import ItemDescription from "../item/ItemDescription";
 import ItemIcon from "../item/ItemIcon";
+import { CraeftContext } from "../../provider/CraeftProvider";
 
 interface EquipmentProps {
   readonly equipment: EquipmentObj;
 }
 
 export default function Equipment({ equipment }: EquipmentProps) {
+  const { craeft } = use(CraeftContext);
+
   const [selectedItem, setSelectedItem] = useState<Item | undefined>();
 
   const onItemSelected = (item: Item) => {
@@ -80,7 +82,7 @@ export default function Equipment({ equipment }: EquipmentProps) {
               onItemSelected={onItemSelected}
             />
           ) : (
-            <span className="rpgui-icon armor-slot" />
+            <span className="rpgui-icon legs-slot" />
           )}
         </div>
         <div className="column">

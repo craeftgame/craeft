@@ -1,5 +1,5 @@
 import { Craefter as CraefterObj } from "@craeft/engine/dist/craefter";
-import { CraefterTypeNames } from "@craeft/engine/dist/data";
+import { CraefterTypeNames, Mysterious } from "@craeft/engine/dist/data";
 import React from "react";
 import Attribute from "../utility/Attribute";
 import Gauge from "../utility/Gauge";
@@ -22,20 +22,20 @@ export default function CraefterDescription({
           Level {craefter.level}: <span>{craefter.name}</span>
         </div>
       ) : (
-        "???"
+        Mysterious
       )}
 
       {!craefter.delay.isDelaying ? (
         <div>
           <div className="row">
             <div>
-              <Attribute label="Str" value={craefter.str} />
-              <Attribute label="Dex" value={craefter.dex} />
+              <Attribute label="Str" value={craefter.str()} />
+              <Attribute label="Dex" value={craefter.dex()} />
             </div>
 
             <div>
-              <Attribute label="Int" value={craefter.int} />
-              <Attribute label="Luk" value={craefter.luk} />
+              <Attribute label="Int" value={craefter.int()} />
+              <Attribute label="Luk" value={craefter.luk()} />
             </div>
           </div>
 

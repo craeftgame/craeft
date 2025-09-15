@@ -1,33 +1,38 @@
-import { Rarities, RarityNames } from "@craeft/engine/dist/data";
+import { SlotNames } from "@craeft/engine/dist/data";
 import { Item } from "@craeft/engine/dist/items";
 import React from "react";
 import ItemStats from "../item/ItemStats";
 import Attribute from "../utility/Attribute";
+import ItemName from "./ItemName";
 
 interface ItemDetailsProps {
   readonly item: Item;
+  readonly compareItem?: Item;
 }
 
-export default function ItemDetails({ item }: ItemDetailsProps) {
+export default function ItemDetails({ item, compareItem }: ItemDetailsProps) {
   return (
     <>
       <div>
-        <span
-          className={
-            item.rarity && item.rarity !== Rarities.Common
-              ? RarityNames[item.rarity]?.toLowerCase()
-              : ""
-          }
-        >
-          {item.isBroken ? <span className="red">Broken </span> : null}
+        <ItemName item={item} />
 
-          {item.getName?.() ?? null}
-        </span>
+        {compareItem ? (
+          <>
+            &nbsp;(
+            <ItemName item={compareItem} />)
+          </>
+        ) : null}
       </div>
 
       <Attribute label="Level" value={item.level} />
 
-      <ItemStats item={item} />
+      {item.slot ? (
+        <div>
+          <Attribute label="worn on" value={SlotNames[item.slot]!} />
+        </div>
+      ) : null}
+
+      <ItemStats item={item} compareItem={compareItem} />
     </>
   );
 }

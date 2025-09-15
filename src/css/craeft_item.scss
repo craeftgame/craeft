@@ -27,8 +27,9 @@
 }
 
 .icon-small {
-  width: 39px;
-  height: 39px;
+  width: 42px;
+  height: 42px;
+  margin: 3px;
 }
 
 /** Materials */
@@ -44,8 +45,8 @@
   filter: url(#cloth);
 }
 
-.diamond {
-  filter: url(#diamond);
+.gemstone {
+  filter: url(#gemstone);
 }
 
 /* Rarity */

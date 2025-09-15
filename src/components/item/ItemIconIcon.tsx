@@ -1,6 +1,11 @@
-import { ItemCategories, ResourceTypes } from "@craeft/engine/dist/data";
-import { Item, PreItem } from "@craeft/engine/dist/items";
+import {
+  ArmorSlots,
+  ItemCategories,
+  ResourceTypes,
+} from "@craeft/engine/dist/data";
+import { Armor, Item } from "@craeft/engine/dist/items";
 import React from "react";
+import { PreItem } from "@craeft/engine/dist/interfaces";
 
 interface ItemIconIconProps {
   readonly item: Item | PreItem;
@@ -26,7 +31,23 @@ export default function ItemIconIcon({
   // evaluate item type
   if (item.category === ItemCategories.Weapon) {
     itemClasses.push("sword");
-  } else if (item.category === ItemCategories.Armor) {
+  } else if (
+    item.category === ItemCategories.Armor &&
+    item instanceof Armor &&
+    !item.delay.isDelaying
+  ) {
+    if (item.slot === ArmorSlots.Head) {
+      itemClasses.push("helmet");
+    } else if (item.slot === ArmorSlots.Feet) {
+      itemClasses.push("shoe");
+    } else if (item.slot === ArmorSlots.Legs) {
+      itemClasses.push("legs");
+    } else if (item.slot === ArmorSlots.Body) {
+      itemClasses.push("armor");
+    } else {
+      itemClasses.push("shield");
+    }
+  } else {
     itemClasses.push("shield");
   }
 
@@ -37,8 +58,8 @@ export default function ItemIconIcon({
     itemClasses.push("metal");
   } else if (item.material === ResourceTypes.Cloth) {
     itemClasses.push("cloth");
-  } else if (item.material === ResourceTypes.Diamond) {
-    itemClasses.push("diamond");
+  } else if (item.material === ResourceTypes.Gemstone) {
+    itemClasses.push("gemstone");
   }
 
   return <div className={itemClasses.join(" ")} />;
