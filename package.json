@@ -67,9 +67,5 @@
     "type": "git",
     "url": "https://github.com/craeftgame/craeft.git"
   },
-  "packageManager": "yarn@4.9.4",
-  "resolutions": {
-    "@craeft/engine": "portal:/Users/sebastian/projects/umlaut-games/projects/cräft/engine",
-    "@craeft/map-generator": "portal:/Users/sebastian/projects/umlaut-games/projects/cräft/map-generator"
-  }
+  "packageManager": "yarn@4.9.4"
 }
