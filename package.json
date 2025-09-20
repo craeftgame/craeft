@@ -8,7 +8,7 @@
     "prettier": "prettier ./src --write",
     "lint": "eslint ./src",
     "dev": "next dev",
-    "start": "npx serve@latest ./build",
+    "start": "npx serve@latest ./out",
     "build": "next build",
     "build:itchio": "PUBLIC_URL=. BUILD_TARGET=itchio next build",
     "test": "jest",
@@ -46,7 +46,8 @@
     "typescript-eslint": "^8.43.0"
   },
   "dependencies": {
-    "@craeft/engine": "git+https://github.com/craeftgame/engine.git#v1.11.8",
+    "@craeft/engine": "git+https://github.com/craeftgame/engine.git#v1.11.9",
+    "@fortawesome/fontawesome-free": "^7.0.1",
     "bulma": "^1.0.4",
     "react": "^19.1.1",
     "react-confetti-explosion": "^3.0.3",
