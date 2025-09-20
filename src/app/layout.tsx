@@ -7,6 +7,8 @@ import "bulma/css/bulma.min.css";
 import "../css/rpgui.scss";
 import "../css/craeft.scss";
 import CraeftProvider from "../provider/CraeftProvider";
+import "@fortawesome/fontawesome-free/css/solid.min.css";
+import "@fortawesome/fontawesome-free/css/fontawesome.min.css";
 
 const medieval = MedievalSharp({
   subsets: ["latin"],
@@ -57,18 +59,6 @@ export default function RootLayout({
 
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/favicon.png" />
-
-        <link
-          rel="preload"
-          href="https://use.fontawesome.com/releases/v7.0.1/css/all.css"
-          crossOrigin="anonymous"
-          as="style"
-        />
-        <link
-          rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v7.0.1/css/all.css"
-          crossOrigin="anonymous"
-        />
 
         {/*
           manifest.json provides metadata used when your web app is installed on a
