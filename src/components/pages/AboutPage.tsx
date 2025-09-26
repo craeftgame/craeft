@@ -4,6 +4,7 @@ import merchant from "../../assets/images/merchant.jpg";
 import upc from "../../assets/images/upc.png";
 import wf from "../../assets/images/wf.png";
 import Donate from "../../components/structure/Donate";
+import { config } from "../../config";
 
 export default function AboutPage() {
   return (
@@ -19,7 +20,7 @@ export default function AboutPage() {
         <hr />
 
         <div className="rpgui-center">
-          <a href="https://umlaut.games" target="_linkedIn">
+          <a href={config.author_url} target="_linkedIn">
             Cräft! was made by Umlaut Games
           </a>
         </div>
