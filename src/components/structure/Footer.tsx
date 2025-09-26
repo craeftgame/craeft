@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import Donate from "../../components/structure/Donate";
+import { config } from "../../config";
 
 interface FooterProps {
   readonly showDonate?: boolean;
@@ -35,7 +36,7 @@ export default function Footer({ showDonate }: FooterProps) {
         }}
       >
         © 2019-2025&nbsp;
-        <a href="https://umlaut.games" target="_blank" rel="noreferrer">
+        <a href={config.author_url} target="_blank" rel="noreferrer">
           Umlaut Games
         </a>
         &nbsp;— All Rights Reserved
