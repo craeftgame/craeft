@@ -46,7 +46,7 @@
     "typescript-eslint": "^8.43.0"
   },
   "dependencies": {
-    "@craeft/engine": "git+https://github.com/craeftgame/engine.git#v1.11.9",
+    "@craeft/engine": "git+https://github.com/craeftgame/engine.git#v1.11.10",
     "@fortawesome/fontawesome-free": "^7.0.1",
     "bulma": "^1.0.4",
     "react": "^19.1.1",
