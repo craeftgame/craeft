@@ -11,7 +11,7 @@
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "ESNext",
-    "target": "ES2019",
+    "target": "ESNext",
     // For nodejs:
     "lib": [
       "ESNext",
