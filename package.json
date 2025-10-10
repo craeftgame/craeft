@@ -27,7 +27,7 @@
     "@types/jest": "^30.0.0",
     "@types/node": "^24.7.0",
     "@types/react": "^19.1.16",
-    "@types/react-dom": "^19.1.9",
+    "@types/react-dom": "^19.2.1",
     "eslint": "^9.37.0",
     "eslint-config-next": "^15.5.4",
     "eslint-config-prettier": "^10.1.8",
@@ -51,7 +51,7 @@
     "bulma": "^1.0.4",
     "react": "^19.1.1",
     "react-confetti-explosion": "^3.0.3",
-    "react-dom": "^19.1.1",
+    "react-dom": "^19.2.0",
     "react-tooltip": "^5.29.1"
   },
   "browserslist": [
