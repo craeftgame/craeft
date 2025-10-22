@@ -52,7 +52,7 @@
     "react": "^19.2.0",
     "react-confetti-explosion": "^3.0.3",
     "react-dom": "^19.2.0",
-    "react-tooltip": "^5.29.1"
+    "react-tooltip": "^5.30.0"
   },
   "browserslist": [
     ">0.2%",
