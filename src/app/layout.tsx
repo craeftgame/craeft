@@ -3,10 +3,11 @@ import { MedievalSharp } from "next/font/google";
 import React, { ReactNode } from "react";
 import Filters from "../assets/filters";
 import ServiceWorkerRegister from "../serviceworker/ServiceWorkerRegister"; // custom css
+import WebVitalsRegister from "../serviceworker/WebVitalsRegister";
+import CraeftProvider from "../provider/CraeftProvider";
 import "bulma/css/bulma.min.css";
 import "../css/rpgui.scss";
 import "../css/craeft.scss";
-import CraeftProvider from "../provider/CraeftProvider";
 import "@fortawesome/fontawesome-free/css/solid.min.css";
 import "@fortawesome/fontawesome-free/css/fontawesome.min.css";
 
@@ -71,6 +72,7 @@ export default function RootLayout({
 
         <Filters />
         <ServiceWorkerRegister />
+        <WebVitalsRegister />
 
         <CraeftProvider>
           <div className="rpgui-content container">{children}</div>
