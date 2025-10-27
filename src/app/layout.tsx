@@ -65,7 +65,7 @@ export default function RootLayout({
           manifest.json provides metadata used when your web app is installed on a
           user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
         */}
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href="/manifest.webmanifest" />
       </head>
       <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
