@@ -1,4 +1,4 @@
-import Router from 'next/router';
+import Router from "next/router";
 
 // This optional code is used to register a service worker.
 // register() is not called by default.
