@@ -10,7 +10,7 @@
     "dev": "next dev --turbopack",
     "start": "npx serve@latest ./out",
     "build": "next build",
-    "build:itchio": "PUBLIC_URL=. BUILD_TARGET=itchio next build",
+    "build:itchio": "BUILD_TARGET=itchio next build",
     "test": "jest",
     "test:watch": "jest --watch",
     "eject": "next eject"
