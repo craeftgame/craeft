@@ -27,7 +27,7 @@
     "@types/jest": "^30.0.0",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.2",
+    "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.1",
     "eslint-config-next": "^16.0.3",
     "eslint-config-prettier": "^10.1.8",
