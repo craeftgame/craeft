@@ -1,15 +1,21 @@
 "use client";
 
 import { useEffect } from "react";
-import * as ServiceWorker from "./serviceworker";
 
 export default function ServiceWorkerRegister() {
   useEffect(() => {
-    // If you want your app to work offline and load faster, you can change
-    // unregister() to register() below. Note this comes with some pitfalls.
-    // Learn more about service workers: http://bit.ly/CRA-PWA
-    if (typeof navigator !== "undefined") {
-      ServiceWorker.register();
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/service-worker.js")
+        .then((registration) => {
+          console.log(
+            "Service Worker registered with scope:",
+            registration.scope,
+          );
+        })
+        .catch((error) => {
+          console.error("Service Worker registration failed:", error);
+        });
     }
   }, []);
 

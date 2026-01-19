@@ -3,10 +3,11 @@ import { MedievalSharp } from "next/font/google";
 import React, { ReactNode } from "react";
 import Filters from "../assets/filters";
 import ServiceWorkerRegister from "../serviceworker/ServiceWorkerRegister"; // custom css
+import WebVitalsRegister from "../serviceworker/WebVitalsRegister";
+import CraeftProvider from "../provider/CraeftProvider";
 import "bulma/css/bulma.min.css";
 import "../css/rpgui.scss";
 import "../css/craeft.scss";
-import CraeftProvider from "../provider/CraeftProvider";
 import "@fortawesome/fontawesome-free/css/solid.min.css";
 import "@fortawesome/fontawesome-free/css/fontawesome.min.css";
 
@@ -27,7 +28,7 @@ export default function RootLayout({
 
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          content="width=device-width, initial-scale=1.0, maximum-scale=2.0"
         />
 
         <meta
@@ -64,13 +65,14 @@ export default function RootLayout({
           manifest.json provides metadata used when your web app is installed on a
           user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
         */}
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href="/manifest.webmanifest" />
       </head>
       <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
 
         <Filters />
         <ServiceWorkerRegister />
+        <WebVitalsRegister />
 
         <CraeftProvider>
           <div className="rpgui-content container">{children}</div>
