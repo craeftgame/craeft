@@ -49,13 +49,11 @@ export default function Items({ items }: ItemsProps) {
 
         {selectedItem && !selectedItem["isEquipped"] ? (
           <div className="rpgui-container framed-grey item row">
-            {selectedItem ? (
-              <ItemDescription
-                item={selectedItem}
-                onEquip={equip}
-                onDisentchant={onDisentchant}
-              />
-            ) : null}
+            <ItemDescription
+              item={selectedItem}
+              onEquip={equip}
+              onDisentchant={onDisentchant}
+            />
           </div>
         ) : null}
 
