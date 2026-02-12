@@ -7,10 +7,15 @@ import pluginReact from "eslint-plugin-react";
 import nextPlugin from "@next/eslint-plugin-next";
 
 export default defineConfig([
-  eslintreact.configs.recommended,
-  pluginReact.configs.flat.recommended,
+  // files config
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
+  },
+  // eslint-react config
+  eslintreact.configs["recommended-typescript"],
+  // eslint plugin react with next config
+  pluginReact.configs.flat.recommended,
+  {
     plugins: {
       js,
       "@next/next: pluginObject": nextPlugin,
@@ -25,8 +30,6 @@ export default defineConfig([
     },
     rules: {
       "id-length": "warn",
-      "@eslint-react/no-array-index-key": "off",
-      "@eslint-react/prefer-read-only-props": "warn",
     },
     settings: {
       react: {
@@ -34,5 +37,13 @@ export default defineConfig([
       },
     },
   },
-  tseslint.configs.recommended,
+  // ts eslint config
+  tseslint.configs.recommendedTypeChecked,
+  // general rules config
+  {
+    rules: {
+      "@eslint-react/no-array-index-key": "off",
+      "@eslint-react/prefer-read-only-props": "warn",
+    },
+  },
 ]);
