@@ -487,26 +487,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@craeft/engine@git+https://github.com/craeftgame/engine.git#v1.12.3":
-  version: 1.12.3
-  resolution: "@craeft/engine@https://github.com/craeftgame/engine.git#commit=ca2c1d9902cd9d6aaef2e576cc9916e760528667"
+"@craeft/engine@git+https://github.com/craeftgame/engine.git#v1.12.4":
+  version: 1.12.4
+  resolution: "@craeft/engine@https://github.com/craeftgame/engine.git#commit=04f084ce47d606dd914d59faa732af033f8f7c64"
   dependencies:
-    "@craeft/map-generator": "git+https://github.com/craeftgame/map-generator.git#v1.6.0"
+    "@craeft/map-generator": "git+https://github.com/craeftgame/map-generator.git#v1.6.1"
     "@craeft/serializer": "git+https://github.com/craeftgame/serializer.git#v1.3.2"
     local-storage: "npm:^2.0.0"
     lz-string: "npm:^1.5.0"
     mathjs: "npm:^15.1.1"
     typescript: "npm:^5.9.3"
-  checksum: 10c0/1c67e7ee4cf25d2b111b8a868434227e2a65046be1c09c56fe8243304a3a2303dc45a521e622529ee9dad74f7a67e2fed81c273ee91d142e2032dc397e75a59e
+  checksum: 10c0/536f2dc34cde26968db42340b57c107890532bed8291193a506ed9f983d6aa37e82d1794f6b20381f7cfe35d224d5ae8dd015cf079af0ee49ac16a3bd31831d2
   languageName: node
   linkType: hard
 
-"@craeft/map-generator@git+https://github.com/craeftgame/map-generator.git#v1.6.0":
-  version: 1.6.0
-  resolution: "@craeft/map-generator@https://github.com/craeftgame/map-generator.git#commit=908632d08a3cc44894c452187e138d9e6879e047"
+"@craeft/map-generator@git+https://github.com/craeftgame/map-generator.git#v1.6.1":
+  version: 1.6.1
+  resolution: "@craeft/map-generator@https://github.com/craeftgame/map-generator.git#commit=8c0f5d1a6de63509a739493d9f6a6219ca062484"
   dependencies:
     typescript: "npm:^5.9.3"
-  checksum: 10c0/b1c59bb51591cafe646f76466814332d5362241c38243aa3b1c72541fcfa324e554577a704092eeebac13a29760e0f2a2197f2ce81a512cc3e1b581d53f94d29
+  checksum: 10c0/3d526e8c3273347521ea854c4ba7f4c4c0bbee151b292ac8e953bd9436b9e54e4e6bcea175c917d47bdd5044488fc44f9c2954ca8c5c40d4cc53663baf11cd53
   languageName: node
   linkType: hard
 
@@ -3487,7 +3487,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "craeft@workspace:."
   dependencies:
-    "@craeft/engine": "git+https://github.com/craeftgame/engine.git#v1.12.3"
+    "@craeft/engine": "git+https://github.com/craeftgame/engine.git#v1.12.4"
     "@eslint-react/eslint-plugin": "npm:^2.13.0"
     "@eslint/eslintrc": "npm:^3.3.4"
     "@eslint/js": "npm:^10.0.1"
