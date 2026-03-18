@@ -42,8 +42,8 @@ export default defineConfig([
   // general rules config
   {
     rules: {
-      "@eslint-react/no-array-index-key": "off",
-      "@eslint-react/prefer-read-only-props": "warn",
+      "react/no-array-index-key": "off",
+      "react/prefer-read-only-props": "warn",
     },
   },
 ]);
