@@ -1,6 +1,6 @@
 {
   "name": "craeft",
-  "version": "0.8.0-beta",
+  "version": "0.8.1-beta",
   "description": "",
   "homepage": "https://cräft.com",
   "scripts": {
@@ -47,7 +47,7 @@
     "typescript-eslint": "^8.58.0"
   },
   "dependencies": {
-    "@craeft/engine": "git+https://github.com/craeftgame/engine.git#v1.13.0",
+    "@craeft/engine": "git+https://github.com/craeftgame/engine.git#v1.13.1",
     "@fortawesome/fontawesome-free": "^7.2.0",
     "bulma": "^1.0.4",
     "react": "^19.2.4",
