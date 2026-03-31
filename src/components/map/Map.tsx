@@ -4,9 +4,12 @@ import { CraeftContext } from "../../provider/CraeftProvider";
 export default function MapComponent() {
   const { craeft } = use(CraeftContext);
 
-  const move = useCallback((direction: string) => {
-    craeft.move(direction);
-  }, []);
+  const move = useCallback(
+    (direction: string) => {
+      craeft.move(direction);
+    },
+    [craeft],
+  );
 
   const keyPressed = useCallback(
     (event: KeyboardEvent) => {

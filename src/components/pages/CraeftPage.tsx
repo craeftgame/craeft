@@ -46,16 +46,16 @@ export default function CraeftPage() {
       },
     });
 
+    craeft.player.onLevelUp = () => {
+      // TODO: celebrate
+    };
+
     return () => {
       // stop, in the name of ...
       craeft.stop();
       Craeft.saveState(craeft);
     };
-  }, []);
-
-  craeft.player.onLevelUp = () => {
-    // TODO: celebrate
-  };
+  }, [craeft]);
 
   return (
     <div className="craeft">

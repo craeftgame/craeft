@@ -18,10 +18,10 @@ export default function Slider({
   const [value, setValue] = useState<number>(defaultValue);
   const [mouseDown, setMouseDown] = useState<boolean>(false);
 
-  const element = useRef<HTMLDivElement | null>(null);
-  const track = useRef<HTMLDivElement | null>(null);
-  const leftEdge = useRef<HTMLDivElement | null>(null);
-  const rightEdge = useRef<HTMLDivElement | null>(null);
+  const elementRef = useRef<HTMLDivElement | null>(null);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const leftEdgeRef = useRef<HTMLDivElement | null>(null);
+  const rightEdgeRef = useRef<HTMLDivElement | null>(null);
 
   const doSetValue = (value: number) => {
     setValue(value);
@@ -29,8 +29,8 @@ export default function Slider({
   };
 
   const slideTo = (pos: number) => {
-    if (track.current !== null) {
-      const stepWidth = pos / track.current.offsetWidth;
+    if (trackRef.current !== null) {
+      const stepWidth = pos / trackRef.current.offsetWidth;
       const value = Math.round(stepWidth * (max - min));
       doSetValue(min + value);
     }
@@ -54,16 +54,16 @@ export default function Slider({
     };
   }, []);
 
-  const edgeWidth = !leftEdge.current ? 20 : leftEdge.current.offsetWidth;
+  const edgeWidth = !leftEdgeRef.current ? 20 : leftEdgeRef.current.offsetWidth;
 
-  const trackWith = !track.current ? 20 : track.current.offsetWidth;
+  const trackWith = !trackRef.current ? 20 : trackRef.current.offsetWidth;
   const tempStep = (trackWith - edgeWidth * 2) / (max - min);
 
   const stepWidth = value * tempStep;
   const left = Math.floor(edgeWidth / 2 + stepWidth) + "px";
 
   return (
-    <div ref={element}>
+    <div ref={elementRef}>
       <input
         type="range"
         style={{ display: "none" }}
@@ -77,7 +77,7 @@ export default function Slider({
       <div className="rpgui-slider-container">
         <div
           className="rpgui-slider-track"
-          ref={track}
+          ref={trackRef}
           onMouseDown={() => setMouseDown(true)}
           onMouseUp={() => setMouseDown(false)}
           onMouseMove={(event) =>
@@ -90,7 +90,7 @@ export default function Slider({
 
         <div
           className="rpgui-slider-left-edge"
-          ref={leftEdge}
+          ref={leftEdgeRef}
           onMouseDown={() => setMouseDown(true)}
           onClick={() => doSetValue(min)}
         >
@@ -101,7 +101,7 @@ export default function Slider({
 
         <div
           className="rpgui-slider-right-edge"
-          ref={rightEdge}
+          ref={rightEdgeRef}
           onMouseDown={() => setMouseDown(true)}
           onClick={() => doSetValue(max)}
         >

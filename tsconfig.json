@@ -4,20 +4,13 @@
     // File Layout
     //"rootDir": "./src",
     //"outDir": "./dist",
-    "typeRoots": [
-      "node_modules/@types",
-      "node_modules/@craeft/engine/dist"
-    ],
+    "typeRoots": ["node_modules/@types", "node_modules/@craeft/engine/dist"],
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "ESNext",
     "target": "ESNext",
     // For nodejs:
-    "lib": [
-      "ESNext",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     // "types": ["node"],
     // and npm install -D @types/node
     // Other Outputs
@@ -48,7 +41,7 @@
     "noImplicitAny": true,
     "noEmit": true,
     "incremental": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "plugins": [
       {
         "name": "next"
