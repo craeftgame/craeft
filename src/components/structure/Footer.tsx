@@ -35,7 +35,7 @@ export default function Footer({ showDonate }: FooterProps) {
           fontSize: "12px",
         }}
       >
-        © 2019-2025&nbsp;
+        © 2019-2026&nbsp;
         <a href={config.author_url} target="_blank" rel="noreferrer">
           Umlaut Games
         </a>
